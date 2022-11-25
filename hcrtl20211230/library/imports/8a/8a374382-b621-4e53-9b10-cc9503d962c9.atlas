@@ -1,0 +1,90 @@
+
+Wizard.png
+size: 322,273
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+MC
+  rotate: false
+  xy: 2, 11
+  size: 128, 260
+  orig: 128, 260
+  offset: 0, 0
+  index: -1
+Magic (1)
+  rotate: false
+  xy: 247, 122
+  size: 73, 60
+  orig: 160, 160
+  offset: 45, 6
+  index: -1
+Magic (2)
+  rotate: false
+  xy: 132, 2
+  size: 72, 58
+  orig: 160, 160
+  offset: 66, 9
+  index: -1
+Magic (3)
+  rotate: false
+  xy: 247, 59
+  size: 71, 61
+  orig: 160, 160
+  offset: 70, 11
+  index: -1
+Magic (4)
+  rotate: true
+  xy: 166, 188
+  size: 46, 34
+  orig: 160, 160
+  offset: 53, 23
+  index: -1
+Magic (5)
+  rotate: false
+  xy: 206, 196
+  size: 91, 75
+  orig: 160, 160
+  offset: 55, 6
+  index: -1
+Magic (6)
+  rotate: true
+  xy: 166, 62
+  size: 124, 79
+  orig: 160, 160
+  offset: 23, 11
+  index: -1
+Magic (7)
+  rotate: true
+  xy: 276, 30
+  size: 27, 44
+  orig: 160, 160
+  offset: 120, 42
+  index: -1
+Magic (8)
+  rotate: true
+  xy: 206, 12
+  size: 45, 68
+  orig: 160, 160
+  offset: 20, 26
+  index: -1
+Magic (9)
+  rotate: false
+  xy: 166, 236
+  size: 38, 35
+  orig: 160, 160
+  offset: 20, 60
+  index: -1
+MagicWand
+  rotate: false
+  xy: 132, 62
+  size: 32, 209
+  orig: 32, 218
+  offset: 0, 1
+  index: -1
+hand
+  rotate: true
+  xy: 299, 184
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1

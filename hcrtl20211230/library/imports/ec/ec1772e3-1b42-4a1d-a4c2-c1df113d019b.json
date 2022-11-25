@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Bow",
+    "texture": "e7cdd378-9523-44ae-aa2d-c5f05cf095d5",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      474,
+      271
+    ],
+    "offset": [
+      -0.5,
+      0
+    ],
+    "originalSize": [
+      475,
+      271
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

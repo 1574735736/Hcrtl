@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "LVL-Up",
+    "texture": "122a0a92-ef53-4d7d-af95-d96bc54b94a2",
+    "atlas": "",
+    "rect": [
+      0,
+      1,
+      395,
+      578
+    ],
+    "offset": [
+      -1,
+      -0.5
+    ],
+    "originalSize": [
+      397,
+      579
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

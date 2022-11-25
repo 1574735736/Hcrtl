@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "MagicBall",
+    "texture": "40a87a1d-a6f5-40a3-993f-265521f251a6",
+    "atlas": "",
+    "rect": [
+      1,
+      2,
+      291,
+      569
+    ],
+    "offset": [
+      0.5,
+      -0.5
+    ],
+    "originalSize": [
+      292,
+      572
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

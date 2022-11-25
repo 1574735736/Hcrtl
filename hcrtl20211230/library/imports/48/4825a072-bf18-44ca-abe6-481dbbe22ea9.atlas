@@ -1,0 +1,76 @@
+
+MagicBall.png
+size: 292,572
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+MagicBall_0000_Magic_10
+  rotate: false
+  xy: 146, 100
+  size: 97, 82
+  orig: 160, 146
+  offset: 31, 31
+  index: -1
+MagicBall_0001_Magic_9
+  rotate: true
+  xy: 116, 2
+  size: 96, 81
+  orig: 160, 146
+  offset: 32, 31
+  index: -1
+MagicBall_0002_Magic_8
+  rotate: true
+  xy: 199, 3
+  size: 95, 91
+  orig: 160, 146
+  offset: 32, 21
+  index: -1
+MagicBall_0003_Magic_7
+  rotate: true
+  xy: 155, 426
+  size: 144, 128
+  orig: 160, 146
+  offset: 5, 7
+  index: -1
+MagicBall_0004_Magic_6
+  rotate: true
+  xy: 2, 275
+  size: 152, 139
+  orig: 160, 146
+  offset: 5, 6
+  index: -1
+MagicBall_0005_Magic_5
+  rotate: false
+  xy: 2, 429
+  size: 151, 141
+  orig: 160, 146
+  offset: 6, 1
+  index: -1
+MagicBall_0006_Magic_4
+  rotate: true
+  xy: 2, 124
+  size: 149, 142
+  orig: 160, 146
+  offset: 6, 3
+  index: -1
+MagicBall_0007_Magic_3
+  rotate: true
+  xy: 143, 280
+  size: 144, 140
+  orig: 160, 146
+  offset: 9, 3
+  index: -1
+MagicBall_0008_Magic_2
+  rotate: false
+  xy: 2, 12
+  size: 112, 110
+  orig: 160, 146
+  offset: 24, 16
+  index: -1
+MagicBall_0009_Magic_1
+  rotate: false
+  xy: 146, 184
+  size: 101, 94
+  orig: 160, 146
+  offset: 32, 24
+  index: -1

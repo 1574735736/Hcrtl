@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "img_flag_usingSkin",
+    "texture": "88eed707-9a54-4f48-85b7-130923033531",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      156,
+      121
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      156,
+      121
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

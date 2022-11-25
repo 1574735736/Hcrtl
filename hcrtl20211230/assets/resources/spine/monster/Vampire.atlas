@@ -1,0 +1,160 @@
+
+Vampire.png
+size: 957,527
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Blood
+  rotate: true
+  xy: 807, 168
+  size: 114, 108
+  orig: 114, 108
+  offset: 0, 0
+  index: -1
+Cloak
+  rotate: true
+  xy: 646, 25
+  size: 90, 150
+  orig: 90, 150
+  offset: 0, 0
+  index: -1
+Effect
+  rotate: false
+  xy: 2, 10
+  size: 96, 56
+  orig: 99, 58
+  offset: 1, 1
+  index: -1
+Head
+  rotate: false
+  xy: 655, 317
+  size: 92, 87
+  orig: 94, 87
+  offset: 0, 0
+  index: -1
+Horn2_1
+  rotate: true
+  xy: 100, 4
+  size: 62, 43
+  orig: 62, 43
+  offset: 0, 0
+  index: -1
+Horn2_2
+  rotate: true
+  xy: 145, 4
+  size: 62, 43
+  orig: 62, 43
+  offset: 0, 0
+  index: -1
+Horn_1
+  rotate: false
+  xy: 234, 12
+  size: 18, 31
+  orig: 18, 31
+  offset: 0, 0
+  index: -1
+Horn_2
+  rotate: false
+  xy: 254, 12
+  size: 18, 31
+  orig: 18, 31
+  offset: 0, 0
+  index: -1
+MC
+  rotate: true
+  xy: 452, 22
+  size: 93, 192
+  orig: 94, 192
+  offset: 1, 0
+  index: -1
+Mouth
+  rotate: true
+  xy: 190, 13
+  size: 30, 42
+  orig: 30, 42
+  offset: 0, 0
+  index: -1
+Smoke_1
+  rotate: true
+  xy: 650, 159
+  size: 156, 155
+  orig: 228, 225
+  offset: 38, 34
+  index: -1
+Smoke_2
+  rotate: false
+  xy: 798, 2
+  size: 156, 155
+  orig: 228, 225
+  offset: 28, 39
+  index: -1
+Smoke_3
+  rotate: false
+  xy: 452, 117
+  size: 196, 198
+  orig: 228, 225
+  offset: 12, 16
+  index: -1
+Smoke_4
+  rotate: true
+  xy: 449, 317
+  size: 208, 204
+  orig: 228, 225
+  offset: 8, 12
+  index: -1
+Smoke_5
+  rotate: true
+  xy: 229, 305
+  size: 220, 218
+  orig: 228, 225
+  offset: 4, 3
+  index: -1
+Smoke_6
+  rotate: false
+  xy: 228, 73
+  size: 222, 223
+  orig: 228, 225
+  offset: 3, 0
+  index: -1
+Smoke_7
+  rotate: true
+  xy: 2, 298
+  size: 227, 225
+  orig: 228, 225
+  offset: 0, 0
+  index: -1
+Smoke_8
+  rotate: true
+  xy: 2, 68
+  size: 228, 224
+  orig: 228, 225
+  offset: 0, 1
+  index: -1
+Wing
+  rotate: false
+  xy: 655, 406
+  size: 120, 119
+  orig: 120, 119
+  offset: 0, 0
+  index: -1
+Wing2
+  rotate: false
+  xy: 807, 284
+  size: 120, 119
+  orig: 120, 119
+  offset: 0, 0
+  index: -1
+Wing_3
+  rotate: true
+  xy: 807, 405
+  size: 120, 148
+  orig: 120, 148
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 190, 45
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1

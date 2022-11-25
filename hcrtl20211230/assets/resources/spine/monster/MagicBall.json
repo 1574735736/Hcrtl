@@ -1,0 +1,57 @@
+{
+"skeleton": {
+	"hash": "yG3H8Q7pWT7fsyyTlilGpNkbkiQ",
+	"spine": "3.8.99",
+	"x": -97.95,
+	"y": -90.27,
+	"width": 200,
+	"height": 182,
+	"images": "",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "MagicBall", "parent": "root", "length": 36.78, "rotation": 90, "x": 2.05, "y": 0.73 }
+],
+"slots": [
+	{ "name": "MagicBall", "bone": "MagicBall", "attachment": "MagicBall_0009_Magic_1" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"MagicBall": {
+				"MagicBall_0001_Magic_9": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0002_Magic_8": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0003_Magic_7": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0004_Magic_6": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0005_Magic_5": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0006_Magic_4": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0007_Magic_3": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0008_Magic_2": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0009_Magic_1": { "rotation": -90, "width": 200, "height": 182 },
+				"MagicBall_0000_Magic_10": { "rotation": -90, "width": 200, "height": 182 }
+			}
+		}
+	}
+],
+"animations": {
+	"FLy": {
+		"slots": {
+			"MagicBall": {
+				"attachment": [
+					{ "time": 0.0667, "name": "MagicBall_0008_Magic_2" },
+					{ "time": 0.1333, "name": "MagicBall_0007_Magic_3" },
+					{ "time": 0.2, "name": "MagicBall_0006_Magic_4" },
+					{ "time": 0.2667, "name": "MagicBall_0005_Magic_5" },
+					{ "time": 0.3333, "name": "MagicBall_0004_Magic_6" },
+					{ "time": 0.4, "name": "MagicBall_0003_Magic_7" },
+					{ "time": 0.4667, "name": "MagicBall_0002_Magic_8" },
+					{ "time": 0.5333, "name": "MagicBall_0001_Magic_9" },
+					{ "time": 0.6, "name": "MagicBall_0000_Magic_10" }
+				]
+			}
+		}
+	}
+}
+}

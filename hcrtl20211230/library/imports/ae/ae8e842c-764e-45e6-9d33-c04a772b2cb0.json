@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Wizard",
+    "texture": "c4d5cc57-e452-4e22-b02b-1a4246cf9ae1",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      320,
+      273
+    ],
+    "offset": [
+      1,
+      0
+    ],
+    "originalSize": [
+      322,
+      273
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

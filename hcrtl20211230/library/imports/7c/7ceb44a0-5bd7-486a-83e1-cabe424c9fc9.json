@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "loading_jdt1",
+    "texture": "c43fbd0c-c2de-4e67-910f-c5b8f419644f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      506,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      506,
+      28
+    ],
+    "capInsets": [
+      38,
+      0,
+      28,
+      0
+    ]
+  }
+}

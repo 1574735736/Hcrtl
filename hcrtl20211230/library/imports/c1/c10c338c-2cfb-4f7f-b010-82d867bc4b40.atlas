@@ -1,0 +1,440 @@
+
+LVL_4.png
+size: 1747,523
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ElectricityArmor_0001_ElectricityBuff
+  rotate: true
+  xy: 1404, 62
+  size: 48, 115
+  orig: 58, 160
+  offset: 5, 37
+  index: -1
+ElectricityArmor_0002_ElectricityBuff
+  rotate: true
+  xy: 1014, 23
+  size: 53, 129
+  orig: 58, 160
+  offset: 2, 23
+  index: -1
+ElectricityArmor_0003_ElectricityBuff
+  rotate: true
+  xy: 1602, 148
+  size: 52, 143
+  orig: 58, 160
+  offset: 3, 11
+  index: -1
+ElectricityArmor_0004_ElectricityBuff
+  rotate: true
+  xy: 1412, 112
+  size: 52, 151
+  orig: 58, 160
+  offset: 3, 6
+  index: -1
+ElectricityArmor_0005_ElectricityBuff
+  rotate: true
+  xy: 202, 5
+  size: 48, 148
+  orig: 58, 160
+  offset: 5, 3
+  index: -1
+ElectricityArmor_0006_ElectricityBuff
+  rotate: true
+  xy: 1165, 72
+  size: 46, 135
+  orig: 58, 160
+  offset: 5, 3
+  index: -1
+ElectricityArmor_0007_ElectricityBuff
+  rotate: true
+  xy: 1145, 25
+  size: 45, 126
+  orig: 58, 160
+  offset: 7, 4
+  index: -1
+ElectricityArmor_0008_ElectricityBuff
+  rotate: true
+  xy: 1273, 29
+  size: 39, 101
+  orig: 58, 160
+  offset: 10, 8
+  index: -1
+ElectricityArmor_0009_ElectricityBuff
+  rotate: true
+  xy: 606, 4
+  size: 39, 45
+  orig: 58, 160
+  offset: 10, 110
+  index: -1
+Energy 017 Charge Up00
+  rotate: false
+  xy: 1412, 166
+  size: 24, 16
+  orig: 80, 80
+  offset: 11, 20
+  index: -1
+Energy 017 Charge Up01
+  rotate: false
+  xy: 1014, 2
+  size: 35, 19
+  orig: 80, 80
+  offset: 0, 19
+  index: -1
+Energy 017 Charge Up02
+  rotate: true
+  xy: 757, 2
+  size: 35, 30
+  orig: 80, 80
+  offset: 0, 19
+  index: -1
+Energy 017 Charge Up03
+  rotate: false
+  xy: 724, 2
+  size: 31, 48
+  orig: 80, 80
+  offset: 0, 20
+  index: -1
+Energy 017 Charge Up04
+  rotate: false
+  xy: 1521, 61
+  size: 42, 49
+  orig: 80, 80
+  offset: 0, 21
+  index: -1
+Energy 017 Charge Up05
+  rotate: false
+  xy: 1610, 16
+  size: 45, 52
+  orig: 80, 80
+  offset: 7, 19
+  index: -1
+Energy 017 Charge Up06
+  rotate: false
+  xy: 737, 54
+  size: 47, 51
+  orig: 80, 80
+  offset: 12, 18
+  index: -1
+Energy 017 Charge Up07
+  rotate: false
+  xy: 1657, 28
+  size: 45, 46
+  orig: 80, 80
+  offset: 14, 18
+  index: -1
+Energy 017 Charge Up08
+  rotate: false
+  xy: 1556, 4
+  size: 52, 55
+  orig: 80, 80
+  offset: 16, 18
+  index: -1
+Energy 017 Charge Up09
+  rotate: true
+  xy: 670, 52
+  size: 53, 65
+  orig: 80, 80
+  offset: 19, 10
+  index: -1
+Energy 017 Charge Up10
+  rotate: false
+  xy: 1507, 2
+  size: 47, 57
+  orig: 80, 80
+  offset: 27, 4
+  index: -1
+Energy 017 Charge Up11
+  rotate: false
+  xy: 786, 39
+  size: 68, 45
+  orig: 80, 80
+  offset: 6, 4
+  index: -1
+Energy 017 Charge Up12
+  rotate: false
+  xy: 606, 45
+  size: 62, 60
+  orig: 80, 80
+  offset: 5, 7
+  index: -1
+Energy 017 Charge Up13
+  rotate: false
+  xy: 1376, 2
+  size: 68, 58
+  orig: 80, 80
+  offset: 5, 9
+  index: -1
+Energy 017 Charge Up14
+  rotate: true
+  xy: 548, 24
+  size: 69, 56
+  orig: 80, 80
+  offset: 5, 11
+  index: -1
+Energy 017 Charge Up15
+  rotate: false
+  xy: 670, 2
+  size: 52, 48
+  orig: 80, 80
+  offset: 25, 17
+  index: -1
+Energy 017 Charge Up17
+  rotate: true
+  xy: 352, 4
+  size: 52, 23
+  orig: 80, 80
+  offset: 23, 20
+  index: -1
+Eye
+  rotate: false
+  xy: 1446, 2
+  size: 59, 58
+  orig: 59, 58
+  offset: 0, 0
+  index: -1
+Fire_1
+  rotate: true
+  xy: 378, 104
+  size: 67, 92
+  orig: 90, 92
+  offset: 15, 0
+  index: -1
+Fire_2
+  rotate: false
+  xy: 1639, 76
+  size: 71, 70
+  orig: 90, 92
+  offset: 11, 2
+  index: -1
+Fire_3
+  rotate: false
+  xy: 472, 95
+  size: 90, 76
+  orig: 90, 92
+  offset: 0, 2
+  index: -1
+Fire_4
+  rotate: false
+  xy: 377, 33
+  size: 90, 69
+  orig: 90, 92
+  offset: 0, 1
+  index: -1
+Fire_5
+  rotate: false
+  xy: 1565, 70
+  size: 72, 76
+  orig: 90, 92
+  offset: 12, 4
+  index: -1
+Fire_6
+  rotate: true
+  xy: 469, 24
+  size: 69, 77
+  orig: 90, 92
+  offset: 15, 6
+  index: -1
+Glow
+  rotate: true
+  xy: 1302, 70
+  size: 48, 100
+  orig: 53, 102
+  offset: 4, 0
+  index: -1
+MC_lvl3
+  rotate: true
+  xy: 1189, 120
+  size: 62, 221
+  orig: 62, 221
+  offset: 0, 0
+  index: -1
+MC_lvl4-1
+  rotate: true
+  xy: 566, 107
+  size: 65, 221
+  orig: 65, 221
+  offset: 0, 0
+  index: -1
+MC_lvl4-2
+  rotate: true
+  xy: 1438, 214
+  size: 67, 221
+  orig: 67, 221
+  offset: 0, 0
+  index: -1
+PowerUp (1)
+  rotate: false
+  xy: 789, 86
+  size: 103, 86
+  orig: 209, 377
+  offset: 50, 0
+  index: -1
+PowerUp (10)
+  rotate: true
+  xy: 2, 55
+  size: 113, 329
+  orig: 209, 377
+  offset: 50, 0
+  index: -1
+PowerUp (11)
+  rotate: true
+  xy: 895, 232
+  size: 108, 308
+  orig: 209, 377
+  offset: 52, 0
+  index: -1
+PowerUp (12)
+  rotate: true
+  xy: 895, 128
+  size: 102, 292
+  orig: 209, 370
+  offset: 55, 0
+  index: -1
+PowerUp (13)
+  rotate: true
+  xy: 1244, 294
+  size: 93, 282
+  orig: 209, 372
+  offset: 60, 0
+  index: -1
+PowerUp (14)
+  rotate: true
+  xy: 1531, 439
+  size: 82, 191
+  orig: 209, 374
+  offset: 65, 0
+  index: -1
+PowerUp (2)
+  rotate: true
+  xy: 1205, 184
+  size: 108, 231
+  orig: 209, 377
+  offset: 47, 0
+  index: -1
+PowerUp (3)
+  rotate: true
+  xy: 1244, 389
+  size: 132, 285
+  orig: 209, 377
+  offset: 36, 0
+  index: -1
+PowerUp (4)
+  rotate: true
+  xy: 566, 174
+  size: 177, 327
+  orig: 209, 377
+  offset: 20, 0
+  index: -1
+PowerUp (5)
+  rotate: true
+  xy: 919, 342
+  size: 179, 323
+  orig: 209, 377
+  offset: 18, 0
+  index: -1
+PowerUp (6)
+  rotate: false
+  xy: 193, 170
+  size: 183, 351
+  orig: 209, 351
+  offset: 14, 0
+  index: -1
+PowerUp (7)
+  rotate: false
+  xy: 2, 170
+  size: 189, 351
+  orig: 209, 351
+  offset: 10, 0
+  index: -1
+PowerUp (8)
+  rotate: false
+  xy: 378, 173
+  size: 186, 348
+  orig: 210, 351
+  offset: 14, 0
+  index: -1
+PowerUp (9)
+  rotate: true
+  xy: 566, 353
+  size: 168, 351
+  orig: 209, 351
+  offset: 25, 0
+  index: -1
+Weapon_2
+  rotate: true
+  xy: 1531, 388
+  size: 49, 193
+  orig: 49, 193
+  offset: 0, 0
+  index: -1
+Weapon_3
+  rotate: true
+  xy: 1528, 283
+  size: 36, 198
+  orig: 36, 198
+  offset: 0, 0
+  index: -1
+Weapon_4
+  rotate: true
+  xy: 1528, 321
+  size: 65, 193
+  orig: 65, 193
+  offset: 0, 0
+  index: -1
+Weapon_5
+  rotate: true
+  xy: 1438, 166
+  size: 46, 162
+  orig: 46, 162
+  offset: 0, 0
+  index: -1
+Wing_LVL4
+  rotate: true
+  xy: 894, 2
+  size: 124, 118
+  orig: 124, 118
+  offset: 0, 0
+  index: -1
+crown_lvl4
+  rotate: true
+  xy: 1661, 202
+  size: 79, 84
+  orig: 89, 92
+  offset: 6, 7
+  index: -1
+hand_3
+  rotate: false
+  xy: 1145, 2
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+hand_4
+  rotate: false
+  xy: 377, 5
+  size: 87, 26
+  orig: 87, 30
+  offset: 0, 0
+  index: -1
+scarf_1
+  rotate: false
+  xy: 1014, 78
+  size: 149, 48
+  orig: 149, 48
+  offset: 0, 0
+  index: -1
+scarf_2
+  rotate: true
+  xy: 333, 58
+  size: 110, 42
+  orig: 110, 42
+  offset: 0, 0
+  index: -1
+sword
+  rotate: true
+  xy: 2, 5
+  size: 48, 198
+  orig: 48, 198
+  offset: 0, 0
+  index: -1

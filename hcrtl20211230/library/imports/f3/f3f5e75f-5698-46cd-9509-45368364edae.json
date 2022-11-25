@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "title_freeSkin",
+    "texture": "8f17ac9b-25b5-4067-a605-dfe50e3f0c26",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      359,
+      67
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      359,
+      67
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

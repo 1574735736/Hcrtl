@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "T-rex",
+    "texture": "03777ec8-a59f-4caa-9492-956969fd4539",
+    "atlas": "",
+    "rect": [
+      1,
+      2,
+      1321,
+      402
+    ],
+    "offset": [
+      -0.5,
+      -1
+    ],
+    "originalSize": [
+      1324,
+      404
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "huan_3",
+    "texture": "595140c6-0d2d-4813-b51a-bfbcc06f0a0b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      83,
+      167
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      83,
+      167
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

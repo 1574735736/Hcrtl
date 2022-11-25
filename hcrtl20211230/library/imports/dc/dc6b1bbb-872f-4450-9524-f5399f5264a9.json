@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "stage_arrow_prev",
+    "texture": "d239eab5-3512-40a1-862c-0e0eede7fc66",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      44,
+      81
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      44,
+      81
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

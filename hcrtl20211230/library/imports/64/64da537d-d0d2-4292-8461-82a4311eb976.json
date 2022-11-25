@@ -1,0 +1,14 @@
+{
+  "__type__": "dragonBones.DragonBonesAtlasAsset",
+  "_name": "NewProject_tex",
+  "_objFlags": 0,
+  "_native": "",
+  "_atlasJson": "{\"width\":128,\"SubTexture\":[{\"frameY\":0,\"y\":1,\"frameWidth\":129,\"frameX\":-5,\"frameHeight\":128,\"width\":124,\"height\":125,\"name\":\"baokai1\",\"x\":1}],\"height\":128,\"name\":\"NewProject\",\"imagePath\":\"NewProject_tex.png\"}",
+  "_texture": {
+    "__uuid__": "6a53899e-7ddc-49aa-8528-c1291d2a90b6"
+  },
+  "texture": {
+    "__uuid__": "6a53899e-7ddc-49aa-8528-c1291d2a90b6"
+  },
+  "_textureAtlasData": null
+}

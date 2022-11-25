@@ -1,0 +1,118 @@
+
+Shield.png
+size: 1329,237
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack1_1
+  rotate: false
+  xy: 2, 4
+  size: 293, 231
+  orig: 299, 241
+  offset: 3, 7
+  index: -1
+Attack1_2
+  rotate: false
+  xy: 297, 66
+  size: 280, 169
+  orig: 299, 241
+  offset: 16, 69
+  index: -1
+Attack1_3
+  rotate: false
+  xy: 579, 86
+  size: 258, 149
+  orig: 299, 241
+  offset: 38, 89
+  index: -1
+Attack1_4
+  rotate: false
+  xy: 839, 86
+  size: 187, 149
+  orig: 299, 241
+  offset: 109, 89
+  index: -1
+Attack1_5
+  rotate: true
+  xy: 297, 2
+  size: 62, 149
+  orig: 299, 241
+  offset: 234, 89
+  index: -1
+MC
+  rotate: true
+  xy: 1028, 86
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+MC_2
+  rotate: false
+  xy: 1245, 20
+  size: 82, 215
+  orig: 98, 215
+  offset: 0, 0
+  index: -1
+MC_3
+  rotate: true
+  xy: 1028, 147
+  size: 88, 215
+  orig: 98, 215
+  offset: 0, 0
+  index: -1
+Shield
+  rotate: true
+  xy: 755, 28
+  size: 56, 148
+  orig: 56, 148
+  offset: 0, 0
+  index: -1
+Shield-3
+  rotate: true
+  xy: 905, 33
+  size: 51, 145
+  orig: 56, 148
+  offset: 4, 1
+  index: -1
+Shield_1
+  rotate: true
+  xy: 448, 18
+  size: 46, 124
+  orig: 56, 148
+  offset: 10, 17
+  index: -1
+han2
+  rotate: false
+  xy: 905, 10
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 755, 5
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+sword
+  rotate: true
+  xy: 579, 14
+  size: 70, 174
+  orig: 70, 174
+  offset: 0, 0
+  index: -1
+sword_1
+  rotate: true
+  xy: 1052, 12
+  size: 26, 158
+  orig: 26, 158
+  offset: 0, 0
+  index: -1
+sword_3
+  rotate: true
+  xy: 1052, 40
+  size: 44, 167
+  orig: 70, 174
+  offset: 11, 4
+  index: -1

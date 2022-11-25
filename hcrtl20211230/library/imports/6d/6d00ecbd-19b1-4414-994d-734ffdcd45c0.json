@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "DualSword",
+    "texture": "6399a4fc-1fc3-4fc7-9bc1-6ba81dc994e5",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      479,
+      525
+    ],
+    "offset": [
+      -1.5,
+      -1
+    ],
+    "originalSize": [
+      482,
+      527
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_wildRage",
+    "texture": "0eda8304-1791-41cd-8fd7-6b195a12f7dd",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      98
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      98
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+"skeleton": { "hash": "Ny/F3ZyfKTTGVI5xbdHh3EOEDi4", "spine": "3.8.99", "images": "", "audio": "E:/Truong/Genix/Stickman/Data/Character/MC" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "Armor", "parent": "root", "rotation": 180, "y": 161.1, "scaleX": 3, "scaleY": 2.0316 }
+],
+"slots": [
+	{ "name": "Armor", "bone": "Armor" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Armor": {
+				"ElectricityArmor_0001_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0002_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0003_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0004_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0005_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0006_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0007_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0008_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 },
+				"ElectricityArmor_0009_ElectricityBuff": { "x": 0.5, "width": 73, "height": 200 }
+			}
+		}
+	}
+],
+"animations": {
+	"Buff": {
+		"slots": {
+			"Armor": {
+				"attachment": [
+					{ "time": 0.0667, "name": "ElectricityArmor_0001_ElectricityBuff" },
+					{ "time": 0.1333, "name": "ElectricityArmor_0002_ElectricityBuff" },
+					{ "time": 0.2, "name": "ElectricityArmor_0003_ElectricityBuff" },
+					{ "time": 0.2667, "name": "ElectricityArmor_0004_ElectricityBuff" },
+					{ "time": 0.3333, "name": "ElectricityArmor_0005_ElectricityBuff" },
+					{ "time": 0.4, "name": "ElectricityArmor_0006_ElectricityBuff" },
+					{ "time": 0.4667, "name": "ElectricityArmor_0007_ElectricityBuff" },
+					{ "time": 0.5333, "name": "ElectricityArmor_0008_ElectricityBuff" },
+					{ "time": 0.6, "name": "ElectricityArmor_0009_ElectricityBuff" },
+					{ "time": 0.6667, "name": null },
+					{ "time": 0.7333, "name": "ElectricityArmor_0001_ElectricityBuff" },
+					{ "time": 0.8, "name": "ElectricityArmor_0002_ElectricityBuff" },
+					{ "time": 0.8667, "name": "ElectricityArmor_0003_ElectricityBuff" },
+					{ "time": 0.9333, "name": "ElectricityArmor_0004_ElectricityBuff" },
+					{ "time": 1, "name": "ElectricityArmor_0005_ElectricityBuff" },
+					{ "time": 1.0667, "name": "ElectricityArmor_0006_ElectricityBuff" },
+					{ "time": 1.1333, "name": "ElectricityArmor_0007_ElectricityBuff" },
+					{ "time": 1.2, "name": "ElectricityArmor_0008_ElectricityBuff" },
+					{ "time": 1.2667, "name": "ElectricityArmor_0009_ElectricityBuff" },
+					{ "time": 1.3333, "name": null }
+				]
+			}
+		}
+	}
+}
+}

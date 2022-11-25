@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "LockTower",
+    "texture": "4ae6602b-ad42-4810-8cba-b4dbc0381ecb",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      384,
+      312
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      388,
+      312
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Arrown",
+    "texture": "2aa9eb04-a11e-45dd-90db-94ccfbf31b31",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      158,
+      354
+    ],
+    "offset": [
+      -0.5,
+      0.5
+    ],
+    "originalSize": [
+      159,
+      355
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

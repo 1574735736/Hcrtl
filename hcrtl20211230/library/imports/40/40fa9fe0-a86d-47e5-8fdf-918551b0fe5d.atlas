@@ -1,0 +1,90 @@
+
+LVL-Up.png
+size: 397,579
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+LVLUP_0000_LVLUP-(12)
+  rotate: false
+  xy: 208, 334
+  size: 176, 56
+  orig: 240, 136
+  offset: 28, 40
+  index: -1
+LVLUP_0001_LVLUP-(11)
+  rotate: true
+  xy: 326, 139
+  size: 193, 66
+  orig: 240, 136
+  offset: 28, 37
+  index: -1
+LVLUP_0002_LVLUP-(10)
+  rotate: false
+  xy: 2, 506
+  size: 216, 71
+  orig: 240, 136
+  offset: 20, 35
+  index: -1
+LVLUP_0003_LVLUP-(9)
+  rotate: false
+  xy: 2, 351
+  size: 204, 74
+  orig: 240, 136
+  offset: 16, 31
+  index: -1
+LVLUP_0004_LVLUP-(8)
+  rotate: false
+  xy: 2, 427
+  size: 207, 77
+  orig: 240, 136
+  offset: 15, 30
+  index: -1
+LVLUP_0005_LVLUP-(7)
+  rotate: false
+  xy: 2, 124
+  size: 197, 91
+  orig: 240, 136
+  offset: 14, 28
+  index: -1
+LVLUP_0006_LVLUP-(6)
+  rotate: false
+  xy: 220, 476
+  size: 163, 101
+  orig: 240, 136
+  offset: 15, 18
+  index: -1
+LVLUP_0007_LVLUP-(5)
+  rotate: false
+  xy: 201, 20
+  size: 194, 112
+  orig: 240, 136
+  offset: 10, 12
+  index: -1
+LVLUP_0008_LVLUP-(4)
+  rotate: false
+  xy: 2, 2
+  size: 193, 120
+  orig: 240, 136
+  offset: 8, 9
+  index: -1
+LVLUP_0009_LVLUP-(3)
+  rotate: true
+  xy: 203, 134
+  size: 198, 121
+  orig: 240, 136
+  offset: 9, 8
+  index: -1
+LVLUP_0010_LVLUP-(2)
+  rotate: false
+  xy: 2, 217
+  size: 199, 132
+  orig: 240, 136
+  offset: 2, 2
+  index: -1
+LVLUP_0011_LVLUP-(1)
+  rotate: false
+  xy: 211, 392
+  size: 180, 82
+  orig: 240, 136
+  offset: 12, 26
+  index: -1

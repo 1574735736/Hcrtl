@@ -1,0 +1,125 @@
+
+Bow.png
+size: 475,271
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arown
+  rotate: false
+  xy: 74, 34
+  size: 126, 18
+  orig: 126, 18
+  offset: 0, 0
+  index: -1
+Arrow (1)
+  rotate: false
+  xy: 383, 4
+  size: 40, 138
+  orig: 160, 160
+  offset: 63, 9
+  index: -1
+Arrow (2)
+  rotate: false
+  xy: 311, 130
+  size: 58, 139
+  orig: 160, 160
+  offset: 55, 4
+  index: -1
+Arrow (3)
+  rotate: false
+  xy: 371, 144
+  size: 64, 125
+  orig: 160, 160
+  offset: 52, 1
+  index: -1
+Arrow (4)
+  rotate: true
+  xy: 437, 209
+  size: 60, 36
+  orig: 160, 160
+  offset: 47, 0
+  index: -1
+Arrow (5)
+  rotate: false
+  xy: 311, 9
+  size: 70, 119
+  orig: 160, 160
+  offset: 42, 0
+  index: -1
+Arrow (6)
+  rotate: true
+  xy: 437, 151
+  size: 56, 33
+  orig: 160, 160
+  offset: 38, 4
+  index: -1
+Arrow (7)
+  rotate: true
+  xy: 202, 6
+  size: 61, 69
+  orig: 160, 160
+  offset: 45, 6
+  index: -1
+Bow
+  rotate: false
+  xy: 425, 9
+  size: 39, 133
+  orig: 39, 133
+  offset: 0, 0
+  index: -1
+BowRope
+  rotate: true
+  xy: 74, 30
+  size: 2, 115
+  orig: 2, 115
+  offset: 0, 0
+  index: -1
+Bow_2
+  rotate: false
+  xy: 263, 70
+  size: 46, 199
+  orig: 46, 199
+  offset: 0, 0
+  index: -1
+Bow_3
+  rotate: false
+  xy: 196, 69
+  size: 65, 200
+  orig: 78, 224
+  offset: 12, 12
+  index: -1
+MC
+  rotate: false
+  xy: 74, 54
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+MC_2
+  rotate: false
+  xy: 135, 54
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+MC_3
+  rotate: false
+  xy: 2, 25
+  size: 70, 244
+  orig: 70, 247
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 2, 2
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+hand_2
+  rotate: false
+  xy: 91, 7
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,97 @@
+
+Priest.png
+size: 311,535
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack_0000_Electricity-001-Impact-Explosion-Up10
+  rotate: false
+  xy: 2, 326
+  size: 151, 108
+  orig: 160, 160
+  offset: 5, 26
+  index: -1
+Attack_0001_Electricity-001-Impact-Explosion-Up09
+  rotate: false
+  xy: 2, 204
+  size: 149, 120
+  orig: 160, 160
+  offset: 6, 13
+  index: -1
+Attack_0002_Electricity-001-Impact-Explosion-Up07
+  rotate: false
+  xy: 2, 81
+  size: 144, 121
+  orig: 160, 160
+  offset: 7, 9
+  index: -1
+Attack_0003_Electricity-001-Impact-Explosion-Up06
+  rotate: true
+  xy: 155, 300
+  size: 134, 111
+  orig: 160, 160
+  offset: 12, 7
+  index: -1
+Attack_0004_Electricity-001-Impact-Explosion-Up04
+  rotate: true
+  xy: 219, 80
+  size: 116, 90
+  orig: 160, 160
+  offset: 16, 7
+  index: -1
+Attack_0005_Electricity-001-Impact-Explosion-Up03
+  rotate: false
+  xy: 81, 4
+  size: 90, 75
+  orig: 160, 160
+  offset: 26, 6
+  index: -1
+Attack_0006_Electricity-001-Impact-Explosion-Up00
+  rotate: true
+  xy: 224, 33
+  size: 45, 47
+  orig: 160, 160
+  offset: 42, 4
+  index: -1
+Attack_0007_Electricity-001-Impact-Explosion-Up12
+  rotate: false
+  xy: 153, 198
+  size: 148, 100
+  orig: 160, 160
+  offset: 7, 30
+  index: -1
+BallLight
+  rotate: false
+  xy: 2, 2
+  size: 77, 77
+  orig: 80, 80
+  offset: 1, 1
+  index: -1
+Body
+  rotate: true
+  xy: 2, 436
+  size: 97, 267
+  orig: 149, 300
+  offset: 26, 32
+  index: -1
+Book
+  rotate: true
+  xy: 173, 17
+  size: 61, 49
+  orig: 61, 49
+  offset: 0, 0
+  index: -1
+Hand
+  rotate: true
+  xy: 148, 102
+  size: 94, 69
+  orig: 94, 69
+  offset: 0, 0
+  index: -1
+MagicWand
+  rotate: false
+  xy: 271, 341
+  size: 30, 192
+  orig: 30, 192
+  offset: 0, 0
+  index: -1

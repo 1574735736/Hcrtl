@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "MC mainmenu",
+    "texture": "22514b8d-9542-4088-ba7b-3eb5436d50b6",
+    "atlas": "",
+    "rect": [
+      1,
+      2,
+      2002,
+      1298
+    ],
+    "offset": [
+      0.5,
+      0
+    ],
+    "originalSize": [
+      2003,
+      1302
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

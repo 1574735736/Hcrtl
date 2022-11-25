@@ -1,0 +1,62 @@
+
+Sword_d2.png
+size: 1028,238
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack1_1
+  rotate: false
+  xy: 2, 5
+  size: 293, 231
+  orig: 299, 241
+  offset: 3, 7
+  index: -1
+Attack1_2
+  rotate: false
+  xy: 297, 67
+  size: 280, 169
+  orig: 299, 241
+  offset: 16, 69
+  index: -1
+Attack1_3
+  rotate: false
+  xy: 579, 87
+  size: 258, 149
+  orig: 299, 241
+  offset: 38, 89
+  index: -1
+Attack1_4
+  rotate: false
+  xy: 839, 87
+  size: 187, 149
+  orig: 299, 241
+  offset: 109, 89
+  index: -1
+Attack1_5
+  rotate: true
+  xy: 297, 3
+  size: 62, 149
+  orig: 299, 241
+  offset: 234, 89
+  index: -1
+MC-2
+  rotate: true
+  xy: 579, 2
+  size: 83, 222
+  orig: 83, 222
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 448, 44
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+sword
+  rotate: true
+  xy: 803, 15
+  size: 70, 174
+  orig: 70, 174
+  offset: 0, 0
+  index: -1

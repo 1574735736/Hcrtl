@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "btn_skipLevel",
+    "texture": "94f37d8d-6e72-4636-8c16-c704bfc2f5e2",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      90,
+      97
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      90,
+      97
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+
+Goblin.png
+size: 1786,229
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bag
+  rotate: false
+  xy: 1631, 120
+  size: 153, 107
+  orig: 153, 107
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 1631, 12
+  size: 119, 106
+  orig: 120, 106
+  offset: 1, 0
+  index: -1
+Hand
+  rotate: false
+  xy: 1752, 13
+  size: 29, 105
+  orig: 29, 105
+  offset: 0, 0
+  index: -1
+Leg
+  rotate: true
+  xy: 1315, 19
+  size: 51, 95
+  orig: 51, 102
+  offset: 0, 7
+  index: -1
+Smoke_1
+  rotate: false
+  xy: 1315, 72
+  size: 156, 155
+  orig: 228, 225
+  offset: 38, 34
+  index: -1
+Smoke_2
+  rotate: false
+  xy: 1473, 72
+  size: 156, 155
+  orig: 228, 225
+  offset: 28, 39
+  index: -1
+Smoke_3
+  rotate: false
+  xy: 1117, 29
+  size: 196, 198
+  orig: 228, 225
+  offset: 12, 16
+  index: -1
+Smoke_4
+  rotate: false
+  xy: 907, 23
+  size: 208, 204
+  orig: 228, 225
+  offset: 8, 12
+  index: -1
+Smoke_5
+  rotate: false
+  xy: 685, 9
+  size: 220, 218
+  orig: 228, 225
+  offset: 4, 3
+  index: -1
+Smoke_6
+  rotate: false
+  xy: 461, 4
+  size: 222, 223
+  orig: 228, 225
+  offset: 3, 0
+  index: -1
+Smoke_7
+  rotate: false
+  xy: 2, 2
+  size: 227, 225
+  orig: 228, 225
+  offset: 0, 0
+  index: -1
+Smoke_8
+  rotate: false
+  xy: 231, 3
+  size: 228, 224
+  orig: 228, 225
+  offset: 0, 1
+  index: -1

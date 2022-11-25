@@ -1,0 +1,181 @@
+
+T-rex.png
+size: 1324,404
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Fire (1)
+  rotate: false
+  xy: 565, 12
+  size: 45, 48
+  orig: 124, 109
+  offset: 0, 30
+  index: -1
+Fire (10)
+  rotate: false
+  xy: 1115, 3
+  size: 93, 88
+  orig: 124, 109
+  offset: 27, 10
+  index: -1
+Fire (11)
+  rotate: false
+  xy: 986, 9
+  size: 68, 69
+  orig: 124, 109
+  offset: 46, 17
+  index: -1
+Fire (12)
+  rotate: false
+  xy: 316, 9
+  size: 41, 29
+  orig: 124, 109
+  offset: 52, 36
+  index: -1
+Fire (2)
+  rotate: true
+  xy: 907, 3
+  size: 75, 77
+  orig: 124, 109
+  offset: 0, 13
+  index: -1
+Fire (3)
+  rotate: false
+  xy: 1218, 106
+  size: 103, 98
+  orig: 124, 109
+  offset: 0, 5
+  index: -1
+Fire (4)
+  rotate: true
+  xy: 1012, 81
+  size: 111, 101
+  orig: 124, 109
+  offset: 2, 3
+  index: -1
+Fire (5)
+  rotate: true
+  xy: 1115, 93
+  size: 111, 101
+  orig: 124, 109
+  offset: 3, 4
+  index: -1
+Fire (6)
+  rotate: true
+  xy: 599, 65
+  size: 112, 103
+  orig: 124, 109
+  offset: 4, 2
+  index: -1
+Fire (7)
+  rotate: true
+  xy: 907, 80
+  size: 112, 103
+  orig: 124, 109
+  offset: 5, 2
+  index: -1
+Fire (8)
+  rotate: true
+  xy: 492, 62
+  size: 115, 105
+  orig: 124, 109
+  offset: 5, 2
+  index: -1
+Fire (9)
+  rotate: true
+  xy: 1218, 2
+  size: 102, 96
+  orig: 124, 109
+  offset: 18, 5
+  index: -1
+Mouth
+  rotate: false
+  xy: 359, 14
+  size: 62, 24
+  orig: 62, 24
+  offset: 0, 0
+  index: -1
+Smoke_1
+  rotate: true
+  xy: 2, 16
+  size: 156, 155
+  orig: 228, 225
+  offset: 38, 34
+  index: -1
+Smoke_2
+  rotate: true
+  xy: 159, 16
+  size: 156, 155
+  orig: 228, 225
+  offset: 28, 39
+  index: -1
+Smoke_3
+  rotate: true
+  xy: 1105, 206
+  size: 196, 198
+  orig: 228, 225
+  offset: 12, 16
+  index: -1
+Smoke_4
+  rotate: true
+  xy: 899, 194
+  size: 208, 204
+  orig: 228, 225
+  offset: 8, 12
+  index: -1
+Smoke_5
+  rotate: true
+  xy: 679, 182
+  size: 220, 218
+  orig: 228, 225
+  offset: 4, 3
+  index: -1
+Smoke_6
+  rotate: false
+  xy: 455, 179
+  size: 222, 223
+  orig: 228, 225
+  offset: 3, 0
+  index: -1
+Smoke_7
+  rotate: true
+  xy: 228, 175
+  size: 227, 225
+  orig: 228, 225
+  offset: 0, 0
+  index: -1
+Smoke_8
+  rotate: true
+  xy: 2, 174
+  size: 228, 224
+  orig: 228, 225
+  offset: 0, 1
+  index: -1
+T-rex_Hand
+  rotate: false
+  xy: 492, 9
+  size: 71, 51
+  orig: 71, 51
+  offset: 0, 0
+  index: -1
+T-rex_body
+  rotate: false
+  xy: 704, 2
+  size: 201, 178
+  orig: 201, 178
+  offset: 0, 0
+  index: -1
+WingL
+  rotate: true
+  xy: 316, 40
+  size: 133, 86
+  orig: 133, 86
+  offset: 0, 0
+  index: -1
+WingR
+  rotate: true
+  xy: 404, 40
+  size: 133, 86
+  orig: 133, 86
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Skin",
+    "texture": "29406555-2aac-40cf-9139-f9188a7402c4",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      193,
+      209
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      193,
+      209
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+
+Buff.png
+size: 561,106
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ElectricityArmor_0001_ElectricityBuff
+  rotate: true
+  xy: 300, 56
+  size: 48, 115
+  orig: 58, 160
+  offset: 5, 37
+  index: -1
+ElectricityArmor_0002_ElectricityBuff
+  rotate: true
+  xy: 417, 51
+  size: 53, 129
+  orig: 58, 160
+  offset: 2, 23
+  index: -1
+ElectricityArmor_0003_ElectricityBuff
+  rotate: true
+  xy: 155, 52
+  size: 52, 143
+  orig: 58, 160
+  offset: 3, 11
+  index: -1
+ElectricityArmor_0004_ElectricityBuff
+  rotate: true
+  xy: 2, 52
+  size: 52, 151
+  orig: 58, 160
+  offset: 3, 6
+  index: -1
+ElectricityArmor_0005_ElectricityBuff
+  rotate: true
+  xy: 2, 2
+  size: 48, 148
+  orig: 58, 160
+  offset: 5, 3
+  index: -1
+ElectricityArmor_0006_ElectricityBuff
+  rotate: true
+  xy: 152, 4
+  size: 46, 135
+  orig: 58, 160
+  offset: 5, 3
+  index: -1
+ElectricityArmor_0007_ElectricityBuff
+  rotate: true
+  xy: 289, 5
+  size: 45, 126
+  orig: 58, 160
+  offset: 7, 4
+  index: -1
+ElectricityArmor_0008_ElectricityBuff
+  rotate: true
+  xy: 417, 10
+  size: 39, 101
+  orig: 58, 160
+  offset: 10, 8
+  index: -1
+ElectricityArmor_0009_ElectricityBuff
+  rotate: false
+  xy: 520, 4
+  size: 39, 45
+  orig: 58, 160
+  offset: 10, 110
+  index: -1

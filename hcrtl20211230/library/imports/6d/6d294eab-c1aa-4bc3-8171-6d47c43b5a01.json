@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "BoneArcher",
+    "texture": "bc4593a9-b5b0-4f6a-8ba2-c4b77c1f4eb7",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      1396,
+      523
+    ],
+    "offset": [
+      0,
+      -1
+    ],
+    "originalSize": [
+      1396,
+      525
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

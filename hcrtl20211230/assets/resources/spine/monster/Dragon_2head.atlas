@@ -1,0 +1,195 @@
+
+Dragon_2head.png
+size: 1700,408
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack_2_0000_Sparks-079-Shot-Impact-Explosion-Radial14
+  rotate: true
+  xy: 1261, 17
+  size: 193, 132
+  orig: 200, 147
+  offset: 3, 8
+  index: -1
+Attack_2_0001_Sparks-079-Shot-Impact-Explosion-Radial13
+  rotate: false
+  xy: 1066, 2
+  size: 193, 133
+  orig: 200, 147
+  offset: 4, 7
+  index: -1
+Attack_2_0002_Sparks-079-Shot-Impact-Explosion-Radial12
+  rotate: true
+  xy: 1190, 212
+  size: 194, 140
+  orig: 200, 147
+  offset: 3, 3
+  index: -1
+Attack_2_0003_Sparks-079-Shot-Impact-Explosion-Radial11
+  rotate: true
+  xy: 1332, 214
+  size: 192, 141
+  orig: 200, 147
+  offset: 5, 3
+  index: -1
+Attack_2_0004_Sparks-079-Shot-Impact-Explosion-Radial10
+  rotate: true
+  xy: 1395, 22
+  size: 190, 141
+  orig: 200, 147
+  offset: 6, 4
+  index: -1
+Attack_2_0005_Sparks-079-Shot-Impact-Explosion-Radial09
+  rotate: true
+  xy: 1475, 221
+  size: 185, 138
+  orig: 200, 147
+  offset: 8, 5
+  index: -1
+Attack_2_0006_Sparks-079-Shot-Impact-Explosion-Radial08
+  rotate: true
+  xy: 1538, 5
+  size: 183, 134
+  orig: 200, 147
+  offset: 10, 7
+  index: -1
+Attack_2_0007_Sparks-079-Shot-Impact-Explosion-Radial07
+  rotate: false
+  xy: 901, 4
+  size: 163, 118
+  orig: 200, 147
+  offset: 23, 18
+  index: -1
+Attack_2_0008_Sparks-079-Shot-Impact-Explosion-Radial06
+  rotate: false
+  xy: 229, 6
+  size: 121, 82
+  orig: 200, 147
+  offset: 42, 39
+  index: -1
+Attack_2_0009_Sparks-079-Shot-Impact-Explosion-Radial05
+  rotate: false
+  xy: 1190, 159
+  size: 53, 51
+  orig: 200, 147
+  offset: 76, 46
+  index: -1
+Attack_2_0010_Sparks-079-Shot-Impact-Explosion-Radial15
+  rotate: false
+  xy: 352, 3
+  size: 191, 91
+  orig: 200, 147
+  offset: 3, 24
+  index: -1
+Body
+  rotate: true
+  xy: 434, 100
+  size: 306, 133
+  orig: 306, 133
+  offset: 0, 0
+  index: -1
+Head_1
+  rotate: false
+  xy: 764, 18
+  size: 135, 89
+  orig: 135, 89
+  offset: 0, 0
+  index: -1
+Head_2
+  rotate: true
+  xy: 1615, 190
+  size: 137, 75
+  orig: 137, 75
+  offset: 0, 0
+  index: -1
+Leg_Back
+  rotate: false
+  xy: 673, 16
+  size: 89, 91
+  orig: 89, 91
+  offset: 0, 0
+  index: -1
+Leg_Front
+  rotate: true
+  xy: 98, 7
+  size: 68, 129
+  orig: 68, 129
+  offset: 0, 0
+  index: -1
+Mouth_1
+  rotate: false
+  xy: 1615, 356
+  size: 80, 50
+  orig: 80, 51
+  offset: 0, 0
+  index: -1
+Mouth_2
+  rotate: false
+  xy: 1615, 329
+  size: 76, 25
+  orig: 76, 26
+  offset: 0, 1
+  index: -1
+Neck copy
+  rotate: true
+  xy: 545, 3
+  size: 95, 126
+  orig: 95, 126
+  offset: 0, 0
+  index: -1
+Thunder_0000_Electricity-002-Shot-Ray-Up09
+  rotate: false
+  xy: 840, 124
+  size: 185, 282
+  orig: 200, 359
+  offset: 8, 68
+  index: -1
+Thunder_0001_Electricity-002-Shot-Ray-Up07
+  rotate: false
+  xy: 661, 109
+  size: 177, 297
+  orig: 200, 359
+  offset: 7, 55
+  index: -1
+Thunder_0002_Electricity-002-Shot-Ray-Up05
+  rotate: false
+  xy: 265, 96
+  size: 167, 310
+  orig: 200, 359
+  offset: 10, 38
+  index: -1
+Thunder_0003_Electricity-002-Shot-Ray-Up04
+  rotate: false
+  xy: 1027, 137
+  size: 161, 269
+  orig: 200, 359
+  offset: 10, 81
+  index: -1
+Thunder_0004_Electricity-002-Shot-Ray-Up03
+  rotate: false
+  xy: 126, 90
+  size: 137, 316
+  orig: 200, 359
+  offset: 24, 34
+  index: -1
+Thunder_0005_Electricity-002-Shot-Ray-Up02
+  rotate: false
+  xy: 2, 77
+  size: 122, 329
+  orig: 200, 359
+  offset: 27, 13
+  index: -1
+Thunder_0006_Electricity-002-Shot-Ray-Up01
+  rotate: false
+  xy: 569, 106
+  size: 90, 300
+  orig: 200, 359
+  offset: 40, 6
+  index: -1
+Thunder_0007_Electricity-002-Shot-Ray-Up00
+  rotate: true
+  xy: 2, 4
+  size: 71, 94
+  orig: 200, 359
+  offset: 38, 16
+  index: -1

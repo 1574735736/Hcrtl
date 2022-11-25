@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Tower_roof",
+    "texture": "9a33aa00-09ae-4360-88b8-e6ede9fa29e3",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      534,
+      427
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      534,
+      427
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

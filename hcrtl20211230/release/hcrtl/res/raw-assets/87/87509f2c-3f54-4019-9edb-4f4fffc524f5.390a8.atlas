@@ -1,0 +1,83 @@
+
+DualSword.png
+size: 482,527
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack1_1
+  rotate: false
+  xy: 2, 294
+  size: 293, 231
+  orig: 299, 241
+  offset: 3, 7
+  index: -1
+Attack1_2
+  rotate: false
+  xy: 2, 123
+  size: 280, 169
+  orig: 299, 241
+  offset: 16, 69
+  index: -1
+Attack1_3
+  rotate: true
+  xy: 297, 267
+  size: 258, 149
+  orig: 299, 241
+  offset: 38, 89
+  index: -1
+Attack1_4
+  rotate: false
+  xy: 284, 116
+  size: 187, 149
+  orig: 299, 241
+  offset: 109, 89
+  index: -1
+Attack1_5
+  rotate: true
+  xy: 219, 52
+  size: 62, 149
+  orig: 299, 241
+  offset: 234, 89
+  index: -1
+MC_2
+  rotate: true
+  xy: 2, 62
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+crown
+  rotate: false
+  xy: 370, 60
+  size: 98, 54
+  orig: 98, 54
+  offset: 0, 0
+  index: -1
+hand_2
+  rotate: true
+  xy: 448, 438
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+scarf_1
+  rotate: false
+  xy: 202, 2
+  size: 149, 48
+  orig: 149, 48
+  offset: 0, 0
+  index: -1
+scarf_2
+  rotate: false
+  xy: 370, 16
+  size: 110, 42
+  orig: 110, 42
+  offset: 0, 0
+  index: -1
+sword
+  rotate: true
+  xy: 2, 12
+  size: 48, 198
+  orig: 48, 198
+  offset: 0, 0
+  index: -1

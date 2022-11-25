@@ -1,0 +1,272 @@
+
+Dragon.png
+size: 1556,270
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Dragon_1/Body
+  rotate: false
+  xy: 846, 2
+  size: 98, 122
+  orig: 98, 122
+  offset: 0, 0
+  index: -1
+Dragon_1/Hand
+  rotate: true
+  xy: 1516, 231
+  size: 37, 38
+  orig: 43, 38
+  offset: 3, 0
+  index: -1
+Dragon_1/Leg
+  rotate: true
+  xy: 1221, 135
+  size: 26, 56
+  orig: 26, 56
+  offset: 0, 0
+  index: -1
+Dragon_1/Mouth
+  rotate: false
+  xy: 1335, 11
+  size: 34, 18
+  orig: 34, 18
+  offset: 0, 0
+  index: -1
+Dragon_1/Wing
+  rotate: false
+  xy: 182, 4
+  size: 124, 68
+  orig: 124, 68
+  offset: 0, 0
+  index: -1
+Dragon_2/Body
+  rotate: false
+  xy: 269, 112
+  size: 98, 156
+  orig: 98, 156
+  offset: 0, 0
+  index: -1
+Dragon_2/Eye
+  rotate: true
+  xy: 1297, 8
+  size: 21, 17
+  orig: 23, 18
+  offset: 1, 1
+  index: -1
+Dragon_3/Body
+  rotate: false
+  xy: 2, 63
+  size: 139, 205
+  orig: 139, 205
+  offset: 0, 0
+  index: -1
+Dragon_3/Eye
+  rotate: true
+  xy: 1316, 9
+  size: 20, 17
+  orig: 22, 18
+  offset: 1, 0
+  index: -1
+Dragon_3/Hand
+  rotate: true
+  xy: 269, 74
+  size: 36, 42
+  orig: 36, 42
+  offset: 0, 0
+  index: -1
+Dragon_3/Leg
+  rotate: true
+  xy: 1279, 135
+  size: 26, 56
+  orig: 26, 56
+  offset: 0, 0
+  index: -1
+Dragon_3/Wing
+  rotate: true
+  xy: 946, 2
+  size: 124, 74
+  orig: 124, 74
+  offset: 0, 0
+  index: -1
+EggDragon
+  rotate: true
+  xy: 2, 3
+  size: 58, 79
+  orig: 58, 79
+  offset: 0, 0
+  index: -1
+EggDragon_1
+  rotate: false
+  xy: 1516, 180
+  size: 34, 49
+  orig: 34, 49
+  offset: 0, 0
+  index: -1
+EggDragon_2
+  rotate: false
+  xy: 1509, 76
+  size: 32, 52
+  orig: 32, 52
+  offset: 0, 0
+  index: -1
+EggDragon_3
+  rotate: true
+  xy: 83, 3
+  size: 58, 42
+  orig: 58, 42
+  offset: 0, 0
+  index: -1
+Egg_0000_Egg_12
+  rotate: false
+  xy: 1022, 3
+  size: 135, 123
+  orig: 149, 154
+  offset: 3, 21
+  index: -1
+Egg_0001_Egg_11
+  rotate: false
+  xy: 1159, 3
+  size: 136, 127
+  orig: 149, 154
+  offset: 3, 18
+  index: -1
+Egg_0002_Egg_10
+  rotate: true
+  xy: 802, 126
+  size: 142, 140
+  orig: 149, 154
+  offset: 3, 5
+  index: -1
+Egg_0003_Egg_9
+  rotate: false
+  xy: 369, 123
+  size: 143, 145
+  orig: 149, 154
+  offset: 2, 3
+  index: -1
+Egg_0004_Egg_8
+  rotate: false
+  xy: 657, 124
+  size: 143, 144
+  orig: 149, 154
+  offset: 2, 4
+  index: -1
+Egg_0005_Egg_7
+  rotate: false
+  xy: 514, 123
+  size: 141, 145
+  orig: 149, 154
+  offset: 2, 5
+  index: -1
+Egg_0006_Egg_6
+  rotate: false
+  xy: 944, 128
+  size: 138, 140
+  orig: 149, 154
+  offset: 3, 7
+  index: -1
+Egg_0007_Egg_5
+  rotate: false
+  xy: 1084, 132
+  size: 135, 136
+  orig: 149, 154
+  offset: 4, 9
+  index: -1
+Egg_0008_Egg_4
+  rotate: true
+  xy: 1221, 163
+  size: 105, 98
+  orig: 149, 154
+  offset: 15, 28
+  index: -1
+Egg_0009_Egg_3
+  rotate: false
+  xy: 1421, 94
+  size: 86, 84
+  orig: 149, 154
+  offset: 29, 36
+  index: -1
+Egg_0010_Egg_2
+  rotate: true
+  xy: 127, 4
+  size: 57, 53
+  orig: 149, 154
+  offset: 42, 52
+  index: -1
+Fire (1)
+  rotate: false
+  xy: 1509, 130
+  size: 45, 48
+  orig: 124, 109
+  offset: 0, 30
+  index: -1
+Fire (10)
+  rotate: false
+  xy: 1421, 180
+  size: 93, 88
+  orig: 124, 109
+  offset: 27, 10
+  index: -1
+Fire (2)
+  rotate: false
+  xy: 1395, 15
+  size: 75, 77
+  orig: 124, 109
+  offset: 0, 13
+  index: -1
+Fire (3)
+  rotate: true
+  xy: 1321, 165
+  size: 103, 98
+  orig: 124, 109
+  offset: 0, 5
+  index: -1
+Fire (4)
+  rotate: true
+  xy: 640, 10
+  size: 111, 101
+  orig: 124, 109
+  offset: 2, 3
+  index: -1
+Fire (5)
+  rotate: true
+  xy: 743, 11
+  size: 111, 101
+  orig: 124, 109
+  offset: 3, 4
+  index: -1
+Fire (6)
+  rotate: true
+  xy: 430, 9
+  size: 112, 103
+  orig: 124, 109
+  offset: 4, 2
+  index: -1
+Fire (7)
+  rotate: true
+  xy: 535, 9
+  size: 112, 103
+  orig: 124, 109
+  offset: 5, 2
+  index: -1
+Fire (8)
+  rotate: false
+  xy: 313, 5
+  size: 115, 105
+  orig: 124, 109
+  offset: 5, 2
+  index: -1
+Fire (9)
+  rotate: true
+  xy: 1297, 31
+  size: 102, 96
+  orig: 124, 109
+  offset: 18, 5
+  index: -1
+Glow
+  rotate: false
+  xy: 143, 74
+  size: 124, 194
+  orig: 140, 210
+  offset: 8, 8
+  index: -1

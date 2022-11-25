@@ -1,0 +1,62 @@
+
+Sword_1.png
+size: 448,517
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack1_1
+  rotate: false
+  xy: 2, 284
+  size: 293, 231
+  orig: 299, 241
+  offset: 3, 7
+  index: -1
+Attack1_2
+  rotate: true
+  xy: 2, 2
+  size: 280, 169
+  orig: 299, 241
+  offset: 16, 69
+  index: -1
+Attack1_3
+  rotate: true
+  xy: 297, 257
+  size: 258, 149
+  orig: 299, 241
+  offset: 38, 89
+  index: -1
+Attack1_4
+  rotate: true
+  xy: 285, 68
+  size: 187, 149
+  orig: 299, 241
+  offset: 109, 89
+  index: -1
+Attack1_5
+  rotate: true
+  xy: 173, 3
+  size: 62, 149
+  orig: 299, 241
+  offset: 234, 89
+  index: -1
+MC
+  rotate: false
+  xy: 173, 67
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+hand
+  rotate: true
+  xy: 262, 195
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+sword-1
+  rotate: false
+  xy: 234, 136
+  size: 26, 146
+  orig: 26, 146
+  offset: 0, 0
+  index: -1

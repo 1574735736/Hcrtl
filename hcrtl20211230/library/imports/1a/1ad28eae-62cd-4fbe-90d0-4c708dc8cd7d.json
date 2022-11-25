@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Sword_d2",
+    "texture": "98f065c6-b5aa-451e-997e-e108a756b69f",
+    "atlas": "",
+    "rect": [
+      2,
+      0,
+      1025,
+      238
+    ],
+    "offset": [
+      0.5,
+      0
+    ],
+    "originalSize": [
+      1028,
+      238
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

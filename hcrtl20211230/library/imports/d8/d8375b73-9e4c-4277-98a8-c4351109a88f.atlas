@@ -1,0 +1,55 @@
+
+Arrown.png
+size: 159,355
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arown
+  rotate: false
+  xy: 2, 335
+  size: 126, 18
+  orig: 126, 18
+  offset: 0, 0
+  index: -1
+Electric_0000_Electricity-007-Ray-Right11
+  rotate: false
+  xy: 2, 70
+  size: 155, 61
+  orig: 160, 72
+  offset: 2, 5
+  index: -1
+Electric_0001_Electricity-007-Ray-Right09
+  rotate: false
+  xy: 2, 2
+  size: 151, 66
+  orig: 160, 72
+  offset: 5, 3
+  index: -1
+Electric_0002_Electricity-007-Ray-Right06
+  rotate: false
+  xy: 2, 187
+  size: 150, 51
+  orig: 160, 72
+  offset: 6, 14
+  index: -1
+Electric_0003_Electricity-007-Ray-Right04
+  rotate: false
+  xy: 2, 290
+  size: 149, 43
+  orig: 160, 72
+  offset: 7, 15
+  index: -1
+Electric_0004_Electricity-007-Ray-Right02
+  rotate: false
+  xy: 2, 240
+  size: 148, 48
+  orig: 160, 72
+  offset: 8, 13
+  index: -1
+Electric_0005_Electricity-007-Ray-Right00
+  rotate: false
+  xy: 2, 133
+  size: 151, 52
+  orig: 160, 72
+  offset: 6, 10
+  index: -1

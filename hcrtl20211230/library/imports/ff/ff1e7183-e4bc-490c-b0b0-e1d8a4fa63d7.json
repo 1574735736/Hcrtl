@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Buff",
+    "texture": "2eee0e85-5f3c-4143-a2f2-438d89be603b",
+    "atlas": "",
+    "rect": [
+      0,
+      2,
+      559,
+      104
+    ],
+    "offset": [
+      -1,
+      -1
+    ],
+    "originalSize": [
+      561,
+      106
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "7c451e7a-756f-487e-8c4b-19b162cad244",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 311,
+  "height": 535,
+  "platformSettings": {},
+  "subMetas": {
+    "Priest": {
+      "ver": "1.0.4",
+      "uuid": "22e67968-e1e7-4bc4-85ba-754bf44aeff4",
+      "rawTextureUuid": "7c451e7a-756f-487e-8c4b-19b162cad244",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -1,
+      "trimX": 0,
+      "trimY": 2,
+      "width": 311,
+      "height": 533,
+      "rawWidth": 311,
+      "rawHeight": 535,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

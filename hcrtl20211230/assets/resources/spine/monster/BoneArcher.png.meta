@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "bc4593a9-b5b0-4f6a-8ba2-c4b77c1f4eb7",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1396,
+  "height": 525,
+  "platformSettings": {},
+  "subMetas": {
+    "BoneArcher": {
+      "ver": "1.0.4",
+      "uuid": "6d294eab-c1aa-4bc3-8171-6d47c43b5a01",
+      "rawTextureUuid": "bc4593a9-b5b0-4f6a-8ba2-c4b77c1f4eb7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -1,
+      "trimX": 0,
+      "trimY": 2,
+      "width": 1396,
+      "height": 523,
+      "rawWidth": 1396,
+      "rawHeight": 525,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

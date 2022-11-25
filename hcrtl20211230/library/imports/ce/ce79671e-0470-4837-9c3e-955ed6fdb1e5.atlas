@@ -1,0 +1,90 @@
+
+Werewolf.png
+size: 1324,584
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Slenderman_Body
+  rotate: true
+  xy: 558, 2
+  size: 299, 238
+  orig: 299, 238
+  offset: 0, 0
+  index: -1
+Slenderman_Body2
+  rotate: false
+  xy: 798, 44
+  size: 235, 277
+  orig: 235, 282
+  offset: 0, 5
+  index: -1
+Slenderman_Hand
+  rotate: false
+  xy: 1231, 201
+  size: 91, 184
+  orig: 91, 184
+  offset: 0, 0
+  index: -1
+Slenderman_Hand2
+  rotate: false
+  xy: 1035, 10
+  size: 112, 128
+  orig: 112, 128
+  offset: 0, 0
+  index: -1
+Smoke_1
+  rotate: false
+  xy: 1035, 140
+  size: 194, 193
+  orig: 285, 281
+  offset: 48, 43
+  index: -1
+Smoke_2
+  rotate: true
+  xy: 1065, 387
+  size: 194, 193
+  orig: 285, 281
+  offset: 36, 49
+  index: -1
+Smoke_3
+  rotate: false
+  xy: 819, 335
+  size: 244, 246
+  orig: 285, 281
+  offset: 16, 21
+  index: -1
+Smoke_4
+  rotate: true
+  xy: 562, 323
+  size: 258, 255
+  orig: 285, 281
+  offset: 11, 14
+  index: -1
+Smoke_5
+  rotate: true
+  xy: 284, 27
+  size: 274, 272
+  orig: 285, 281
+  offset: 5, 3
+  index: -1
+Smoke_6
+  rotate: false
+  xy: 283, 303
+  size: 277, 278
+  orig: 285, 281
+  offset: 4, 0
+  index: -1
+Smoke_7
+  rotate: true
+  xy: 2, 12
+  size: 282, 280
+  orig: 285, 281
+  offset: 1, 0
+  index: -1
+Smoke_8
+  rotate: true
+  xy: 2, 296
+  size: 285, 279
+  orig: 285, 281
+  offset: 0, 2
+  index: -1

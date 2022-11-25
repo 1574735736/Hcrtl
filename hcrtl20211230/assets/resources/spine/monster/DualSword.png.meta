@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "6399a4fc-1fc3-4fc7-9bc1-6ba81dc994e5",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 482,
+  "height": 527,
+  "platformSettings": {},
+  "subMetas": {
+    "DualSword": {
+      "ver": "1.0.4",
+      "uuid": "6d00ecbd-19b1-4414-994d-734ffdcd45c0",
+      "rawTextureUuid": "6399a4fc-1fc3-4fc7-9bc1-6ba81dc994e5",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1.5,
+      "offsetY": -1,
+      "trimX": 0,
+      "trimY": 2,
+      "width": 479,
+      "height": 525,
+      "rawWidth": 482,
+      "rawHeight": 527,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

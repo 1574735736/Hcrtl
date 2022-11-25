@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bg_skinShop",
+    "texture": "4aa57e74-e8af-4ce3-8aac-6d22ef50e9e4",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      720,
+      500
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      720,
+      500
+    ],
+    "capInsets": [
+      0,
+      18,
+      0,
+      438
+    ]
+  }
+}
