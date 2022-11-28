@@ -41,6 +41,8 @@ var LoadScene = /** @class */ (function (_super) {
         _this.logoNode = null;
         _this.startAni = null;
         _this.isLoadingGame = true;
+        _this.inAddSpeed = 0.4;
+        _this.inCountSpeed = 10;
         return _this;
     }
     LoadScene_1 = LoadScene;
@@ -87,7 +89,7 @@ var LoadScene = /** @class */ (function (_super) {
         var _this = this;
         cc.director.preloadScene("MainScene", null, function () {
             _this.loadHallProgress(20, 100);
-            var count = 1;
+            var count = _this.inCountSpeed;
             var timeCallback = function () {
                 if (count >= 200) {
                     _this.unschedule(timeCallback);
@@ -95,8 +97,8 @@ var LoadScene = /** @class */ (function (_super) {
                     _this.logoLeave();
                 }
                 else {
-                    _this.loadHallProgress(20 + count * 0.4, 100);
-                    count++;
+                    _this.loadHallProgress(20 + count * _this.inAddSpeed, 100);
+                    count += _this.inCountSpeed;
                 }
             };
             _this.schedule(timeCallback, 0.04);

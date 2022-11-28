@@ -29,6 +29,9 @@ export default class LoadScene extends cc.Component {
 
     private isLoadingGame:boolean = true;
 
+    private inAddSpeed: number = 0.4;
+    private inCountSpeed: number = 10;
+
     onLoad() {
         LoadScene._instance = this; 
         this.isLoadingGame = true;
@@ -52,7 +55,7 @@ export default class LoadScene extends cc.Component {
     private initRoleModel():void {
         let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
-
+       
         SpineManager.getInstance().loadSpine(this.startAni, "spine/player/"+skinDatas[usingIndex].resName, true, "default", "daiji3");
     }
 
@@ -76,8 +79,8 @@ export default class LoadScene extends cc.Component {
 
     public loadScene() {
        cc.director.preloadScene("MainScene",null,()=>{
-            this.loadHallProgress(20, 100);
-            let count = 1;
+           this.loadHallProgress(20, 100);
+           let count = this.inCountSpeed;
             let timeCallback = () => {
                 if (count >= 200) {
                     this.unschedule(timeCallback);
@@ -85,8 +88,8 @@ export default class LoadScene extends cc.Component {
                     this.logoLeave();
                 }
                 else {
-                    this.loadHallProgress(20 + count * 0.4, 100);
-                    count++;
+                    this.loadHallProgress(20 + count * this.inAddSpeed, 100);
+                    count += this.inCountSpeed;
                 }
             };
             this.schedule(timeCallback, 0.04);
