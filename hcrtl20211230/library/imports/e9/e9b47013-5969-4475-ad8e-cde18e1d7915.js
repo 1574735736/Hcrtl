@@ -255,7 +255,7 @@ var RoleBase = /** @class */ (function (_super) {
      * 重新加载角色动画
      */
     RoleBase.prototype.laodAin = function () {
-        SpineManager_1.default.getInstance().loadSpine(this.ani, this.playerAinPath, true, this.playerAinSkin, "daiji2");
+        SpineManager_1.default.getInstance().loadSpine(this.ani, this.playerAinPath, true, this.playerAinSkin, "daiji"); //daiji
         if (this.isPets()) {
             var pets = this.getPets();
             if (pets) {
@@ -476,7 +476,7 @@ var RoleBase = /** @class */ (function (_super) {
             ainName = "Egg_Idle";
         }
         if (this.type == RoleType.PLAYER) {
-            ainName = "daiji2";
+            ainName = "daiji"; //"daiji2"
         }
         SpineManager_1.default.getInstance().playSpinAnimation(this.ani, ainName, true, null, this);
     };

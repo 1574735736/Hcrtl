@@ -70,6 +70,7 @@ export default class RoleBase extends cc.Component {
     }
 
     start() {
+
     }
 
     //血条需要放大的怪
@@ -256,7 +257,7 @@ export default class RoleBase extends cc.Component {
      * 重新加载角色动画
      */
     public laodAin(){
-        SpineManager.getInstance().loadSpine(this.ani,this.playerAinPath,true,this.playerAinSkin,"daiji2",);
+        SpineManager.getInstance().loadSpine(this.ani, this.playerAinPath, true, this.playerAinSkin, "daiji",);//daiji
         if(this.isPets()){
             let pets = this.getPets();
             if(pets){
@@ -427,8 +428,7 @@ export default class RoleBase extends cc.Component {
         this.hpLable.string = this.hp.toString();
         let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList["hp"]);
         this.node.addChild(tempNode);
-        tempNode.scale = 2;
-       
+        tempNode.scale = 2;       
      
         tempNode.y -= 250; 
         let label = tempNode.getComponent(cc.Label);
@@ -485,7 +485,7 @@ export default class RoleBase extends cc.Component {
             ainName = "Egg_Idle";
         }
         if (this.type == RoleType.PLAYER) {
-            ainName = "daiji2"
+            ainName = "daiji"//"daiji2"
         }
         
         SpineManager.getInstance().playSpinAnimation(this.ani,ainName, true, null, this);

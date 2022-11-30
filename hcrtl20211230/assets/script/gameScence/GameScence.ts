@@ -295,7 +295,7 @@ export default class GameScence extends cc.Component {
     private stageArrowNext(){
        
         if(this.moveCount > this.moveStep){
-            cc.tween(this.towerLayer.node).by(0.1, {position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0)}).start();
+            cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0) }).start(); //, { easing: 'sineOutIn'}
             this.moveStep++;
         }
         if(this.moveCount  == this.moveStep){

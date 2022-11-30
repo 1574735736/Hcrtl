@@ -115,7 +115,7 @@ export default class TowerLayer extends cc.Component {
         }
     }
 
-    public addPlayerHp(addHp:number):void {
+    public addPlayerHp(addHp:number):void { 
         let player = this.findPlayer();
         let playerRole = player.getComponent(RoleBase);
         playerRole.addHp(addHp);

@@ -280,7 +280,7 @@ var GameScence = /** @class */ (function (_super) {
      */
     GameScence.prototype.stageArrowNext = function () {
         if (this.moveCount > this.moveStep) {
-            cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0) }).start();
+            cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0) }).start(); //, { easing: 'sineOutIn'}
             this.moveStep++;
         }
         if (this.moveCount == this.moveStep) {
