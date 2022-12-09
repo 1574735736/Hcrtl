@@ -53,7 +53,7 @@ export default class Lose extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
         }
         else {
-            this.skipNowLevel();
+             this.skipNowLevel();
         }
     }
 
@@ -71,7 +71,7 @@ export default class Lose extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
         }
         else {
-            this.playAgain();
+             this.playAgain();
         }
         
     }

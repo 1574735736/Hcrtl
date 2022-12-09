@@ -1,0 +1,4 @@
+com.passion.herocastlewar
+
+修改后包名
+com.stickman.towerwar

@@ -267,7 +267,7 @@ export default class Success extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
-            this.goNextLevel();
+             this.goNextLevel();
         }
     }
 
@@ -284,7 +284,7 @@ export default class Success extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
         }
         else {
-            this.goNextLevel(true);
+             this.goNextLevel(true);
         }
     }
     /**获取皮肤入口按钮点击回调 */
@@ -324,7 +324,7 @@ export default class Success extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
         }
         else {
-            this.getNewSkin();
+             this.getNewSkin();
         }
     }
 

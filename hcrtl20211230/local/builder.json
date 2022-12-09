@@ -2,7 +2,7 @@
   "platform": "android",
   "actualPlatform": "android",
   "template": "link",
-  "buildPath": "D:\\hcrtlAndroid",
+  "buildPath": "D:\\hcrtlAndroid\\new",
   "debug": false,
   "sourceMaps": false,
   "embedWebDebugger": false,
@@ -13,7 +13,7 @@
   "keystorePassword": "123456",
   "keystoreAlias": "1",
   "keystoreAliasPassword": "123456",
-  "apiLevel": "android-33",
+  "apiLevel": "android-32",
   "appABIs": [
     "armeabi-v7a",
     "arm64-v8a"

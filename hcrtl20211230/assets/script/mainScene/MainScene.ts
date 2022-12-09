@@ -78,6 +78,7 @@ export default class MainScene extends cc.Component {
         cc.director.loadScene('GameScene');//进入游戏场景
     }
 
+
     private onBtnSkin():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_skin);
         this.showSkinShop();
@@ -162,7 +163,7 @@ export default class MainScene extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
         }
         else {
-            this.unlockSkin();
+             this.unlockSkin();
         }
     }
 

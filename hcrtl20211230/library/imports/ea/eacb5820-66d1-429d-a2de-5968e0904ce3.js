@@ -42,7 +42,7 @@ var LoadScene = /** @class */ (function (_super) {
         _this.startAni = null;
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
-        _this.inCountSpeed = 10;
+        _this.inCountSpeed = 1;
         return _this;
     }
     LoadScene_1 = LoadScene;

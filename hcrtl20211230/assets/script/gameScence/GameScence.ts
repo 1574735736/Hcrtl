@@ -216,7 +216,7 @@ export default class GameScence extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_addPlayerHp()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_shuxing", "");
         }
         else {
-            this.addPlayerHp();
+             this.addPlayerHp();
         }
     }
 
@@ -244,7 +244,7 @@ export default class GameScence extends cc.Component {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
         }
         else {
-            this.skipLevel();
+             this.skipLevel();
         }
     }
 
