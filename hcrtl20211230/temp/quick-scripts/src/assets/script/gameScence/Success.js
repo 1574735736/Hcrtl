@@ -242,6 +242,7 @@ var Success = /** @class */ (function (_super) {
         else {
             this.goNextLevel();
         }
+        //dkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => { this.goNextLevel(); });
     };
     Success.JavaCall_noThanksCallback = function () {
         Success_1._instance.goNextLevel();
@@ -255,6 +256,7 @@ var Success = /** @class */ (function (_super) {
         else {
             this.goNextLevel(true);
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     };
     /**获取皮肤入口按钮点击回调 */
     Success.prototype.onBtnGetSkinClick = function () {
@@ -290,6 +292,7 @@ var Success = /** @class */ (function (_super) {
         else {
             this.getNewSkin();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skin", () => { this.getNewSkin(); }, () => { this.noAdCallback(); });     
     };
     Success.JavaCall_getNewSkin = function () {
         Success_1._instance.getNewSkin();

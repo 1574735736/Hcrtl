@@ -63,6 +63,13 @@ var GameScence = /** @class */ (function (_super) {
         _this.loading = false;
         return _this;
         // update (dt) {}
+        //public InitAdView() {
+        //    var self = this;
+        //    cc.loader.loadRes("prefabs/popup/AndroidAdView", cc.Prefab, (e, p) => {
+        //        var pnode = cc.instantiate(p as cc.Prefab);
+        //        self.node.addChild(pnode, 90);
+        //    });
+        //}
     }
     GameScence_1 = GameScence;
     GameScence.prototype.onLoad = function () {
@@ -212,6 +219,7 @@ var GameScence = /** @class */ (function (_super) {
         else {
             this.addPlayerHp();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_shuxing", () => { this.addPlayerHp(); }, () => { this.noAdCallback(); })        
     };
     /** */
     GameScence.JavaCall_addPlayerHp = function () {
@@ -237,6 +245,7 @@ var GameScence = /** @class */ (function (_super) {
         else {
             this.skipLevel();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_skip", () => { this.skipLevel(); }, () => { this.noAdCallback(); })    
     };
     GameScence.JavaCall_skipLevel = function () {
         GameScence_1._instance.skipLevel();
@@ -324,6 +333,7 @@ var GameScence = /** @class */ (function (_super) {
     };
     GameScence.prototype.noAdCallback = function () {
         Utils_1.default.showMessage(this.node, "Ad not ready");
+        /* this.InitAdView();*/
     };
     var GameScence_1;
     GameScence.Instance = null;

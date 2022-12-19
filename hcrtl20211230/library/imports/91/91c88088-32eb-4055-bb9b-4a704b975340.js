@@ -44,6 +44,9 @@ var MainScene = /** @class */ (function (_super) {
     MainScene_1 = MainScene;
     MainScene.prototype.onLoad = function () {
         MainScene_1._instance = this;
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
+        }
         this.initListener();
         this.showMainView();
     };
@@ -148,6 +151,7 @@ var MainScene = /** @class */ (function (_super) {
         else {
             this.unlockSkin();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
     };
     MainScene.prototype.unlockSkin = function () {
         var itemData = this.shopDatas[this.unlockIndex];

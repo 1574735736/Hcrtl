@@ -12,6 +12,7 @@ import SpineManager from "../manager/SpineManager";
 import UserData, { localStorageKey, userData } from "../data/UserData";
 import SkinShopItemData from "../util/SkinShopItemData";
 import Utils from "../util/Utils";
+import SdkManager from "../util/SdkManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -269,6 +270,7 @@ export default class Success extends cc.Component {
         else {
              this.goNextLevel();
         }
+        //dkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => { this.goNextLevel(); });
     }
 
     public static JavaCall_noThanksCallback():void {
@@ -280,12 +282,13 @@ export default class Success extends cc.Component {
     private onBtnVideoClick():void {
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
         if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
+             FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
         }
         else {
              this.goNextLevel(true);
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     }
     /**获取皮肤入口按钮点击回调 */
     private onBtnGetSkinClick():void {
@@ -320,12 +323,13 @@ export default class Success extends cc.Component {
     /**获取新皮肤面板的看广告按钮点击 */
     private onGetSkinByVideoOfSkinPanelClick():void {
         if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skin);
+             FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skin);
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
         }
         else {
              this.getNewSkin();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skin", () => { this.getNewSkin(); }, () => { this.noAdCallback(); });     
     }
 
     public static JavaCall_getNewSkin():void {

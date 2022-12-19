@@ -5,6 +5,7 @@ import { FirebaseKey, FirebaseReport } from "../util/FirebaseReport";
 import ListView from "../util/ListView";
 import SkinShopItemData from "../util/SkinShopItemData";
 import Utils from "../util/Utils";
+import SdkManager from "../util/SdkManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -40,6 +41,11 @@ export default class MainScene extends cc.Component {
 
     onLoad () {
         MainScene._instance = this;
+
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
+        }
+
 
         this.initListener();
         this.showMainView();
@@ -159,12 +165,13 @@ export default class MainScene extends cc.Component {
 
     private unlockSkinByAd():void {
         if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
+             FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
         }
         else {
              this.unlockSkin();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
     }
 
     private unlockSkin():void{

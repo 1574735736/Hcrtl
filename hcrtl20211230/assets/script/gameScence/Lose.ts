@@ -14,6 +14,7 @@ import UserData, { localStorageKey, userData } from "../data/UserData";
 import SkinShopItemData from "../util/SkinShopItemData";
 import MainScene from "../mainScene/MainScene";
 import Utils from "../util/Utils";
+import SdkManager from "../util/SdkManager";
 
 const {ccclass, property} = cc._decorator;
 
@@ -55,6 +56,7 @@ export default class Lose extends cc.Component {
         else {
              this.skipNowLevel();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })     
     }
 
     /**跳过本关 */
@@ -67,13 +69,13 @@ export default class Lose extends cc.Component {
 
     private onBtnNoThanksClick():void {
         if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.shengli_playagain);
+             FirebaseReport.reportInformation(FirebaseKey.shengli_playagain);
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
         }
         else {
              this.playAgain();
         }
-        
+        //SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
     }
     public static JavaCall_playAgain():void {
         Lose._instance.playAgain();

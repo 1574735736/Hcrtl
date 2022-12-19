@@ -67,6 +67,7 @@ var Lose = /** @class */ (function (_super) {
         else {
             this.skipNowLevel();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })     
     };
     /**跳过本关 */
     Lose.prototype.skipNowLevel = function () {
@@ -83,6 +84,7 @@ var Lose = /** @class */ (function (_super) {
         else {
             this.playAgain();
         }
+        //SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
     };
     Lose.JavaCall_playAgain = function () {
         Lose_1._instance.playAgain();

@@ -12,6 +12,7 @@
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
 require('./assets/script/data/LevelData');
 require('./assets/script/data/UserData');
+require('./assets/script/gameScence/AndroidAdView');
 require('./assets/script/gameScence/Bullet');
 require('./assets/script/gameScence/GameScence');
 require('./assets/script/gameScence/Lose');
@@ -31,6 +32,7 @@ require('./assets/script/util/ItemRenderer');
 require('./assets/script/util/ListView');
 require('./assets/script/util/RotateAnimScript');
 require('./assets/script/util/ScaleAnimScript');
+require('./assets/script/util/SdkManager');
 require('./assets/script/util/SkinShopItem');
 require('./assets/script/util/SkinShopItemData');
 require('./assets/script/util/Utils');

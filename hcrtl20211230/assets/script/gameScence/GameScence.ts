@@ -13,6 +13,7 @@ import Utils from "../util/Utils";
 import RoleBase from "./RoleBase";
 import SkinShopItemData from "../util/SkinShopItemData";
 import SpineManager from "../manager/SpineManager";
+import SdkManager from "../util/SdkManager";
 
 const {ccclass, property} = cc._decorator;
 /**
@@ -218,6 +219,7 @@ export default class GameScence extends cc.Component {
         else {
              this.addPlayerHp();
         }
+        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_shuxing", () => { this.addPlayerHp(); }, () => { this.noAdCallback(); })        
     }
 
     /** */
@@ -246,6 +248,9 @@ export default class GameScence extends cc.Component {
         else {
              this.skipLevel();
         }
+
+        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_skip", () => { this.skipLevel(); }, () => { this.noAdCallback(); })    
+        
     }
 
     public static JavaCall_skipLevel():void {
@@ -342,7 +347,16 @@ export default class GameScence extends cc.Component {
 
     private noAdCallback():void{
         Utils.showMessage(this.node, "Ad not ready");
+       /* this.InitAdView();*/
     }
    
     // update (dt) {}
+
+    //public InitAdView() {
+    //    var self = this;
+    //    cc.loader.loadRes("prefabs/popup/AndroidAdView", cc.Prefab, (e, p) => {
+    //        var pnode = cc.instantiate(p as cc.Prefab);
+    //        self.node.addChild(pnode, 90);
+    //    });
+    //}
 }
