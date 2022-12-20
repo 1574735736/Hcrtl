@@ -2044,14 +2044,14 @@
     "meta": 1671439232217,
     "relativePath": "script\\util\\SdkManager.ts"
   },
-  "1bd39cc3-02ce-4da7-9a49-ddfbda401fcb": {
-    "asset": 1671439203715,
-    "meta": 1671439232225,
-    "relativePath": "script\\util\\Utils.ts"
-  },
   "dbf8ca74-119c-447a-a6c4-6804021cf152": {
-    "asset": 1671443176660,
-    "meta": 1671443264265,
+    "asset": 1671444037873,
+    "meta": 1671444611387,
     "relativePath": "script\\gameScence\\AndroidAdView.ts"
+  },
+  "1bd39cc3-02ce-4da7-9a49-ddfbda401fcb": {
+    "asset": 1671444364972,
+    "meta": 1671444611397,
+    "relativePath": "script\\util\\Utils.ts"
   }
 }
