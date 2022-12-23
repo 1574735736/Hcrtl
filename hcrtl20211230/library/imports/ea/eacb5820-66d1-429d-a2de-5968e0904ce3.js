@@ -32,6 +32,7 @@ var Success_1 = require("../gameScence/Success");
 var UserData_1 = require("../data/UserData");
 var MainScene_1 = require("../mainScene/MainScene");
 var GameScence_1 = require("../gameScence/GameScence");
+var WeaponShop_1 = require("../mainScene/WeaponShop");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var LoadScene = /** @class */ (function (_super) {
     __extends(LoadScene, _super);
@@ -42,7 +43,7 @@ var LoadScene = /** @class */ (function (_super) {
         _this.startAni = null;
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
-        _this.inCountSpeed = 1;
+        _this.inCountSpeed = 10;
         return _this;
     }
     LoadScene_1 = LoadScene;
@@ -62,11 +63,13 @@ var LoadScene = /** @class */ (function (_super) {
         cc["MainScene"] = MainScene_1.default;
         cc["GameScence"] = GameScence_1.default;
         cc["LoadScene"] = LoadScene_1;
+        cc["Weapon"] = WeaponShop_1.default;
     };
     LoadScene.prototype.initRoleModel = function () {
         var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
-        SpineManager_1.default.getInstance().loadSpine(this.startAni, "spine/player/" + skinDatas[usingIndex].resName, true, "default", "daiji3");
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager_1.default.getInstance().loadSpine(this.startAni, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
     };
     LoadScene.prototype.LoadOther = function () {
         var _this = this;

@@ -32,6 +32,8 @@ var EventDefine = /** @class */ (function () {
     EventDefine.UNLOCK_SKIN_BY_AD = "UNLOCK_SKIN_BY_AD";
     /**通过消耗金币解锁皮肤 */
     EventDefine.UNLOCK_SKIN_BY_GOLD = "UNLOCK_SKIN_BY_GOLD";
+    //点击事件
+    EventDefine.CLICK = "click";
     EventDefine = __decorate([
         ccclass
     ], EventDefine);

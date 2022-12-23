@@ -23,4 +23,7 @@ export default class EventDefine {
     static UNLOCK_SKIN_BY_AD = "UNLOCK_SKIN_BY_AD";
     /**通过消耗金币解锁皮肤 */
     static UNLOCK_SKIN_BY_GOLD = "UNLOCK_SKIN_BY_GOLD";
+
+    //点击事件
+    static CLICK = "click";
 }

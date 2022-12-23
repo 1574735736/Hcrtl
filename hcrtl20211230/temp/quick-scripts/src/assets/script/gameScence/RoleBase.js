@@ -122,7 +122,8 @@ var RoleBase = /** @class */ (function (_super) {
             //在这加载角色皮肤
             var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
             var usingSkinIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
-            this.playerAinPath = "spine/player/" + skinDatas[usingSkinIndex].resName;
+            var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
+            this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
             this.laodAin();
             if (this.shieldHp == 0) {
                 this.shieldhpLable.node.scale = 2;
@@ -457,6 +458,19 @@ var RoleBase = /** @class */ (function (_super) {
             SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue2", false, null, _this); //Jump_2
         }, this);
         cc.tween(player).bezierTo(0.5, cc.v2(player.x, player.y), cc.v2(100, 400), cc.v2(targerPos.x - offset, targerPos.y)).call(function () {
+            SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue3", false, null, _this); //Jump_3
+            if (cb) {
+                cb();
+            }
+        }).start();
+    };
+    RoleBase.prototype.jumpLandTo = function (targerPos, offset, cb) {
+        var _this = this;
+        var player = this.node;
+        SpineManager_1.default.getInstance().playSpinAnimation(this.ani, "tiaoyue1", false, function () {
+            SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue2", false, null, _this); //Jump_2
+        }, this);
+        cc.tween(player).to(0.3, { position: cc.v3(targerPos.x - offset, targerPos.y) }).call(function () {
             SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue3", false, null, _this); //Jump_3
             if (cb) {
                 cb();

@@ -122,7 +122,8 @@ export default class RoleBase extends cc.Component {
             //在这加载角色皮肤
             let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
             let usingSkinIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
-            this.playerAinPath = "spine/player/" + skinDatas[usingSkinIndex].resName;
+            let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+            this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
             this.laodAin();
 
             if(this.shieldHp == 0){
@@ -400,17 +401,17 @@ export default class RoleBase extends cc.Component {
         //更新血量
         this.hp -= targerHp;
         this.hpLable.string=this.hp.toString();
-        if( this.hp <=0){
+        if (this.hp <= 0) {
             this.hp = 0;
-            
+
             this.hpLable.node.active = false;
             //飘血
-            this.creatorFlyHp(targerHp,()=>{
-                if(cb){
-                    cb(true,false);
+            this.creatorFlyHp(targerHp, () => {
+                if (cb) {
+                    cb(true, false);
                 }
             });
-            return ;
+            return;
         }
         this.creatorFlyHp(targerHp,()=>{
             if(cb){
@@ -472,6 +473,20 @@ export default class RoleBase extends cc.Component {
         }).start();
     }
 
+    public jumpLandTo(targerPos, offset, cb?: Function) {
+        let player = this.node;
+        SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue1", false, () => {//Jump_1
+            SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue2", false, null, this);//Jump_2
+        }, this);
+        cc.tween(player).to(0.3, { position: cc.v3(targerPos.x - offset, targerPos.y) }).call(() => {
+            SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue3", false, null, this);//Jump_3
+            if (cb) {
+                cb();
+            }
+        }).start();
+
+        
+    }
     /**
      * 待机
      */

@@ -75,7 +75,8 @@ export default class SkinShopItem extends ItemRenderer{
         }
         else {
             let bedSprite = this.bed.getComponent(cc.Sprite);
-            SpineManager.getInstance().loadSpine(this.model, "spine/player/"+this.data.resName, true, "default", "daiji2");
+            let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+            SpineManager.getInstance().loadSpine(this.model, "spine/players/"+this.data.resName + "" + weaponIdx, true, "default", "daiji2");
             bedSprite.spriteFrame = new cc.SpriteFrame("texture/load/img_bed_2.png");
         }
     }

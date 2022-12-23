@@ -10,6 +10,7 @@ import SkinShopItemData from "../util/SkinShopItemData";
 import EventDefine from "../util/EventDefine";
 import MainScene from "../mainScene/MainScene";
 import GameScence from "../gameScence/GameScence";
+import WeaponShop from "../mainScene/WeaponShop";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,7 +31,7 @@ export default class LoadScene extends cc.Component {
     private isLoadingGame:boolean = true;
 
     private inAddSpeed: number = 0.4;
-    private inCountSpeed: number = 1;
+    private inCountSpeed: number = 10;
 
     onLoad() {
         LoadScene._instance = this; 
@@ -50,13 +51,14 @@ export default class LoadScene extends cc.Component {
         cc["MainScene"] = MainScene;
         cc["GameScence"] = GameScence;
         cc["LoadScene"] = LoadScene;
+        cc["Weapon"] = WeaponShop;
     }
 
     private initRoleModel():void {
         let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
-       
-        SpineManager.getInstance().loadSpine(this.startAni, "spine/player/"+skinDatas[usingIndex].resName, true, "default", "daiji3");
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
     }
 
     LoadOther() {

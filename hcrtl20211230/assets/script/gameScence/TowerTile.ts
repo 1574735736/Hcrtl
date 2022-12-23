@@ -100,7 +100,7 @@ export default class TowerTile extends cc.Component {
 
     public addPlayer(player) {
         this.player = player;
-        player.position = cc.v3(0, this.node.y + 80, 0);
+        player.position = cc.v3(0, 0, 0);//(0, this.node.y + 80, 0);
         this.node.addChild(player,1, "player");
     }
 

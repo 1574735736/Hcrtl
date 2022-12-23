@@ -35,6 +35,7 @@ var FirebaseReport_1 = require("../util/FirebaseReport");
 var UserData_1 = require("../data/UserData");
 var Utils_1 = require("../util/Utils");
 var SpineManager_1 = require("../manager/SpineManager");
+var SdkManager_1 = require("../util/SdkManager");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 /**
  * 游戏场景
@@ -158,8 +159,9 @@ var GameScence = /** @class */ (function (_super) {
         var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var resName = skinDatas[usingIndex].resName;
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel_victory, "spine/player/" + resName, true, "default", "shengli");
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel_fail, "spine/player/" + resName, true, "default", "siwang");
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager_1.default.getInstance().loadSpine(this.roleModel_victory, "spine/players/" + resName + "" + weaponIdx, true, "default", "shengli");
+        SpineManager_1.default.getInstance().loadSpine(this.roleModel_fail, "spine/players/" + resName + "" + weaponIdx, true, "default", "siwang");
     };
     GameScence.prototype.updateWildRage = function (level) {
         if (level % 3 != 0) {
@@ -232,7 +234,14 @@ var GameScence = /** @class */ (function (_super) {
     };
     GameScence.prototype.onBtnHomeClick = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.zhandou_shouye);
-        cc.director.loadScene("MainScene");
+        if (UserData_1.userData.GetIntAdStatus()) {
+            SdkManager_1.default.GetInstance().JavaInterstitialAds(FirebaseReport_1.FirebaseKey.zhandou_shouye, function () {
+                cc.director.loadScene("MainScene");
+            });
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }
     };
     /**
      * 下一关

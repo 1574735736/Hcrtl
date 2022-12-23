@@ -35,6 +35,7 @@ var FirebaseReport_1 = require("../util/FirebaseReport");
 var SpineManager_1 = require("../manager/SpineManager");
 var UserData_1 = require("../data/UserData");
 var Utils_1 = require("../util/Utils");
+var SdkManager_1 = require("../util/SdkManager");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Success = /** @class */ (function (_super) {
     __extends(Success, _super);
@@ -58,6 +59,7 @@ var Success = /** @class */ (function (_super) {
         _this.bCanClickSkinBtn = false;
         /**本次是否已经获得了新皮肤 */
         _this.bHadGetNewSkin = false;
+        _this.flay_ani = null;
         return _this;
     }
     Success_1 = Success;
@@ -73,6 +75,7 @@ var Success = /** @class */ (function (_super) {
         var rewardRate_2_1 = numContainer.getChildByName("white_2_1").getComponent(cc.Sprite);
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
+        this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
         this.btn_getSkin = this.node.getChildByName("btn_getSkin");
     };
@@ -216,27 +219,43 @@ var Success = /** @class */ (function (_super) {
         Success_1._instance.goNextLevel(true);
     };
     Success.prototype.goNextLevel = function (bVideo) {
+        var _this = this;
         if (bVideo === void 0) { bVideo = false; }
-        var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
-        if (bVideo) {
-            own += this.rateOfRewardByVideo * this.reward_gold;
-        }
-        else {
-            own += this.reward_gold;
-        }
-        UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
-        GameScence_1.default.Instance.restartGame();
-        this.node.active = false;
+        this.flay_ani.node.active = true;
+        this.scheduleOnce(function () {
+            GameScence_1.default.Instance.restartGame();
+            this.node.active = false;
+        }, 2.5);
+        SpineManager_1.default.getInstance().playSpinAnimation(this.flay_ani, "biaoti2", false, function () {
+            _this.flay_ani.node.active = false;
+            var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
+            if (bVideo) {
+                own += _this.rateOfRewardByVideo * _this.reward_gold;
+            }
+            else {
+                own += _this.reward_gold;
+            }
+            UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
+            _this.lb_gold.string = own + "";
+        });
     };
     Success.prototype.onBtnHomeClick = function () {
         var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
         own += this.reward_gold;
         UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
-        cc.director.loadScene("MainScene");
+        if (UserData_1.userData.GetIntAdStatus()) {
+            SdkManager_1.default.GetInstance().JavaInterstitialAds("", function () {
+                cc.director.loadScene("MainScene");
+            });
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }
+        //cc.director.loadScene("MainScene");
     };
     Success.prototype.onBtnNoThanksClick = function () {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
+        if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
@@ -248,14 +267,18 @@ var Success = /** @class */ (function (_super) {
         Success_1._instance.goNextLevel();
     };
     Success.prototype.onBtnVideoClick = function () {
+        cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node).active = true;
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
-        }
-        else {
-            this.goNextLevel(true);
-        }
+        cc.Tween.stopAllByTarget(this.randomBar);
+        this.scheduleOnce(function () {
+            if (cc.sys.platform == cc.sys.ANDROID) {
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
+            }
+            else {
+                this.goNextLevel(true);
+            }
+        }, 1.5);
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     };
     /**获取皮肤入口按钮点击回调 */
@@ -274,11 +297,12 @@ var Success = /** @class */ (function (_super) {
         this.newSkinPanel.active = true;
         var roleModel = this.newSkinPanel.getChildByName("roleModel").getComponent(sp.Skeleton);
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
         for (var i = 0; i < skinDatas.length; i++) {
             var data = skinDatas[i];
             if (!data.bUnlock) { //此皮肤未解锁
                 this.unlockSkinIndex = i;
-                SpineManager_1.default.getInstance().loadSpine(roleModel, "spine/player/" + data.resName, true, "default", "daiji");
+                SpineManager_1.default.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
                 break;
             }
         }
@@ -307,7 +331,8 @@ var Success = /** @class */ (function (_super) {
         Utils_1.default.showMessage(this.node, "Got a new skin");
         //更新胜利界面玩家皮肤
         var resName = skinDatas[this.unlockSkinIndex].resName;
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/player/" + resName, true, "default", "shengli");
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/players/" + resName + "" + weaponIdx, true, "default", "shengli");
     };
     /**获取新皮肤面板的noThanks按钮点击 */
     Success.prototype.onBtnNoThanksOfSkinPanelClick = function () {

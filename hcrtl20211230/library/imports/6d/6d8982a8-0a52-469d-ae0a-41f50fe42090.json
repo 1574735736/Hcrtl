@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "wq8",
+    "texture": "68f3b5bc-bc68-4ad6-8709-119a99acf0bc",
+    "atlas": "",
+    "rect": [
+      4,
+      3,
+      169,
+      99
+    ],
+    "offset": [
+      0.5,
+      0
+    ],
+    "originalSize": [
+      176,
+      105
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

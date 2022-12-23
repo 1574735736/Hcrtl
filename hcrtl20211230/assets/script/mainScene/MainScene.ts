@@ -6,6 +6,7 @@ import ListView from "../util/ListView";
 import SkinShopItemData from "../util/SkinShopItemData";
 import Utils from "../util/Utils";
 import SdkManager from "../util/SdkManager";
+import WeaponShop from "./WeaponShop";
 
 const {ccclass, property} = cc._decorator;
 
@@ -49,6 +50,8 @@ export default class MainScene extends cc.Component {
 
         this.initListener();
         this.showMainView();
+
+
     }
 
     /**初始化监听 */
@@ -64,6 +67,16 @@ export default class MainScene extends cc.Component {
         cc.find("Canvas").on(EventDefine.USING_SKIN_CHANGE, () => {
 
         });
+
+        var btnSkin = cc.find("MainRoot/btn_skins", this.node);
+        btnSkin.on("click", this.onBtnSkin, this);
+
+        var btnWeapon = cc.find("MainRoot/btn_weapon", this.node);
+        btnWeapon.on("click", this.onBtnWeapon, this);
+
+        var btnSign = cc.find("MainRoot/btn_sign", this.node);
+        btnSign.on("click", this.onBtnSign, this);
+
     }
 
 
@@ -76,7 +89,9 @@ export default class MainScene extends cc.Component {
         let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
 
-        SpineManager.getInstance().loadSpine(this.roleModel, "spine/player/"+skinDatas[usingIndex].resName, true, "default", "daiji3");
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+
+        SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
     }
 
     private onBtnStart():void {
@@ -93,6 +108,23 @@ export default class MainScene extends cc.Component {
     private onBtnHome():void {
         FirebaseReport.reportInformation(FirebaseKey.skin_ranbui);
         this.showMainView();
+    }
+
+    private onBtnWeapon(): void {
+        FirebaseReport.reportInformation("shouye_arms");
+        var self = this;
+        cc.loader.loadRes("prefabs/game/weapon/WeaponRoot", cc.Prefab, (e, p) => {
+            var pnode = cc.instantiate(p as cc.Prefab);
+            self.node.addChild(pnode, 90);
+
+            var act = pnode.getComponent(WeaponShop);
+            act.Init(this);
+            pnode.setPosition(0, 0);
+        });
+    }
+
+    private onBtnSign(): void {
+
     }
 
     /**展示皮肤商店 */
@@ -130,15 +162,16 @@ export default class MainScene extends cc.Component {
     /**更新上方的展示模型的显示*/
     private updateShowModel(bShowUpgradeAnim:boolean = false):void {
         let resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
         if (bShowUpgradeAnim) {
-            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/player/"+resName, true, "default", "daiji", () => {
+            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", () => {
                 SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "shengji", false, () => {
                     SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "daiji",true, null);
                 });
             });
         }
         else {
-            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/player/"+resName, true, "default", "daiji");
+            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
         }
     }
 

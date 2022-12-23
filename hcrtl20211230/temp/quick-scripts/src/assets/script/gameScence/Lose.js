@@ -33,7 +33,9 @@ var GameScence_1 = require("./GameScence");
 var FirebaseReport_1 = require("../util/FirebaseReport");
 var LevelData_1 = require("../data/LevelData");
 var SpineManager_1 = require("../manager/SpineManager");
+var UserData_1 = require("../data/UserData");
 var Utils_1 = require("../util/Utils");
+var SdkManager_1 = require("../util/SdkManager");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Lose = /** @class */ (function (_super) {
     __extends(Lose, _super);
@@ -77,8 +79,8 @@ var Lose = /** @class */ (function (_super) {
         this.node.active = false;
     };
     Lose.prototype.onBtnNoThanksClick = function () {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_playagain);
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_playagain);
+        if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Lose"].JavaCall_playAgain()', "");
         }
         else {
@@ -97,7 +99,15 @@ var Lose = /** @class */ (function (_super) {
         Lose_1._instance.skipNowLevel();
     };
     Lose.prototype.onBtnHomeClick = function () {
-        cc.director.loadScene("MainScene");
+        if (UserData_1.userData.GetIntAdStatus()) {
+            SdkManager_1.default.GetInstance().JavaInterstitialAds("", function () {
+                cc.director.loadScene("MainScene");
+            });
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }
+        //cc.director.loadScene("MainScene");
     };
     Lose.JavaCall_noAdCallback = function () {
         Lose_1._instance.noAdCallback();

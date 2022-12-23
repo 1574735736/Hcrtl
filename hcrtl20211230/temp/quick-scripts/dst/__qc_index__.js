@@ -22,6 +22,7 @@ require('./assets/script/gameScence/TowerLayer');
 require('./assets/script/gameScence/TowerTile');
 require('./assets/script/loadscence/LoadScene');
 require('./assets/script/mainScene/MainScene');
+require('./assets/script/mainScene/WeaponShop');
 require('./assets/script/manager/BaseInstanceClass');
 require('./assets/script/manager/PrefabsManager');
 require('./assets/script/manager/SoundManager');
@@ -36,6 +37,7 @@ require('./assets/script/util/SdkManager');
 require('./assets/script/util/SkinShopItem');
 require('./assets/script/util/SkinShopItemData');
 require('./assets/script/util/Utils');
+require('./assets/script/util/WeaponItemData');
 
                     }
                     if (nodeEnv) {

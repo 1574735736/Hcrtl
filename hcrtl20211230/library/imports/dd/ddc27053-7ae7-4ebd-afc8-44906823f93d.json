@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "位置参考",
+    "texture": "038e84e2-0807-4ec4-accf-7d63d3ccbc00",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      373,
+      808
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      373,
+      808
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

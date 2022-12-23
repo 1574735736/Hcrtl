@@ -153,8 +153,9 @@ export default class GameScence extends cc.Component {
         let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let resName = skinDatas[usingIndex].resName;
-        SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/player/"+resName, true, "default", "shengli");
-        SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/player/"+resName, true, "default", "siwang");
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/players/"+resName + "" +weaponIdx, true, "default", "shengli");
+        SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/players/"+resName + "" +weaponIdx, true, "default", "siwang");
     }
 
     private updateWildRage(level:number):void {
@@ -232,9 +233,16 @@ export default class GameScence extends cc.Component {
         this.towerLayer.addPlayerHp(Math.floor(this.rateOfIncreasePower * this.initHp));
     }
 
-    private onBtnHomeClick():void {
+    private onBtnHomeClick(): void {        
         FirebaseReport.reportInformation(FirebaseKey.zhandou_shouye);
-        cc.director.loadScene("MainScene");
+        if (userData.GetIntAdStatus()) {
+            SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.zhandou_shouye, () => {
+                cc.director.loadScene("MainScene");
+            })
+        }
+        else {            
+            cc.director.loadScene("MainScene");
+        }                
     }
 
     /**

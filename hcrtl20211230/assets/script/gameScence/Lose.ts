@@ -67,9 +67,9 @@ export default class Lose extends cc.Component {
         this.node.active = false;
     }
 
-    private onBtnNoThanksClick():void {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-             FirebaseReport.reportInformation(FirebaseKey.shengli_playagain);
+    private onBtnNoThanksClick(): void {
+        FirebaseReport.reportInformation(FirebaseKey.shengli_playagain);
+        if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {             
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
         }
         else {
@@ -90,8 +90,18 @@ export default class Lose extends cc.Component {
         Lose._instance.skipNowLevel();
     }
 
-    private onBtnHomeClick():void {
-        cc.director.loadScene("MainScene");
+    private onBtnHomeClick(): void {
+
+        if (userData.GetIntAdStatus()) {
+            SdkManager.GetInstance().JavaInterstitialAds("", () => {
+                cc.director.loadScene("MainScene");
+            })
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }  
+
+        //cc.director.loadScene("MainScene");
     }
 
 

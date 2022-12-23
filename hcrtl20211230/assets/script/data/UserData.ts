@@ -8,6 +8,7 @@
 import BaseInstanceClass from "../manager/BaseInstanceClass";
 import EventDefine from "../util/EventDefine";
 import SkinShopItemData from "../util/SkinShopItemData";
+import WeaponItemData from "../util/WeaponItemData";
 
 const {ccclass, property} = cc._decorator;
 
@@ -26,6 +27,8 @@ export default class UserData {
         }
     }
 
+    private LastInAdTime: number = 0;
+
     public setData(key:string, value:any):void{
         this._localData[key] = value;
         this.saveData();
@@ -36,11 +39,14 @@ export default class UserData {
         localStorage.setItem("hcrtl", JSON.stringify(this._localData));
     }
 
-    public getData(key:string):any {
-        if (this._localData[key] != undefined) {
-            return this._localData[key];
+    public getData(key: string): any {
+        if (this._localData[key] == undefined || this._localData[key] == null ) {
+        }
+        else {         
+            return this._localData[key];          
         }
         let defaultValue;//默认值
+
         switch(key) {
             case localStorageKey.GOLD:
                 defaultValue = 0;
@@ -53,9 +59,17 @@ export default class UserData {
                 break;
             case localStorageKey.PER_GET_SKIN_VICTORY:
                 defaultValue = 0;
+                break;
+            case localStorageKey.WEAPON_DATAS:
+                defaultValue = this.getInitWeaponData();
+                break;
+            case localStorageKey.USING_WEAPON_IDX:
+                defaultValue = 0;
+                break;
             default:
                 break;
         }
+
         if (defaultValue == undefined) {
             defaultValue = 0;
         }
@@ -96,6 +110,36 @@ export default class UserData {
         }
         return datas;
     }
+
+    /**获取初始化的武器商店数据 */
+    private getInitWeaponData(): WeaponItemData[] {
+        let datas: WeaponItemData[] = [];
+        for (let i = 0; i < 9; i++) {
+            let itemData = new WeaponItemData();
+            itemData.id = i;
+            itemData.bUnlock = i == 0 ? true : false;//默认武器解锁        
+            itemData.resName = `wq${i + 1}`;            
+            if (i < 6 && i > 1) {
+                itemData.costType = 1;
+                itemData.costNum = 0;
+            }
+            else if (i == 1)
+            {
+                itemData.costNum = 2000;
+                itemData.costType = 0;
+            }
+            else  {
+                itemData.costNum = 6000;
+                itemData.costType = 0;
+            }            
+            datas.push(itemData);
+        }
+
+        return datas;
+    }
+
+
+
     /**派发对应的事件 */
     private dispatchEven(event:string):void {
         switch(event) {
@@ -107,6 +151,22 @@ export default class UserData {
                 break;
         }
     }
+    //判断有没有到达20 秒的时间间隔
+    public GetIntAdStatus(): boolean {
+        var myDate = Date.parse(new Date().toString());
+        if (this.LastInAdTime == 0) {
+            this.LastInAdTime = myDate;
+            return true;
+        }
+        if (myDate - this.LastInAdTime >= 20000) {
+            this.LastInAdTime = myDate;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
 export class localStorageKey {
     /**金币 */
@@ -117,6 +177,10 @@ export class localStorageKey {
     static USING_SKIN_INDEX = "USING_SKIN_INDEX";
     /**通关获取皮肤的进度 */
     static PER_GET_SKIN_VICTORY = "PER_GET_SKIN_VICTORY";
+    //当前所使用的武器
+    static USING_WEAPON_IDX = "USING_WEAPON_IDX";
+    //当前的武器数据
+    static WEAPON_DATAS = "WEAPON_DATAS";
 }
 
 export const userData = new UserData();

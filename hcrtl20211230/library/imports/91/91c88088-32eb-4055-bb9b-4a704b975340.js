@@ -29,6 +29,7 @@ var EventDefine_1 = require("../util/EventDefine");
 var FirebaseReport_1 = require("../util/FirebaseReport");
 var ListView_1 = require("../util/ListView");
 var Utils_1 = require("../util/Utils");
+var WeaponShop_1 = require("./WeaponShop");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var MainScene = /** @class */ (function (_super) {
     __extends(MainScene, _super);
@@ -62,6 +63,12 @@ var MainScene = /** @class */ (function (_super) {
         });
         cc.find("Canvas").on(EventDefine_1.default.USING_SKIN_CHANGE, function () {
         });
+        var btnSkin = cc.find("MainRoot/btn_skins", this.node);
+        btnSkin.on("click", this.onBtnSkin, this);
+        var btnWeapon = cc.find("MainRoot/btn_weapon", this.node);
+        btnWeapon.on("click", this.onBtnWeapon, this);
+        var btnSign = cc.find("MainRoot/btn_sign", this.node);
+        btnSign.on("click", this.onBtnSign, this);
     };
     /**展示主界面 */
     MainScene.prototype.showMainView = function () {
@@ -70,7 +77,8 @@ var MainScene = /** @class */ (function (_super) {
         this.SkinShopRoot.active = false;
         var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/player/" + skinDatas[usingIndex].resName, true, "default", "daiji3");
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
     };
     MainScene.prototype.onBtnStart = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_start);
@@ -83,6 +91,20 @@ var MainScene = /** @class */ (function (_super) {
     MainScene.prototype.onBtnHome = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.skin_ranbui);
         this.showMainView();
+    };
+    MainScene.prototype.onBtnWeapon = function () {
+        var _this = this;
+        FirebaseReport_1.FirebaseReport.reportInformation("shouye_arms");
+        var self = this;
+        cc.loader.loadRes("prefabs/game/weapon/WeaponRoot", cc.Prefab, function (e, p) {
+            var pnode = cc.instantiate(p);
+            self.node.addChild(pnode, 90);
+            var act = pnode.getComponent(WeaponShop_1.default);
+            act.Init(_this);
+            pnode.setPosition(0, 0);
+        });
+    };
+    MainScene.prototype.onBtnSign = function () {
     };
     /**展示皮肤商店 */
     MainScene.prototype.showSkinShop = function () {
@@ -117,15 +139,16 @@ var MainScene = /** @class */ (function (_super) {
         var _this = this;
         if (bShowUpgradeAnim === void 0) { bShowUpgradeAnim = false; }
         var resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
+        var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
         if (bShowUpgradeAnim) {
-            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/player/" + resName, true, "default", "daiji", function () {
+            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", function () {
                 SpineManager_1.default.getInstance().playSpinAnimation(_this.showModelOfShop, "shengji", false, function () {
                     SpineManager_1.default.getInstance().playSpinAnimation(_this.showModelOfShop, "daiji", true, null);
                 });
             });
         }
         else {
-            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/player/" + resName, true, "default", "daiji");
+            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
         }
     };
     MainScene.prototype.initShopList = function () {

@@ -69,7 +69,9 @@ export default class Success extends cc.Component {
 
     private btn_getSkin:cc.Node;
 
-    private reward_gold:number;
+    private reward_gold: number;
+
+    private flay_ani: sp.Skeleton = null;
 
     onLoad () {
         Success._instance = this;
@@ -84,6 +86,8 @@ export default class Success extends cc.Component {
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
 
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
+
+        this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
 
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
         this.btn_getSkin = this.node.getChildByName("btn_getSkin");
@@ -242,29 +246,48 @@ export default class Success extends cc.Component {
         Success._instance.goNextLevel(true);
     }
 
-    goNextLevel(bVideo:boolean = false) {
-        let own = userData.getData(localStorageKey.GOLD);
-        if (bVideo) {
-            own += this.rateOfRewardByVideo * this.reward_gold;
-        }
-        else {
-            own += this.reward_gold;
-        }
-        userData.setData(localStorageKey.GOLD, own);
-        GameScence.Instance.restartGame();
-        this.node.active = false;
+    goNextLevel(bVideo: boolean = false) {
+        this.flay_ani.node.active = true;
+
+        this.scheduleOnce(function () {
+            GameScence.Instance.restartGame();
+            this.node.active = false;
+        }, 2.5);
+
+        SpineManager.getInstance().playSpinAnimation(this.flay_ani, "biaoti2", false, () => {
+            this.flay_ani.node.active = false;
+            let own = userData.getData(localStorageKey.GOLD);
+            if (bVideo) {
+                own += this.rateOfRewardByVideo * this.reward_gold;
+            }
+            else {
+                own += this.reward_gold;
+            }
+            userData.setData(localStorageKey.GOLD, own);    
+            this.lb_gold.string = own + "";
+        });       
     }
 
     private onBtnHomeClick():void {
         let own = userData.getData(localStorageKey.GOLD);
         own += this.reward_gold;
         userData.setData(localStorageKey.GOLD, own);
-        cc.director.loadScene("MainScene");
+
+        if (userData.GetIntAdStatus()) {
+            SdkManager.GetInstance().JavaInterstitialAds("", () => {
+                cc.director.loadScene("MainScene");
+            })
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }  
+
+        //cc.director.loadScene("MainScene");
     }
 
-    private onBtnNoThanksClick():void {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_next);
+    private onBtnNoThanksClick(): void {
+        FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_next);
+        if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {            
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
@@ -279,15 +302,23 @@ export default class Success extends cc.Component {
 
     private rateOfRewardByVideo:number;
 
-    private onBtnVideoClick():void {
+    private onBtnVideoClick(): void {
+
+        cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node).active = true;
+
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
-        if (cc.sys.platform == cc.sys.ANDROID) {
-             FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
-        }
-        else {
-             this.goNextLevel(true);
-        }
+        cc.Tween.stopAllByTarget(this.randomBar);
+        this.scheduleOnce(function () {            
+            if (cc.sys.platform == cc.sys.ANDROID) {
+                FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
+            }
+            else {
+                this.goNextLevel(true);
+            }
+        }, 1.5);
+        
+       
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     }
     /**获取皮肤入口按钮点击回调 */
@@ -310,11 +341,12 @@ export default class Success extends cc.Component {
         
         let roleModel = this.newSkinPanel.getChildByName("roleModel").getComponent(sp.Skeleton);
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
         for (let i = 0; i < skinDatas.length; i++) {
             let data = skinDatas[i];
             if (!data.bUnlock) {//此皮肤未解锁
                 this.unlockSkinIndex = i;
-                SpineManager.getInstance().loadSpine(roleModel, "spine/player/" + data.resName, true, "default", "daiji");
+                SpineManager.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
                 break;
             }
         }
@@ -346,7 +378,8 @@ export default class Success extends cc.Component {
         Utils.showMessage(this.node, "Got a new skin");
         //更新胜利界面玩家皮肤
         let resName = skinDatas[this.unlockSkinIndex].resName;
-        SpineManager.getInstance().loadSpine(this.roleModel,"spine/player/"+resName, true, "default", "shengli");
+        let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+        SpineManager.getInstance().loadSpine(this.roleModel,"spine/players/"+resName + "" + weaponIdx, true, "default", "shengli");
     }
 
     /**获取新皮肤面板的noThanks按钮点击 */

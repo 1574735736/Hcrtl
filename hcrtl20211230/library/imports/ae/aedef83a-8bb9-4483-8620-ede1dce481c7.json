@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "DOUBIE",
+    "texture": "d5969d58-b2f0-43e0-ab4d-976416872441",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      270,
+      134
+    ],
+    "offset": [
+      0,
+      0.5
+    ],
+    "originalSize": [
+      270,
+      135
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
