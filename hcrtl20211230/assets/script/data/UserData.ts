@@ -40,7 +40,7 @@ export default class UserData {
     }
 
     public getData(key: string): any {
-        if (this._localData[key] == undefined || this._localData[key] == null ) {
+        if (this._localData[key] == undefined || this._localData[key] == null) { //|| key == localStorageKey.SHOP_DATAS || key == localStorageKey.WEAPON_DATAS
         }
         else {         
             return this._localData[key];          
@@ -66,6 +66,15 @@ export default class UserData {
             case localStorageKey.USING_WEAPON_IDX:
                 defaultValue = 0;
                 break;
+            case localStorageKey.COMEON_FIRST:
+                defaultValue = 0;
+                break;
+            case localStorageKey.SIGNIN_DATA:
+                defaultValue = 0;
+                break;
+            case localStorageKey.SIGNIN_NUM:
+                defaultValue = 0;
+                break;
             default:
                 break;
         }
@@ -80,13 +89,16 @@ export default class UserData {
     /**获取初始化的皮肤商店数据 */
     private getInitShopData():SkinShopItemData[] {
         let datas:SkinShopItemData[] = [];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 9; i++) {
             let itemData = new SkinShopItemData();
             itemData.id = i;
-            itemData.bUnlock = i==0?true:false;//默认皮肤解锁
+            itemData.bUnlock = i==0?true:false;//默认皮肤解锁 
             itemData.resName = `p${i}`;
             itemData.costType = (i < 4 ? 1 : 0);
             itemData.costNum = 5000;
+            if (i == 7 || i == 8) {
+                itemData.costType = 2;
+            }
             switch(i) {
                 case 0:
                     itemData.resName = "zhu";
@@ -125,8 +137,8 @@ export default class UserData {
             }
             else if (i == 1)
             {
-                itemData.costNum = 2000;
-                itemData.costType = 0;
+                itemData.costNum = 0//2000;
+                itemData.costType = 2;
             }
             else  {
                 itemData.costNum = 6000;
@@ -158,7 +170,7 @@ export default class UserData {
             this.LastInAdTime = myDate;
             return true;
         }
-        if (myDate - this.LastInAdTime >= 20000) {
+        if ((myDate - this.LastInAdTime) >= 150000) {
             this.LastInAdTime = myDate;
             return true;
         }
@@ -181,6 +193,12 @@ export class localStorageKey {
     static USING_WEAPON_IDX = "USING_WEAPON_IDX";
     //当前的武器数据
     static WEAPON_DATAS = "WEAPON_DATAS";
+    //当前第一次进入游戏记录
+    static COMEON_FIRST = "COMEON_FIRST";
+    //日期记录
+    static SIGNIN_DATA = "SIGNIN_DATA";
+    //签到次数
+    static SIGNIN_NUM = "SIGNIN_NUM";
 }
 
 export const userData = new UserData();

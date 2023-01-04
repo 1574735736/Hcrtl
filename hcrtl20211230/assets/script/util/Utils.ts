@@ -1,3 +1,4 @@
+import AndroidAdView from "../gameScence/AndroidAdView";
 
 const {ccclass, property} = cc._decorator;
 
@@ -10,7 +11,7 @@ export default class Utils extends cc.Component {
   }
 
 
-    public static showMessage(parentNode: cc.Node, msg: string):void {
+    public static showMessage(parentNode: cc.Node, msg: string, callBack: Function = null): void {
       //cc.loader.loadRes("prefabs/game/player/TipMessage", cc.Prefab, (err, prefab) => {
       //    let showNode = cc.instantiate(prefab);
       //    if (this.messageNode) {
@@ -32,6 +33,10 @@ export default class Utils extends cc.Component {
             var pnode = cc.instantiate(p as cc.Prefab);
             parentNode.addChild(pnode, 90);
             pnode.setPosition(0, 0);
+            if (callBack) {
+                var adView = pnode.getComponent(AndroidAdView)
+                adView.onInit(callBack);
+            }
         });
     }
 

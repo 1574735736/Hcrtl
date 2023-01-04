@@ -24,16 +24,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
-var NewClass = /** @class */ (function (_super) {
-    __extends(NewClass, _super);
-    function NewClass() {
+var AndroidAdView = /** @class */ (function (_super) {
+    __extends(AndroidAdView, _super);
+    function AndroidAdView() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.m_TimeLab = null;
         _this.m_BtnClose = null;
         _this.m_LastTime = 5;
+        _this.m_CallFunc = null;
         return _this;
     }
-    NewClass.prototype.start = function () {
+    AndroidAdView.prototype.start = function () {
         this.m_TimeLab = cc.find("img_topbg/img_timebg/lab_lastTime", this.node).getComponent(cc.Label);
         this.m_BtnClose = cc.find("img_topbg/img_timebg/btn_close", this.node);
         this.m_BtnClose.on("click", this.OnClose.bind(this));
@@ -51,16 +52,22 @@ var NewClass = /** @class */ (function (_super) {
         };
         this.schedule(callBack, 1);
     };
-    NewClass.prototype.OnClose = function () {
+    AndroidAdView.prototype.onInit = function (func) {
+        this.m_CallFunc = func;
+    };
+    AndroidAdView.prototype.OnClose = function () {
         if (cc.sys.platform == cc.sys.ANDROID)
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/NativeAdManager", "JsCall_hideAd", "()V");
+        if (this.m_CallFunc) {
+            this.m_CallFunc();
+        }
         this.node.destroy();
     };
-    NewClass = __decorate([
+    AndroidAdView = __decorate([
         ccclass
-    ], NewClass);
-    return NewClass;
+    ], AndroidAdView);
+    return AndroidAdView;
 }(cc.Component));
-exports.default = NewClass;
+exports.default = AndroidAdView;
 
 cc._RF.pop();

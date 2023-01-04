@@ -8,11 +8,12 @@ import SdkManager from "../util/SdkManager";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class AndroidAdView extends cc.Component {
 
     m_TimeLab: cc.Label = null;
     m_BtnClose: cc.Node = null;
     m_LastTime: number = 5;
+    m_CallFunc: Function = null;
 
     start() {
         this.m_TimeLab = cc.find("img_topbg/img_timebg/lab_lastTime", this.node).getComponent(cc.Label);
@@ -36,9 +37,16 @@ export default class NewClass extends cc.Component {
 
     }
 
+    onInit(func: Function) {
+        this.m_CallFunc = func;
+    }
+
     OnClose() {
         if (cc.sys.platform == cc.sys.ANDROID) 
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/NativeAdManager", "JsCall_hideAd", "()V");
+        if (this.m_CallFunc) {
+            this.m_CallFunc();
+        }
         this.node.destroy();
     }
 }

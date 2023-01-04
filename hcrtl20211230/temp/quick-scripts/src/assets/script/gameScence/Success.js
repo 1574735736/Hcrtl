@@ -60,6 +60,9 @@ var Success = /** @class */ (function (_super) {
         /**本次是否已经获得了新皮肤 */
         _this.bHadGetNewSkin = false;
         _this.flay_ani = null;
+        _this.clickTime = 0;
+        _this.isEndAni = false;
+        _this.m_BackFunc = null;
         return _this;
     }
     Success_1 = Success;
@@ -222,8 +225,9 @@ var Success = /** @class */ (function (_super) {
         var _this = this;
         if (bVideo === void 0) { bVideo = false; }
         this.flay_ani.node.active = true;
+        this.isEndAni = true;
         this.scheduleOnce(function () {
-            GameScence_1.default.Instance.restartGame();
+            GameScence_1.default.Instance.onReloadLevel();
             this.node.active = false;
         }, 2.5);
         SpineManager_1.default.getInstance().playSpinAnimation(this.flay_ani, "biaoti2", false, function () {
@@ -254,6 +258,9 @@ var Success = /** @class */ (function (_super) {
         //cc.director.loadScene("MainScene");
     };
     Success.prototype.onBtnNoThanksClick = function () {
+        if (this.isEndAni) {
+            return;
+        }
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
         if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
@@ -267,17 +274,28 @@ var Success = /** @class */ (function (_super) {
         Success_1._instance.goNextLevel();
     };
     Success.prototype.onBtnVideoClick = function () {
+        if (this.isEndAni) {
+            return;
+        }
+        var myDate = Date.parse(new Date().toString());
+        if ((myDate - this.clickTime) < 2000) {
+            return;
+        }
+        this.clickTime = myDate;
         cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node).active = true;
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
         cc.Tween.stopAllByTarget(this.randomBar);
         this.scheduleOnce(function () {
-            if (cc.sys.platform == cc.sys.ANDROID) {
-                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
-                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
-            }
-            else {
-                this.goNextLevel(true);
-            }
+            var _this = this;
+            // if (cc.sys.platform == cc.sys.ANDROID) {
+            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
+            //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
+            // }
+            // else {
+            //     this.goNextLevel(true);
+            // }
+            SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_beishu", function () { _this.goNextLevel(true); }, function () { _this.noAdCallback(); });
+            this.m_BackFunc = function () { _this.goNextLevel(true); };
         }, 1.5);
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     };
@@ -309,14 +327,16 @@ var Success = /** @class */ (function (_super) {
     };
     /**获取新皮肤面板的看广告按钮点击 */
     Success.prototype.onGetSkinByVideoOfSkinPanelClick = function () {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_skin);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
-        }
-        else {
-            this.getNewSkin();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skin", () => { this.getNewSkin(); }, () => { this.noAdCallback(); });     
+        var _this = this;
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_skin);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
+        // }
+        // else {
+        //      this.getNewSkin();
+        // }
+        SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_skin", function () { _this.getNewSkin(); }, function () { _this.noAdCallback(); });
+        this.m_BackFunc = function () { _this.getNewSkin(); };
     };
     Success.JavaCall_getNewSkin = function () {
         Success_1._instance.getNewSkin();
@@ -385,7 +405,13 @@ var Success = /** @class */ (function (_super) {
         Success_1._instance.noAdCallback();
     };
     Success.prototype.noAdCallback = function () {
-        Utils_1.default.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc) {
+            var func = this.m_BackFunc;
+            Utils_1.default.showMessage(this.node, "Ad not ready", func);
+        }
+        else
+            Utils_1.default.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     };
     var Success_1;
     Success._instance = null;

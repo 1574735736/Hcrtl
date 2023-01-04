@@ -29,7 +29,9 @@ var EventDefine_1 = require("../util/EventDefine");
 var FirebaseReport_1 = require("../util/FirebaseReport");
 var ListView_1 = require("../util/ListView");
 var Utils_1 = require("../util/Utils");
+var SdkManager_1 = require("../util/SdkManager");
 var WeaponShop_1 = require("./WeaponShop");
+var SignInView_1 = require("./SignInView");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var MainScene = /** @class */ (function (_super) {
     __extends(MainScene, _super);
@@ -40,6 +42,7 @@ var MainScene = /** @class */ (function (_super) {
         _this.num_gold_main = null;
         _this.roleModel = null;
         _this.shopDatas = null;
+        _this.m_BackFunc = null;
         return _this;
     }
     MainScene_1 = MainScene;
@@ -69,6 +72,8 @@ var MainScene = /** @class */ (function (_super) {
         btnWeapon.on("click", this.onBtnWeapon, this);
         var btnSign = cc.find("MainRoot/btn_sign", this.node);
         btnSign.on("click", this.onBtnSign, this);
+        var dataNum = UserData_1.userData.getData(UserData_1.localStorageKey.SIGNIN_NUM);
+        btnSign.active = dataNum < 7;
     };
     /**展示主界面 */
     MainScene.prototype.showMainView = function () {
@@ -83,6 +88,7 @@ var MainScene = /** @class */ (function (_super) {
     MainScene.prototype.onBtnStart = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_start);
         cc.director.loadScene('GameScene'); //进入游戏场景
+        //userData.setData(localStorageKey.GOLD, 6000);
     };
     MainScene.prototype.onBtnSkin = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_skin);
@@ -105,6 +111,16 @@ var MainScene = /** @class */ (function (_super) {
         });
     };
     MainScene.prototype.onBtnSign = function () {
+        var _this = this;
+        FirebaseReport_1.FirebaseReport.reportInformation("shouye_gift");
+        var self = this;
+        cc.loader.loadRes("prefabs/sign/SignInView", cc.Prefab, function (e, p) {
+            var pnode = cc.instantiate(p);
+            self.node.addChild(pnode, 90);
+            var act = pnode.getComponent(SignInView_1.default);
+            act.Init(_this);
+            pnode.setPosition(0, 0);
+        });
     };
     /**展示皮肤商店 */
     MainScene.prototype.showSkinShop = function () {
@@ -155,7 +171,8 @@ var MainScene = /** @class */ (function (_super) {
         var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
         this.shopDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         this.listViewScript.selectedIndex = usingIndex;
-        this.listViewScript.replaceAll(this.shopDatas);
+        //this.listViewScript.replaceAll(this.shopDatas);
+        this.listViewScript.OnCreateView(this.shopDatas);
         this.listViewScript.scrollToTop();
     };
     MainScene.prototype.updateShopList = function () {
@@ -167,14 +184,16 @@ var MainScene = /** @class */ (function (_super) {
         this.updateShopList();
     };
     MainScene.prototype.unlockSkinByAd = function () {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.skin_ad2);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
-        }
-        else {
-            this.unlockSkin();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
+        var _this = this;
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.skin_ad2);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
+        // }
+        // else {
+        //      this.unlockSkin();
+        // }
+        SdkManager_1.default.GetInstance().JavaRewardedAds("skin_ad2", function () { _this.unlockSkin(); }, function () { _this.noAdCallback(); }, function () { _this.closeAdCallback(); });
+        this.m_BackFunc = function () { _this.unlockSkin(); };
     };
     MainScene.prototype.unlockSkin = function () {
         var itemData = this.shopDatas[this.unlockIndex];
@@ -197,7 +216,13 @@ var MainScene = /** @class */ (function (_super) {
         MainScene_1._instance.closeAdCallback();
     };
     MainScene.prototype.noAdCallback = function () {
-        Utils_1.default.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc) {
+            var func = this.m_BackFunc;
+            Utils_1.default.showMessage(this.node, "Ad not ready", func);
+        }
+        else
+            Utils_1.default.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     };
     MainScene.prototype.closeAdCallback = function () {
         // to do

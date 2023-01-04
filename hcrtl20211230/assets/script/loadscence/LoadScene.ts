@@ -11,6 +11,7 @@ import EventDefine from "../util/EventDefine";
 import MainScene from "../mainScene/MainScene";
 import GameScence from "../gameScence/GameScence";
 import WeaponShop from "../mainScene/WeaponShop";
+import SdkManager from "../util/SdkManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -32,7 +33,7 @@ export default class LoadScene extends cc.Component {
 
     private inAddSpeed: number = 0.4;
     private inCountSpeed: number = 10;
-
+    private comeOnStatus: number = 0;
     onLoad() {
         LoadScene._instance = this; 
         this.isLoadingGame = true;
@@ -40,6 +41,7 @@ export default class LoadScene extends cc.Component {
         this.initClassOnAndroid();  
         this.initRoleModel();  
         this.LoadOther();
+        this.comeOnStatus = userData.getData(localStorageKey.COMEON_FIRST);
         FirebaseReport.reportInformation(FirebaseKey.game_open);
         
     }
@@ -52,6 +54,7 @@ export default class LoadScene extends cc.Component {
         cc["GameScence"] = GameScence;
         cc["LoadScene"] = LoadScene;
         cc["Weapon"] = WeaponShop;
+        cc["sdkManager"] = SdkManager;
     }
 
     private initRoleModel():void {
@@ -130,7 +133,15 @@ export default class LoadScene extends cc.Component {
     /**展示主界面 */
     private showMainView():void {
         this.isLoadingGame = false;
-        cc.director.loadScene("MainScene");
+        if (this.comeOnStatus == 0) {
+            this.comeOnStatus = 1;
+            userData.setData(localStorageKey.COMEON_FIRST, this.comeOnStatus)
+            cc.director.loadScene("GameScene");
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }
+        
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/BannerAdManager", "JsCall_showAdIfAvailable", "()V");
         }
@@ -143,6 +154,9 @@ export default class LoadScene extends cc.Component {
     private showOpenAd():void {
         if (cc.sys.platform == cc.sys.ANDROID) {
             if (this.isLoadingGame) {
+                if (this.comeOnStatus == 0) {
+                    return;
+                }
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V",'');
             }
         }

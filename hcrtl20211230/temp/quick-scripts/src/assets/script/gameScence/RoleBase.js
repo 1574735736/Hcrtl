@@ -208,6 +208,7 @@ var RoleBase = /** @class */ (function (_super) {
      * 角色升级动画更新
      */
     RoleBase.prototype.updatePlayerAni = function () {
+        console.log("角色动画升级   ：" + this.lv);
         if (this.lv >= 9) {
             this.playerAinPath = "spine/player/LVL_4";
             this.playerAinSkin = "Skin_3";
@@ -344,6 +345,7 @@ var RoleBase = /** @class */ (function (_super) {
      * @param targerHp
      */
     RoleBase.prototype.addHp = function (targerHp) {
+        console.log("targerHp   :" + targerHp + "    hp :" + this.hp);
         this.hp += targerHp;
         this.maxHp = this.hp;
         this.hpLable.string = this.hp.toString();

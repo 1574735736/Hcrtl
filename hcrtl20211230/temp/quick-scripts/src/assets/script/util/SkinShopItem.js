@@ -77,6 +77,9 @@ var SkinShopItem = /** @class */ (function (_super) {
                     this.btnGetByGold.active = false;
                     this.btnGetByVideo.active = true;
                     break;
+                case 2: //未签到
+                    this.btnGetByGold.active = false;
+                    this.btnGetByVideo.active = false;
                 default:
                     break;
             }

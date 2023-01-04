@@ -112,7 +112,7 @@ export default class TowerTile extends cc.Component {
         return this.index;
     }
 
-    public getPlayer() {
+    public getPlayer() {        
         return this.player;
     }
 

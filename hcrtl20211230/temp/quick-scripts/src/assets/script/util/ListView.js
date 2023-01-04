@@ -74,6 +74,7 @@ var ListView = /** @class */ (function (_super) {
         _this._selectedIndex = -1; //-1表示未选中任何子项
         /**上次选中的子项序号 */
         _this._lastSelectedIndex = -1; //
+        _this.contentNum = 0;
         return _this;
     }
     ListView.prototype.onLoad = function () {
@@ -127,7 +128,9 @@ var ListView = /** @class */ (function (_super) {
                 this.createItem(i);
             }
             else {
-                this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
+                if (this.itemRenderers[i] != null) {
+                    this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
+                }
             }
             this.updateItemSelected(i);
         }
@@ -135,7 +138,9 @@ var ListView = /** @class */ (function (_super) {
             for (var i = oldLen - 1; i >= 0; i--) { //从后往前遍历
                 if (i >= len) {
                     var item = this.items[i];
-                    item.destroy();
+                    if (item) {
+                        item.destroy();
+                    }
                     this.items.length -= 1;
                     this.itemRenderers.length -= 1; //不用手动调用ItemRenderer的销毁方法，所属节点销毁时会自动调用组件的销毁方法
                 }
@@ -145,16 +150,46 @@ var ListView = /** @class */ (function (_super) {
             }
         }
     };
+    ListView.prototype.OnCreateView = function (itemDataList) {
+        this.oldDataProvider = this.dataProvider;
+        //浅拷贝item数据
+        this.dataProvider = itemDataList.slice();
+        this.totalCount = this.dataProvider.length;
+        var rowNum = Math.ceil(this.totalCount / this.columns);
+        this.content.height = rowNum * (this.itemHeight + this.spaceY) + this.spaceY;
+        var oldLen = this.oldDataProvider.length;
+        var len = this.totalCount;
+        for (var i = oldLen - 1; i >= 0; i--) { //从后往前遍历
+            var item = this.items[i];
+            if (item) {
+                item.destroy();
+            }
+        }
+        this.items.length = 0;
+        this.itemRenderers.length = 0;
+        this.contentNum = 0;
+        for (var i = 0; i < len; i++) {
+            this.createItem(i);
+            this.updateItemSelected(i);
+        }
+    };
     ListView.prototype.createItem = function (index) {
         var i = index;
+        if (this.dataProvider[i].bUnlock == false && this.dataProvider[i].costType == 2) {
+            this.contentNum = this.contentNum + 1;
+            this.items.push(null);
+            this.itemRenderers.push(null);
+            return;
+        }
         var increaseX = this.itemWidth + this.spaceX; //为正
         var initPosX = -(increaseX * this.columns - this.spaceX) / 2 + this.itemWidth / 2;
         var increaseY = -(this.itemHeight + this.spaceY); //为负
         var initPosY = this.content.height / 2 - (this.spaceY + this.itemHeight / 2);
         var item = cc.instantiate(this.itemPrefab);
         this.content.addChild(item);
-        var rowIndex = Math.floor(i / this.columns);
-        var columnsIndex = i % this.columns;
+        var ind = i - this.contentNum;
+        var rowIndex = Math.floor(ind / this.columns);
+        var columnsIndex = ind % this.columns;
         var x = initPosX + columnsIndex * increaseX;
         var y = initPosY + rowIndex * increaseY;
         item.setPosition(x, y);
@@ -164,6 +199,9 @@ var ListView = /** @class */ (function (_super) {
         this.items.push(item);
     };
     ListView.prototype.updateItemSelected = function (index) {
+        if (this.itemRenderers[index] == null) {
+            return;
+        }
         if (this._selectedIndex == index) {
             this.itemRenderers[index].selected = true;
         }

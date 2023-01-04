@@ -215,7 +215,8 @@ export default class RoleBase extends cc.Component {
     /**
      * 角色升级动画更新
      */
-    public updatePlayerAni(){
+    public updatePlayerAni() {
+        console.log("角色动画升级   ：" + this.lv);
         if( this.lv >= 9){
             this.playerAinPath = "spine/player/LVL_4";
             this.playerAinSkin = "Skin_3";
@@ -345,7 +346,8 @@ export default class RoleBase extends cc.Component {
      * 增加血量
      * @param targerHp 
      */
-    public addHp(targerHp){
+    public addHp(targerHp) {
+        console.log("targerHp   :" + targerHp + "    hp :" + this.hp);
         this.hp += targerHp;
         this.maxHp = this.hp;
         this.hpLable.string = this.hp.toString();

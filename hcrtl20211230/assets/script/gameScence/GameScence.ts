@@ -41,7 +41,9 @@ export default class GameScence extends cc.Component {
     levelLabel : cc.Label = null;//关卡显示
 
     @property(cc.Node)
-    wildRage:cc.Node = null;
+    wildRage: cc.Node = null;
+    @property(cc.Node)
+    wildRage2: cc.Node = null;
 
     @property(cc.Node)
     btn_wildRage:cc.Node = null
@@ -61,7 +63,9 @@ export default class GameScence extends cc.Component {
 
     private decoration:cc.Node;
 
-    private static _instance:GameScence = null;
+    private static _instance: GameScence = null;
+
+    curDataIndx: number = 0;
 
     onLoad(){
         GameScence._instance = this;
@@ -89,43 +93,56 @@ export default class GameScence extends cc.Component {
         // console.log("======all level: ",LevelData.levelData);
         //  LevelData.curLevel = 41;
         //超出最大关卡，显示最后一关
-        if(LevelData.curLevel >LevelData.levelData.length){
-            LevelData.curLevel = LevelData.levelData.length;
-        }
+
+        //if(LevelData.curLevel >LevelData.levelData.length){
+        //    LevelData.curLevel = LevelData.levelData.length;
+        //}
         let levelCount = LevelData.curLevel;
+        
+        this.levelLabel.string = "Level " + levelCount;//显示关卡数
+        FirebaseReport.reportInformation("level_jinru_" + levelCount);
+
+        //switch(levelCount) {
+        //    case 1:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_1);
+        //         break;
+        //    case 2:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_2);
+        //         break;
+        //    case 3:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_3);
+        //         break;
+        //    case 4:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_4);
+        //         break;
+        //    case 5:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_5);
+        //         break;
+        //    case 10:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_10);
+        //         break;
+        //    case 15:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_15);
+        //         break;
+        //    case 20:
+        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_20);
+        //         break;
+        //    default:
+        //         break;
+        //}
         this.updateWildRage(levelCount);
-        this.levelLabel.string = "Level "+levelCount;//显示关卡数
-        switch(levelCount) {
-            case 1:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_1);
-                 break;
-            case 2:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_2);
-                 break;
-            case 3:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_3);
-                 break;
-            case 4:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_4);
-                 break;
-            case 5:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_5);
-                 break;
-            case 10:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_10);
-                 break;
-            case 15:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_15);
-                 break;
-            case 20:
-                 FirebaseReport.reportInformation(FirebaseKey.level_jinru_20);
-                 break;
-            default:
-                 break;
-        }
         GameScence.Instance = this;
+        let level = null;
         //获取关卡数据
-        let level = LevelData.levelData[levelCount-1];
+        if (LevelData.curLevel > LevelData.levelData.length) {
+            this.curDataIndx = this.random(20, LevelData.levelData.length - 1);
+            level = LevelData.levelData[this.curDataIndx];
+        }
+        else {
+            this.curDataIndx = levelCount - 1;
+            level = LevelData.levelData[this.curDataIndx];
+        }
+        
         let towerData = level.towerData;//关卡塔楼数据
         this.level = this.node.getChildByName("level");
         let bg  = cc.instantiate(this.bg_prefabs[level.bg]);
@@ -157,33 +174,120 @@ export default class GameScence extends cc.Component {
         SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/players/"+resName + "" +weaponIdx, true, "default", "shengli");
         SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/players/"+resName + "" +weaponIdx, true, "default", "siwang");
     }
-
+    private clickHpIdx: number = 0;
+    private addHpMul: number[] = [0.1, 0.15, 0.2 , 0.25, 0.3];
+    private randomMul: number[] = [];
+    private weaponID: number[] = [];
     private updateWildRage(level:number):void {
-        if (level%3 != 0) {
-            this.btn_wildRage.active = false;
-            this.wildRage.active = false;
-        }
-        else {//每三关出现一次
-            let rand = Math.random();
-            let value = 0.1;//百分之十
-            if (rand < 0.4) {
-                value = 0.1;
-            }
-            else if (rand < 0.7) {
-                value = 0.15;
-            }
-            else {
-                value = 0.2;
-            }
-            this.rateOfIncreasePower = value;
-            let levelData = LevelData.levelData[level-1];
-            let towerData = levelData.towerData as any;//关卡塔楼数据
-            this.initHp = towerData[0].data[0][0].hp;
-            this.showWildRage();
-        }
-        
+        //if (level%3 != 0) {
+        //    this.btn_wildRage.active = false;
+        //    this.wildRage.active = false;
+        //}
+        //else {//每三关出现一次
+        //    let rand = Math.random();
+        //    let value = 0.1;//百分之十
+        //    if (rand < 0.4) {
+        //        value = 0.1;
+        //    }
+        //    else if (rand < 0.7) {
+        //        value = 0.15;
+        //    }
+        //    else {
+        //        value = 0.2;
+        //    }
+        //    this.rateOfIncreasePower = value;
+        let levelData = LevelData.levelData[this.curDataIndx]//[level-1];
+        let towerData = levelData.towerData as any;//关卡塔楼数据
+        this.initHp = towerData[0].data[0][0].hp;
+        //    this.showWildRage();
+        //}
+
+        this.btn_wildRage.active = true;
+
+        var kuang1 = this.wildRage2.getChildByName("img_kuang1");
+        var kuang2 = this.wildRage2.getChildByName("img_kuang2");
+        var none = this.wildRage2.getChildByName("btn_NoThanks");
+     
+        kuang1.on("click", () => { this.clickHpIdx = 0; this.OnShowAddHpAds(); }, this);
+        kuang2.on("click", () => { this.clickHpIdx = 1; this.OnShowAddHpAds(); }, this);
+        none.on("click", () => { this.CloseHpPanel(); }, this);
+
+        this.scheduleOnce(() => { this.UpHpShow(); }, 1)
+
+        var random1 = this.random(0, this.addHpMul.length - 1);
+        this.randomMul.push(random1);
+        this.randomTwo();
+
+        kuang1.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[0]] * this.initHp);
+        kuang2.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[1]] * this.initHp); 
+
+        var wrandom1 = this.random(1, 8);
+        this.weaponID.push(wrandom1);
+        this.wrandomTwo();     
+
+        var icon1 = kuang1.getChildByName("img_icon").getComponent(cc.Sprite);
+        var icon2 = kuang2.getChildByName("img_icon").getComponent(cc.Sprite);
+        this.onSetIcon(icon1, this.weaponID[0] + "");
+        this.onSetIcon(icon2, this.weaponID[1] + "");
     }
-    /**展示战力提升弹窗 */
+
+    private random(lower, upper) {
+        return Math.floor(Math.random() * (upper - lower)) + lower;
+    }
+
+    private randomTwo() {
+        var random2 = this.random(0, this.addHpMul.length - 1);
+        if (random2 == this.randomMul[0]) {
+            this.randomTwo();
+        }
+        else {
+            this.randomMul.push(random2);
+        }
+    }
+    private wrandomTwo() {
+        var wrandom2 = this.random(1, 8);
+        if (wrandom2 == this.weaponID[0]) {
+            this.wrandomTwo();
+        }
+        else {
+            this.weaponID.push(wrandom2);
+        }
+    }
+
+    private OnShowAddHpAds() {
+        FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_shuxing);
+        var self = this;        
+        SdkManager.GetInstance().JavaRewardedAds(FirebaseKey.zhandou_ad2_shuxing, () => { self.GetHpAni(); }, () => { self.noAdCallback(); });
+        this.m_BackFunc = () => { self.GetHpAni(); } 
+    }
+
+    private CloseHpPanel() {
+        this.wildRage2.active = false;
+    }
+
+    private GetHpAni() {
+        this.wildRage2.active = false;
+
+        this.towerLayer.addPlayerAniHp(this.weaponID[this.clickHpIdx], Math.floor(this.addHpMul[this.randomMul[this.clickHpIdx]] * this.initHp));
+    }
+
+    private UpHpShow() {
+        this.wildRage2.setScale(0, 0);
+        this.wildRage2.active = true;
+        this.wildRage2.runAction(cc.scaleTo(0.3, 1, 1));    
+
+       
+    }
+
+    private onSetIcon(spr: cc.Sprite, iconPath: string) {
+        var strPath: string = "texture/game/gamepopup/d";
+        strPath = strPath + iconPath;
+        cc.loader.loadRes(strPath, cc.SpriteFrame, (err, sp) => {
+            spr.spriteFrame = sp as cc.SpriteFrame;
+        });
+    }
+
+    /**展示战力提升弹窗 */ss
     private showWildRage():void {
         this.btn_wildRage.active = true;
         this.wildRage.active = true;
@@ -205,7 +309,8 @@ export default class GameScence extends cc.Component {
     }
 
     private onBtnWildRageClick():void {
-        this.showWildRage();
+        //this.showWildRage();
+        this.UpHpShow();
     }
 
     private onBtnNoThanksOfWildRageClick():void {
@@ -213,14 +318,15 @@ export default class GameScence extends cc.Component {
     }
 
     private onBtnObtainClick():void {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_shuxing);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_addPlayerHp()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_shuxing", "");
-        }
-        else {
-             this.addPlayerHp();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_shuxing", () => { this.addPlayerHp(); }, () => { this.noAdCallback(); })        
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+             FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_shuxing);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_addPlayerHp()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_shuxing", "");
+        // }
+        // else {
+        //      this.addPlayerHp();
+        // }
+        SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_shuxing", () => { this.addPlayerHp(); }, () => { this.noAdCallback(); })  
+        this.m_BackFunc = () => { this.addPlayerHp(); };  
     }
 
     /** */
@@ -249,15 +355,16 @@ export default class GameScence extends cc.Component {
      * 下一关
      */
     public onBtnSkipLevel(){
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_skip);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
-        }
-        else {
-             this.skipLevel();
-        }
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+             FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_skip);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
+        // }
+        // else {
+        //      this.skipLevel();
+        // }
 
-        //SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_skip", () => { this.skipLevel(); }, () => { this.noAdCallback(); })    
+        SdkManager.GetInstance().JavaRewardedAds("zhandou_ad2_skip", () => { this.skipLevel(); }, () => { this.noAdCallback(); })  
+        this.m_BackFunc = () => { this.skipLevel(); }; 
         
     }
 
@@ -271,7 +378,13 @@ export default class GameScence extends cc.Component {
         }
         LevelData.curLevel++;
         LevelData.saveLevel();
-        this.restartGame();
+        //this.restartGame();
+        cc.director.loadScene('GameScene');
+    }
+
+    public onReloadLevel(): void {
+        //this.restartGame();
+        cc.director.loadScene('GameScene');
     }
 
     /**
@@ -282,8 +395,8 @@ export default class GameScence extends cc.Component {
             return ;
         }
         FirebaseReport.reportInformation(FirebaseKey.zhandou_playagain);
-        // cc.director.loadScene( 'GameScene');
-        this.restartGame();
+         cc.director.loadScene( 'GameScene');
+        //this.restartGame();
     }
  
     /**
@@ -353,9 +466,17 @@ export default class GameScence extends cc.Component {
         GameScence._instance.noAdCallback();
     }
 
+    m_BackFunc:Function = null;
     private noAdCallback():void{
-        Utils.showMessage(this.node, "Ad not ready");
+        if(this.m_BackFunc)    
+        {
+            var func =   this.m_BackFunc 
+            Utils.showMessage(this.node, "Ad not ready",func);
+        }        
+        else
+            Utils.showMessage(this.node, "Ad not ready");    
        /* this.InitAdView();*/
+       this.m_BackFunc = null;
     }
    
     // update (dt) {}

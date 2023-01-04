@@ -42,7 +42,7 @@ var UserData = /** @class */ (function () {
         localStorage.setItem("hcrtl", JSON.stringify(this._localData));
     };
     UserData.prototype.getData = function (key) {
-        if (this._localData[key] == undefined || this._localData[key] == null) {
+        if (this._localData[key] == undefined || this._localData[key] == null) { //|| key == localStorageKey.SHOP_DATAS || key == localStorageKey.WEAPON_DATAS
         }
         else {
             return this._localData[key];
@@ -67,6 +67,15 @@ var UserData = /** @class */ (function () {
             case localStorageKey.USING_WEAPON_IDX:
                 defaultValue = 0;
                 break;
+            case localStorageKey.COMEON_FIRST:
+                defaultValue = 0;
+                break;
+            case localStorageKey.SIGNIN_DATA:
+                defaultValue = 0;
+                break;
+            case localStorageKey.SIGNIN_NUM:
+                defaultValue = 0;
+                break;
             default:
                 break;
         }
@@ -80,13 +89,16 @@ var UserData = /** @class */ (function () {
     /**获取初始化的皮肤商店数据 */
     UserData.prototype.getInitShopData = function () {
         var datas = [];
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 9; i++) {
             var itemData = new SkinShopItemData_1.default();
             itemData.id = i;
-            itemData.bUnlock = i == 0 ? true : false; //默认皮肤解锁
+            itemData.bUnlock = i == 0 ? true : false; //默认皮肤解锁 
             itemData.resName = "p" + i;
             itemData.costType = (i < 4 ? 1 : 0);
             itemData.costNum = 5000;
+            if (i == 7 || i == 8) {
+                itemData.costType = 2;
+            }
             switch (i) {
                 case 0:
                     itemData.resName = "zhu";
@@ -123,8 +135,8 @@ var UserData = /** @class */ (function () {
                 itemData.costNum = 0;
             }
             else if (i == 1) {
-                itemData.costNum = 2000;
-                itemData.costType = 0;
+                itemData.costNum = 0; //2000;
+                itemData.costType = 2;
             }
             else {
                 itemData.costNum = 6000;
@@ -152,7 +164,7 @@ var UserData = /** @class */ (function () {
             this.LastInAdTime = myDate;
             return true;
         }
-        if (myDate - this.LastInAdTime >= 20000) {
+        if ((myDate - this.LastInAdTime) >= 150000) {
             this.LastInAdTime = myDate;
             return true;
         }
@@ -181,6 +193,12 @@ var localStorageKey = /** @class */ (function () {
     localStorageKey.USING_WEAPON_IDX = "USING_WEAPON_IDX";
     //当前的武器数据
     localStorageKey.WEAPON_DATAS = "WEAPON_DATAS";
+    //当前第一次进入游戏记录
+    localStorageKey.COMEON_FIRST = "COMEON_FIRST";
+    //日期记录
+    localStorageKey.SIGNIN_DATA = "SIGNIN_DATA";
+    //签到次数
+    localStorageKey.SIGNIN_NUM = "SIGNIN_NUM";
     return localStorageKey;
 }());
 exports.localStorageKey = localStorageKey;

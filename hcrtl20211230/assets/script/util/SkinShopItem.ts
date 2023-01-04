@@ -65,6 +65,9 @@ export default class SkinShopItem extends ItemRenderer{
                     this.btnGetByGold.active = false;
                     this.btnGetByVideo.active = true;
                     break;
+                case 2://未签到
+                    this.btnGetByGold.active = false;
+                    this.btnGetByVideo.active = false;
                 default:
                     break;
             }

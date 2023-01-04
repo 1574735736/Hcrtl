@@ -33,6 +33,7 @@ var UserData_1 = require("../data/UserData");
 var MainScene_1 = require("../mainScene/MainScene");
 var GameScence_1 = require("../gameScence/GameScence");
 var WeaponShop_1 = require("../mainScene/WeaponShop");
+var SdkManager_1 = require("../util/SdkManager");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var LoadScene = /** @class */ (function (_super) {
     __extends(LoadScene, _super);
@@ -44,6 +45,7 @@ var LoadScene = /** @class */ (function (_super) {
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
         _this.inCountSpeed = 10;
+        _this.comeOnStatus = 0;
         return _this;
     }
     LoadScene_1 = LoadScene;
@@ -54,6 +56,7 @@ var LoadScene = /** @class */ (function (_super) {
         this.initClassOnAndroid();
         this.initRoleModel();
         this.LoadOther();
+        this.comeOnStatus = UserData_1.userData.getData(UserData_1.localStorageKey.COMEON_FIRST);
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_open);
     };
     LoadScene.prototype.initClassOnAndroid = function () {
@@ -64,6 +67,7 @@ var LoadScene = /** @class */ (function (_super) {
         cc["GameScence"] = GameScence_1.default;
         cc["LoadScene"] = LoadScene_1;
         cc["Weapon"] = WeaponShop_1.default;
+        cc["sdkManager"] = SdkManager_1.default;
     };
     LoadScene.prototype.initRoleModel = function () {
         var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
@@ -136,7 +140,14 @@ var LoadScene = /** @class */ (function (_super) {
     /**展示主界面 */
     LoadScene.prototype.showMainView = function () {
         this.isLoadingGame = false;
-        cc.director.loadScene("MainScene");
+        if (this.comeOnStatus == 0) {
+            this.comeOnStatus = 1;
+            UserData_1.userData.setData(UserData_1.localStorageKey.COMEON_FIRST, this.comeOnStatus);
+            cc.director.loadScene("GameScene");
+        }
+        else {
+            cc.director.loadScene("MainScene");
+        }
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/BannerAdManager", "JsCall_showAdIfAvailable", "()V");
         }
@@ -147,6 +158,9 @@ var LoadScene = /** @class */ (function (_super) {
     LoadScene.prototype.showOpenAd = function () {
         if (cc.sys.platform == cc.sys.ANDROID) {
             if (this.isLoadingGame) {
+                if (this.comeOnStatus == 0) {
+                    return;
+                }
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V", '');
             }
         }

@@ -47,42 +47,52 @@ export default class Lose extends cc.Component {
         });
         SpineManager.getInstance().playSpinAnimation(this.roleModel, "siwang", false, null);
     }
+    clickTime: number = 0;
+    private onBtnSkipClick(): void {
 
-    private onBtnSkipClick():void {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skip);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
+        var myDate = Date.parse(new Date().toString());
+        if ((myDate - this.clickTime) < 2000) {
+            return;
         }
-        else {
-             this.skipNowLevel();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })     
+        this.clickTime = myDate;
+
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+             FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skip);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
+        // }
+        // else {
+        //      this.skipNowLevel();
+        // }
+        SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })
+        
+   
+        this.m_BackFunc = () => { this.noAdCallback(); }
     }
 
     /**跳过本关 */
     private skipNowLevel():void {
         LevelData.curLevel++;
         LevelData.saveLevel();
-        GameScence.Instance.restartGame();
+        GameScence.Instance.onReloadLevel();
         this.node.active = false;
     }
 
     private onBtnNoThanksClick(): void {
         FirebaseReport.reportInformation(FirebaseKey.shengli_playagain);
-        if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {             
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
-        }
-        else {
-             this.playAgain();
-        }
-        //SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
+        // if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {             
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
+        // }
+        // else {
+        //      this.playAgain();
+        // }
+        SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
     }
     public static JavaCall_playAgain():void {
         Lose._instance.playAgain();
     }
 
     private playAgain():void {
-        GameScence.Instance.restartGame();
+        GameScence.Instance.onReloadLevel();
         this.node.active = false;
     }
 
@@ -108,9 +118,16 @@ export default class Lose extends cc.Component {
     public static JavaCall_noAdCallback():void{
         Lose._instance.noAdCallback();
     }
-
+    m_BackFunc:Function = null;
     private noAdCallback():void{
-        Utils.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc)
+        {
+            var func = this.m_BackFunc
+            Utils.showMessage(this.node, "Ad not ready",func);
+        }
+        else
+            Utils.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     }
 
     start () {

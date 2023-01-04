@@ -53,6 +53,7 @@ var TowerLayer = /** @class */ (function (_super) {
         _this.isFight = false;
         _this.isDie = false;
         _this.caidaiAni = null;
+        _this.weaponIcon = null;
         return _this;
     }
     TowerLayer.prototype.onLoad = function () {
@@ -125,6 +126,43 @@ var TowerLayer = /** @class */ (function (_super) {
         var player = this.findPlayer();
         var playerRole = player.getComponent(RoleBase_1.default);
         playerRole.addHp(addHp);
+    };
+    TowerLayer.prototype.addPlayerAniHp = function (sprID, addHp) {
+        var _this = this;
+        var player = this.findPlayer();
+        var playerRole = player.getComponent(RoleBase_1.default);
+        this.weaponIcon.parent = null;
+        this.node.parent.addChild(this.weaponIcon, 100);
+        this.weaponIcon.active = true;
+        this.weaponIcon.setScale(1, 1);
+        var spr = this.weaponIcon.getComponent(cc.Sprite);
+        this.onSetIcon(spr, sprID + "");
+        this.weaponIcon.setPosition(0, 0);
+        //var pos = this.getNodePos(player, this.weaponIcon)
+        var targerPosX = player.position.x / 2 + player.parent.position.x + player.parent.parent.position.x + this.node.position.x;
+        var targerPosY = player.position.y / 2 + player.parent.position.y + player.parent.parent.position.y + this.node.position.y;
+        var func = cc.sequence(cc.delayTime(0.5), cc.callFunc(function () {
+            _this.weaponIcon.runAction(cc.scaleTo(1, 0.3));
+        }), cc.moveTo(1, targerPosX, targerPosY), cc.callFunc(function () {
+            playerRole.addHp(addHp);
+            _this.weaponIcon.active = false;
+        }));
+        this.weaponIcon.runAction(func);
+        //console.log("addHp------  :" + addHp);
+        //playerRole.addHp(addHp);        
+    };
+    //curNode 待转换的节点 targetNode 目标节点
+    TowerLayer.prototype.getNodePos = function (curNode, targetNode) {
+        var worldPos = curNode.parent.convertToWorldSpaceAR(curNode.position);
+        var pos = targetNode.convertToWorldSpaceAR(worldPos);
+        return pos;
+    };
+    TowerLayer.prototype.onSetIcon = function (spr, iconPath) {
+        var strPath = "texture/game/gamepopup/d";
+        strPath = strPath + iconPath;
+        cc.loader.loadRes(strPath, cc.SpriteFrame, function (err, sp) {
+            spr.spriteFrame = sp;
+        });
     };
     //查找角色所有格子
     TowerLayer.prototype.findPlayer = function () {
@@ -249,8 +287,9 @@ var TowerLayer = /** @class */ (function (_super) {
                 //角色跳回原来的格子
                 //playerRole.jumpTo(posCache, 0, () => {
                 //怪物塔楼减少
+                console.log("调用待机动画！！！");
                 playerRole.idle(); //playerRole.upLevel();
-                _this.playerChangeTile(playerRole.node);
+                //this.playerChangeTile(playerRole.node);
                 //是否存在怪物或道具
                 _this.checkUpLongRange(towerTile, playerRole);
                 if (towerTile.hasMonster() || towerTile.hasItem()) {
@@ -258,9 +297,9 @@ var TowerLayer = /** @class */ (function (_super) {
                     return;
                 }
                 _this.checkOpenCloseTile(towerTile);
-                //检测塔楼怪物
+                ////检测塔楼怪物
                 //this.checkUpTowerMonster(towerTile);
-                //角色塔楼增加
+                ////角色塔楼增加
                 //this.playerAddTowerTile(towerTile, playerRole)
                 //});
                 return;
@@ -798,6 +837,9 @@ var TowerLayer = /** @class */ (function (_super) {
     __decorate([
         property(sp.Skeleton)
     ], TowerLayer.prototype, "caidaiAni", void 0);
+    __decorate([
+        property(cc.Node)
+    ], TowerLayer.prototype, "weaponIcon", void 0);
     TowerLayer = __decorate([
         ccclass
     ], TowerLayer);

@@ -132,6 +132,7 @@ export default class ListView extends cc.Component {//本组件中子项在列�
         //浅拷贝item数据
         this.dataProvider = itemDataList.slice();
         this.totalCount = this.dataProvider.length;
+
         this.updateItems();
     }
     /**刷新视图 */
@@ -146,21 +147,25 @@ export default class ListView extends cc.Component {//本组件中子项在列�
         let oldLen = this.oldDataProvider.length;
         //实际创建的item实例数
         let len = this.totalCount;//this.totalCount < this.spawnCount ? this.totalCount : this.spawnCount; //暂时没时间处理虚拟布局，先全部用创建实例
-        
+
         for (let i = 0; i < len; i++) {
             if (i >= oldLen) {//需创建新的列表子项
                 this.createItem(i);
             }
             else {
-                this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
-            } 
-            this.updateItemSelected(i); 
+                if (this.itemRenderers[i] != null) {
+                    this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
+                }
+            }
+            this.updateItemSelected(i);
         }
         if (len < oldLen) {//需剔除多余的子项
             for (let i = oldLen-1; i >= 0; i--) {//从后往前遍历
                 if (i >= len) {
                     let item = this.items[i];
-                    item.destroy();
+                    if (item) {
+                        item.destroy();
+                    }
                     this.items.length -= 1;
                     this.itemRenderers.length -= 1;//不用手动调用ItemRenderer的销毁方法，所属节点销毁时会自动调用组件的销毁方法
                 }
@@ -169,10 +174,48 @@ export default class ListView extends cc.Component {//本组件中子项在列�
                 }
             }
         }
+
+
     }
 
-    private createItem(index:number):void {
+    public OnCreateView(itemDataList: any[]): void  {
+
+        this.oldDataProvider = this.dataProvider;
+        //浅拷贝item数据
+        this.dataProvider = itemDataList.slice();
+        this.totalCount = this.dataProvider.length;
+        let rowNum = Math.ceil(this.totalCount / this.columns);
+        this.content.height = rowNum * (this.itemHeight + this.spaceY) + this.spaceY;
+        let oldLen = this.oldDataProvider.length;
+        let len = this.totalCount;
+        for (let i = oldLen - 1; i >= 0; i--) {//从后往前遍历
+            let item = this.items[i];
+            if (item) {
+                item.destroy();
+            }
+        }
+        this.items.length = 0
+        this.itemRenderers.length = 0
+        this.contentNum = 0;
+        for (let i = 0; i < len; i++) {
+            this.createItem(i);
+            this.updateItemSelected(i);
+        }
+
+    }
+
+
+    contentNum: number = 0;
+    private createItem(index: number): void {
+       
         let i = index;
+        if (this.dataProvider[i].bUnlock == false && this.dataProvider[i].costType == 2) {
+            this.contentNum = this.contentNum + 1;
+            this.items.push(null);
+            this.itemRenderers.push(null);
+            return
+
+        }
         let increaseX = this.itemWidth + this.spaceX;//为正
         let initPosX = -(increaseX * this.columns - this.spaceX) / 2 + this.itemWidth / 2;
         let increaseY = -(this.itemHeight + this.spaceY);//为负
@@ -180,8 +223,13 @@ export default class ListView extends cc.Component {//本组件中子项在列�
 
         let item = cc.instantiate(this.itemPrefab);
         this.content.addChild(item);
-        let rowIndex = Math.floor(i / this.columns);
-        let columnsIndex = i % this.columns;
+        
+        
+
+        var ind = i - this.contentNum;
+
+        let rowIndex = Math.floor(ind / this.columns);
+        let columnsIndex = ind % this.columns;
         let x = initPosX + columnsIndex * increaseX;
         let y = initPosY + rowIndex * increaseY;
         item.setPosition(x, y);
@@ -191,7 +239,10 @@ export default class ListView extends cc.Component {//本组件中子项在列�
         this.items.push(item);
     }
 
-    private updateItemSelected(index:number):void {
+    private updateItemSelected(index: number): void {
+        if (this.itemRenderers[index] == null) {
+            return;
+        }
         if (this._selectedIndex == index) {
             this.itemRenderers[index].selected = true;
         }

@@ -47,6 +47,8 @@ export default class TowerLayer extends cc.Component {
     private isDie = false;
     @property(sp.Skeleton)
     caidaiAni: sp.Skeleton = null;
+    @property(cc.Node)
+    public weaponIcon: cc.Node = null;
 
 
     onLoad() {
@@ -54,7 +56,6 @@ export default class TowerLayer extends cc.Component {
     }
 
     start() {
-        
     }
     //初始化塔楼
     init(towerData) {
@@ -126,6 +127,54 @@ export default class TowerLayer extends cc.Component {
         playerRole.addHp(addHp);
     }
 
+    public addPlayerAniHp(sprID: number, addHp: number): void {
+        let player = this.findPlayer();
+        let playerRole = player.getComponent(RoleBase);
+        this.weaponIcon.parent = null;
+        this.node.parent.addChild(this.weaponIcon, 100);
+        this.weaponIcon.active = true;
+        this.weaponIcon.setScale(1, 1);
+
+        var spr = this.weaponIcon.getComponent(cc.Sprite);
+
+
+        this.onSetIcon(spr, sprID + "");
+        this.weaponIcon.setPosition(0, 0);
+
+
+        //var pos = this.getNodePos(player, this.weaponIcon)
+        let targerPosX = player.position.x / 2 + player.parent.position.x + player.parent.parent.position.x + this.node.position.x;
+        let targerPosY = player.position.y / 2 + player.parent.position.y + player.parent.parent.position.y + this.node.position.y;
+
+
+        var func = cc.sequence(cc.delayTime(0.5), cc.callFunc(() => {
+            this.weaponIcon.runAction(cc.scaleTo(1, 0.3));
+        }), cc.moveTo(1, targerPosX, targerPosY), cc.callFunc(() => {
+            playerRole.addHp(addHp);
+            this.weaponIcon.active = false;
+        }))
+        this.weaponIcon.runAction(func);
+
+        //console.log("addHp------  :" + addHp);
+
+        //playerRole.addHp(addHp);        
+    }
+   
+    //curNode 待转换的节点 targetNode 目标节点
+    private getNodePos(curNode, targetNode) {
+        var worldPos = curNode.parent.convertToWorldSpaceAR(curNode.position);
+        var pos = targetNode.convertToWorldSpaceAR(worldPos);
+        return pos
+    }
+
+    private onSetIcon(spr: cc.Sprite, iconPath: string) {
+        var strPath: string = "texture/game/gamepopup/d";
+        strPath = strPath + iconPath;
+        cc.loader.loadRes(strPath, cc.SpriteFrame, (err, sp) => {
+            spr.spriteFrame = sp as cc.SpriteFrame;
+        });
+    }
+
     //查找角色所有格子
     findPlayer() {
         let playerColumn = this.node.children[this.playerposition];
@@ -153,6 +202,7 @@ export default class TowerLayer extends cc.Component {
        
 
         let player = this.findPlayer();//找到角色
+
         if (player) {
             //获取当前层
             let towerTile = currentTarget.getComponent(TowerTile);
@@ -262,9 +312,10 @@ export default class TowerLayer extends cc.Component {
 
                 //角色跳回原来的格子
                 //playerRole.jumpTo(posCache, 0, () => {
-                    //怪物塔楼减少
+                //怪物塔楼减少
+                console.log("调用待机动画！！！");
                     playerRole.idle();//playerRole.upLevel();
-                    this.playerChangeTile(playerRole.node);
+                    //this.playerChangeTile(playerRole.node);
                     //是否存在怪物或道具
                     this.checkUpLongRange(towerTile, playerRole);
 
@@ -275,9 +326,9 @@ export default class TowerLayer extends cc.Component {
                     }
 
                 this.checkOpenCloseTile(towerTile);
-                    //检测塔楼怪物
+                    ////检测塔楼怪物
                     //this.checkUpTowerMonster(towerTile);
-                    //角色塔楼增加
+                    ////角色塔楼增加
                     //this.playerAddTowerTile(towerTile, playerRole)
                 //});
                 return;

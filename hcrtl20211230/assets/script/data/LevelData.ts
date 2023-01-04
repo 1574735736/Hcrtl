@@ -63,7 +63,7 @@ export default class LevelData extends cc.Component {
                 ]
             },
             {
-                第三栋
+                第三栋 
             },
             ...依此类推
      *   ]
@@ -1914,7 +1914,7 @@ export default class LevelData extends cc.Component {
         if (level == null) {
             level = "1";
         }
-        LevelData.curLevel = 1;//Number(level);
+        LevelData.curLevel = Number(level);
         console.log("============get level: " + LevelData.curLevel);
     }
 

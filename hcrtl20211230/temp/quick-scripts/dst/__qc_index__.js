@@ -22,6 +22,7 @@ require('./assets/script/gameScence/TowerLayer');
 require('./assets/script/gameScence/TowerTile');
 require('./assets/script/loadscence/LoadScene');
 require('./assets/script/mainScene/MainScene');
+require('./assets/script/mainScene/SignInView');
 require('./assets/script/mainScene/WeaponShop');
 require('./assets/script/manager/BaseInstanceClass');
 require('./assets/script/manager/PrefabsManager');

@@ -7,6 +7,7 @@ import SkinShopItemData from "../util/SkinShopItemData";
 import Utils from "../util/Utils";
 import SdkManager from "../util/SdkManager";
 import WeaponShop from "./WeaponShop";
+import SignInView from "./SignInView";
 
 const {ccclass, property} = cc._decorator;
 
@@ -77,6 +78,9 @@ export default class MainScene extends cc.Component {
         var btnSign = cc.find("MainRoot/btn_sign", this.node);
         btnSign.on("click", this.onBtnSign, this);
 
+        var dataNum = userData.getData(localStorageKey.SIGNIN_NUM);
+        btnSign.active = dataNum < 7;
+
     }
 
 
@@ -97,6 +101,8 @@ export default class MainScene extends cc.Component {
     private onBtnStart():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_start);
         cc.director.loadScene('GameScene');//进入游戏场景
+
+        //userData.setData(localStorageKey.GOLD, 6000);
     }
 
 
@@ -124,7 +130,16 @@ export default class MainScene extends cc.Component {
     }
 
     private onBtnSign(): void {
+        FirebaseReport.reportInformation("shouye_gift");
+        var self = this;
+        cc.loader.loadRes("prefabs/sign/SignInView", cc.Prefab, (e, p) => {
+            var pnode = cc.instantiate(p as cc.Prefab);
+            self.node.addChild(pnode, 90);
 
+            var act = pnode.getComponent(SignInView);
+            act.Init(this);
+            pnode.setPosition(0, 0);
+        });
     }
 
     /**展示皮肤商店 */
@@ -160,7 +175,7 @@ export default class MainScene extends cc.Component {
     }
 
     /**更新上方的展示模型的显示*/
-    private updateShowModel(bShowUpgradeAnim:boolean = false):void {
+    private updateShowModel(bShowUpgradeAnim: boolean = false): void {
         let resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
         if (bShowUpgradeAnim) {
@@ -175,11 +190,15 @@ export default class MainScene extends cc.Component {
         }
     }
 
-    private initShopList():void {
+    private initShopList(): void {
+
         let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
-        this.shopDatas = userData.getData(localStorageKey.SHOP_DATAS);
+        this.shopDatas = userData.getData(localStorageKey.SHOP_DATAS);     
+
         this.listViewScript.selectedIndex = usingIndex;
-        this.listViewScript.replaceAll(this.shopDatas);
+        //this.listViewScript.replaceAll(this.shopDatas);
+        this.listViewScript.OnCreateView(this.shopDatas);
+        
         this.listViewScript.scrollToTop();
     }
 
@@ -197,14 +216,15 @@ export default class MainScene extends cc.Component {
     private bEarnedRewardOfSkinAd:boolean;
 
     private unlockSkinByAd():void {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-             FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
-        }
-        else {
-             this.unlockSkin();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+              FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
+        // }
+        // else {
+        //      this.unlockSkin();
+        // }
+        SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
+        this.m_BackFunc = () => { this.unlockSkin(); }
     }
 
     private unlockSkin():void{
@@ -231,9 +251,16 @@ export default class MainScene extends cc.Component {
     public static JavaCall_closeAdCallback():void {
         MainScene._instance.closeAdCallback();
     }
-
+    m_BackFunc:Function = null;
     private noAdCallback():void{
-        Utils.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc)
+        {
+            var func = this.m_BackFunc
+            Utils.showMessage(this.node, "Ad not ready",func);
+        }
+        else
+            Utils.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     }
 
     private closeAdCallback():void {

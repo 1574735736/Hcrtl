@@ -43,6 +43,8 @@ var WeaponShop = /** @class */ (function (_super) {
         _this.selectPos = 0;
         _this.curGold = 0;
         _this.m_Listerer = null;
+        _this.removeCount = 0;
+        _this.m_BackFunc = null;
         return _this;
     }
     WeaponShop.prototype.start = function () {
@@ -50,6 +52,9 @@ var WeaponShop = /** @class */ (function (_super) {
         this.shop_num_gold = cc.find("bg_gold/num_gold", this.node).getComponent(cc.Label);
         this.shopDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         this.weaponDatas = UserData_1.userData.getData(UserData_1.localStorageKey.WEAPON_DATAS);
+        //this.weaponDatas.forEach((item, index) => {
+        //    if (item.bUnlock === false && item.costType == 2) this.weaponDatas.splice(index, 1);
+        //});
         var btn_return = cc.find("btn_home", this.node);
         btn_return.on(EventDefine_1.default.CLICK, this.OnClosePanel, this);
         this.showModelOfShop = (cc.find("model_using/roleModel", this.node)).getComponent(sp.Skeleton);
@@ -66,6 +71,9 @@ var WeaponShop = /** @class */ (function (_super) {
         this.m_Listerer = listerer;
     };
     WeaponShop.prototype.UndateGlodNum = function () {
+        if (this.shop_num_gold == null) {
+            return;
+        }
         this.curGold = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
         this.shop_num_gold.string = this.curGold + "";
     };
@@ -92,14 +100,20 @@ var WeaponShop = /** @class */ (function (_super) {
         var countY = rowNum * (height + spaceY) + spaceY;
         this.content.height = countY;
         var _loop_1 = function (i) {
+            if (this_1.weaponDatas[i].bUnlock === false && this_1.weaponDatas[i].costType == 2) {
+                this_1.removeCount = this_1.removeCount + 1;
+                this_1.pItems.push(null);
+                return "continue";
+            }
+            ind = i - this_1.removeCount;
             var increaseX = width + spaceX; //Ϊ��
             var initPosX = -(increaseX * 3 - 10) / 2 + width / 2;
             var increaseY = -(height + spaceY); //Ϊ��
             var initPosY = this_1.content.height / 2 - (spaceY + height / 2);
             var item = cc.instantiate(this_1.Item);
             this_1.content.addChild(item);
-            var rowIndex = Math.floor(i / 3);
-            var columnsIndex = i % 3;
+            var rowIndex = Math.floor(ind / 3);
+            var columnsIndex = ind % 3;
             var x = initPosX + columnsIndex * increaseX;
             var y = initPosY + rowIndex * increaseY;
             item.setPosition(x, y);
@@ -121,7 +135,7 @@ var WeaponShop = /** @class */ (function (_super) {
             buy.on(EventDefine_1.default.CLICK, function () { _this.OnClickBuy(i); }, this_1);
             bg.on(EventDefine_1.default.CLICK, function () { _this.OnClickSelect(i); }, this_1);
         };
-        var this_1 = this, text1, text2, use, get, buy, bg, icon;
+        var this_1 = this, ind, text1, text2, use, get, buy, bg, icon;
         for (var i = 0; i < this.weaponDatas.length; i++) {
             _loop_1(i);
         }
@@ -131,15 +145,20 @@ var WeaponShop = /** @class */ (function (_super) {
         var useWeapon = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX);
         this.selectPos = useWeapon;
         for (var i = 0; i < this.pItems.length; i++) {
+            if (this.pItems[i] == null) {
+                continue;
+            }
             var item = this.pItems[i];
             var use = item.getChildByName("btn_Use");
             var get = item.getChildByName("btn_Get");
             var buy = item.getChildByName("btn_Buy");
             var none = item.getChildByName("btn_None");
+            var dont = item.getChildByName("btn_dontuse");
             use.active = false;
             get.active = false;
             buy.active = false;
             none.active = false;
+            dont.active = false;
             if (this.weaponDatas[i].bUnlock && useWeapon == i) {
             }
             else if (this.weaponDatas[i].bUnlock) {
@@ -147,6 +166,9 @@ var WeaponShop = /** @class */ (function (_super) {
             }
             else if (this.weaponDatas[i].costType == 1) {
                 get.active = true;
+            }
+            else if (this.weaponDatas[i].costType == 2) {
+                dont.active = true;
             }
             else if (this.weaponDatas[i].costNum <= this.curGold) {
                 buy.active = true;
@@ -172,10 +194,14 @@ var WeaponShop = /** @class */ (function (_super) {
         var _this = this;
         this.UpdateSelect(index);
         SdkManager_1.default.GetInstance().JavaRewardedAds("arms_ad2", function () {
-            _this.weaponDatas[_this.selectPos].bUnlock = true;
-            UserData_1.userData.setData(UserData_1.localStorageKey.WEAPON_DATAS, _this.weaponDatas);
-            _this.OnClickUse(index);
+            _this.OnUseClick();
         }, function () { _this.noAdCallback(); });
+        this.m_BackFunc = function () { _this.OnUseClick(); };
+    };
+    WeaponShop.prototype.OnUseClick = function () {
+        this.weaponDatas[this.selectPos].bUnlock = true;
+        UserData_1.userData.setData(UserData_1.localStorageKey.WEAPON_DATAS, this.weaponDatas);
+        this.OnClickUse(this.selectPos);
     };
     WeaponShop.prototype.OnClickBuy = function (index) {
         FirebaseReport_1.FirebaseReport.reportInformation("arms_goumai");
@@ -187,9 +213,13 @@ var WeaponShop = /** @class */ (function (_super) {
         this.OnClickUse(index);
     };
     WeaponShop.prototype.UpdateSelect = function (index) {
-        this.pItems[this.selectPos].getChildByName("img_SelectBg").active = false;
+        if (this.pItems[this.selectPos]) {
+            this.pItems[this.selectPos].getChildByName("img_SelectBg").active = false;
+        }
         this.selectPos = index;
-        this.pItems[this.selectPos].getChildByName("img_SelectBg").active = true;
+        if (this.pItems[this.selectPos]) {
+            this.pItems[this.selectPos].getChildByName("img_SelectBg").active = true;
+        }
         this.updateShowModel();
     };
     WeaponShop.prototype.onSetIcon = function (spr, iconPath) {
@@ -200,7 +230,13 @@ var WeaponShop = /** @class */ (function (_super) {
         });
     };
     WeaponShop.prototype.noAdCallback = function () {
-        Utils_1.default.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc) {
+            var func = this.m_BackFunc;
+            Utils_1.default.showMessage(this.node, "Ad not ready", func);
+        }
+        else
+            Utils_1.default.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     };
     WeaponShop = __decorate([
         ccclass

@@ -35,6 +35,10 @@ export default class WeaponShop extends cc.Component {
         this.shop_num_gold = cc.find("bg_gold/num_gold", this.node).getComponent(cc.Label);
         this.shopDatas = userData.getData(localStorageKey.SHOP_DATAS);
         this.weaponDatas = userData.getData(localStorageKey.WEAPON_DATAS);
+        //this.weaponDatas.forEach((item, index) => {
+        //    if (item.bUnlock === false && item.costType == 2) this.weaponDatas.splice(index, 1);
+        //});
+
 
         var btn_return = cc.find("btn_home", this.node);
         btn_return.on(EventDefine.CLICK, this.OnClosePanel, this);
@@ -58,6 +62,9 @@ export default class WeaponShop extends cc.Component {
     }
 
     UndateGlodNum() {
+        if (this.shop_num_gold == null) {
+            return;
+        }
         this.curGold = userData.getData(localStorageKey.GOLD);
         this.shop_num_gold.string = this.curGold + "";
     }
@@ -78,8 +85,8 @@ export default class WeaponShop extends cc.Component {
     }
 
 
-
-    /**¸üÐÂÁÐ±í×ÓÏî*/
+    removeCount: number = 0
+    /**ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½*/
     private updateItems(): void {
         let rowNum = 3;
 
@@ -92,15 +99,24 @@ export default class WeaponShop extends cc.Component {
             rowNum * (height + spaceY) + spaceY;
         this.content.height = countY;
 
+       
+
         for (let i = 0; i < this.weaponDatas.length; i++) {
-            let increaseX = width + spaceX;//ÎªÕý
+
+            if (this.weaponDatas[i].bUnlock === false && this.weaponDatas[i].costType == 2) {
+                this.removeCount = this.removeCount + 1;
+                this.pItems.push(null);
+                continue;
+            }
+            var ind = i - this.removeCount;
+            let increaseX = width + spaceX;//Îªï¿½ï¿½
             let initPosX = -(increaseX * 3 - 10) / 2 + width / 2;
-            let increaseY = -(height + spaceY);//Îª¸º
+            let increaseY = -(height + spaceY);//Îªï¿½ï¿½
             let initPosY = this.content.height / 2 - (spaceY + height / 2);
             let item = cc.instantiate(this.Item);
             this.content.addChild(item);
-            let rowIndex = Math.floor(i / 3);
-            let columnsIndex = i % 3;
+            let rowIndex = Math.floor(ind / 3);
+            let columnsIndex = ind % 3;
             let x = initPosX + columnsIndex * increaseX;
             let y = initPosY + rowIndex * increaseY;
             item.setPosition(x, y);
@@ -138,8 +154,11 @@ export default class WeaponShop extends cc.Component {
     private UpdateBtnStatus() {
         var useWeapon = userData.getData(localStorageKey.USING_WEAPON_IDX);
         this.selectPos = useWeapon;
-
         for (var i = 0; i < this.pItems.length; i++) {
+
+            if (this.pItems[i] == null) {     
+                continue;
+            }
 
             var item = this.pItems[i];
 
@@ -147,11 +166,13 @@ export default class WeaponShop extends cc.Component {
             var get = item.getChildByName("btn_Get");
             var buy = item.getChildByName("btn_Buy");
             var none = item.getChildByName("btn_None");
+            var dont = item.getChildByName("btn_dontuse");
 
             use.active = false;
             get.active = false;
             buy.active = false;
             none.active = false;
+            dont.active = false;
 
             if (this.weaponDatas[i].bUnlock && useWeapon == i) {
 
@@ -162,9 +183,12 @@ export default class WeaponShop extends cc.Component {
             else if (this.weaponDatas[i].costType == 1) {
                 get.active = true;
             }
+            else if (this.weaponDatas[i].costType == 2) {
+                dont.active = true;
+            }
             else if (this.weaponDatas[i].costNum <= this.curGold) {
                 buy.active = true;
-            }
+            }            
             else {
                 none.active = true;
             }
@@ -190,10 +214,16 @@ export default class WeaponShop extends cc.Component {
     private OnClickAds(index: number) {
         this.UpdateSelect(index);
         SdkManager.GetInstance().JavaRewardedAds("arms_ad2", () => {
-            this.weaponDatas[this.selectPos].bUnlock = true;
-            userData.setData(localStorageKey.WEAPON_DATAS, this.weaponDatas);
-            this.OnClickUse(index);
+           this.OnUseClick();
         }, () => { this.noAdCallback(); })
+        this.m_BackFunc = ()=>{ this.OnUseClick(); };
+    }
+
+    private OnUseClick()
+    {
+        this.weaponDatas[this.selectPos].bUnlock = true;
+        userData.setData(localStorageKey.WEAPON_DATAS, this.weaponDatas);
+        this.OnClickUse(this.selectPos);
     }
 
     private OnClickBuy(index: number) {
@@ -201,16 +231,20 @@ export default class WeaponShop extends cc.Component {
         this.UpdateSelect(index);
         this.curGold = this.curGold - this.weaponDatas[this.selectPos].costNum;
         userData.setData(localStorageKey.GOLD, this.curGold);
+        
         this.weaponDatas[this.selectPos].bUnlock = true;
         userData.setData(localStorageKey.WEAPON_DATAS, this.weaponDatas);
         this.OnClickUse(index);
     }    
 
     private UpdateSelect(index: number) {
-        this.pItems[this.selectPos].getChildByName("img_SelectBg").active = false;
+        if (this.pItems[this.selectPos]) {
+            this.pItems[this.selectPos].getChildByName("img_SelectBg").active = false;
+        }        
         this.selectPos = index;
-        this.pItems[this.selectPos].getChildByName("img_SelectBg").active = true;
-
+        if (this.pItems[this.selectPos]) {
+            this.pItems[this.selectPos].getChildByName("img_SelectBg").active = true;
+        }        
         this.updateShowModel();
     }
 
@@ -222,8 +256,16 @@ export default class WeaponShop extends cc.Component {
         });
     }
 
+    m_BackFunc:Function = null;
     private noAdCallback(): void {
-        Utils.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc)
+        {
+            var func = this.m_BackFunc
+            Utils.showMessage(this.node, "Ad not ready",func);
+        }
+        else
+            Utils.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     }
     
 }

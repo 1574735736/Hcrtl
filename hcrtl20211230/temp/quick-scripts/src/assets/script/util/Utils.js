@@ -23,6 +23,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var AndroidAdView_1 = require("../gameScence/AndroidAdView");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Utils = /** @class */ (function (_super) {
     __extends(Utils, _super);
@@ -32,7 +33,7 @@ var Utils = /** @class */ (function (_super) {
     Utils.randomInt = function (min, max) {
         return Math.floor(Math.random() * Math.floor(max - min + 1)) + min;
     };
-    Utils.showMessage = function (parentNode, msg) {
+    Utils.showMessage = function (parentNode, msg, callBack) {
         //cc.loader.loadRes("prefabs/game/player/TipMessage", cc.Prefab, (err, prefab) => {
         //    let showNode = cc.instantiate(prefab);
         //    if (this.messageNode) {
@@ -48,11 +49,16 @@ var Utils = /** @class */ (function (_super) {
         //      showNode.destroy();
         //      }, 1);
         //});
+        if (callBack === void 0) { callBack = null; }
         var self = this;
         cc.loader.loadRes("prefabs/popup/AndroidAdView", cc.Prefab, function (e, p) {
             var pnode = cc.instantiate(p);
             parentNode.addChild(pnode, 90);
             pnode.setPosition(0, 0);
+            if (callBack) {
+                var adView = pnode.getComponent(AndroidAdView_1.default);
+                adView.onInit(callBack);
+            }
         });
     };
     Utils = __decorate([

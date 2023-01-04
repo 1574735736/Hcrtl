@@ -44,6 +44,8 @@ var Lose = /** @class */ (function (_super) {
         _this.failAnim = null;
         _this.roleModel = null;
         _this.lb_NoThanks = null;
+        _this.clickTime = 0;
+        _this.m_BackFunc = null;
         return _this;
     }
     Lose_1 = Lose;
@@ -62,37 +64,45 @@ var Lose = /** @class */ (function (_super) {
         SpineManager_1.default.getInstance().playSpinAnimation(this.roleModel, "siwang", false, null);
     };
     Lose.prototype.onBtnSkipClick = function () {
-        if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_skip);
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
+        var _this = this;
+        var myDate = Date.parse(new Date().toString());
+        if ((myDate - this.clickTime) < 2000) {
+            return;
         }
-        else {
-            this.skipNowLevel();
-        }
-        //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })     
+        this.clickTime = myDate;
+        // if (cc.sys.platform == cc.sys.ANDROID) {
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_skip);
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
+        // }
+        // else {
+        //      this.skipNowLevel();
+        // }
+        SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_skip", function () { _this.skipNowLevel(); }, function () { _this.noAdCallback(); });
+        this.m_BackFunc = function () { _this.noAdCallback(); };
     };
     /**跳过本关 */
     Lose.prototype.skipNowLevel = function () {
         LevelData_1.default.curLevel++;
         LevelData_1.default.saveLevel();
-        GameScence_1.default.Instance.restartGame();
+        GameScence_1.default.Instance.onReloadLevel();
         this.node.active = false;
     };
     Lose.prototype.onBtnNoThanksClick = function () {
+        var _this = this;
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_playagain);
-        if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Lose"].JavaCall_playAgain()', "");
-        }
-        else {
-            this.playAgain();
-        }
-        //SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
+        // if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {             
+        //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_playAgain()', "");
+        // }
+        // else {
+        //      this.playAgain();
+        // }
+        SdkManager_1.default.GetInstance().JavaInterstitialAds(FirebaseReport_1.FirebaseKey.shengli_playagain, function () { _this.playAgain(); });
     };
     Lose.JavaCall_playAgain = function () {
         Lose_1._instance.playAgain();
     };
     Lose.prototype.playAgain = function () {
-        GameScence_1.default.Instance.restartGame();
+        GameScence_1.default.Instance.onReloadLevel();
         this.node.active = false;
     };
     Lose.JavaCall_skipNowLevel = function () {
@@ -113,7 +123,13 @@ var Lose = /** @class */ (function (_super) {
         Lose_1._instance.noAdCallback();
     };
     Lose.prototype.noAdCallback = function () {
-        Utils_1.default.showMessage(this.node, "Ad not ready");
+        if (this.m_BackFunc) {
+            var func = this.m_BackFunc;
+            Utils_1.default.showMessage(this.node, "Ad not ready", func);
+        }
+        else
+            Utils_1.default.showMessage(this.node, "Ad not ready");
+        this.m_BackFunc = null;
     };
     Lose.prototype.start = function () {
     };
