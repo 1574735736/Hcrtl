@@ -43,6 +43,7 @@ export default class LoadScene extends cc.Component {
         this.LoadOther();
         this.comeOnStatus = userData.getData(localStorageKey.COMEON_FIRST);
         FirebaseReport.reportInformation(FirebaseKey.game_open);
+        console.log("comeOnStatus    " + this.comeOnStatus);
         
     }
 
@@ -65,7 +66,7 @@ export default class LoadScene extends cc.Component {
     }
 
     LoadOther() {
-        SoundManager.getInstance().playBGM(SoundManager.bg,true);
+        SoundManager.getInstance().playBGM(SoundManager.bg, true);
         PrefabsManager.getInstance().initPlayerSpine(() => {
             this.loadHallProgress(5, 100);
             PrefabsManager.getInstance().initMonsterPrefab(()=>{//加载怪物

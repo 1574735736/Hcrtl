@@ -58,6 +58,7 @@ var LoadScene = /** @class */ (function (_super) {
         this.LoadOther();
         this.comeOnStatus = UserData_1.userData.getData(UserData_1.localStorageKey.COMEON_FIRST);
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_open);
+        console.log("comeOnStatus    " + this.comeOnStatus);
     };
     LoadScene.prototype.initClassOnAndroid = function () {
         //将需要在安卓端调用的类赋值给cc

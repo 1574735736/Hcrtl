@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        407.0319397786862,
+        409.48882917386646,
         0,
         0,
         0,
@@ -3562,7 +3562,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "daiji2",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -3573,13 +3573,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "daiji2",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "257b90fa-13c9-469c-acf9-4c3516a06159"
+      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -7463,7 +7463,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "daiji2",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -7474,13 +7474,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "daiji2",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "e919c0b4-ba10-416b-9478-fb7aae20fdfa"
+      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -9674,7 +9674,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "siwang",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": false,
@@ -9685,13 +9685,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "siwang",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 1,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "257b90fa-13c9-469c-acf9-4c3516a06159"
+      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,

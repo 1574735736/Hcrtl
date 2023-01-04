@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zhu6",
+    "texture": "7ecd2278-8e44-45bf-99c1-a77c941b7df3",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      727,
+      1038
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      731,
+      1042
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

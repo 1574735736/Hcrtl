@@ -54,7 +54,7 @@ export default class PrefabsManager extends  BaseInstanceClass {
     }
 
     public initPlayerSpine(cb:Function):void {
-        cc.loader.loadResDir("spine/player", sp.SkeletonData, (err, res) => {
+        cc.loader.loadResDir("spine/players", sp.SkeletonData, (err, res) => {
             cb && cb();
         });
     }

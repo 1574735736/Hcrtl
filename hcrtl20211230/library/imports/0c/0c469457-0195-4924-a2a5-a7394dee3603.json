@@ -184,7 +184,7 @@
       "array": [
         0,
         0,
-        408.88577540866225,
+        409.48882917386646,
         0,
         0,
         0,
@@ -508,7 +508,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "daiji3",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -519,13 +519,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "daiji3",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "9cc7a987-1ca5-43f4-aab7-d9d770aa816f"
+      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,

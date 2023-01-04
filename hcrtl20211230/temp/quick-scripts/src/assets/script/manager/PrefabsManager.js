@@ -76,7 +76,7 @@ var PrefabsManager = /** @class */ (function (_super) {
         });
     };
     PrefabsManager.prototype.initPlayerSpine = function (cb) {
-        cc.loader.loadResDir("spine/player", sp.SkeletonData, function (err, res) {
+        cc.loader.loadResDir("spine/players", sp.SkeletonData, function (err, res) {
             cb && cb();
         });
     };
