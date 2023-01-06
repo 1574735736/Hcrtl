@@ -44,8 +44,24 @@ var MainScene = /** @class */ (function (_super) {
         _this.shopDatas = null;
         _this.m_BackFunc = null;
         return _this;
+        //private testDragon(): void {
+        //    let demonArmature = this.huolong.armature();
+        //    let demonSlot = demonArmature.getSlot("body");
+        //    let factory = dragonBones.CCFactory.getInstance();
+        //    factory.replaceSlotDisplay(
+        //        this.lvlong.getArmatureKey(),  //绿龙骨架数据名称
+        //        "armatureName",                //绿龙骨架数据名称
+        //        "tou",                         //绿龙插槽数据名称
+        //        "tou",                         //绿龙显示对象数据名
+        //        demonSlot                      //影魔的头部插槽
+        //    );
+        //}
     }
     MainScene_1 = MainScene;
+    //@property(dragonBones.ArmatureDisplay)
+    //public huolong: dragonBones.ArmatureDisplay = null;
+    //@property(dragonBones.ArmatureDisplay)
+    //public lvlong: dragonBones.ArmatureDisplay = null;
     MainScene.prototype.onLoad = function () {
         MainScene_1._instance = this;
         if (cc.sys.platform == cc.sys.ANDROID) {

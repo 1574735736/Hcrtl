@@ -254,7 +254,13 @@ export default class RoleBase extends cc.Component {
             SpineManager.getInstance().loadSpine(this.ani,"spine/player/zhu",true,"Skin_2","Idle",);
         }
     }
-
+    public loadSpAin(weaponIdx) {
+        let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
+        let usingSkinIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
+        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
+        console.log("playerAinPath     : " + this.playerAinPath);
+        this.laodAin();
+    }
     /**
      * 重新加载角色动画
      */

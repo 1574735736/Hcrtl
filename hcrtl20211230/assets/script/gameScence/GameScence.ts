@@ -178,6 +178,10 @@ export default class GameScence extends cc.Component {
     private addHpMul: number[] = [0.1, 0.15, 0.2 , 0.25, 0.3];
     private randomMul: number[] = [];
     private weaponID: number[] = [];
+    func1 = null;
+    func2 = null;
+    private kuang1: cc.Node = null;
+    private kuang2: cc.Node = null;
     private updateWildRage(level:number):void {
         //if (level%3 != 0) {
         //    this.btn_wildRage.active = false;
@@ -204,12 +208,12 @@ export default class GameScence extends cc.Component {
 
         this.btn_wildRage.active = true;
 
-        var kuang1 = this.wildRage2.getChildByName("img_kuang1");
-        var kuang2 = this.wildRage2.getChildByName("img_kuang2");
+        this.kuang1 = this.wildRage2.getChildByName("img_kuang1");
+        this.kuang2 = this.wildRage2.getChildByName("img_kuang2");
         var none = this.wildRage2.getChildByName("btn_NoThanks");
      
-        kuang1.on("click", () => { this.clickHpIdx = 0; this.OnShowAddHpAds(); }, this);
-        kuang2.on("click", () => { this.clickHpIdx = 1; this.OnShowAddHpAds(); }, this);
+        this.kuang1.on("click", () => { this.clickHpIdx = 0; this.OnShowAddHpAds(); }, this);
+        this.kuang2.on("click", () => { this.clickHpIdx = 1; this.OnShowAddHpAds(); }, this);
         none.on("click", () => { this.CloseHpPanel(); }, this);
 
         this.scheduleOnce(() => { this.UpHpShow(); }, 1)
@@ -218,17 +222,21 @@ export default class GameScence extends cc.Component {
         this.randomMul.push(random1);
         this.randomTwo();
 
-        kuang1.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[0]] * this.initHp);
-        kuang2.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[1]] * this.initHp); 
+        this.kuang1.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[0]] * this.initHp);
+        this.kuang2.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[1]] * this.initHp); 
 
-        var wrandom1 = this.random(1, 8);
+        var wrandom1 = this.random(1, 9);
         this.weaponID.push(wrandom1);
         this.wrandomTwo();     
 
-        var icon1 = kuang1.getChildByName("img_icon").getComponent(cc.Sprite);
-        var icon2 = kuang2.getChildByName("img_icon").getComponent(cc.Sprite);
+        var icon1 = this.kuang1.getChildByName("img_icon").getComponent(cc.Sprite);
+        var icon2 = this.kuang2.getChildByName("img_icon").getComponent(cc.Sprite);
         this.onSetIcon(icon1, this.weaponID[0] + "");
-        this.onSetIcon(icon2, this.weaponID[1] + "");
+        this.onSetIcon(icon2, this.weaponID[1] + "");       
+
+        this.func1 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(() => { this.kuang2.runAction(this.func2); }));
+        this.func2 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(() => { this.kuang1.runAction(this.func1); }));
+        
     }
 
     private random(lower, upper) {
@@ -244,8 +252,9 @@ export default class GameScence extends cc.Component {
             this.randomMul.push(random2);
         }
     }
+
     private wrandomTwo() {
-        var wrandom2 = this.random(1, 8);
+        var wrandom2 = this.random(1, 9);
         if (wrandom2 == this.weaponID[0]) {
             this.wrandomTwo();
         }
@@ -271,16 +280,17 @@ export default class GameScence extends cc.Component {
         this.towerLayer.addPlayerAniHp(this.weaponID[this.clickHpIdx], Math.floor(this.addHpMul[this.randomMul[this.clickHpIdx]] * this.initHp));
     }
 
-    private UpHpShow() {
+    private UpHpShow() {   
         this.wildRage2.setScale(0, 0);
         this.wildRage2.active = true;
-        this.wildRage2.runAction(cc.scaleTo(0.3, 1, 1));    
-
-       
+        this.kuang1.stopAllActions();
+        this.kuang2.stopAllActions();
+        this.wildRage2.runAction(cc.scaleTo(0.3, 1, 1));   
+        this.kuang1.runAction(this.func1);       
     }
 
     private onSetIcon(spr: cc.Sprite, iconPath: string) {
-        var strPath: string = "texture/game/gamepopup/d";
+        var strPath: string = "texture/game/weapon/wq"//"texture/game/gamepopup/d";
         strPath = strPath + iconPath;
         cc.loader.loadRes(strPath, cc.SpriteFrame, (err, sp) => {
             spr.spriteFrame = sp as cc.SpriteFrame;
@@ -460,7 +470,6 @@ export default class GameScence extends cc.Component {
         }).start(); 
    
     }
-
 
     public static JavaCall_noAdCallback():void{
         GameScence._instance.noAdCallback();

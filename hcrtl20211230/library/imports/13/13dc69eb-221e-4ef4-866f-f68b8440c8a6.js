@@ -89,7 +89,7 @@ var TowerTile = /** @class */ (function (_super) {
                 if (data.type == 'player') {
                     this.playerData = data;
                     this.player = tempNode;
-                    tempNode.position = cc.v3(-50, tempNode.y, 0);
+                    tempNode.position = cc.v3(-50, 10, 0); // tempNode.y
                     this.node.addChild(tempNode, 1, "player");
                 }
                 else if (data.type == 'monster') {

@@ -68,6 +68,10 @@ var GameScence = /** @class */ (function (_super) {
         _this.addHpMul = [0.1, 0.15, 0.2, 0.25, 0.3];
         _this.randomMul = [];
         _this.weaponID = [];
+        _this.func1 = null;
+        _this.func2 = null;
+        _this.kuang1 = null;
+        _this.kuang2 = null;
         _this.m_BackFunc = null;
         return _this;
         // update (dt) {}
@@ -204,25 +208,27 @@ var GameScence = /** @class */ (function (_super) {
         //    this.showWildRage();
         //}
         this.btn_wildRage.active = true;
-        var kuang1 = this.wildRage2.getChildByName("img_kuang1");
-        var kuang2 = this.wildRage2.getChildByName("img_kuang2");
+        this.kuang1 = this.wildRage2.getChildByName("img_kuang1");
+        this.kuang2 = this.wildRage2.getChildByName("img_kuang2");
         var none = this.wildRage2.getChildByName("btn_NoThanks");
-        kuang1.on("click", function () { _this.clickHpIdx = 0; _this.OnShowAddHpAds(); }, this);
-        kuang2.on("click", function () { _this.clickHpIdx = 1; _this.OnShowAddHpAds(); }, this);
+        this.kuang1.on("click", function () { _this.clickHpIdx = 0; _this.OnShowAddHpAds(); }, this);
+        this.kuang2.on("click", function () { _this.clickHpIdx = 1; _this.OnShowAddHpAds(); }, this);
         none.on("click", function () { _this.CloseHpPanel(); }, this);
         this.scheduleOnce(function () { _this.UpHpShow(); }, 1);
         var random1 = this.random(0, this.addHpMul.length - 1);
         this.randomMul.push(random1);
         this.randomTwo();
-        kuang1.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[0]] * this.initHp);
-        kuang2.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[1]] * this.initHp);
-        var wrandom1 = this.random(1, 8);
+        this.kuang1.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[0]] * this.initHp);
+        this.kuang2.getChildByName("txt_addhp").getComponent(cc.Label).string = "+" + Math.floor(this.addHpMul[this.randomMul[1]] * this.initHp);
+        var wrandom1 = this.random(1, 9);
         this.weaponID.push(wrandom1);
         this.wrandomTwo();
-        var icon1 = kuang1.getChildByName("img_icon").getComponent(cc.Sprite);
-        var icon2 = kuang2.getChildByName("img_icon").getComponent(cc.Sprite);
+        var icon1 = this.kuang1.getChildByName("img_icon").getComponent(cc.Sprite);
+        var icon2 = this.kuang2.getChildByName("img_icon").getComponent(cc.Sprite);
         this.onSetIcon(icon1, this.weaponID[0] + "");
         this.onSetIcon(icon2, this.weaponID[1] + "");
+        this.func1 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(function () { _this.kuang2.runAction(_this.func2); }));
+        this.func2 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(function () { _this.kuang1.runAction(_this.func1); }));
     };
     GameScence.prototype.random = function (lower, upper) {
         return Math.floor(Math.random() * (upper - lower)) + lower;
@@ -237,7 +243,7 @@ var GameScence = /** @class */ (function (_super) {
         }
     };
     GameScence.prototype.wrandomTwo = function () {
-        var wrandom2 = this.random(1, 8);
+        var wrandom2 = this.random(1, 9);
         if (wrandom2 == this.weaponID[0]) {
             this.wrandomTwo();
         }
@@ -261,10 +267,13 @@ var GameScence = /** @class */ (function (_super) {
     GameScence.prototype.UpHpShow = function () {
         this.wildRage2.setScale(0, 0);
         this.wildRage2.active = true;
+        this.kuang1.stopAllActions();
+        this.kuang2.stopAllActions();
         this.wildRage2.runAction(cc.scaleTo(0.3, 1, 1));
+        this.kuang1.runAction(this.func1);
     };
     GameScence.prototype.onSetIcon = function (spr, iconPath) {
-        var strPath = "texture/game/gamepopup/d";
+        var strPath = "texture/game/weapon/wq"; //"texture/game/gamepopup/d";
         strPath = strPath + iconPath;
         cc.loader.loadRes(strPath, cc.SpriteFrame, function (err, sp) {
             spr.spriteFrame = sp;

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "p82",
+    "texture": "cff75e15-8090-433f-947d-92cb71622d76",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      1006,
+      1019
+    ],
+    "offset": [
+      -7,
+      0.5
+    ],
+    "originalSize": [
+      1024,
+      1024
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

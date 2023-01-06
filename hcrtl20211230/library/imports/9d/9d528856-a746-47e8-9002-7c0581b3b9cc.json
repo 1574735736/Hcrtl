@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zhu42",
+    "texture": "fb497a69-bc1a-46e9-8017-947893d583cf",
+    "atlas": "",
+    "rect": [
+      2,
+      8,
+      949,
+      997
+    ],
+    "offset": [
+      -35.5,
+      5.5
+    ],
+    "originalSize": [
+      1024,
+      1024
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -72,7 +72,7 @@ export default class TowerTile extends cc.Component {
                 if (data.type == 'player') {
                     this.playerData = data;
                     this.player = tempNode;
-                    tempNode.position = cc.v3(-50, tempNode.y, 0);
+                    tempNode.position = cc.v3(-50,10, 0); // tempNode.y
                     this.node.addChild(tempNode, 1, "player");
                 } else if (data.type == 'monster') {
                     this.node.addChild(tempNode);

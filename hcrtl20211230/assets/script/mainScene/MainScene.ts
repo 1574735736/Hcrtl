@@ -38,7 +38,14 @@ export default class MainScene extends cc.Component {
 
     private showModelOfShop:sp.Skeleton;
     /**需要解锁的皮肤序号 */
-    private unlockIndex:number;
+    private unlockIndex: number;
+
+    //@property(dragonBones.ArmatureDisplay)
+    //public huolong: dragonBones.ArmatureDisplay = null;
+
+    //@property(dragonBones.ArmatureDisplay)
+    //public lvlong: dragonBones.ArmatureDisplay = null;
+
 
 
     onLoad () {
@@ -51,7 +58,6 @@ export default class MainScene extends cc.Component {
 
         this.initListener();
         this.showMainView();
-
 
     }
 
@@ -266,5 +272,27 @@ export default class MainScene extends cc.Component {
     private closeAdCallback():void {
         // to do
     }
+
+    //private testDragon(): void {
+    //    let demonArmature = this.huolong.armature();
+
+    //    let demonSlot = demonArmature.getSlot("body");
+
+    //    let factory = dragonBones.CCFactory.getInstance();
+
+    //    factory.replaceSlotDisplay(
+
+    //        this.lvlong.getArmatureKey(),  //绿龙骨架数据名称
+
+    //        "armatureName",                //绿龙骨架数据名称
+
+    //        "tou",                         //绿龙插槽数据名称
+
+    //        "tou",                         //绿龙显示对象数据名
+
+    //        demonSlot                      //影魔的头部插槽
+
+    //    );
+    //}
 
 }

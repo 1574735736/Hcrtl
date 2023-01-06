@@ -23,7 +23,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var AndroidAdView_1 = require("../gameScence/AndroidAdView");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var Utils = /** @class */ (function (_super) {
     __extends(Utils, _super);
@@ -34,32 +33,33 @@ var Utils = /** @class */ (function (_super) {
         return Math.floor(Math.random() * Math.floor(max - min + 1)) + min;
     };
     Utils.showMessage = function (parentNode, msg, callBack) {
-        //cc.loader.loadRes("prefabs/game/player/TipMessage", cc.Prefab, (err, prefab) => {
-        //    let showNode = cc.instantiate(prefab);
-        //    if (this.messageNode) {
-        //      this.messageNode.destroy();
-        //    }
-        //    this.messageNode = showNode;
-        //    let labelComp = showNode.getChildByName("message").getComponent(cc.Label);
-        //    labelComp.string = msg;
-        //    parentNode.addChild(showNode);
-        //    showNode.position = new cc.Vec3(0, 0, 0);
-        //    labelComp.scheduleOnce(() => {
-        //      this.messageNode = null;
-        //      showNode.destroy();
-        //      }, 1);
-        //});
+        var _this = this;
         if (callBack === void 0) { callBack = null; }
-        var self = this;
-        cc.loader.loadRes("prefabs/popup/AndroidAdView", cc.Prefab, function (e, p) {
-            var pnode = cc.instantiate(p);
-            parentNode.addChild(pnode, 90);
-            pnode.setPosition(0, 0);
-            if (callBack) {
-                var adView = pnode.getComponent(AndroidAdView_1.default);
-                adView.onInit(callBack);
+        cc.loader.loadRes("prefabs/game/player/TipMessage", cc.Prefab, function (err, prefab) {
+            var showNode = cc.instantiate(prefab);
+            if (_this.messageNode) {
+                _this.messageNode.destroy();
             }
+            _this.messageNode = showNode;
+            var labelComp = showNode.getChildByName("message").getComponent(cc.Label);
+            labelComp.string = msg;
+            parentNode.addChild(showNode);
+            showNode.position = new cc.Vec3(0, 0, 0);
+            labelComp.scheduleOnce(function () {
+                _this.messageNode = null;
+                showNode.destroy();
+            }, 1);
         });
+        //var self = this;
+        //cc.loader.loadRes("prefabs/popup/AndroidAdView", cc.Prefab, (e, p) => {
+        //    var pnode = cc.instantiate(p as cc.Prefab);
+        //    parentNode.addChild(pnode, 90);
+        //    pnode.setPosition(0, 0);
+        //    if (callBack) {
+        //        var adView = pnode.getComponent(AndroidAdView)
+        //        adView.onInit(callBack);
+        //    }
+        //});
     };
     Utils = __decorate([
         ccclass

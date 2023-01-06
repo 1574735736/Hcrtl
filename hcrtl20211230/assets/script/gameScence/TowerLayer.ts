@@ -118,6 +118,8 @@ export default class TowerLayer extends cc.Component {
             }
             node.off(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
         }
+
+        console.log("this.playerposition   " + this.playerposition);
     }
 
     public addPlayerHp(addHp:number):void { 
@@ -152,9 +154,15 @@ export default class TowerLayer extends cc.Component {
         }), cc.moveTo(1, targerPosX, targerPosY), cc.callFunc(() => {
             playerRole.addHp(addHp);
             this.weaponIcon.active = false;
+
+            let role = player.getComponent(RoleBase);
+            role.loadSpAin(sprID);
+            role.idle();
+
         }))
         this.weaponIcon.runAction(func);
 
+      
         //console.log("addHp------  :" + addHp);
 
         //playerRole.addHp(addHp);        
@@ -168,7 +176,7 @@ export default class TowerLayer extends cc.Component {
     }
 
     private onSetIcon(spr: cc.Sprite, iconPath: string) {
-        var strPath: string = "texture/game/gamepopup/d";
+        var strPath: string = "texture/game/weapon/wq"//"texture/game/gamepopup/d";
         strPath = strPath + iconPath;
         cc.loader.loadRes(strPath, cc.SpriteFrame, (err, sp) => {
             spr.spriteFrame = sp as cc.SpriteFrame;
@@ -188,7 +196,7 @@ export default class TowerLayer extends cc.Component {
         }
         return null;
     }
-
+    curTargetIndex: number = -1; 
     //点击塔楼事件
     public towerTouch(touch: Event) {            
         if (this.isMove || this.isFight || this.isDie) {
@@ -196,11 +204,8 @@ export default class TowerLayer extends cc.Component {
         }
 
         let currentTarget = touch.currentTarget as any;//当前点击的格子  
-
-        console.log("this.playerposition   " + this.playerposition);
-
+        
        
-
         let player = this.findPlayer();//找到角色
 
         if (player) {
@@ -223,24 +228,38 @@ export default class TowerLayer extends cc.Component {
                 //不存在怪物与道具不做处理
                 if(monster==null){
                     return ;
-                }            
-
+                }
+                var tempTargetIndex = towerTile.node.uuid//towerTile.getIndex();
                 //计算怪物目标位置
                 let targerPost = player.parent.convertToNodeSpaceAR(monster.parent.convertToWorldSpaceAR(monster.position));
 
                 var isSamePos = false;
                 var isSameAcross = false;
-                if (Math.abs(targerPost.y - player.position.y) <= 1) {
+           
+                if (tempTargetIndex == this.curTargetIndex) {
                     var length = Math.abs(targerPost.x - player.position.x);
-                    console.log("length   :" + length);
                     if (length <= 120) {
                         isSamePos = true;
                     }
-                    else if (length <= 240) {
+                    else {
                         isSameAcross = true;
-                        
-                    } 
+                    }
                 }
+                else {                   
+                    this.curTargetIndex = tempTargetIndex;
+                }
+               
+
+                if (Math.abs(targerPost.y - player.position.y) <= 1) {
+                    var length = Math.abs(targerPost.x - player.position.x);
+                    if (length <= 120) {
+                        isSamePos = true;
+                    }
+                    else  {
+                        isSameAcross = true;
+                    }
+                }
+
 
                 let posCache = this.playerReturnPosition(player);//计算角色返回的位置player.position;
                 let playerRole = player.getComponent(RoleBase);
@@ -274,6 +293,12 @@ export default class TowerLayer extends cc.Component {
                     //        this.attacked(playerRole, monsterRole, posCache, towerTile);
                     //    }).start();
                     //}
+
+                    //this.playerAddLastTowerTile(towerTile);//把角色添加到新的格子
+
+                    //let player = this.findPlayer();
+                    //player.setParent(towerTile);
+
                     this.attackedLater(playerRole, monsterRole, posCache, towerTile);
                 });
             }
@@ -281,6 +306,26 @@ export default class TowerLayer extends cc.Component {
     }
     //攻击之后
     private attackedLater(playerRole, monsterRole, posCache, towerTile) {
+
+        console.log("this.playerposition    " + this.playerposition); 
+        console.log("this.getIndex    " + towerTile.getIndex()); 
+        if (towerTile.getIndex() != this.playerposition) {
+            var til = this.CheckTowerNull(towerTile);
+            if (til) {
+
+                let towerTileMonste = this.node.children[towerTile.getIndex()];
+                let index1 = towerTileMonste.children.indexOf(towerTile.node);
+                let index2 = towerTileMonste.children.indexOf(til.node);
+
+
+                this.checkUpTowerMonster(til);
+                if (index2 < index1)
+                    this.playerAddTowerTile(til, playerRole, 2);
+                else
+                    this.playerAddTowerTile(til, playerRole, 1);
+            }
+        }
+                
         if (!monsterRole.hasItem) {
             this.attack(playerRole, monsterRole, posCache, towerTile);
             if (!monsterRole.longRange) {//不是远程怪物
@@ -305,6 +350,7 @@ export default class TowerLayer extends cc.Component {
                     console.log("没怪了，计算角色塔楼");
                     this.playerAddLastTowerTile(towerTile);//把角色添加到新的格子
                     this.isFight = false;//战斗结束
+                    this.curTargetIndex = -1;
                     return;
                 }
 
@@ -313,28 +359,29 @@ export default class TowerLayer extends cc.Component {
                 //角色跳回原来的格子
                 //playerRole.jumpTo(posCache, 0, () => {
                 //怪物塔楼减少
-                console.log("调用待机动画！！！");
-                    playerRole.idle();//playerRole.upLevel();
-                    //this.playerChangeTile(playerRole.node);
-                    //是否存在怪物或道具
-                    this.checkUpLongRange(towerTile, playerRole);
+                playerRole.idle();//playerRole.upLevel();
+                //this.playerChangeTile(playerRole.node);
+                //是否存在怪物或道具
+                this.checkUpLongRange(towerTile, playerRole);
 
-                    if (towerTile.hasMonster() || towerTile.hasItem()) {
-                        //是否存在远程攻击怪，有则进行远程攻击
+                if (towerTile.hasMonster() || towerTile.hasItem()) {
+                    //是否存在远程攻击怪，有则进行远程攻击
                         
-                        return;
-                    }
+                    return;
+                }
 
                 this.checkOpenCloseTile(towerTile);
-                    ////检测塔楼怪物
-                    //this.checkUpTowerMonster(towerTile);
-                    ////角色塔楼增加
-                    //this.playerAddTowerTile(towerTile, playerRole)
+                ////检测塔楼怪物
+                //this.checkUpTowerMonster(towerTile);
+                ////角色塔楼增加
+                //this.playerAddTowerTile(towerTile, playerRole)
                 //});
                 return;
             }
-            //角色死亡，游戏结束\
-            this.gameLose();
+            else {
+                //角色死亡，游戏结束\
+                this.gameLose();
+            }           
             // this.loseNode.active = true;
             // SoundManager.getInstance().playEffect(SoundManager.Lose_Jingle);
         });
@@ -655,7 +702,23 @@ export default class TowerLayer extends cc.Component {
         }
 
     }
-
+    //获取空格子的塔楼
+    private CheckTowerNull(towerTile: TowerTile) {
+        let towerTileMonste = this.node.children[towerTile.getIndex()];
+        let towerTiles = towerTileMonste.children;
+        let hasMonster = null;
+        for (let i = 1; i < towerTiles.length - 1; i++) {
+            let tile = towerTiles[i].getComponent(TowerTile);
+            if (tile.hasMonster() || tile.hasItem()) {
+             
+            }
+            else {
+                hasMonster = tile;
+                break;
+            }
+        }
+        return hasMonster;
+    }
 
     //是否只剩一个格子，并且没怪了
     private checkUpTowerHasMonster(towerTile: TowerTile) {
@@ -690,7 +753,7 @@ export default class TowerLayer extends cc.Component {
             }
         }
         cc.tween(towerTile.node).to(0.5, { scale: 0.1 }).removeSelf().call(() => {
-            this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
+            //this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
         }).start();
 
     }
@@ -733,25 +796,36 @@ export default class TowerLayer extends cc.Component {
 
     //玩家回程格子,永远在第3格
     private playerReturnPosition(player: cc.Node) {
-        let towerTilePlayer = this.node.children[this.playerposition];
-        let tileIndex = towerTilePlayer.children.indexOf(player.parent);
-        if (towerTilePlayer.children.length > 3 && tileIndex > 2) {
-            let position = cc.v3(player.x, player.y - this.towerTileOffsetY * 2 - 100, 0)//let position = cc.v3(player.x, player.y - this.towerTileOffsetY * 2, 0)
-            return position;
-        }
+        //let towerTilePlayer = this.node.children[this.playerposition];
+        //let tileIndex = towerTilePlayer.children.indexOf(player.parent);
+        //if (towerTilePlayer.children.length > 3 && tileIndex > 2) {
+        //    let position = cc.v3(player.x, player.y - this.towerTileOffsetY * 2 - 100, 0)//let position = cc.v3(player.x, player.y - this.towerTileOffsetY * 2, 0)
+        //    return position;
+        //}
         return player.position;
     }
 
     //玩家塔楼增加格子
-    private playerAddTowerTile(towerTile, playerRole) {
+    private playerAddTowerTile(towerTile, playerRole,isDouble) {
+        let towerTileMonste = this.node.children[towerTile.getIndex()];
+        let index = towerTileMonste.children.indexOf(towerTile.node);        
+
 
         let towerTilePlayer = this.node.children[this.playerposition];
         let length = towerTilePlayer.children.length;
+
         for (let i = length - 1; i > 0; i--) {
             let targer = towerTilePlayer.children[i];
             let targetPos1 = new cc.Vec3(targer.x, targer.y + this.towerTileOffsetY, 0);
             cc.tween(targer).to(0.5, { position: targetPos1 }).start();
-        }
+        }        
+
+        //var y = towerTile.node.position.y - this.towerTileOffsetY;
+
+
+        let targetPos2 = new cc.Vec3(playerRole.node.position.x, playerRole.node.position.y - this.towerTileOffsetY * 2 * isDouble , 0); //
+        cc.tween(playerRole.node).to(0.5, { position: targetPos2 }).start();
+
         let tile = cc.instantiate(this.towerTilePrefab);
         tile.scale = 0;
         tile.position = new cc.Vec3(0, -75, 0);
@@ -765,8 +839,10 @@ export default class TowerLayer extends cc.Component {
         SoundManager.getInstance().playEffect(SoundManager.Level_UP);
         cc.tween(tile).to(0.5, { scale: 0.5 }).call(() => {
             // this.isFight = false;
-            this.checkUpLongRange(towerTile, playerRole);
+            //this.checkUpLongRange(towerTile, playerRole);
             // this.checkUpGain(towerTile);
+
+
         }).start();
     }
 
@@ -785,7 +861,7 @@ export default class TowerLayer extends cc.Component {
             role.laodAin();
             role.idle();//role.upLevel(); //升级就是为了更改皮肤，由于当前只有一种皮肤，所以去掉升级功能
 
-            console.log("把角色添加到新的格子上"+role.getHp());
+            console.log("把角色添加到新的格子上 :" +role.getHp());
         }
 
 
@@ -798,9 +874,7 @@ export default class TowerLayer extends cc.Component {
         go();
         this.isMove = true;
         this.moveTowerLayer();
-        console.log("playerpostion: " + this.playerposition + " size: " + this.size);
         this.playerposition -= 1;
-        console.log("playerpostion: " + this.playerposition + " size: " + this.size);
 
         GameScence.Instance.flushMoveCount();
     }

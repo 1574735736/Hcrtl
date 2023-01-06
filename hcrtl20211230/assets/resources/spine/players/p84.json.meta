@@ -1,8 +1,9 @@
 {
   "ver": "1.2.3",
-  "uuid": "356a5edb-d4cf-4c66-88da-1e379a39fce0",
+  "uuid": "149b39ed-97c6-4672-9ef0-5916e29966ad",
   "textures": [
-    "cd74c42b-4c07-4ce0-8b80-682aedaafceb"
+    "7ffc8e45-6b1c-4770-887e-4098c7df0c98",
+    "a1333dc5-b2af-4847-aa9c-8cd76ba0c93e"
   ],
   "scale": 1,
   "subMetas": {}

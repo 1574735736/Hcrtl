@@ -253,6 +253,13 @@ var RoleBase = /** @class */ (function (_super) {
             SpineManager_1.default.getInstance().loadSpine(this.ani, "spine/player/zhu", true, "Skin_2", "Idle");
         }
     };
+    RoleBase.prototype.loadSpAin = function (weaponIdx) {
+        var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
+        var usingSkinIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
+        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
+        console.log("playerAinPath     : " + this.playerAinPath);
+        this.laodAin();
+    };
     /**
      * 重新加载角色动画
      */
