@@ -85,7 +85,7 @@
     "relativePath": "resources\\prefabs"
   },
   "97918a69-8987-4a5c-9a0e-1a7c2d70b68a": {
-    "asset": 1671674266854,
+    "asset": 1673258567147,
     "meta": 1639381221000,
     "relativePath": "resources\\prefabs\\game"
   },
@@ -145,7 +145,7 @@
     "relativePath": "resources\\prefabs\\game\\bullet\\MagicBall.prefab"
   },
   "07fc28fb-3ee2-48ba-a7b5-cf4dcb1c0032": {
-    "asset": 1640881164174,
+    "asset": 1673258651075,
     "meta": 1639381221000,
     "relativePath": "resources\\prefabs\\game\\item"
   },
@@ -185,7 +185,7 @@
     "relativePath": "resources\\prefabs\\game\\item\\Weapon_3.prefab"
   },
   "47e7a8df-9464-443e-a6d4-43ca05d33b01": {
-    "asset": 1640881164429,
+    "asset": 1673321018002,
     "meta": 1639381221000,
     "relativePath": "resources\\prefabs\\game\\monster"
   },
@@ -225,8 +225,8 @@
     "relativePath": "resources\\prefabs\\game\\monster\\Priest.prefab"
   },
   "727d9d2a-e6c6-43fb-94e2-0f9bd5edc951": {
-    "asset": 1639380943000,
-    "meta": 1653146020982,
+    "asset": 1673336094532,
+    "meta": 1673336094537,
     "relativePath": "resources\\prefabs\\game\\monster\\Goblin.prefab"
   },
   "61f49655-7acb-46d4-b21b-649d97be8fe9": {
@@ -275,7 +275,7 @@
     "relativePath": "resources\\prefabs\\game\\monster\\Vampire_3.prefab"
   },
   "a208be62-d7d7-4ae2-abec-9441deb0139c": {
-    "asset": 1668147063358,
+    "asset": 1673253692788,
     "meta": 1639381221000,
     "relativePath": "resources\\prefabs\\game\\player"
   },
@@ -365,7 +365,7 @@
     "relativePath": "resources\\sound\\Slash~1.mp3"
   },
   "2d3472af-19e0-4617-8918-95e50600db06": {
-    "asset": 1672903554353,
+    "asset": 1673505257073,
     "meta": 1639381221000,
     "relativePath": "resources\\spine"
   },
@@ -620,7 +620,7 @@
     "relativePath": "resources\\spine\\monster\\Werewolf.png"
   },
   "d6e66165-f112-4c8f-8325-583da83ee9c2": {
-    "asset": 1672814396754,
+    "asset": 1673252876661,
     "meta": 1639381221000,
     "relativePath": "resources\\spine\\player"
   },
@@ -680,7 +680,7 @@
     "relativePath": "resources\\texture"
   },
   "81bc95ca-4143-4404-8d07-0fceb4482c73": {
-    "asset": 1671789446894,
+    "asset": 1673257226193,
     "meta": 1639381221000,
     "relativePath": "resources\\texture\\game"
   },
@@ -800,7 +800,7 @@
     "relativePath": "resources\\texture\\game\\item\\Weapon_3.png"
   },
   "caff2875-5ad3-43f9-972f-cc7c64898132": {
-    "asset": 1671785055718,
+    "asset": 1673336642644,
     "meta": 1639381221000,
     "relativePath": "resources\\texture\\game\\ui"
   },
@@ -900,8 +900,8 @@
     "relativePath": "scene"
   },
   "0c469457-0195-4924-a2a5-a7394dee3603": {
-    "asset": 1672816883938,
-    "meta": 1672816883946,
+    "asset": 1673345115546,
+    "meta": 1673345115554,
     "relativePath": "scene\\loadScene.fire"
   },
   "6a3e0288-3558-435a-a160-b0dac3cf8e09": {
@@ -910,12 +910,12 @@
     "relativePath": "script"
   },
   "710bf634-9fe1-46f4-a5a9-e04280b9298f": {
-    "asset": 1672913930718,
+    "asset": 1673508335481,
     "meta": 1639381222000,
     "relativePath": "script\\data"
   },
   "60cad29d-165a-440c-871b-2f02ed639f9d": {
-    "asset": 1672936154810,
+    "asset": 1673517906443,
     "meta": 1639381222000,
     "relativePath": "script\\gameScence"
   },
@@ -925,12 +925,12 @@
     "relativePath": "resources\\texture\\load\\MC mainmenu.json"
   },
   "60709917-3c77-4dc1-a5f3-445326446c34": {
-    "asset": 1672825462723,
+    "asset": 1673514233392,
     "meta": 1639381222000,
     "relativePath": "script\\loadscence"
   },
   "bb4ae6de-2d58-4cd9-b2b7-79b47d2bcbd7": {
-    "asset": 1672816899393,
+    "asset": 1673335293115,
     "meta": 1639381222000,
     "relativePath": "script\\manager"
   },
@@ -940,7 +940,7 @@
     "relativePath": "resources\\texture\\load\\MC mainmenu.png"
   },
   "36942a15-730f-4ccb-925a-12a260df84d9": {
-    "asset": 1672740939727,
+    "asset": 1673429763718,
     "meta": 1639381222000,
     "relativePath": "script\\util"
   },
@@ -1085,8 +1085,8 @@
     "relativePath": "resources\\spine\\player\\LVL_4.json"
   },
   "7619b660-d2d6-4522-8200-43148339c992": {
-    "asset": 1672905597719,
-    "meta": 1672905597734,
+    "asset": 1673505259518,
+    "meta": 1673505259533,
     "relativePath": "scene\\GameScene.fire"
   },
   "2d7b47b7-29f8-4152-808a-e4e96f9a7289": {
@@ -1330,19 +1330,14 @@
     "relativePath": "resources\\texture\\game\\ui\\btn_restart.png"
   },
   "c1a40e54-9983-4aae-8b59-792fb6019817": {
-    "asset": 1672970960049,
-    "meta": 1672970960057,
+    "asset": 1673429947523,
+    "meta": 1673429947534,
     "relativePath": "scene\\MainScene.fire"
   },
   "ab50d7f0-bc46-42a8-a728-4e138f7e5ee4": {
-    "asset": 1672903430050,
+    "asset": 1673490916647,
     "meta": 1668584489787,
     "relativePath": "script\\mainScene"
-  },
-  "8a7103f0-4303-4cd6-ab95-30ee7c150816": {
-    "asset": 1668592213188,
-    "meta": 1668592213189,
-    "relativePath": "resources\\prefabs\\game\\guide"
   },
   "e2fea742-4256-43df-9a80-2dbd1f1f0b62": {
     "asset": 1668592411605,
@@ -1388,11 +1383,6 @@
     "asset": 1671067557820,
     "meta": 1671067621726,
     "relativePath": "script\\manager\\SoundManager.ts"
-  },
-  "1099334a-18d5-4c19-8ff9-824db5bc906d": {
-    "asset": 1671067550677,
-    "meta": 1671067621744,
-    "relativePath": "script\\manager\\SpineManager.ts"
   },
   "9472f0b5-64d0-4a2a-81dd-1798d794448f": {
     "asset": 1671434632853,
@@ -1460,7 +1450,7 @@
     "relativePath": "resources\\texture\\load\\img_skins.png"
   },
   "cb04a677-48ea-4017-92f1-d112dfb72563": {
-    "asset": 1672730964113,
+    "asset": 1672970081982,
     "meta": 1671615121714,
     "relativePath": "resources\\texture\\game\\weapon"
   },
@@ -2349,13 +2339,8 @@
     "meta": 1672801472866,
     "relativePath": "script\\gameScence\\AndroidAdView.ts"
   },
-  "c19a9fc9-caff-4706-9fb2-683c5ce2a264": {
-    "asset": 1672801837404,
-    "meta": 1672801982079,
-    "relativePath": "script\\gameScence\\Success.ts"
-  },
   "cf382f50-c3bc-4585-91c3-d7970e9c9506": {
-    "asset": 1672814103602,
+    "asset": 1672989007831,
     "meta": 1672814102983,
     "relativePath": "resources\\spine\\players"
   },
@@ -2374,70 +2359,10 @@
     "meta": 1672814105115,
     "relativePath": "resources\\spine\\players\\zhu1.png"
   },
-  "75400049-512f-4e39-98c4-2617a94015e5": {
-    "asset": 1672815162209,
-    "meta": 1672815164242,
-    "relativePath": "script\\mainScene\\SignInView.ts"
-  },
-  "e07f840e-6769-4ab7-80ee-1b2b5ab8c18d": {
-    "asset": 1672816899391,
-    "meta": 1672817043400,
-    "relativePath": "script\\manager\\PrefabsManager.ts"
-  },
-  "3455dd0a-134e-49fb-903b-7c9275e7edba": {
-    "asset": 1672818939326,
-    "meta": 1672818996440,
-    "relativePath": "script\\mainScene\\WeaponShop.ts"
-  },
-  "eacb5820-66d1-429d-a2de-5968e0904ce3": {
-    "asset": 1672825462722,
-    "meta": 1672826233873,
-    "relativePath": "script\\loadscence\\LoadScene.ts"
-  },
-  "91c88088-32eb-4055-bb9b-4a704b975340": {
-    "asset": 1672903430038,
-    "meta": 1672903532380,
-    "relativePath": "script\\mainScene\\MainScene.ts"
-  },
-  "d9de8c8c-e57c-44ef-811c-1cb8138748b3": {
-    "asset": 1672913930717,
-    "meta": 1672913997248,
-    "relativePath": "script\\data\\UserData.ts"
-  },
-  "463313bb-a709-4237-b16c-e6e21496a64b": {
-    "asset": 1672913935410,
-    "meta": 1672913997274,
-    "relativePath": "script\\gameScence\\Lose.ts"
-  },
-  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
-    "asset": 1672935278684,
-    "meta": 1672935279898,
-    "relativePath": "script\\gameScence\\RoleBase.ts"
-  },
-  "64336f38-04e3-4a1f-9a70-ceb7757509e9": {
-    "asset": 1672969709241,
-    "meta": 1672969720553,
-    "relativePath": "script\\data\\LevelData.ts"
-  },
-  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
-    "asset": 1672969820313,
-    "meta": 1672969852866,
-    "relativePath": "script\\gameScence\\TowerTile.ts"
-  },
   "1bd39cc3-02ce-4da7-9a49-ddfbda401fcb": {
     "asset": 1672971073784,
     "meta": 1672971188401,
     "relativePath": "script\\util\\Utils.ts"
-  },
-  "d5be9263-1713-4747-b85a-0de54cfa1ffb": {
-    "asset": 1672971259323,
-    "meta": 1672971862413,
-    "relativePath": "script\\gameScence\\GameScence.ts"
-  },
-  "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
-    "asset": 1672972462900,
-    "meta": 1672972463815,
-    "relativePath": "script\\gameScence\\TowerLayer.ts"
   },
   "a1c7943f-998a-4f39-b3bd-699c0477e88f": {
     "asset": 1672989007025,
@@ -4269,9 +4194,144 @@
     "meta": 1672989010968,
     "relativePath": "resources\\spine\\players\\zhu3.png"
   },
+  "c113b515-18e7-4067-8888-88627684ffdf": {
+    "asset": 1673252876656,
+    "meta": 1673252876665,
+    "relativePath": "resources\\spine\\player\\xu.atlas"
+  },
+  "a6c8625a-d980-4895-a20b-c78c6b0343b2": {
+    "asset": 1673252876656,
+    "meta": 1673252876694,
+    "relativePath": "resources\\spine\\player\\xu.json"
+  },
+  "bdc53bb3-f524-466a-b927-aa28e6195f71": {
+    "asset": 1673252876652,
+    "meta": 1673252876689,
+    "relativePath": "resources\\spine\\player\\xu.png"
+  },
+  "1e176c7b-ff40-44c7-8c2e-265e7388df26": {
+    "asset": 1673252908557,
+    "meta": 1673252925623,
+    "relativePath": "resources\\texture\\game\\guidance\\img_greenkuang.png"
+  },
+  "5033b793-e3b8-418c-8a20-fb131a745184": {
+    "asset": 1673256341865,
+    "meta": 1673256341871,
+    "relativePath": "resources\\prefabs\\game\\monster\\princess.prefab"
+  },
+  "e07f840e-6769-4ab7-80ee-1b2b5ab8c18d": {
+    "asset": 1673253535699,
+    "meta": 1673253648691,
+    "relativePath": "script\\manager\\PrefabsManager.ts"
+  },
+  "7d193396-332d-41a7-95c1-8a50b571ddd7": {
+    "asset": 1673259237360,
+    "meta": 1673257225207,
+    "relativePath": "resources\\texture\\game\\guidance"
+  },
+  "bf294b2f-7acb-4056-8984-ddd57713f24c": {
+    "asset": 1673258600034,
+    "meta": 1673258600043,
+    "relativePath": "resources\\texture\\game\\guidance\\skeleton.atlas"
+  },
+  "856bd26f-5a53-42e4-a939-0c822c62bd7b": {
+    "asset": 1673258600034,
+    "meta": 1673258600059,
+    "relativePath": "resources\\texture\\game\\guidance\\skeleton.json"
+  },
+  "f9ddcf7f-fbf4-4ad3-8722-784d3a97f0f2": {
+    "asset": 1673258600033,
+    "meta": 1673258600057,
+    "relativePath": "resources\\texture\\game\\guidance\\skeleton.png"
+  },
+  "21c8ac0d-35be-4218-9797-ce7317e5db35": {
+    "asset": 1673258651070,
+    "meta": 1673258651076,
+    "relativePath": "resources\\prefabs\\game\\item\\GuidanceRow.prefab"
+  },
+  "c9954387-eaf3-4880-b3f2-13f61e04c940": {
+    "asset": 1673259237358,
+    "meta": 1673259237375,
+    "relativePath": "resources\\texture\\game\\guidance\\对话框.png"
+  },
+  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
+    "asset": 1673316407806,
+    "meta": 1673316870385,
+    "relativePath": "script\\gameScence\\TowerTile.ts"
+  },
+  "4de1d6c3-b099-48f4-876e-a345766fed96": {
+    "asset": 1673332161004,
+    "meta": 1673332161008,
+    "relativePath": "resources\\prefabs\\game\\monster\\Devils.prefab"
+  },
+  "1099334a-18d5-4c19-8ff9-824db5bc906d": {
+    "asset": 1673335293108,
+    "meta": 1673335418907,
+    "relativePath": "script\\manager\\SpineManager.ts"
+  },
+  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
+    "asset": 1673336545696,
+    "meta": 1673336556727,
+    "relativePath": "script\\gameScence\\RoleBase.ts"
+  },
+  "41012acb-d7f3-43c4-9e15-584fc06e527a": {
+    "asset": 1673336635113,
+    "meta": 1673336642654,
+    "relativePath": "resources\\texture\\game\\ui\\an_noad.png"
+  },
+  "d9de8c8c-e57c-44ef-811c-1cb8138748b3": {
+    "asset": 1673339514705,
+    "meta": 1673339532863,
+    "relativePath": "script\\data\\UserData.ts"
+  },
   "78569ac0-478e-470b-8cc4-c0465a846259": {
-    "asset": 1672989704451,
-    "meta": 1672989706936,
+    "asset": 1673429763716,
+    "meta": 1673429946533,
     "relativePath": "script\\util\\FirebaseReport.ts"
+  },
+  "463313bb-a709-4237-b16c-e6e21496a64b": {
+    "asset": 1673490308453,
+    "meta": 1673490605561,
+    "relativePath": "script\\gameScence\\Lose.ts"
+  },
+  "91c88088-32eb-4055-bb9b-4a704b975340": {
+    "asset": 1673489676378,
+    "meta": 1673490605707,
+    "relativePath": "script\\mainScene\\MainScene.ts"
+  },
+  "75400049-512f-4e39-98c4-2617a94015e5": {
+    "asset": 1673489599564,
+    "meta": 1673490605733,
+    "relativePath": "script\\mainScene\\SignInView.ts"
+  },
+  "3455dd0a-134e-49fb-903b-7c9275e7edba": {
+    "asset": 1673490916640,
+    "meta": 1673491528154,
+    "relativePath": "script\\mainScene\\WeaponShop.ts"
+  },
+  "64336f38-04e3-4a1f-9a70-ceb7757509e9": {
+    "asset": 1673508335470,
+    "meta": 1673509610328,
+    "relativePath": "script\\data\\LevelData.ts"
+  },
+  "d5be9263-1713-4747-b85a-0de54cfa1ffb": {
+    "asset": 1673512687060,
+    "meta": 1673512700593,
+    "relativePath": "script\\gameScence\\GameScence.ts"
+  },
+  "eacb5820-66d1-429d-a2de-5968e0904ce3": {
+    "asset": 1673514233385,
+    "meta": 1673514447141,
+    "relativePath": "script\\loadscence\\LoadScene.ts"
+  },
+  "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
+    "asset": 1673515722206,
+    "meta": 1673515882394,
+    "relativePath": "script\\gameScence\\TowerLayer.ts"
+  },
+  "c19a9fc9-caff-4706-9fb2-683c5ce2a264": {
+    "asset": 1673517906428,
+    "meta": 1673518383162,
+    "relativePath": "script\\gameScence\\Success.ts"
   }
 }

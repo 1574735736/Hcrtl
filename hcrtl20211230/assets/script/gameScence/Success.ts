@@ -73,6 +73,8 @@ export default class Success extends cc.Component {
 
     private flay_ani: sp.Skeleton = null;
 
+    private victoryIcon: cc.Sprite = null;
+
     onLoad () {
         Success._instance = this;
         let numContainer = this.node.getChildByName("bar_randomRate");
@@ -84,7 +86,7 @@ export default class Success extends cc.Component {
         let rewardRate_3_1 = numContainer.getChildByName("white_3_1").getComponent(cc.Sprite);
         let rewardRate_2_1 = numContainer.getChildByName("white_2_1").getComponent(cc.Sprite);
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
-
+        this.victoryIcon = this.node.getChildByName("btn_video_victory").getComponent(cc.Sprite);
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
 
         this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
@@ -92,9 +94,10 @@ export default class Success extends cc.Component {
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
         this.btn_getSkin = this.node.getChildByName("btn_getSkin");
     }
-
+    comeInLevel: number = 0;
     protected onEnable(): void {
         this.dispatchFirebaseKey(LevelData.curLevel);
+        this.comeInLevel = LevelData.curLevel;
         LevelData.curLevel++;
         LevelData.saveLevel();
         let goldNum = userData.getData(localStorageKey.GOLD);
@@ -104,9 +107,11 @@ export default class Success extends cc.Component {
         this.newSkinPanel.active = false;
         
         this.lb_NoThanks.active = false;
-        this.scheduleOnce(()=> {
-            this.lb_NoThanks.active = true;
-        }, 3);
+        if (this.comeInLevel > 1) {
+            this.scheduleOnce(() => {
+                this.lb_NoThanks.active = true;
+            }, 3);
+        }        
 
         SpineManager.getInstance().playSpinAnimation(this.roleModel, "shengli", true, null);
 
@@ -120,7 +125,7 @@ export default class Success extends cc.Component {
         this.randomBar.x = -this.moveAbs;
         this.changeBarPos();
 
-        
+        this.onSetIcon(this.victoryIcon);
         this.updatePercentOfSkin();
     }
 
@@ -187,26 +192,69 @@ export default class Success extends cc.Component {
 
         this.btn_getSkin.active = true;
 
+
+     
+        //this.com.level_node.children[1].getComponent(cc.Label).string = String(a);
+      
+
+
         let skinPer = userData.getData(localStorageKey.PER_GET_SKIN_VICTORY);
+        let oldPer = skinPer;
         skinPer += 20;
         if (skinPer > 100) {
             skinPer = 100;
         }
-        this.perOfSkin.string = skinPer + "%";
-        this.calculateAngle(skinPer);
+        //let sdk: any = {
+        //    a: 0,
+        //}
+        //sdk.a = oldPer;
+        //cc.tween(sdk)
+        //    .to(oldPer, { a: skinPer }, {
+        //        progress: (start, end, current, time) => {
+        //            // this.lab.string = Math.round(start + (end - start) * time) + '';//修改页面上的值
+        //            //console.log('修改ing', start + (end - start) * time);
+        //            //this.com.level_node.children[1].getComponent(cc.Label).string = (this.server_data.cardRate[2] * 100) / 100).toFixed(2) + '%';
+        //            this.perOfSkin.string = Math.round(current) + "%";
+        //            return start + (end - start) * time;
+        //        },
+        //    })
+        //    .start();
 
-        if (skinPer >= 100) {
-            this.bCanClickSkinBtn = true;
-            this.bHadGetNewSkin = false;
-            userData.setData(localStorageKey.PER_GET_SKIN_VICTORY, 0);//重置进度
-            this.showSkinLight();
-            this.showNewSkinPanel();//主动打开获得皮肤界面
+        var func = function () {
+            oldPer += 1;
+            if (oldPer >= skinPer) {
+                oldPer = skinPer;
+                callBack();
+                this.calculateAngle(oldPer);
+                this.perOfSkin.string = oldPer + "%";
+                this.unschedule(func);
+            }
+            else {
+                this.calculateAngle(oldPer);
+                this.perOfSkin.string = oldPer + "%";
+            }
         }
-        else {
-            this.bCanClickSkinBtn = false;
-            userData.setData(localStorageKey.PER_GET_SKIN_VICTORY, skinPer);
-            this.skinLight.active = false;
-        }
+
+        this.schedule(func, 0.05);
+        
+        //this.perOfSkin.string = skinPer + "%";
+        //this.calculateAngle(skinPer);
+
+        var callBack = () => {
+            if (skinPer >= 100) {
+                this.bCanClickSkinBtn = true;
+                this.bHadGetNewSkin = false;
+                userData.setData(localStorageKey.PER_GET_SKIN_VICTORY, 0);//重置进度
+                this.showSkinLight();
+                this.showNewSkinPanel();//主动打开获得皮肤界面
+            }
+            else {
+                this.bCanClickSkinBtn = false;
+                userData.setData(localStorageKey.PER_GET_SKIN_VICTORY, skinPer);
+                this.skinLight.active = false;
+            }
+        };
+        
     }
 
     private calculateAngle(skinPer:number):void {
@@ -265,7 +313,8 @@ export default class Success extends cc.Component {
             }
             userData.setData(localStorageKey.GOLD, own);    
             this.lb_gold.string = own + "";
-        });       
+        });  
+        
     }
 
     private onBtnHomeClick():void {
@@ -290,6 +339,7 @@ export default class Success extends cc.Component {
             return;
         }
         FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_next);
+        FirebaseReport.reportAdjustParam("6aj129");
         if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {            
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
@@ -312,14 +362,24 @@ export default class Success extends cc.Component {
         if (this.isEndAni) {
             return;
         }
-
+   /*     this.onSetIcon(this.victoryIcon);*/
         var myDate = Date.parse(new Date().toString());
         if ((myDate - this.clickTime) < 2000) {
             return;
         }
         this.clickTime = myDate;
+        var selectNode = cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node)
+        selectNode.active = true;
 
-        cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node).active = true;
+        selectNode.opacity = 0;
+        var pseq1 = cc.sequence(cc.fadeTo(0.25, 0), cc.callFunc(() => {
+            selectNode.runAction(pseq2);
+        }));
+        var pseq2 = cc.sequence(cc.fadeTo(0.25, 255), cc.callFunc(() => {
+            selectNode.runAction(pseq1);
+        }));
+        selectNode.runAction(pseq2);       
+
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
         cc.Tween.stopAllByTarget(this.randomBar);
         this.scheduleOnce(function () {            
@@ -330,8 +390,16 @@ export default class Success extends cc.Component {
             // else {
             //     this.goNextLevel(true);
             // }
-            SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(true); }, () => { this.noAdCallback(); });
-            this.m_BackFunc = () => { this.goNextLevel(true); }
+
+            FirebaseReport.reportAdjustParam("5g50d1");
+
+            if (this.comeInLevel == 1) {
+                this.goNextLevel(true);
+            }
+            else {
+                SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(true); }, () => { this.noAdCallback(); });
+                this.m_BackFunc = () => { this.goNextLevel(true); }
+            }            
         }, 1.5);
         
        
@@ -340,6 +408,7 @@ export default class Success extends cc.Component {
     /**获取皮肤入口按钮点击回调 */
     private onBtnGetSkinClick():void {
         if (this.bCanClickSkinBtn) {
+            FirebaseReport.reportAdjustParam("cgomnj");
             if (this.bHadGetNewSkin) {//本次已获取了新皮肤
                 Utils.showMessage(this.node, "You`ve got the skin");
             }
@@ -466,5 +535,18 @@ export default class Success extends cc.Component {
         else
             Utils.showMessage(this.node, "Ad not ready");
         this.m_BackFunc = null;
+    }
+
+    private onSetIcon(spr: cc.Sprite) {
+        var strPath: string = "";
+        if (this.comeInLevel == 1) {
+            strPath = "texture/game/ui/an_noad";
+        }
+        else {
+            strPath = "texture/game/ui/an";
+        }        
+        cc.loader.loadRes(strPath, cc.SpriteFrame, (err, sp) => {
+            spr.spriteFrame = sp as cc.SpriteFrame;
+        });
     }
 }

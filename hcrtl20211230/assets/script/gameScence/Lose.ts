@@ -63,6 +63,7 @@ export default class Lose extends cc.Component {
         // else {
         //      this.skipNowLevel();
         // }
+        FirebaseReport.reportAdjustParam("f6oy43");
         SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })
         
    
@@ -85,6 +86,7 @@ export default class Lose extends cc.Component {
         // else {
         //      this.playAgain();
         // }
+        FirebaseReport.reportAdjustParam("4ccw0w");
         SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
     }
     public static JavaCall_playAgain():void {

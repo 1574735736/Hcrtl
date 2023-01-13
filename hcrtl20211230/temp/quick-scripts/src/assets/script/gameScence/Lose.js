@@ -77,6 +77,7 @@ var Lose = /** @class */ (function (_super) {
         // else {
         //      this.skipNowLevel();
         // }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("f6oy43");
         SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_skip", function () { _this.skipNowLevel(); }, function () { _this.noAdCallback(); });
         this.m_BackFunc = function () { _this.noAdCallback(); };
     };
@@ -96,6 +97,7 @@ var Lose = /** @class */ (function (_super) {
         // else {
         //      this.playAgain();
         // }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("4ccw0w");
         SdkManager_1.default.GetInstance().JavaInterstitialAds(FirebaseReport_1.FirebaseKey.shengli_playagain, function () { _this.playAgain(); });
     };
     Lose.JavaCall_playAgain = function () {

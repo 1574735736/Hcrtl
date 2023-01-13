@@ -266,6 +266,9 @@
     "hasItem": false,
     "longRange": false,
     "drop": true,
+    "gain": false,
+    "shield": false,
+    "egg": false,
     "bulletPrefab": null,
     "LveUp": null,
     "_id": ""

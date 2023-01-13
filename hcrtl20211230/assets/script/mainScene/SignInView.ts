@@ -41,6 +41,7 @@ export default class SignInView extends cc.Component {
 
     onClickClose(): void {
         FirebaseReport.reportInformation("gift_x");
+        FirebaseReport.reportAdjustParam("i7nm62");
         var func = cc.sequence(cc.scaleTo(0.3, 0, 0), cc.callFunc(() => { this.node.destroy(); }));
         this.node.runAction(func);
                
@@ -50,6 +51,7 @@ export default class SignInView extends cc.Component {
         if (this.canClick == false) {
             return;
         }
+        FirebaseReport.reportAdjustParam("sl0fno");
         FirebaseReport.reportInformation("gift_ad2_doubie");
         SdkManager.GetInstance().JavaRewardedAds("gift_ad2_doubie", () => { this.onClickSign(2); }, () => { this.noAdCallback(); })
         this.m_BackFunc = () => { this.onClickSign(2); };
@@ -59,6 +61,7 @@ export default class SignInView extends cc.Component {
         if (this.canClick == false) {
             return;
         }
+        FirebaseReport.reportAdjustParam("tl0xed");
         this.onClickSign(1);
     }
 

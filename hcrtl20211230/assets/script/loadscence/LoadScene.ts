@@ -32,7 +32,7 @@ export default class LoadScene extends cc.Component {
     private isLoadingGame:boolean = true;
 
     private inAddSpeed: number = 0.4;
-    private inCountSpeed: number = 10;
+    private inCountSpeed: number = 1;
     private comeOnStatus: number = 0;
     onLoad() {
         LoadScene._instance = this; 
@@ -42,9 +42,12 @@ export default class LoadScene extends cc.Component {
         this.initRoleModel();  
         this.LoadOther();
         this.comeOnStatus = userData.getData(localStorageKey.COMEON_FIRST);
-        FirebaseReport.reportInformation(FirebaseKey.game_open);
-        console.log("comeOnStatus    " + this.comeOnStatus);
-        
+        FirebaseReport.reportInformation(FirebaseKey.game_open);    
+        FirebaseReport.reportAdjustParam("ratmhz");    
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            var status = userData.getNewPlayerStatus();
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "JallCallPlayerNew", "(Z)V", status);
+        }       
     }
 
     initClassOnAndroid() {

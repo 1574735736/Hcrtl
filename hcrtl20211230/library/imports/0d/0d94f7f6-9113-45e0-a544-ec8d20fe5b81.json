@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "an_noad",
+    "texture": "41012acb-d7f3-43c4-9e15-584fc06e527a",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      347,
+      121
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      347,
+      121
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

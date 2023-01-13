@@ -17,6 +17,16 @@ var FirebaseReport = /** @class */ (function () {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/FirebaseAnalyticsManager", "JsCall_reportInformationWithParam", "(Ljava/lang/String;Ljava/lang/String;I)V", reportkey, paramKey, paramValue);
         }
     };
+    FirebaseReport.reportAdjustParam = function (reportkey) {
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/FirebaseAnalyticsManager", "JsCall_AdjustParam", "(Ljava/lang/String;)V", reportkey);
+        }
+    };
+    FirebaseReport.reportAdjustValueParam = function (reportkey, paramKey, paramValue) {
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/FirebaseAnalyticsManager", "JsCall_AdjustValueParam", "(Ljava/lang/String;Ljava/lang/String;I)V", reportkey, paramKey, paramValue);
+        }
+    };
     return FirebaseReport;
 }());
 exports.FirebaseReport = FirebaseReport;

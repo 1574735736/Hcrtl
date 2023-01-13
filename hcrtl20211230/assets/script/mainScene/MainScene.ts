@@ -46,6 +46,9 @@ export default class MainScene extends cc.Component {
     //@property(dragonBones.ArmatureDisplay)
     //public lvlong: dragonBones.ArmatureDisplay = null;
 
+    //@property(sp.Skeleton)
+    //public zhu: sp.Skeleton = null;
+
 
 
     onLoad () {
@@ -53,11 +56,14 @@ export default class MainScene extends cc.Component {
 
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
+            FirebaseReport.reportAdjustParam("1x5fu1");    
         }
 
 
         this.initListener();
         this.showMainView();
+
+        //this.testSpine();
 
     }
 
@@ -106,6 +112,7 @@ export default class MainScene extends cc.Component {
 
     private onBtnStart():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_start);
+        FirebaseReport.reportAdjustParam("oq0hy2");
         cc.director.loadScene('GameScene');//进入游戏场景
 
         //userData.setData(localStorageKey.GOLD, 6000);
@@ -114,6 +121,7 @@ export default class MainScene extends cc.Component {
 
     private onBtnSkin():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_skin);
+        FirebaseReport.reportAdjustParam("bm6s8g");
         this.showSkinShop();
     }
 
@@ -124,6 +132,7 @@ export default class MainScene extends cc.Component {
 
     private onBtnWeapon(): void {
         FirebaseReport.reportInformation("shouye_arms");
+        FirebaseReport.reportAdjustParam("tc5zgk");
         var self = this;
         cc.loader.loadRes("prefabs/game/weapon/WeaponRoot", cc.Prefab, (e, p) => {
             var pnode = cc.instantiate(p as cc.Prefab);
@@ -137,6 +146,7 @@ export default class MainScene extends cc.Component {
 
     private onBtnSign(): void {
         FirebaseReport.reportInformation("shouye_gift");
+        FirebaseReport.reportAdjustParam("pj9a8i");
         var self = this;
         cc.loader.loadRes("prefabs/sign/SignInView", cc.Prefab, (e, p) => {
             var pnode = cc.instantiate(p as cc.Prefab);
@@ -293,6 +303,210 @@ export default class MainScene extends cc.Component {
     //        demonSlot                      //影魔的头部插槽
 
     //    );
+    //}
+
+
+    private testSpine(): void {
+        	///
+	//替换另一个皮肤下的某个部件
+
+	//
+
+        //let goblingirl = this.zhu.findSlot("st");
+        //let attachment = goblingirl.getAttachment();
+
+        //let gun = this.zhu.findSlot('pf');
+        //gun.setAttachment(attachment);
+
+    }
+
+    changePartialCloth(skeleton: sp.Skeleton, slotName: string, targetSkinName: string, targetAttaName: string) {
+        // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
+        const slot = skeleton.findSlot(slotName);
+        const skeletonData = skeleton.skeletonData.getRuntimeData();
+        const skin = skeletonData.findSkin(targetSkinName);
+        const slotIndex = skeletonData.findSlotIndex(slotName);
+        const attachment = skin.getAttachment(slotIndex, targetAttaName);
+        if (!slot || !attachment) {
+            cc.error(slot && attachment, "slots: " + slotName + ", attach: " + targetAttaName + " not exists!");
+            return;
+        }
+        slot.setAttachment(attachment);
+        // 如果spine使用了private或者shared等缓存模式，则需要更新缓存。
+        skeleton.invalidAnimationCache();
+    }
+
+
+    changeParSlot() {
+        let sk1: sp.Skeleton;
+        let sk2: sp.Skeleton;
+
+        let parts = ["left-arm", "left-hand", "left-shoulder"];
+        for (let i = 0; i < parts.length; i++) {
+            let slot1 = sk1.findSlot(parts[i]);
+            let slot2 = sk2.findSlot(parts[i]);
+            let attachment = slot2.getAttachment();
+            slot1.setAttachment(attachment);
+        }
+    }
+
+
+    //public changeSlot(sk: sp.Skeleton, slotName: string, texture: cc.Texture2D) {
+    //    //获取插槽
+    //    let slot = sk.findSlot(slotName);
+    //    //获取挂件
+    //    let att = slot.attachment;
+    //    //创建region
+    //    let skeletonTexture = new sp.SkeletonTexture();
+    //    skeletonTexture.setRealTexture(texture)
+    //    let page = new sp.spine.TextureAtlasPage()
+    //    page.name = texture.name
+    //    page.uWrap = sp.spine.TextureWrap.ClampToEdge
+    //    page.vWrap = sp.spine.TextureWrap.ClampToEdge
+    //    page.texture = skeletonTexture
+    //    page.texture.setWraps(page.uWrap, page.vWrap)
+    //    page.width = texture.width
+    //    page.height = texture.height
+
+    //    let region = new sp.spine.TextureAtlasRegion()
+    //    region.page = page
+    //    region.width = texture.width
+    //    region.height = texture.height
+    //    region.originalWidth = texture.width
+    //    region.originalHeight = texture.height
+
+    //    region.rotate = false
+    //    region.u = 0
+    //    region.v = 0
+    //    region.u2 = 1
+    //    region.v2 = 1
+    //    region.texture = skeletonTexture
+    //    //替换region
+    //    att.region = region
+    //    att.setRegion(region)
+    //    att.updateOffset();
+    //}
+
+    //updatePartialSkin(ani: sp.Skeleton, tex2d: cc.Texture2D, slotsName: string) {
+    //    let slot: sp.spine.Slot = ani.findSlot(slotsName);
+    //    let attachment: sp.spine.RegionAttachment = slot.getAttachment() as sp.spine.RegionAttachment;
+    //    if (!slot || !attachment) {
+    //        cc.error('error...');
+    //        return;
+    //    }
+
+    //    let region: sp.spine.TextureAtlasRegion = attachment.region as sp.spine.TextureAtlasRegion;
+    //    let skeletonTexture = new sp.SkeletonTexture();
+    //    skeletonTexture.setRealTexture(tex2d);
+
+    //    region.u = 0;
+    //    region.v = 0;
+    //    region.u2 = 1;
+    //    region.v2 = 1;
+    //    region.width = tex2d.width;
+    //    region.height = tex2d.height;
+    //    region.originalWidth = tex2d.width;
+    //    region.originalHeight = tex2d.height;
+    //    region.rotate = false;
+    //    region.texture = skeletonTexture;
+    //    region.page = null;
+    //    attachment.width = region.width;
+    //    attachment.height = region.height;
+    //    attachment.setRegion(region);
+
+    //    // mark: 不需要创建新的sp.spine.TextureAtlasRegion， 直接更新原attachment下的region即可。
+    //    // let region: sp.spine.TextureRegion = this.createRegion(tex2d);
+    //    // attachment.setRegion(region);
+    //    // attachment.width = region.width;
+    //    // attachment.height = region.height;
+    //    attachment.updateOffset();
+    //    slot.setAttachment(attachment);
+    //    // skeleton如果使用了缓存模式则需要刷新缓存
+    //    ani.invalidAnimationCache();
+    //}
+
+    //createRegion(tex: cc.Texture2D): sp.spine.TextureAtlasRegion {
+        
+    //    let skeletonTexture = new sp.SkeletonTexture();
+    //    skeletonTexture.setRealTexture(tex);
+
+    //    // mark: 可以不设置page
+    //    // let page = new sp.spine.TextureAtlasPage();
+    //    // page.name = tex.name;
+    //    // page.uWrap = sp.spine.TextureWrap.ClampToEdge;
+    //    // page.vWrap = sp.spine.TextureWrap.ClampToEdge;
+    //    // page.texture = skeletonTexture;
+    //    // page.texture.setWraps(page.uWrap, page.vWrap);
+    //    // page.width = tex.width;
+    //    // page.height = tex.height;
+
+    //    let region = new sp.spine.TextureAtlasRegion();
+    //    // region.page = page;
+    //    region.width = tex.width;
+    //    region.height = tex.height;
+    //    region.originalWidth = tex.width;
+    //    region.originalHeight = tex.height;
+    //    region.rotate = false;
+    //    region.u = 0;
+    //    region.v = 0;
+    //    region.u2 = 1;
+    //    region.v2 = 1;
+    //    region.texture = skeletonTexture;
+    //    return region;
+    //}
+
+
+    //// 使用外部图片换装
+    //changePartialWithExternalTexture(ani: sp.Skeleton, slotName: string, tex2d: cc.Texture2D) {
+    //    let slot: sp.spine.Slot = ani.findSlot(slotName);
+    //    let attach: sp.spine.RegionAttachment | sp.spine.MeshAttachment = slot.getAttachment() as (sp.spine.RegionAttachment | sp.spine.MeshAttachment);
+
+    //    let spineTexture: sp.SkeletonTexture = new sp.SkeletonTexture({ width: tex2d.width, height: tex2d.height });
+    //    spineTexture.setRealTexture(tex2d);
+
+    //    // 单张图片可以不用创建page
+    //    // let page = new sp.spine.TextureAtlasPage();
+    //    // page.name = tex2d.name;
+    //    // page.uWrap = sp.spine.TextureWrap.ClampToEdge;
+    //    // page.vWrap = sp.spine.TextureWrap.ClampToEdge;
+    //    // page.texture = spineTexture;
+    //    // page.texture.setWraps(page.uWrap, page.vWrap);
+    //    // page.width = tex2d.width;
+    //    // page.height = tex2d.height;
+
+    //    // let region: sp.spine.TextureAtlasRegion = new sp.spine.TextureAtlasRegion();
+    //    let region: sp.spine.TextureAtlasRegion = attach.region as sp.spine.TextureAtlasRegion;
+    //    // region.page = page;
+    //    region.width = tex2d.width;
+    //    region.height = tex2d.height;
+    //    region.originalWidth = tex2d.width;
+    //    region.originalHeight = tex2d.height;
+
+    //    region.rotate = false;
+    //    region.u = 0;
+    //    region.v = 0;
+    //    region.u2 = 1;
+    //    region.v2 = 1;
+    //    // 换图后可以通过设置x、y偏移量来对准位置（如果切图有偏差）
+    //    // region.offsetX = 300;
+    //    // region.offsetY = 200;
+    //    region.texture = spineTexture;
+    //    region.renderObject = region;
+
+    //    // 如果不修改attach的大小则新图片会被限制在原始图片大小范围内
+    //    attach.width = tex2d.width;
+    //    attach.height = tex2d.height;
+    //    cc.log(attach);
+
+    //    if (attach instanceof sp.spine.MeshAttachment) {
+    //        attach.updateUVs();
+    //    } else {
+    //        attach.setRegion(region);
+    //        attach.updateOffset();
+    //    }
+
+    //    // ani 如果使用了缓存模式则需要刷新缓存, 一般换装为了不英雄别的动画都需要设置缓存模式为privite_cache
+    //    ani.invalidAnimationCache();
     //}
 
 }

@@ -79,6 +79,11 @@ export default class GameScence extends cc.Component {
         if(this.loading){
             return ;
         }
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+
         this.loading = true;
         this.towerLayer.node.removeAllChildren();
         this.stageArrowNode.active = false;
@@ -216,7 +221,7 @@ export default class GameScence extends cc.Component {
         this.kuang2.on("click", () => { this.clickHpIdx = 1; this.OnShowAddHpAds(); }, this);
         none.on("click", () => { this.CloseHpPanel(); }, this);
 
-        this.scheduleOnce(() => { this.UpHpShow(); }, 1)
+        
 
         var random1 = this.random(0, this.addHpMul.length - 1);
         this.randomMul.push(random1);
@@ -236,7 +241,15 @@ export default class GameScence extends cc.Component {
 
         this.func1 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(() => { this.kuang2.runAction(this.func2); }));
         this.func2 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(() => { this.kuang1.runAction(this.func1); }));
-        
+
+        let levelCount = LevelData.curLevel;
+
+        if (levelCount > 1) {
+            this.scheduleOnce(() => { this.UpHpShow(); }, 1)
+        }
+        else {
+            this.scheduleOnce(() => { this.towerLayer.PrinceTalk(); }, 1)
+        }
     }
 
     private random(lower, upper) {
@@ -264,6 +277,7 @@ export default class GameScence extends cc.Component {
     }
 
     private OnShowAddHpAds() {
+      
         FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_shuxing);
         var self = this;        
         SdkManager.GetInstance().JavaRewardedAds(FirebaseKey.zhandou_ad2_shuxing, () => { self.GetHpAni(); }, () => { self.noAdCallback(); });
@@ -271,16 +285,21 @@ export default class GameScence extends cc.Component {
     }
 
     private CloseHpPanel() {
+        FirebaseReport.reportAdjustParam("falxom");
+        this.towerLayer.canTouck = true;
         this.wildRage2.active = false;
     }
 
     private GetHpAni() {
+       
         this.wildRage2.active = false;
-
+        this.towerLayer.canTouck = true;
+        FirebaseReport.reportAdjustParam("4kit8e");
         this.towerLayer.addPlayerAniHp(this.weaponID[this.clickHpIdx], Math.floor(this.addHpMul[this.randomMul[this.clickHpIdx]] * this.initHp));
     }
 
-    private UpHpShow() {   
+    private UpHpShow() {
+        this.towerLayer.canTouck = false;
         this.wildRage2.setScale(0, 0);
         this.wildRage2.active = true;
         this.kuang1.stopAllActions();
@@ -320,10 +339,15 @@ export default class GameScence extends cc.Component {
 
     private onBtnWildRageClick():void {
         //this.showWildRage();
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+        FirebaseReport.reportAdjustParam("ta0lk2");
         this.UpHpShow();
     }
 
-    private onBtnNoThanksOfWildRageClick():void {
+    private onBtnNoThanksOfWildRageClick(): void {
+
         this.wildRage.active = false;
     }
 
@@ -349,7 +373,12 @@ export default class GameScence extends cc.Component {
         this.towerLayer.addPlayerHp(Math.floor(this.rateOfIncreasePower * this.initHp));
     }
 
-    private onBtnHomeClick(): void {        
+    private onBtnHomeClick(): void {      
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+        FirebaseReport.reportAdjustParam("2f62iq");
         FirebaseReport.reportInformation(FirebaseKey.zhandou_shouye);
         if (userData.GetIntAdStatus()) {
             SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.zhandou_shouye, () => {
@@ -364,7 +393,13 @@ export default class GameScence extends cc.Component {
     /**
      * 下一关
      */
-    public onBtnSkipLevel(){
+    public onBtnSkipLevel() {
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+
+        FirebaseReport.reportAdjustParam("9re0dr");
         // if (cc.sys.platform == cc.sys.ANDROID) {
              FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_skip);
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
@@ -400,10 +435,16 @@ export default class GameScence extends cc.Component {
     /**
      * 重玩
      */
-    public onBtnRestartClick():void{
+    public onBtnRestartClick(): void{
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+
         if(this.loading){
             return ;
         }
+        FirebaseReport.reportAdjustParam("26hfya");
         FirebaseReport.reportInformation(FirebaseKey.zhandou_playagain);
          cc.director.loadScene( 'GameScene');
         //this.restartGame();
@@ -428,7 +469,12 @@ export default class GameScence extends cc.Component {
     /**
      * 下一栋塔楼
      */
-    private stageArrowNext(){
+    private stageArrowNext() {
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+
        
         if(this.moveCount > this.moveStep){
             cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0) }).start(); //, { easing: 'sineOutIn'}
@@ -444,7 +490,13 @@ export default class GameScence extends cc.Component {
     }
 
     //上一栋塔楼
-    private stageArrowPrev(){
+    private stageArrowPrev() {
+
+        if (this.towerLayer.canTouck == false) {
+            return
+        }
+
+
         if(this.moveStep>0){
             cc.tween(this.towerLayer.node).by(0.1, {position: cc.v3(this.towerLayer.getTowerOffsetX(), 0, 0)}).start();
             this.moveStep--;

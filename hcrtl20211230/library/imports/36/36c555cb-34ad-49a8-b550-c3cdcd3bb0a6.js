@@ -29,11 +29,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var PrefabsManager_1 = require("../manager/PrefabsManager");
 var SoundManager_1 = require("../manager/SoundManager");
 var SpineManager_1 = require("../manager/SpineManager");
 var GameScence_1 = require("./GameScence");
 var RoleBase_1 = require("./RoleBase");
 var TowerTile_1 = require("./TowerTile");
+var LevelData_1 = require("../data/LevelData");
+var FirebaseReport_1 = require("../util/FirebaseReport");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var TowerLayer = /** @class */ (function (_super) {
     __extends(TowerLayer, _super);
@@ -45,6 +48,7 @@ var TowerLayer = /** @class */ (function (_super) {
         _this.towerRoofPrefab = null; //塔顶
         _this.towerTilePrefab = null; //塔格子prefab
         _this.towerPrefab = null; //塔每一栋
+        _this.talkNode = null; //游戏剧情
         _this.towerOffsetX = 350;
         _this.towerTileOffsetY = 150;
         _this.playerposition = 0;
@@ -54,7 +58,11 @@ var TowerLayer = /** @class */ (function (_super) {
         _this.isDie = false;
         _this.caidaiAni = null;
         _this.weaponIcon = null;
+        _this.canTouck = true;
         _this.curTargetIndex = -1;
+        _this.moveSelfTile = false;
+        _this.talkStrs = ["Tap that room to attack the weak enemy first", "She is mine,HEHE!!", "NO!!!"];
+        _this.talkIndex = 0;
         return _this;
     }
     TowerLayer.prototype.onLoad = function () {
@@ -94,6 +102,10 @@ var TowerLayer = /** @class */ (function (_super) {
         ;
         this.findPlayerColumn();
     };
+    TowerLayer.prototype.PrinceTalk = function () {
+        var princess = this.findPrincess();
+        this.SetTalkInfo(princess);
+    };
     //查找角色所在塔楼
     TowerLayer.prototype.findPlayerColumn = function () {
         var nodeChildren = this.node.children;
@@ -122,7 +134,6 @@ var TowerLayer = /** @class */ (function (_super) {
             }
             node.off(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
         }
-        console.log("this.playerposition   " + this.playerposition);
     };
     TowerLayer.prototype.addPlayerHp = function (addHp) {
         var player = this.findPlayer();
@@ -182,10 +193,26 @@ var TowerLayer = /** @class */ (function (_super) {
         }
         return null;
     };
+    //查找角色所有格子
+    TowerLayer.prototype.findPrincess = function () {
+        var playerColumn = this.node.children[this.playerposition];
+        if (playerColumn) {
+            for (var i = 0; i < playerColumn.children.length; i++) {
+                var playerTile = playerColumn.children[i].getComponent(TowerTile_1.default);
+                if (playerTile && playerTile.isPrincess()) {
+                    return playerTile.getPrincess();
+                }
+            }
+        }
+        return null;
+    };
     //点击塔楼事件
     TowerLayer.prototype.towerTouch = function (touch) {
         var _this = this;
         if (this.isMove || this.isFight || this.isDie) {
+            return;
+        }
+        if (this.canTouck == false) {
             return;
         }
         var currentTarget = touch.currentTarget; //当前点击的格子  
@@ -201,6 +228,10 @@ var TowerLayer = /** @class */ (function (_super) {
                 //如果是销不处理
                 if (towerTile_1.isLock()) {
                     return;
+                }
+                if (towerTile_1.isGuidance()) {
+                    towerTile_1.unGuidance();
+                    this.HideTalkInfo();
                 }
                 var monster = towerTile_1.getMonster();
                 if (monster == null) { //怪物不存在
@@ -276,19 +307,22 @@ var TowerLayer = /** @class */ (function (_super) {
     //攻击之后
     TowerLayer.prototype.attackedLater = function (playerRole, monsterRole, posCache, towerTile) {
         var _this = this;
-        console.log("this.playerposition    " + this.playerposition);
-        console.log("this.getIndex    " + towerTile.getIndex());
         if (towerTile.getIndex() != this.playerposition) {
             var til = this.CheckTowerNull(towerTile);
             if (til) {
-                var towerTileMonste = this.node.children[towerTile.getIndex()];
-                var index1 = towerTileMonste.children.indexOf(towerTile.node);
-                var index2 = towerTileMonste.children.indexOf(til.node);
-                this.checkUpTowerMonster(til);
-                if (index2 < index1)
-                    this.playerAddTowerTile(til, playerRole, 2);
-                else
-                    this.playerAddTowerTile(til, playerRole, 1);
+                if (this.moveSelfTile) {
+                }
+                else {
+                    this.moveSelfTile = true;
+                    var towerTileMonste = this.node.children[towerTile.getIndex()];
+                    var index1 = towerTileMonste.children.indexOf(towerTile.node);
+                    var index2 = towerTileMonste.children.indexOf(til.node);
+                    this.checkUpTowerMonster(til);
+                    if (index2 < index1)
+                        this.playerAddTowerTile(til, playerRole, 2);
+                    else
+                        this.playerAddTowerTile(til, playerRole, 1);
+                }
             }
         }
         if (!monsterRole.hasItem) {
@@ -313,9 +347,12 @@ var TowerLayer = /** @class */ (function (_super) {
             if (!die) {
                 if (!_this.checkUpTowerHasMonster(towerTile)) { //塔楼是否还有怪物
                     console.log("没怪了，计算角色塔楼");
-                    _this.playerAddLastTowerTile(towerTile); //把角色添加到新的格子
-                    _this.isFight = false; //战斗结束
-                    _this.curTargetIndex = -1;
+                    if (LevelData_1.default.curLevel == 1) {
+                        _this.DevilsAni(function () { _this.fateEndAction(towerTile); });
+                    }
+                    else {
+                        _this.fateEndAction(towerTile);
+                    }
                     return;
                 }
                 _this.isFight = false;
@@ -345,6 +382,11 @@ var TowerLayer = /** @class */ (function (_super) {
             // this.loseNode.active = true;
             // SoundManager.getInstance().playEffect(SoundManager.Lose_Jingle);
         });
+    };
+    TowerLayer.prototype.fateEndAction = function (towerTile) {
+        this.playerAddLastTowerTile(towerTile); //把角色添加到新的格子
+        this.isFight = false; //战斗结束
+        this.curTargetIndex = -1;
     };
     //检测是否是增益怪
     TowerLayer.prototype.checkUpGain = function (towerTile) {
@@ -421,9 +463,17 @@ var TowerLayer = /** @class */ (function (_super) {
             longRanger.node.addChild(bulletNode);
             var targerPost = bulletNode.parent.convertToNodeSpaceAR(player.node.parent.convertToWorldSpaceAR(player.node.position));
             targerPost.y += 75;
-            var radian = Math.atan((player.node.y - targerPost.y) / (player.node.x - targerPost.x));
-            var angle = radian * 180 / Math.PI;
-            bulletNode.angle = angle;
+            //let radian = Math.atan((player.node.y - targerPost.y) / (player.node.x - targerPost.x));
+            //let angle = radian * 180 / Math.PI;
+            //let theangle = Math.atan2(player.node.y - targerPost.y, player.node.x - targerPost.x);
+            //let angle = theangle * 180 / Math.PI ;
+            //bulletNode.angle = angle;
+            var orientationX = player.node.x - targerPost.x;
+            var orientationY = player.node.y - targerPost.y;
+            var dir = cc.v2(orientationX, orientationY);
+            var angle2 = dir.signAngle(cc.v2(0, 1));
+            var olj = angle2 / Math.PI * 180;
+            bulletNode.rotation = olj;
             cc.tween(bulletNode).to(0.1 * i + 0.3, { position: targerPost }).removeSelf().call(function () {
                 if (_this.isDie) {
                     return;
@@ -686,10 +736,15 @@ var TowerLayer = /** @class */ (function (_super) {
     };
     //检查格子怪物是否打完
     TowerLayer.prototype.checkUpTowerMonster = function (towerTile) {
+        var _this = this;
         //没怪物了，塔消失，玩家塔增加
         var towerTileMonste = this.node.children[towerTile.getIndex()];
         var index = towerTileMonste.children.indexOf(towerTile.node);
         var length = towerTileMonste.children.length;
+        cc.tween(towerTile.node).to(0.5, { scale: 0.1 }).removeSelf().call(function () {
+            //this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
+            _this.moveSelfTile = false;
+        }).start();
         //格子没怪物了，格子向下移动
         for (var i = length - 1; i > 0; i--) {
             var targer = towerTileMonste.children[i];
@@ -698,9 +753,6 @@ var TowerLayer = /** @class */ (function (_super) {
                 cc.tween(targer).to(0.5, { position: targetPos1 }).start();
             }
         }
-        cc.tween(towerTile.node).to(0.5, { scale: 0.1 }).removeSelf().call(function () {
-            //this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
-        }).start();
     };
     //有锁的是否要可以解锁
     TowerLayer.prototype.checkUpIsLock = function (towerTileNode) {
@@ -839,6 +891,8 @@ var TowerLayer = /** @class */ (function (_super) {
             SpineManager_1.default.getInstance().playSpinAnimation(this.caidaiAni, "caidai", false, function () {
                 _this.caidaiAni.node.active = false;
                 _this.successNode.active = true;
+                _this.successNode.setScale(0, 0);
+                _this.successNode.runAction(cc.scaleTo(0.2, 1, 1));
                 SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.Success_jingle);
             });
         }
@@ -869,6 +923,80 @@ var TowerLayer = /** @class */ (function (_super) {
     TowerLayer.prototype.getTowerOffsetX = function () {
         return this.towerOffsetX;
     };
+    //剧情对话
+    TowerLayer.prototype.SetTalkInfo = function (targetNode) {
+        var lable = this.talkNode.getChildByName("txt_talklable").getComponent(cc.Label);
+        lable.string = this.talkStrs[this.talkIndex];
+        if (this.talkIndex == 0) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("k5yc73");
+        }
+        else if (this.talkIndex == 2) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("98v4ap");
+        }
+        this.talkIndex++;
+        this.talkNode.active = true;
+        this.talkNode.setScale(1, 0);
+        this.talkNode.runAction(cc.scaleTo(0.3, 1, 1));
+        var targerPost = this.talkNode.parent.convertToNodeSpaceAR(targetNode.parent.convertToWorldSpaceAR(targetNode.position));
+        targerPost.y += 110;
+        targerPost.x += 90;
+        //cc.tween(this.talkNode).to( 0.3, { position: targerPost }).call(() => {
+        //}).start();
+        this.talkNode.setPosition(targerPost);
+    };
+    TowerLayer.prototype.HideTalkInfo = function (callback) {
+        var _this = this;
+        if (callback === void 0) { callback = null; }
+        if (this.talkNode.active) {
+            var sp = cc.sequence(cc.scaleTo(0.3, 1, 0), cc.callFunc(function () {
+                _this.talkNode.active = false;
+                if (callback != null) {
+                    callback();
+                }
+            }));
+            this.talkNode.runAction(sp);
+        }
+    };
+    //魔王来袭
+    TowerLayer.prototype.DevilsAni = function (callback) {
+        var _this = this;
+        if (callback === void 0) { callback = null; }
+        var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList["Devils"]);
+        this.node.addChild(tempNode, 10, "mowang");
+        tempNode.setPosition(-380, 100);
+        var princess = this.findPrincess();
+        /* tempNode.setScale(0.35 * 0.5, 0.35 * 0.5);*/
+        var targerPost = tempNode.parent.convertToNodeSpaceAR(princess.parent.convertToWorldSpaceAR(princess.position));
+        var tempY = 50;
+        targerPost.y += tempY;
+        var mowang = tempNode.getChildByName("mowang");
+        var ani = mowang.getComponent(sp.Skeleton);
+        var pani = princess.getComponent(sp.Skeleton);
+        mowang.setScale(0.35 * 0.5, 0.35 * 0.5);
+        var func = function () {
+            SpineManager_1.default.getInstance().playSpinAnimation(ani, "mfeixing", true);
+            SpineManager_1.default.getInstance().playSpinAnimation(pani, "nfeixing", true);
+            targerPost.x = 400;
+            targerPost.y = 100;
+            cc.tween(tempNode).to(1.5, { position: targerPost }).call(function () {
+                var player = _this.findPlayer();
+                _this.SetTalkInfo(player);
+                _this.scheduleOnce(function () { _this.HideTalkInfo(callback); }, 2);
+                tempNode.removeFromParent();
+                tempNode.destroy();
+            }).start();
+        };
+        SpineManager_1.default.getInstance().playSpinAnimation(ani, "mfeixing", true);
+        cc.tween(tempNode).to(0.8, { position: targerPost }).call(function () {
+            SpineManager_1.default.getInstance().playSpinAnimation(ani, "mdaiji", true);
+            _this.SetTalkInfo(mowang);
+            princess.setParent(tempNode);
+            //tempNode.addChild(princess, 10, "princess")
+            princess.setScale(0.35 * 0.5, 0.35 * 0.5);
+            princess.setPosition(0, -tempY);
+            _this.scheduleOnce(function () { _this.HideTalkInfo(func); }, 2);
+        }).start();
+    };
     __decorate([
         property(cc.Node)
     ], TowerLayer.prototype, "loseNode", void 0);
@@ -887,6 +1015,9 @@ var TowerLayer = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], TowerLayer.prototype, "towerPrefab", void 0);
+    __decorate([
+        property(cc.Node)
+    ], TowerLayer.prototype, "talkNode", void 0);
     __decorate([
         property(sp.Skeleton)
     ], TowerLayer.prototype, "caidaiAni", void 0);

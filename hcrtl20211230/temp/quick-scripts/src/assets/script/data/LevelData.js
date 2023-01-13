@@ -124,6 +124,19 @@ var LevelData = /** @class */ (function (_super) {
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
+                        [{ prefab: "princess", hp: 50, type: "princess" }]]
+                },
+                {
+                    data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
+                        [{ prefab: "Sword_1", hp: 60, type: "monster" }]]
+                }
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
                         [{ prefab: "Weapon_3", hp: 50, type: "item" }]]
                 },
                 {

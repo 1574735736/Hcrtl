@@ -70,6 +70,7 @@ export default class WeaponShop extends cc.Component {
     }
 
     OnClosePanel() {
+        FirebaseReport.reportAdjustParam("7to0i3");
         FirebaseReport.reportInformation("arms_ranbui");
         this.m_Listerer.showMainView();
         this.node.destroy();
@@ -213,6 +214,7 @@ export default class WeaponShop extends cc.Component {
 
     private OnClickAds(index: number) {
         this.UpdateSelect(index);
+        FirebaseReport.reportAdjustParam("bfgg7y");
         SdkManager.GetInstance().JavaRewardedAds("arms_ad2", () => {
            this.OnUseClick();
         }, () => { this.noAdCallback(); })
@@ -228,6 +230,7 @@ export default class WeaponShop extends cc.Component {
 
     private OnClickBuy(index: number) {
         FirebaseReport.reportInformation("arms_goumai");
+        FirebaseReport.reportAdjustParam("loixwr");
         this.UpdateSelect(index);
         this.curGold = this.curGold - this.weaponDatas[this.selectPos].costNum;
         userData.setData(localStorageKey.GOLD, this.curGold);

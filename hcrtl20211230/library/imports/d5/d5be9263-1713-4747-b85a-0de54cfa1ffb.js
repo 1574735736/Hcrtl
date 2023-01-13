@@ -94,6 +94,9 @@ var GameScence = /** @class */ (function (_super) {
         if (this.loading) {
             return;
         }
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
         this.loading = true;
         this.towerLayer.node.removeAllChildren();
         this.stageArrowNode.active = false;
@@ -214,7 +217,6 @@ var GameScence = /** @class */ (function (_super) {
         this.kuang1.on("click", function () { _this.clickHpIdx = 0; _this.OnShowAddHpAds(); }, this);
         this.kuang2.on("click", function () { _this.clickHpIdx = 1; _this.OnShowAddHpAds(); }, this);
         none.on("click", function () { _this.CloseHpPanel(); }, this);
-        this.scheduleOnce(function () { _this.UpHpShow(); }, 1);
         var random1 = this.random(0, this.addHpMul.length - 1);
         this.randomMul.push(random1);
         this.randomTwo();
@@ -229,6 +231,13 @@ var GameScence = /** @class */ (function (_super) {
         this.onSetIcon(icon2, this.weaponID[1] + "");
         this.func1 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(function () { _this.kuang2.runAction(_this.func2); }));
         this.func2 = cc.sequence(cc.scaleTo(0.3, 1.2, 1.2), cc.scaleTo(0.3, 1, 1), cc.callFunc(function () { _this.kuang1.runAction(_this.func1); }));
+        var levelCount = LevelData_1.default.curLevel;
+        if (levelCount > 1) {
+            this.scheduleOnce(function () { _this.UpHpShow(); }, 1);
+        }
+        else {
+            this.scheduleOnce(function () { _this.towerLayer.PrinceTalk(); }, 1);
+        }
     };
     GameScence.prototype.random = function (lower, upper) {
         return Math.floor(Math.random() * (upper - lower)) + lower;
@@ -258,13 +267,18 @@ var GameScence = /** @class */ (function (_super) {
         this.m_BackFunc = function () { self.GetHpAni(); };
     };
     GameScence.prototype.CloseHpPanel = function () {
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("falxom");
+        this.towerLayer.canTouck = true;
         this.wildRage2.active = false;
     };
     GameScence.prototype.GetHpAni = function () {
         this.wildRage2.active = false;
+        this.towerLayer.canTouck = true;
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("4kit8e");
         this.towerLayer.addPlayerAniHp(this.weaponID[this.clickHpIdx], Math.floor(this.addHpMul[this.randomMul[this.clickHpIdx]] * this.initHp));
     };
     GameScence.prototype.UpHpShow = function () {
+        this.towerLayer.canTouck = false;
         this.wildRage2.setScale(0, 0);
         this.wildRage2.active = true;
         this.kuang1.stopAllActions();
@@ -300,6 +314,10 @@ var GameScence = /** @class */ (function (_super) {
     };
     GameScence.prototype.onBtnWildRageClick = function () {
         //this.showWildRage();
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("ta0lk2");
         this.UpHpShow();
     };
     GameScence.prototype.onBtnNoThanksOfWildRageClick = function () {
@@ -327,6 +345,10 @@ var GameScence = /** @class */ (function (_super) {
         this.towerLayer.addPlayerHp(Math.floor(this.rateOfIncreasePower * this.initHp));
     };
     GameScence.prototype.onBtnHomeClick = function () {
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("2f62iq");
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.zhandou_shouye);
         if (UserData_1.userData.GetIntAdStatus()) {
             SdkManager_1.default.GetInstance().JavaInterstitialAds(FirebaseReport_1.FirebaseKey.zhandou_shouye, function () {
@@ -342,6 +364,10 @@ var GameScence = /** @class */ (function (_super) {
      */
     GameScence.prototype.onBtnSkipLevel = function () {
         var _this = this;
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("9re0dr");
         // if (cc.sys.platform == cc.sys.ANDROID) {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.zhandou_ad2_skip);
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
@@ -372,9 +398,13 @@ var GameScence = /** @class */ (function (_super) {
      * 重玩
      */
     GameScence.prototype.onBtnRestartClick = function () {
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
         if (this.loading) {
             return;
         }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("26hfya");
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.zhandou_playagain);
         cc.director.loadScene('GameScene');
         //this.restartGame();
@@ -398,6 +428,9 @@ var GameScence = /** @class */ (function (_super) {
      * 下一栋塔楼
      */
     GameScence.prototype.stageArrowNext = function () {
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
         if (this.moveCount > this.moveStep) {
             cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(-this.towerLayer.getTowerOffsetX(), 0, 0) }).start(); //, { easing: 'sineOutIn'}
             this.moveStep++;
@@ -413,6 +446,9 @@ var GameScence = /** @class */ (function (_super) {
     };
     //上一栋塔楼
     GameScence.prototype.stageArrowPrev = function () {
+        if (this.towerLayer.canTouck == false) {
+            return;
+        }
         if (this.moveStep > 0) {
             cc.tween(this.towerLayer.node).by(0.1, { position: cc.v3(this.towerLayer.getTowerOffsetX(), 0, 0) }).start();
             this.moveStep--;

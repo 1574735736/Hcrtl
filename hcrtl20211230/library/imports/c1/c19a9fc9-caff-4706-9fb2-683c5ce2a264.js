@@ -60,6 +60,8 @@ var Success = /** @class */ (function (_super) {
         /**本次是否已经获得了新皮肤 */
         _this.bHadGetNewSkin = false;
         _this.flay_ani = null;
+        _this.victoryIcon = null;
+        _this.comeInLevel = 0;
         _this.clickTime = 0;
         _this.isEndAni = false;
         _this.m_BackFunc = null;
@@ -77,6 +79,7 @@ var Success = /** @class */ (function (_super) {
         var rewardRate_3_1 = numContainer.getChildByName("white_3_1").getComponent(cc.Sprite);
         var rewardRate_2_1 = numContainer.getChildByName("white_2_1").getComponent(cc.Sprite);
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
+        this.victoryIcon = this.node.getChildByName("btn_video_victory").getComponent(cc.Sprite);
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
         this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
@@ -85,6 +88,7 @@ var Success = /** @class */ (function (_super) {
     Success.prototype.onEnable = function () {
         var _this = this;
         this.dispatchFirebaseKey(LevelData_1.default.curLevel);
+        this.comeInLevel = LevelData_1.default.curLevel;
         LevelData_1.default.curLevel++;
         LevelData_1.default.saveLevel();
         var goldNum = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
@@ -93,9 +97,11 @@ var Success = /** @class */ (function (_super) {
         this.lb_reward.string = "100";
         this.newSkinPanel.active = false;
         this.lb_NoThanks.active = false;
-        this.scheduleOnce(function () {
-            _this.lb_NoThanks.active = true;
-        }, 3);
+        if (this.comeInLevel > 1) {
+            this.scheduleOnce(function () {
+                _this.lb_NoThanks.active = true;
+            }, 3);
+        }
         SpineManager_1.default.getInstance().playSpinAnimation(this.roleModel, "shengli", true, null);
         SpineManager_1.default.getInstance().playSpinAnimation(this.animVictory, "biaoti", false, function () {
             SpineManager_1.default.getInstance().playSpinAnimation(_this.animVictory, "biaoti2", true, null);
@@ -104,6 +110,7 @@ var Success = /** @class */ (function (_super) {
         this.nowPointIndex = 0;
         this.randomBar.x = -this.moveAbs;
         this.changeBarPos();
+        this.onSetIcon(this.victoryIcon);
         this.updatePercentOfSkin();
     };
     Success.prototype.onDisable = function () {
@@ -151,6 +158,7 @@ var Success = /** @class */ (function (_super) {
             .start();
     };
     Success.prototype.updatePercentOfSkin = function () {
+        var _this = this;
         //先判断所有皮肤是否都已经解锁
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var bHavaLockSkin = false;
@@ -166,25 +174,59 @@ var Success = /** @class */ (function (_super) {
             return;
         }
         this.btn_getSkin.active = true;
+        //this.com.level_node.children[1].getComponent(cc.Label).string = String(a);
         var skinPer = UserData_1.userData.getData(UserData_1.localStorageKey.PER_GET_SKIN_VICTORY);
+        var oldPer = skinPer;
         skinPer += 20;
         if (skinPer > 100) {
             skinPer = 100;
         }
-        this.perOfSkin.string = skinPer + "%";
-        this.calculateAngle(skinPer);
-        if (skinPer >= 100) {
-            this.bCanClickSkinBtn = true;
-            this.bHadGetNewSkin = false;
-            UserData_1.userData.setData(UserData_1.localStorageKey.PER_GET_SKIN_VICTORY, 0); //重置进度
-            this.showSkinLight();
-            this.showNewSkinPanel(); //主动打开获得皮肤界面
-        }
-        else {
-            this.bCanClickSkinBtn = false;
-            UserData_1.userData.setData(UserData_1.localStorageKey.PER_GET_SKIN_VICTORY, skinPer);
-            this.skinLight.active = false;
-        }
+        //let sdk: any = {
+        //    a: 0,
+        //}
+        //sdk.a = oldPer;
+        //cc.tween(sdk)
+        //    .to(oldPer, { a: skinPer }, {
+        //        progress: (start, end, current, time) => {
+        //            // this.lab.string = Math.round(start + (end - start) * time) + '';//修改页面上的值
+        //            //console.log('修改ing', start + (end - start) * time);
+        //            //this.com.level_node.children[1].getComponent(cc.Label).string = (this.server_data.cardRate[2] * 100) / 100).toFixed(2) + '%';
+        //            this.perOfSkin.string = Math.round(current) + "%";
+        //            return start + (end - start) * time;
+        //        },
+        //    })
+        //    .start();
+        var func = function () {
+            oldPer += 1;
+            if (oldPer >= skinPer) {
+                oldPer = skinPer;
+                callBack();
+                this.calculateAngle(oldPer);
+                this.perOfSkin.string = oldPer + "%";
+                this.unschedule(func);
+            }
+            else {
+                this.calculateAngle(oldPer);
+                this.perOfSkin.string = oldPer + "%";
+            }
+        };
+        this.schedule(func, 0.05);
+        //this.perOfSkin.string = skinPer + "%";
+        //this.calculateAngle(skinPer);
+        var callBack = function () {
+            if (skinPer >= 100) {
+                _this.bCanClickSkinBtn = true;
+                _this.bHadGetNewSkin = false;
+                UserData_1.userData.setData(UserData_1.localStorageKey.PER_GET_SKIN_VICTORY, 0); //重置进度
+                _this.showSkinLight();
+                _this.showNewSkinPanel(); //主动打开获得皮肤界面
+            }
+            else {
+                _this.bCanClickSkinBtn = false;
+                UserData_1.userData.setData(UserData_1.localStorageKey.PER_GET_SKIN_VICTORY, skinPer);
+                _this.skinLight.active = false;
+            }
+        };
     };
     Success.prototype.calculateAngle = function (skinPer) {
         if (skinPer < 0) {
@@ -262,6 +304,7 @@ var Success = /** @class */ (function (_super) {
             return;
         }
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("6aj129");
         if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
@@ -277,12 +320,22 @@ var Success = /** @class */ (function (_super) {
         if (this.isEndAni) {
             return;
         }
+        /*     this.onSetIcon(this.victoryIcon);*/
         var myDate = Date.parse(new Date().toString());
         if ((myDate - this.clickTime) < 2000) {
             return;
         }
         this.clickTime = myDate;
-        cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node).active = true;
+        var selectNode = cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node);
+        selectNode.active = true;
+        selectNode.opacity = 0;
+        var pseq1 = cc.sequence(cc.fadeTo(0.25, 0), cc.callFunc(function () {
+            selectNode.runAction(pseq2);
+        }));
+        var pseq2 = cc.sequence(cc.fadeTo(0.25, 255), cc.callFunc(function () {
+            selectNode.runAction(pseq1);
+        }));
+        selectNode.runAction(pseq2);
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
         cc.Tween.stopAllByTarget(this.randomBar);
         this.scheduleOnce(function () {
@@ -294,14 +347,21 @@ var Success = /** @class */ (function (_super) {
             // else {
             //     this.goNextLevel(true);
             // }
-            SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_beishu", function () { _this.goNextLevel(true); }, function () { _this.noAdCallback(); });
-            this.m_BackFunc = function () { _this.goNextLevel(true); };
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("5g50d1");
+            if (this.comeInLevel == 1) {
+                this.goNextLevel(true);
+            }
+            else {
+                SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_beishu", function () { _this.goNextLevel(true); }, function () { _this.noAdCallback(); });
+                this.m_BackFunc = function () { _this.goNextLevel(true); };
+            }
         }, 1.5);
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     };
     /**获取皮肤入口按钮点击回调 */
     Success.prototype.onBtnGetSkinClick = function () {
         if (this.bCanClickSkinBtn) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("cgomnj");
             if (this.bHadGetNewSkin) { //本次已获取了新皮肤
                 Utils_1.default.showMessage(this.node, "You`ve got the skin");
             }
@@ -412,6 +472,18 @@ var Success = /** @class */ (function (_super) {
         else
             Utils_1.default.showMessage(this.node, "Ad not ready");
         this.m_BackFunc = null;
+    };
+    Success.prototype.onSetIcon = function (spr) {
+        var strPath = "";
+        if (this.comeInLevel == 1) {
+            strPath = "texture/game/ui/an_noad";
+        }
+        else {
+            strPath = "texture/game/ui/an";
+        }
+        cc.loader.loadRes(strPath, cc.SpriteFrame, function (err, sp) {
+            spr.spriteFrame = sp;
+        });
     };
     var Success_1;
     Success._instance = null;

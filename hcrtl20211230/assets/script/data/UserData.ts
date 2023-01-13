@@ -40,7 +40,7 @@ export default class UserData {
     }
 
     public getData(key: string): any {
-        if (this._localData[key] == undefined || this._localData[key] == null) { //|| key == localStorageKey.SHOP_DATAS || key == localStorageKey.WEAPON_DATAS
+        if (this._localData[key] == undefined || this._localData[key] == null ) { //|| key == localStorageKey.SHOP_DATAS || key == localStorageKey.WEAPON_DATAS
         }
         else {         
             return this._localData[key];          
@@ -74,6 +74,9 @@ export default class UserData {
                 break;
             case localStorageKey.SIGNIN_NUM:
                 defaultValue = 0;
+                break;
+            case localStorageKey.NEW_PLAYER_DATA:
+                defaultValue = this.getNewPlayerData();
                 break;
             default:
                 break;
@@ -150,7 +153,19 @@ export default class UserData {
         return datas;
     }
 
+    //获取新用户的日期
+    private getNewPlayerData() {
+        var cos = new Date().toLocaleDateString();
+        this.setData(localStorageKey.NEW_PLAYER_DATA, cos)
+        return cos;
+    }
 
+    //获取当前是否是新用户
+    public getNewPlayerStatus() {
+        var data1 = this.getData(localStorageKey.NEW_PLAYER_DATA);
+        var data2 = new Date().toLocaleDateString();
+        return data1 == data2;
+    }
 
     /**派发对应的事件 */
     private dispatchEven(event:string):void {
@@ -199,6 +214,8 @@ export class localStorageKey {
     static SIGNIN_DATA = "SIGNIN_DATA";
     //签到次数
     static SIGNIN_NUM = "SIGNIN_NUM";
+    //新用户日期
+    static NEW_PLAYER_DATA = "NEW_PLAYER_DATA"
 }
 
 export const userData = new UserData();

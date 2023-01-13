@@ -44,7 +44,7 @@ var LoadScene = /** @class */ (function (_super) {
         _this.startAni = null;
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
-        _this.inCountSpeed = 10;
+        _this.inCountSpeed = 1;
         _this.comeOnStatus = 0;
         return _this;
     }
@@ -58,7 +58,11 @@ var LoadScene = /** @class */ (function (_super) {
         this.LoadOther();
         this.comeOnStatus = UserData_1.userData.getData(UserData_1.localStorageKey.COMEON_FIRST);
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_open);
-        console.log("comeOnStatus    " + this.comeOnStatus);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam("ratmhz");
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            var status = UserData_1.userData.getNewPlayerStatus();
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "JallCallPlayerNew", "(Z)V", status);
+        }
     };
     LoadScene.prototype.initClassOnAndroid = function () {
         //将需要在安卓端调用的类赋值给cc

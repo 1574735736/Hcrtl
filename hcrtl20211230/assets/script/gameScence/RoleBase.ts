@@ -19,7 +19,10 @@ export enum RoleType {
     MONSTER,
     ITEM,
     OTHER,
-    EGG
+    EGG,
+    PRINCESS,
+    Devils,
+    Guidance,
 
 }
 
@@ -86,7 +89,9 @@ export default class RoleBase extends cc.Component {
     public init(data) {
         
         this.levels[this.lv] = true;
-        if (this.type != RoleType.OTHER && !this.shield) {
+
+        
+        if (this.type != RoleType.OTHER && !this.shield && this.type != RoleType.Guidance) {
             if(this.isScaleX()){//放大血条
                 this.hpLable.node.scaleX = -2;
             }else{
@@ -94,26 +99,35 @@ export default class RoleBase extends cc.Component {
             }
             this.hpLable.node.scaleY = 2;
         }
-       
+        
         if(data.data){//
             this.data = data.data;
             //盾怪物处理
-            if(this.node.name.indexOf("Shield")!=-1){
-                this.shieldhpLable.node.active = true;
-                this.shieldhpLable.string = this.data.shield_hp;
-                this.shieldhpLable.node.scaleX = -2;
-                this.shieldhpLable.node.scaleY = 2;
-                this.shieldhpLable.node.y +=40;//20
-                this.shieldHp = Number(this.data.shield_hp);
+            if (this.node.name.indexOf("Shield") != -1) {
+                if (this.shieldhpLable) {
+                    this.shieldhpLable.node.active = true;
+                    this.shieldhpLable.string = this.data.shield_hp;
+                    this.shieldhpLable.node.scaleX = -2;
+                    this.shieldhpLable.node.scaleY = 2;
+                    this.shieldhpLable.node.y += 40;//20
+                    this.shieldHp = Number(this.data.shield_hp);
+                }              
             }
         }
-        if (this.type != RoleType.OTHER ) {
-            if(this.type != RoleType.ITEM){//不是道具，播放待机
-                this.ani = this.getComponent(sp.Skeleton);
+       
+       
+        if (this.type != RoleType.OTHER && this.type != RoleType.Guidance) {
+            if (this.type != RoleType.ITEM) {//不是道具，播放待机
+                
+                this.ani = this.node.getComponent(sp.Skeleton);
                 this.idle();
                 // this.attack();
             }
-            this.hpLable.string = data.hp+"";
+            if (this.type == RoleType.PRINCESS) { this.hpLable.string = "Hana"; }
+            else if (this.type == RoleType.Devils) { this.hpLable.string = ""; }
+            else {
+                this.hpLable.string = data.hp + "";
+            }              
             this.hp = Number(data.hp);
             this.maxHp = this.hp;
         }
@@ -126,10 +140,12 @@ export default class RoleBase extends cc.Component {
             this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
             this.laodAin();
 
-            if(this.shieldHp == 0){
-                this.shieldhpLable.node.scale = 2;
-                this.shieldhpLable.node.y +=40;//20
-                this.shieldhpLable.node.active = false;
+            if (this.shieldHp == 0) {
+                if (this.shieldhpLable) {
+                    this.shieldhpLable.node.scale = 2;
+                    this.shieldhpLable.node.y += 40;//20
+                    this.shieldhpLable.node.active = false;
+                }                
             }
         }
         //蛋处理
@@ -257,8 +273,7 @@ export default class RoleBase extends cc.Component {
     public loadSpAin(weaponIdx) {
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let usingSkinIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
-        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
-        console.log("playerAinPath     : " + this.playerAinPath);
+        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;        
         this.laodAin();
     }
     /**
@@ -353,7 +368,6 @@ export default class RoleBase extends cc.Component {
      * @param targerHp 
      */
     public addHp(targerHp) {
-        console.log("targerHp   :" + targerHp + "    hp :" + this.hp);
         this.hp += targerHp;
         this.maxHp = this.hp;
         this.hpLable.string = this.hp.toString();
@@ -510,6 +524,13 @@ export default class RoleBase extends cc.Component {
         if (this.type == RoleType.PLAYER) {
             ainName = "daiji"//"daiji2"
         }
+        else if (this.type == RoleType.PRINCESS) {
+            ainName = "ndaiji"
+        }
+        else if (this.type == RoleType.Devils) {
+            ainName = "mdaiji"
+        }
+
         
         SpineManager.getInstance().playSpinAnimation(this.ani,ainName, true, null, this);
     }
@@ -548,8 +569,13 @@ export default class RoleBase extends cc.Component {
                 ainName = "Attack_1";
             }
         }
-        console.log("attack name: "+ainName);
-        
+        if (this.ani) {
+
+        }
+        else {
+           
+        }
+
         SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
             if (cb) {
                 cb();

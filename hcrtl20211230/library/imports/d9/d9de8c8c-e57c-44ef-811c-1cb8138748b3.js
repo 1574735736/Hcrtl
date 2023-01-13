@@ -76,6 +76,9 @@ var UserData = /** @class */ (function () {
             case localStorageKey.SIGNIN_NUM:
                 defaultValue = 0;
                 break;
+            case localStorageKey.NEW_PLAYER_DATA:
+                defaultValue = this.getNewPlayerData();
+                break;
             default:
                 break;
         }
@@ -146,6 +149,18 @@ var UserData = /** @class */ (function () {
         }
         return datas;
     };
+    //获取新用户的日期
+    UserData.prototype.getNewPlayerData = function () {
+        var cos = new Date().toLocaleDateString();
+        this.setData(localStorageKey.NEW_PLAYER_DATA, cos);
+        return cos;
+    };
+    //获取当前是否是新用户
+    UserData.prototype.getNewPlayerStatus = function () {
+        var data1 = this.getData(localStorageKey.NEW_PLAYER_DATA);
+        var data2 = new Date().toLocaleDateString();
+        return data1 == data2;
+    };
     /**派发对应的事件 */
     UserData.prototype.dispatchEven = function (event) {
         switch (event) {
@@ -199,6 +214,8 @@ var localStorageKey = /** @class */ (function () {
     localStorageKey.SIGNIN_DATA = "SIGNIN_DATA";
     //签到次数
     localStorageKey.SIGNIN_NUM = "SIGNIN_NUM";
+    //新用户日期
+    localStorageKey.NEW_PLAYER_DATA = "NEW_PLAYER_DATA";
     return localStorageKey;
 }());
 exports.localStorageKey = localStorageKey;

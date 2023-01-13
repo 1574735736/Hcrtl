@@ -12,6 +12,8 @@ import Bullet from "./Bullet";
 import GameScence from "./GameScence";
 import RoleBase, { RoleType } from "./RoleBase";
 import TowerTile from "./TowerTile";
+import LevelData from "../data/LevelData";
+import { FirebaseKey, FirebaseReport } from "../util/FirebaseReport";
 
 const { ccclass, property } = cc._decorator;
 
@@ -36,6 +38,9 @@ export default class TowerLayer extends cc.Component {
     @property(cc.Prefab)
     towerPrefab: cc.Prefab = null;//塔每一栋
 
+    @property(cc.Node)
+    talkNode: cc.Node = null;//游戏剧情
+
     private towerOffsetX = 350;
     private towerTileOffsetY = 150;
 
@@ -50,6 +55,8 @@ export default class TowerLayer extends cc.Component {
     @property(cc.Node)
     public weaponIcon: cc.Node = null;
 
+
+    public canTouck: boolean = true;
 
     onLoad() {
 
@@ -86,8 +93,13 @@ export default class TowerLayer extends cc.Component {
                 tempNodeParent.addChild(this.addRoof(end + 1));//塔顶
             }
         };
+        this.findPlayerColumn();      
+    }
+
+    public PrinceTalk() {
         
-        this.findPlayerColumn();
+        var princess = this.findPrincess();
+        this.SetTalkInfo(princess);
     }
 
     //查找角色所在塔楼
@@ -118,8 +130,6 @@ export default class TowerLayer extends cc.Component {
             }
             node.off(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
         }
-
-        console.log("this.playerposition   " + this.playerposition);
     }
 
     public addPlayerHp(addHp:number):void { 
@@ -196,11 +206,30 @@ export default class TowerLayer extends cc.Component {
         }
         return null;
     }
+
+    //查找角色所有格子
+    findPrincess() {
+        let playerColumn = this.node.children[this.playerposition];
+        if (playerColumn) {
+            for (let i = 0; i < playerColumn.children.length; i++) {
+                let playerTile = playerColumn.children[i].getComponent(TowerTile);
+                if (playerTile && playerTile.isPrincess()) {
+                    return playerTile.getPrincess();
+                }
+            }
+        }
+        return null;
+    }
+
     curTargetIndex: number = -1; 
     //点击塔楼事件
     public towerTouch(touch: Event) {            
         if (this.isMove || this.isFight || this.isDie) {
             return;
+        }
+
+        if (this.canTouck == false) {
+            return
         }
 
         let currentTarget = touch.currentTarget as any;//当前点击的格子  
@@ -221,6 +250,12 @@ export default class TowerLayer extends cc.Component {
                 if (towerTile.isLock()) {
                     return;
                 }
+
+                if (towerTile.isGuidance()) {
+                    towerTile.unGuidance();
+                    this.HideTalkInfo();
+                }
+
                 let monster = towerTile.getMonster();
                 if (monster == null) {//怪物不存在
                     monster = towerTile.getItem();//是否存在道具
@@ -304,25 +339,29 @@ export default class TowerLayer extends cc.Component {
             }
         }
     }
+    moveSelfTile: boolean = false;
     //攻击之后
     private attackedLater(playerRole, monsterRole, posCache, towerTile) {
-
-        console.log("this.playerposition    " + this.playerposition); 
-        console.log("this.getIndex    " + towerTile.getIndex()); 
+    
         if (towerTile.getIndex() != this.playerposition) {
             var til = this.CheckTowerNull(towerTile);
             if (til) {
+                if (this.moveSelfTile) {
 
-                let towerTileMonste = this.node.children[towerTile.getIndex()];
-                let index1 = towerTileMonste.children.indexOf(towerTile.node);
-                let index2 = towerTileMonste.children.indexOf(til.node);
+                }
+                else {
+                    this.moveSelfTile = true;
+                    let towerTileMonste = this.node.children[towerTile.getIndex()];
+                    let index1 = towerTileMonste.children.indexOf(towerTile.node);
+                    let index2 = towerTileMonste.children.indexOf(til.node);
 
 
-                this.checkUpTowerMonster(til);
-                if (index2 < index1)
-                    this.playerAddTowerTile(til, playerRole, 2);
-                else
-                    this.playerAddTowerTile(til, playerRole, 1);
+                    this.checkUpTowerMonster(til);
+                    if (index2 < index1)
+                        this.playerAddTowerTile(til, playerRole, 2);
+                    else
+                        this.playerAddTowerTile(til, playerRole, 1);
+                }                
             }
         }
                 
@@ -347,10 +386,17 @@ export default class TowerLayer extends cc.Component {
         this.calculationHp(playerRole, monsterRole, towerTile, (die) => {
             if (!die) {
                 if (!this.checkUpTowerHasMonster(towerTile)) {//塔楼是否还有怪物
+
+
                     console.log("没怪了，计算角色塔楼");
-                    this.playerAddLastTowerTile(towerTile);//把角色添加到新的格子
-                    this.isFight = false;//战斗结束
-                    this.curTargetIndex = -1;
+
+                    if (LevelData.curLevel == 1) {
+                        this.DevilsAni(() => { this.fateEndAction(towerTile); });
+                    }
+                    else {
+                        this.fateEndAction(towerTile);
+                    }
+                  
                     return;
                 }
 
@@ -385,6 +431,12 @@ export default class TowerLayer extends cc.Component {
             // this.loseNode.active = true;
             // SoundManager.getInstance().playEffect(SoundManager.Lose_Jingle);
         });
+    }
+
+    private fateEndAction(towerTile: TowerTile) {
+        this.playerAddLastTowerTile(towerTile);//把角色添加到新的格子
+        this.isFight = false;//战斗结束
+        this.curTargetIndex = -1;
     }
 
     //检测是否是增益怪
@@ -466,9 +518,21 @@ export default class TowerLayer extends cc.Component {
             longRanger.node.addChild(bulletNode);
             let targerPost = bulletNode.parent.convertToNodeSpaceAR(player.node.parent.convertToWorldSpaceAR(player.node.position));
             targerPost.y += 75;
-            let radian = Math.atan((player.node.y - targerPost.y) / (player.node.x - targerPost.x));
-            let angle = radian * 180 / Math.PI;
-            bulletNode.angle = angle;
+
+            
+            //let radian = Math.atan((player.node.y - targerPost.y) / (player.node.x - targerPost.x));
+            //let angle = radian * 180 / Math.PI;
+            //let theangle = Math.atan2(player.node.y - targerPost.y, player.node.x - targerPost.x);
+            //let angle = theangle * 180 / Math.PI ;
+            //bulletNode.angle = angle;
+
+            let orientationX = player.node.x - targerPost.x;
+            let orientationY = player.node.y - targerPost.y;
+            let dir = cc.v2(orientationX, orientationY);
+            let angle2 = dir.signAngle(cc.v2(0, 1));
+            let olj = angle2 / Math.PI * 180;
+            bulletNode.rotation = olj;
+
 
             cc.tween(bulletNode).to(0.1 * i + 0.3, { position: targerPost }).removeSelf().call(() => {
                 if (this.isDie) {
@@ -495,6 +559,8 @@ export default class TowerLayer extends cc.Component {
         }
 
     }
+
+
 
     //获得蛋，创建宠物
     public addEgg(role1: RoleBase, role2: RoleBase,  cb?: Function){
@@ -744,6 +810,12 @@ export default class TowerLayer extends cc.Component {
         let towerTileMonste = this.node.children[towerTile.getIndex()];
         let index = towerTileMonste.children.indexOf(towerTile.node);
         let length = towerTileMonste.children.length;
+
+        cc.tween(towerTile.node).to(0.5, { scale: 0.1 }).removeSelf().call(() => {
+            //this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
+            this.moveSelfTile = false;
+        }).start();
+
         //格子没怪物了，格子向下移动
         for (let i = length - 1; i > 0; i--) {
             let targer = towerTileMonste.children[i];
@@ -751,11 +823,7 @@ export default class TowerLayer extends cc.Component {
                 let targetPos1 = new cc.Vec3(targer.x, targer.y - this.towerTileOffsetY, 0);
                 cc.tween(targer).to(0.5, { position: targetPos1 }).start();
             }
-        }
-        cc.tween(towerTile.node).to(0.5, { scale: 0.1 }).removeSelf().call(() => {
-            //this.checkUpIsLock(towerTileMonste);//格子移动完成后，检测是否有锁格子需要解锁
-        }).start();
-
+        }      
     }
 
     //有锁的是否要可以解锁
@@ -920,12 +988,19 @@ export default class TowerLayer extends cc.Component {
             SpineManager.getInstance().playSpinAnimation(this.caidaiAni, "caidai", false, () => {
                 this.caidaiAni.node.active = false;
                 this.successNode.active = true;
+
+                this.successNode.setScale(0, 0);
+                this.successNode.runAction(cc.scaleTo(0.2, 1, 1));    
+
                 SoundManager.getInstance().playEffect(SoundManager.Success_jingle);
             });
             
         }
         else {
             this.successNode.active = true;
+
+
+
             SoundManager.getInstance().playEffect(SoundManager.Success_jingle);
         }    
     }
@@ -955,4 +1030,89 @@ export default class TowerLayer extends cc.Component {
     public getTowerOffsetX() {
         return this.towerOffsetX;
     }
+    talkStrs: string[] = ["Tap that room to attack the weak enemy first", "She is mine,HEHE!!", "NO!!!"];
+    talkIndex: number = 0;
+    //剧情对话
+    private SetTalkInfo(targetNode: cc.Node): void {
+        var lable = this.talkNode.getChildByName("txt_talklable").getComponent(cc.Label);
+        lable.string = this.talkStrs[this.talkIndex];
+        if (this.talkIndex == 0) {
+            FirebaseReport.reportAdjustParam("k5yc73");
+        }
+        else if (this.talkIndex == 2) {
+            FirebaseReport.reportAdjustParam("98v4ap");
+        }
+        this.talkIndex++;
+        this.talkNode.active = true;
+        this.talkNode.setScale(1, 0);
+        this.talkNode.runAction(cc.scaleTo(0.3, 1, 1));    
+
+
+        let targerPost = this.talkNode.parent.convertToNodeSpaceAR(targetNode.parent.convertToWorldSpaceAR(targetNode.position));
+        targerPost.y += 110;
+        targerPost.x += 90;
+        //cc.tween(this.talkNode).to( 0.3, { position: targerPost }).call(() => {
+
+        //}).start();
+        this.talkNode.setPosition(targerPost);
+    }
+
+    private HideTalkInfo(callback: Function = null) {
+        if (this.talkNode.active) {
+            var sp = cc.sequence(cc.scaleTo(0.3, 1, 0), cc.callFunc(() => {
+                this.talkNode.active = false;
+                if (callback != null) {
+                    callback();
+                }
+            }));
+            this.talkNode.runAction(sp);  
+        }         
+    }
+
+    //魔王来袭
+    private DevilsAni(callback: Function = null) {
+        let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList["Devils"])
+        this.node.addChild(tempNode, 10, "mowang")
+        tempNode.setPosition(-380, 100);
+        var princess = this.findPrincess();
+       /* tempNode.setScale(0.35 * 0.5, 0.35 * 0.5);*/
+        let targerPost = tempNode.parent.convertToNodeSpaceAR(princess.parent.convertToWorldSpaceAR(princess.position));
+        let tempY = 50
+        targerPost.y += tempY;
+        var mowang = tempNode.getChildByName("mowang");
+        var ani = mowang.getComponent(sp.Skeleton);
+        var pani = princess.getComponent(sp.Skeleton);
+        mowang.setScale(0.35 * 0.5, 0.35 * 0.5);
+
+        var func = () => {
+            SpineManager.getInstance().playSpinAnimation(ani, "mfeixing", true);
+            SpineManager.getInstance().playSpinAnimation(pani, "nfeixing", true);
+            targerPost.x = 400;
+            targerPost.y = 100;
+            
+            cc.tween(tempNode).to(1.5, { position: targerPost }).call(() => {
+                var player = this.findPlayer();
+                this.SetTalkInfo(player);
+                this.scheduleOnce(() => { this.HideTalkInfo(callback); }, 2);
+                tempNode.removeFromParent();
+                tempNode.destroy();
+            }).start();
+        };
+
+
+        SpineManager.getInstance().playSpinAnimation(ani, "mfeixing", true);
+        cc.tween(tempNode).to(0.8, { position: targerPost }).call(() => {
+            SpineManager.getInstance().playSpinAnimation(ani, "mdaiji", true);
+            this.SetTalkInfo(mowang);
+            princess.setParent(tempNode);
+            //tempNode.addChild(princess, 10, "princess")
+            princess.setScale(0.35 * 0.5, 0.35 * 0.5);
+            princess.setPosition(0, -tempY);
+
+            this.scheduleOnce(() => { this.HideTalkInfo(func); }, 2);
+        }).start();
+        
+
+    }
+    
 }

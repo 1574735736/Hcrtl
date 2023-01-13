@@ -17,14 +17,17 @@ export default class SpineManager extends BaseInstanceClass {
      * @param completeCallback 播放回调
      * @param isLoop 是否循环
      */
-  public playSpinAnimation(spinSkeleton: sp.Skeleton, animationName: string, isLoop: boolean, completeCallback: any, self: any = null, timeScale: number = 1) {
+    public playSpinAnimation(spinSkeleton: sp.Skeleton, animationName: string, isLoop: boolean, completeCallback: any, self: any = null, timeScale: number = 1) {
+
+
     // console.log('播放动画', animationName, 'spinSkeleton', spinSkeleton, isLoop)
     spinSkeleton.setStartListener(null);
     spinSkeleton.loop = isLoop;
     spinSkeleton.timeScale = timeScale;
     spinSkeleton.animation = animationName;
     // spinSkeleton.setAnimation(0,animationName,isLoop);
-    spinSkeleton.setCompleteListener(completeCallback);
+       
+      spinSkeleton.setCompleteListener(completeCallback);
     // (completeCallback) ? : spinSkeleton.setCompleteListener(null);
 }
 

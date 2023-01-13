@@ -87,6 +87,22 @@ export default class LevelData extends cc.Component {
 
 
     public static levelData = [
+
+        {
+            bg: 0,//level 0
+            towerData: [//第一栋
+                {
+                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
+                        [{ prefab: "princess", hp: 50, type: "princess" }]]
+                },//第二栋
+
+                {
+                    data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
+                    [{ prefab: "Sword_1", hp: 60, type: "monster" }]]
+                }
+            ]
+        },
+
         {
             bg: 0,//level 1
             towerData: [//第一栋

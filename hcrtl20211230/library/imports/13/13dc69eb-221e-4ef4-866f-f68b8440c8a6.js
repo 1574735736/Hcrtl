@@ -40,8 +40,10 @@ var TowerTile = /** @class */ (function (_super) {
         _this.index = 0;
         _this.monsterList = [];
         _this.player = null;
+        _this.princess = null;
         _this.lock = false;
         _this.playerData = null;
+        _this.guidance = false;
         return _this;
         // update (dt) {}
     }
@@ -105,6 +107,18 @@ var TowerTile = /** @class */ (function (_super) {
                     tempNode.position = cc.v3(0, tempNode.y, 0);
                     this.node.addChild(tempNode, 1, "lock");
                 }
+                else if (data.type == 'princess') {
+                    tempNode.position = cc.v3(0, 0, 0);
+                    this.node.addChild(tempNode);
+                    this.princess = tempNode;
+                }
+                else if (data.type == 'guidance') {
+                    this.guidance = true;
+                    tempNode.active = true;
+                    tempNode.scale = 1.75;
+                    tempNode.position = cc.v3(-20, 150, 0);
+                    this.node.addChild(tempNode, 1, "guidance");
+                }
             }
         }
     };
@@ -116,6 +130,14 @@ var TowerTile = /** @class */ (function (_super) {
             this.lock = false;
         }
     };
+    TowerTile.prototype.unGuidance = function () {
+        var guidance = this.node.getChildByName("guidance");
+        if (guidance) {
+            guidance.removeFromParent();
+            guidance.destroy();
+            this.guidance = false;
+        }
+    };
     TowerTile.prototype.addPlayer = function (player) {
         this.player = player;
         player.position = cc.v3(0, 0, 0); //(0, this.node.y + 80, 0);
@@ -124,11 +146,17 @@ var TowerTile = /** @class */ (function (_super) {
     TowerTile.prototype.isLock = function () {
         return this.lock;
     };
+    TowerTile.prototype.isGuidance = function () {
+        return this.guidance;
+    };
     TowerTile.prototype.getIndex = function () {
         return this.index;
     };
     TowerTile.prototype.getPlayer = function () {
         return this.player;
+    };
+    TowerTile.prototype.getPrincess = function () {
+        return this.princess;
     };
     TowerTile.prototype.getMonsters = function () {
         return this.monsterList;
@@ -166,6 +194,9 @@ var TowerTile = /** @class */ (function (_super) {
     };
     TowerTile.prototype.isPlayer = function () {
         return this.player != null;
+    };
+    TowerTile.prototype.isPrincess = function () {
+        return this.princess != null;
     };
     TowerTile = __decorate([
         ccclass

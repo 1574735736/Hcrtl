@@ -16,8 +16,10 @@ export default class TowerTile extends cc.Component {
     private index: number = 0;
     private monsterList: any = [];
     private player: cc.Node = null;
+    private princess: cc.Node = null;
     private lock = false;
     private playerData = null;
+    private guidance = false;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -85,6 +87,19 @@ export default class TowerTile extends cc.Component {
                     tempNode.position = cc.v3(0, tempNode.y, 0);
                     this.node.addChild(tempNode, 1, "lock");
                 }
+                else if (data.type == 'princess') {
+
+                    tempNode.position = cc.v3(0, 0, 0);
+                    this.node.addChild(tempNode);
+                    this.princess = tempNode;
+                }
+                else if (data.type == 'guidance') {
+                    this.guidance = true;
+                    tempNode.active = true;
+                    tempNode.scale = 1.75;
+                    tempNode.position = cc.v3(-20, 150, 0);
+                    this.node.addChild(tempNode, 1, "guidance");
+                }
             }
         }
     }
@@ -98,6 +113,15 @@ export default class TowerTile extends cc.Component {
         }
     }
 
+    public unGuidance() {
+        let guidance = this.node.getChildByName("guidance");
+        if (guidance) {
+            guidance.removeFromParent();
+            guidance.destroy();
+            this.guidance = false;
+        }
+    }
+
     public addPlayer(player) {
         this.player = player;
         player.position = cc.v3(0, 0, 0);//(0, this.node.y + 80, 0);
@@ -108,12 +132,20 @@ export default class TowerTile extends cc.Component {
         return this.lock;
     }
 
+    public isGuidance() {
+        return this.guidance;
+    }
+
     public getIndex() {
         return this.index;
     }
 
     public getPlayer() {        
         return this.player;
+    }
+
+    public getPrincess() {
+        return this.princess;
     }
 
     public getMonsters() {
@@ -158,6 +190,10 @@ export default class TowerTile extends cc.Component {
     }
     public isPlayer() {
         return this.player != null;
+    }
+
+    public isPrincess() {
+        return this.princess != null;
     }
 
     // update (dt) {}
