@@ -42,6 +42,13 @@ var MainScene = /** @class */ (function (_super) {
         _this.num_gold_main = null;
         _this.roleModel = null;
         _this.shopDatas = null;
+        //@property(dragonBones.ArmatureDisplay)
+        //public huolong: dragonBones.ArmatureDisplay = null;
+        //@property(dragonBones.ArmatureDisplay)
+        //public lvlong: dragonBones.ArmatureDisplay = null;
+        //@property(sp.Skeleton)
+        //public zhu: sp.Skeleton = null;
+        _this.weapon = null;
         _this.m_BackFunc = null;
         return _this;
         //public changeSlot(sk: sp.Skeleton, slotName: string, texture: cc.Texture2D) {
@@ -184,12 +191,8 @@ var MainScene = /** @class */ (function (_super) {
         //}
     }
     MainScene_1 = MainScene;
-    //@property(dragonBones.ArmatureDisplay)
-    //public huolong: dragonBones.ArmatureDisplay = null;
-    //@property(dragonBones.ArmatureDisplay)
-    //public lvlong: dragonBones.ArmatureDisplay = null;
     //@property(sp.Skeleton)
-    //public zhu: sp.Skeleton = null;
+    //public zhu1: sp.Skeleton = null;
     MainScene.prototype.onLoad = function () {
         MainScene_1._instance = this;
         if (cc.sys.platform == cc.sys.ANDROID) {
@@ -198,7 +201,7 @@ var MainScene = /** @class */ (function (_super) {
         }
         this.initListener();
         this.showMainView();
-        //this.testSpine();
+        this.testSpine();
     };
     /**初始化监听 */
     MainScene.prototype.initListener = function () {
@@ -226,10 +229,11 @@ var MainScene = /** @class */ (function (_super) {
         this.num_gold_main.string = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
         this.mainRoot.active = true;
         this.SkinShopRoot.active = false;
-        var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
+        var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX) + 1;
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        //SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        SpineManager_1.default.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, usingIndex, weaponIdx, "daiji3");
     };
     MainScene.prototype.onBtnStart = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_start);
@@ -393,10 +397,50 @@ var MainScene = /** @class */ (function (_super) {
         ///
         //替换另一个皮肤下的某个部件
         //
-        //let goblingirl = this.zhu.findSlot("st");
-        //let attachment = goblingirl.getAttachment();
-        //let gun = this.zhu.findSlot('pf');
-        //gun.setAttachment(attachment);
+        //this.zhu.setSkin("p6");
+        //let slot1 = this.zhu.findSlot("wq");
+        //if (slot1) {
+        //    console.log(" Slot1 Is Not Null !!!");
+        //}
+        //let slot2 = this.weapon.findSlot("wq6");
+        //if (slot2) {
+        //    console.log(" Slot2 Is Not Null !!!");
+        //}
+        //let attachment = slot2.getAttachment();
+        //slot1.setAttachment(attachment);
+        /*  SpineManager.getInstance().changSpinSkin(this.zhu, this.weapon, 3, 4);*/
+        //let skeleton = this.zhu;
+        //let slotName = "wq";//'yb/ysz/wq';
+        //let targetSkinName = 'p8';
+        //let targetAttaName = 'wq';// 这里获取的是Spine中皮肤占位符的名字
+        //const slot = skeleton.findSlot(slotName);// 获取当前动画中Slot数据
+        //const skeletonData = skeleton.skeletonData.getRuntimeData() as sp.spine.SkeletonData;// 获取 Spine Runtime 使用的 SkeletonData
+        //const slotIndex = skeletonData.findSlotIndex(slotName);// 当去当前Slot的index
+        //if (slotIndex) {
+        //    console.log("slotIndex     +" + slotIndex);
+        //}
+        //const skin = skeletonData.findSkin(targetSkinName);// 获取需要替换的皮肤数据
+        //if (skin) {
+        //    console.log("skin is has !!!!");
+        //}
+        //const atta = skin.getAttachment(0, targetAttaName);// 获取目标皮肤相应index的皮肤占位符数据
+        //if (atta) {
+        //    console.log("atta is has !!!!!!");
+        //}
+        //if (slot) {
+        //    slot.setAttachment(atta);// 数据替换
+        //}
+        //else {
+        //    console.log("this.slot is null !!!!!!");
+        //}
+        //skeleton.invalidAnimationCache();
+        //动态加载一个Texture
+        //cc.loader.loadRes("texture/game/weapon/wq2", cc.Texture2D, (error, image) => {
+        //    if (!error) {
+        //        this.changeSlot(this.zhu, "wq", image);
+        //    }
+        //});
+        // this.changeSlot(this.zhu, "wq", cc.loader.getRes("texture/game/weapon/wq2"));
     };
     MainScene.prototype.changePartialCloth = function (skeleton, slotName, targetSkinName, targetAttaName) {
         // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
@@ -438,6 +482,9 @@ var MainScene = /** @class */ (function (_super) {
     __decorate([
         property(sp.Skeleton)
     ], MainScene.prototype, "roleModel", void 0);
+    __decorate([
+        property(sp.Skeleton)
+    ], MainScene.prototype, "weapon", void 0);
     MainScene = MainScene_1 = __decorate([
         ccclass
     ], MainScene);

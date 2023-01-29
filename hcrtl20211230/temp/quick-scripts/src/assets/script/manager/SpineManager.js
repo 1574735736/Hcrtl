@@ -73,6 +73,50 @@ var SpineManager = /** @class */ (function (_super) {
             // spinSkeleton.setSkin(skinName);
         });
     };
+    SpineManager.prototype.loadSkinSpine = function (spinSkeleton, weapon, isLoop, skinIdx, weaponIdx, animationName, completeCallback) {
+        var _this = this;
+        if (completeCallback === void 0) { completeCallback = null; }
+        var path = skinIdx > 1 ? "spine/play/pifu" : "spine/play/zhu1";
+        cc.loader.loadRes(path, sp.SkeletonData, function (err, spData) {
+            if (err) {
+                console.log("LoadSpin ", err);
+                return;
+            }
+            spinSkeleton.skeletonData = spData;
+            spinSkeleton.loop = isLoop;
+            spinSkeleton.animation = animationName;
+            if (completeCallback != null) {
+                completeCallback();
+            }
+            _this.changSpinSkin(spinSkeleton, weapon, skinIdx, weaponIdx);
+        });
+    };
+    SpineManager.prototype.changSpinSkin = function (spSkin, weapon, skinIdx, weaponIdx) {
+        var sIdx = skinIdx - 1;
+        var sName = sIdx < 1 ? "default" : "p" + sIdx;
+        cc.log("sName     " + sName);
+        spSkin.defaultSkin = sName;
+        spSkin.setSkin(sName);
+        var slot1 = spSkin.findSlot("wq");
+        if (!slot1) {
+            console.log("slot1   is   null !!!");
+        }
+        var wName = "";
+        if (weaponIdx > 1) {
+            wName = "wq" + weaponIdx;
+        }
+        else {
+            if (sIdx <= 0) {
+                wName = "wq1";
+            }
+            else {
+                wName = "ypwq" + (sIdx);
+            }
+        }
+        var slot2 = weapon.findSlot(wName);
+        var attachment = slot2.getAttachment();
+        slot1.setAttachment(attachment);
+    };
     SpineManager.prototype.getAnimationName = function (spinSkeleton) {
         return spinSkeleton.animation;
     };

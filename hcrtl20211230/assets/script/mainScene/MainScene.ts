@@ -50,6 +50,13 @@ export default class MainScene extends cc.Component {
     //public zhu: sp.Skeleton = null;
 
 
+    @property(sp.Skeleton)
+    public weapon: sp.Skeleton = null;
+
+    //@property(sp.Skeleton)
+    //public zhu1: sp.Skeleton = null;
+
+
 
     onLoad () {
         MainScene._instance = this;
@@ -63,7 +70,7 @@ export default class MainScene extends cc.Component {
         this.initListener();
         this.showMainView();
 
-        //this.testSpine();
+        this.testSpine();
 
     }
 
@@ -77,7 +84,7 @@ export default class MainScene extends cc.Component {
             }
         });
 
-        cc.find("Canvas").on(EventDefine.USING_SKIN_CHANGE, () => {
+        cc.find("Canvas").on(EventDefine.USING_SKIN_CHANGE, () => { 
 
         });
 
@@ -102,12 +109,13 @@ export default class MainScene extends cc.Component {
         this.mainRoot.active = true;
         this.SkinShopRoot.active = false;
 
-        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
+        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX) + 1;
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
 
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
 
-        SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        //SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        SpineManager.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     }
 
     private onBtnStart():void {
@@ -310,13 +318,76 @@ export default class MainScene extends cc.Component {
         	///
 	//替换另一个皮肤下的某个部件
 
-	//
+        //
 
-        //let goblingirl = this.zhu.findSlot("st");
-        //let attachment = goblingirl.getAttachment();
+        //this.zhu.setSkin("p6");
 
-        //let gun = this.zhu.findSlot('pf');
-        //gun.setAttachment(attachment);
+
+        //let slot1 = this.zhu.findSlot("wq");
+        //if (slot1) {
+        //    console.log(" Slot1 Is Not Null !!!");
+        //}
+        //let slot2 = this.weapon.findSlot("wq6");
+        //if (slot2) {
+        //    console.log(" Slot2 Is Not Null !!!");
+        //}
+        //let attachment = slot2.getAttachment();
+        //slot1.setAttachment(attachment);
+
+
+      /*  SpineManager.getInstance().changSpinSkin(this.zhu, this.weapon, 3, 4);*/
+
+
+
+        //let skeleton = this.zhu;
+        //let slotName = "wq";//'yb/ysz/wq';
+        //let targetSkinName = 'p8';
+        //let targetAttaName = 'wq';// 这里获取的是Spine中皮肤占位符的名字
+        //const slot = skeleton.findSlot(slotName);// 获取当前动画中Slot数据
+
+        //const skeletonData = skeleton.skeletonData.getRuntimeData() as sp.spine.SkeletonData;// 获取 Spine Runtime 使用的 SkeletonData
+        //const slotIndex = skeletonData.findSlotIndex(slotName);// 当去当前Slot的index
+
+        //if (slotIndex) {
+        //    console.log("slotIndex     +" + slotIndex);
+        //}
+
+        //const skin = skeletonData.findSkin(targetSkinName);// 获取需要替换的皮肤数据
+
+        //if (skin) {
+        //    console.log("skin is has !!!!");
+        //}
+
+        //const atta = skin.getAttachment(0, targetAttaName);// 获取目标皮肤相应index的皮肤占位符数据
+        //if (atta) {
+        //    console.log("atta is has !!!!!!");
+        //}
+
+
+        //if (slot) {
+        //    slot.setAttachment(atta);// 数据替换
+        //}
+        //else {
+
+        //    console.log("this.slot is null !!!!!!");
+        //}
+
+        //skeleton.invalidAnimationCache();
+
+      
+
+
+        //动态加载一个Texture
+        //cc.loader.loadRes("texture/game/weapon/wq2", cc.Texture2D, (error, image) => {
+        //    if (!error) {
+        //        this.changeSlot(this.zhu, "wq", image);
+        //    }
+        //});
+
+
+       // this.changeSlot(this.zhu, "wq", cc.loader.getRes("texture/game/weapon/wq2"));
+
+
 
     }
 
@@ -356,6 +427,7 @@ export default class MainScene extends cc.Component {
     //    let slot = sk.findSlot(slotName);
     //    //获取挂件
     //    let att = slot.attachment;
+    
     //    //创建region
     //    let skeletonTexture = new sp.SkeletonTexture();
     //    skeletonTexture.setRealTexture(texture)
@@ -380,6 +452,7 @@ export default class MainScene extends cc.Component {
     //    region.v = 0
     //    region.u2 = 1
     //    region.v2 = 1
+
     //    region.texture = skeletonTexture
     //    //替换region
     //    att.region = region

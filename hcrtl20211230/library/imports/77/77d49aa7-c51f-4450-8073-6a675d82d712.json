@@ -1,0 +1,233 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "wuqi",
+  "_objFlags": 0,
+  "_native": "",
+  "_skeletonJson": {
+    "skeleton": {
+      "hash": "OBdCK19Ev2CWQ4dhAF+NVSTukZw",
+      "spine": "3.8.75",
+      "x": -355,
+      "y": -109.5,
+      "width": 720,
+      "height": 219,
+      "images": "",
+      "audio": ""
+    },
+    "bones": [
+      {
+        "name": "root"
+      }
+    ],
+    "slots": [
+      {
+        "name": "wq1",
+        "bone": "root",
+        "attachment": "wq1"
+      },
+      {
+        "name": "wq2",
+        "bone": "root",
+        "attachment": "wq2"
+      },
+      {
+        "name": "wq3",
+        "bone": "root",
+        "attachment": "wq3"
+      },
+      {
+        "name": "wq4",
+        "bone": "root",
+        "attachment": "wq4"
+      },
+      {
+        "name": "wq5",
+        "bone": "root",
+        "attachment": "wq5"
+      },
+      {
+        "name": "wq6",
+        "bone": "root",
+        "attachment": "wq6"
+      },
+      {
+        "name": "wq7",
+        "bone": "root",
+        "attachment": "wq7"
+      },
+      {
+        "name": "wq8",
+        "bone": "root",
+        "attachment": "wq8"
+      },
+      {
+        "name": "wq9",
+        "bone": "root",
+        "attachment": "wq9"
+      },
+      {
+        "name": "ypwq1",
+        "bone": "root",
+        "attachment": "ypwq1"
+      },
+      {
+        "name": "ypwq2",
+        "bone": "root",
+        "attachment": "ypwq2"
+      },
+      {
+        "name": "ypwq3",
+        "bone": "root",
+        "attachment": "ypwq3"
+      },
+      {
+        "name": "ypwq4",
+        "bone": "root",
+        "attachment": "ypwq4"
+      },
+      {
+        "name": "ypwq5",
+        "bone": "root",
+        "attachment": "ypwq5"
+      },
+      {
+        "name": "ypwq6",
+        "bone": "root",
+        "attachment": "ypwq6"
+      },
+      {
+        "name": "ypwq7",
+        "bone": "root",
+        "attachment": "ypwq7"
+      },
+      {
+        "name": "ypwq8",
+        "bone": "root",
+        "attachment": "ypwq8"
+      }
+    ],
+    "skins": [
+      {
+        "name": "default",
+        "attachments": {
+          "wq1": {
+            "wq1": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq2": {
+            "wq2": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq3": {
+            "wq3": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq4": {
+            "wq4": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq5": {
+            "wq5": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq6": {
+            "wq6": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq7": {
+            "wq7": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq8": {
+            "wq8": {
+              "x": 10,
+              "width": 710,
+              "height": 219
+            }
+          },
+          "wq9": {
+            "wq9": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq1": {
+            "ypwq1": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq2": {
+            "ypwq2": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq3": {
+            "ypwq3": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq4": {
+            "ypwq4": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq5": {
+            "ypwq5": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq6": {
+            "ypwq6": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq7": {
+            "ypwq7": {
+              "width": 710,
+              "height": 219
+            }
+          },
+          "ypwq8": {
+            "ypwq8": {
+              "width": 710,
+              "height": 219
+            }
+          }
+        }
+      }
+    ],
+    "animations": {
+      "animation": {}
+    }
+  },
+  "_atlasText": "\nwuqi.png\nsize: 1024,1024\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nwq1\n  rotate: true\n  xy: 856, 272\n  size: 362, 113\n  orig: 710, 219\n  offset: 291, 58\n  index: -1\nwq2\n  rotate: false\n  xy: 2, 39\n  size: 367, 46\n  orig: 710, 219\n  offset: 305, 87\n  index: -1\nwq3\n  rotate: false\n  xy: 496, 68\n  size: 378, 46\n  orig: 710, 219\n  offset: 277, 86\n  index: -1\nwq4\n  rotate: false\n  xy: 2, 450\n  size: 400, 184\n  orig: 710, 219\n  offset: 292, 13\n  index: -1\nwq5\n  rotate: false\n  xy: 584, 200\n  size: 407, 70\n  orig: 710, 219\n  offset: 296, 69\n  index: -1\nwq6\n  rotate: false\n  xy: 2, 285\n  size: 394, 163\n  orig: 710, 219\n  offset: 281, 35\n  index: -1\nwq7\n  rotate: false\n  xy: 398, 127\n  size: 184, 184\n  orig: 710, 219\n  offset: 302, 18\n  index: -1\nwq8\n  rotate: false\n  xy: 584, 116\n  size: 220, 82\n  orig: 710, 219\n  offset: 281, 59\n  index: -1\nwq9\n  rotate: true\n  xy: 782, 456\n  size: 178, 62\n  orig: 710, 219\n  offset: 317, 78\n  index: -1\nypwq1\n  rotate: false\n  xy: 2, 167\n  size: 351, 58\n  orig: 710, 219\n  offset: 298, 88\n  index: -1\nypwq2\n  rotate: true\n  xy: 876, 56\n  size: 142, 121\n  orig: 710, 219\n  offset: 305, 2\n  index: -1\nypwq3\n  rotate: false\n  xy: 2, 87\n  size: 492, 38\n  orig: 710, 219\n  offset: 192, 92\n  index: -1\nypwq4\n  rotate: false\n  xy: 2, 227\n  size: 382, 56\n  orig: 710, 219\n  offset: 298, 75\n  index: -1\nypwq5\n  rotate: false\n  xy: 371, 2\n  size: 149, 64\n  orig: 710, 219\n  offset: 330, 70\n  index: -1\nypwq6\n  rotate: false\n  xy: 404, 444\n  size: 376, 190\n  orig: 710, 219\n  offset: 278, 21\n  index: -1\nypwq7\n  rotate: true\n  xy: 971, 329\n  size: 305, 46\n  orig: 710, 219\n  offset: 259, 89\n  index: -1\nypwq8\n  rotate: false\n  xy: 398, 313\n  size: 456, 129\n  orig: 710, 219\n  offset: 220, 24\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "ac11bff5-7d10-4a2d-8b19-98a2c903f324"
+    }
+  ],
+  "textureNames": [
+    "wuqi.png"
+  ],
+  "scale": 1
+}

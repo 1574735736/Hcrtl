@@ -50,6 +50,61 @@ public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinN
     })
 }
 
+    public loadSkinSpine(spinSkeleton: sp.Skeleton, weapon: sp.Skeleton, isLoop: boolean, skinIdx: number, weaponIdx: number, animationName: string, completeCallback: Function = null) {
+        let path = skinIdx > 1 ? "spine/play/pifu" : "spine/play/zhu1";
+        cc.loader.loadRes(path, sp.SkeletonData, (err, spData) => {
+            if (err) {
+                console.log("LoadSpin ", err)
+                return
+            }
+            spinSkeleton.skeletonData = spData;
+            spinSkeleton.loop = isLoop;
+            spinSkeleton.animation = animationName;
+            if (completeCallback != null) {
+                completeCallback();
+            }
+
+            this.changSpinSkin(spinSkeleton, weapon, skinIdx, weaponIdx);
+           
+        })
+    }
+
+
+    public changSpinSkin(spSkin: sp.Skeleton, weapon: sp.Skeleton, skinIdx: number, weaponIdx: number ) {
+
+        let sIdx = skinIdx - 1;
+        let sName = sIdx < 1 ? "default" : "p" + sIdx;
+
+        cc.log("sName     " + sName);
+
+        spSkin.defaultSkin = sName;
+
+        spSkin.setSkin(sName);
+
+        let slot1 = spSkin.findSlot("wq");
+
+        if (!slot1) {
+            console.log("slot1   is   null !!!");
+        }
+
+        let wName = "";
+        if (weaponIdx > 1) {
+            wName = "wq" + weaponIdx;
+        }
+        else {
+            if (sIdx <= 0) {
+                wName = "wq1";
+            }
+            else {
+                wName = "ypwq" + (sIdx);
+            }           
+        }
+      
+        let slot2 = weapon.findSlot(wName);
+       
+        let attachment = slot2.getAttachment();
+        slot1.setAttachment(attachment);
+    }
 
 public getAnimationName(spinSkeleton: sp.Skeleton): string {
     return spinSkeleton.animation;
