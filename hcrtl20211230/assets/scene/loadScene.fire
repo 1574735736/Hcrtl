@@ -458,7 +458,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 685.95,
+      "width": 1787.69,
       "height": 609.61
     },
     "_anchorPoint": {
@@ -510,7 +510,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "daiji",
+    "defaultAnimation": "daiji3",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -521,13 +521,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "daiji",
+    "_animationName": "daiji3",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
+      "__uuid__": "05c14f06-4119-4322-b96c-fc6ce2036414"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,

@@ -52,6 +52,7 @@ var Success = /** @class */ (function (_super) {
         _this.skinProgressBar_1 = null;
         _this.skinProgressBar_2 = null;
         _this.perOfSkin = null;
+        _this.weapon = null;
         _this.moveAbs = 272;
         _this.lastPointIndex = 0;
         _this.nowPointIndex = 0;
@@ -81,6 +82,7 @@ var Success = /** @class */ (function (_super) {
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
         this.victoryIcon = this.node.getChildByName("btn_video_victory").getComponent(cc.Sprite);
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
+        this.weapon = cc.find("spine_weapon", this.node.parent.parent).getComponent(sp.Skeleton);
         this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
         this.btn_getSkin = this.node.getChildByName("btn_getSkin");
@@ -380,7 +382,8 @@ var Success = /** @class */ (function (_super) {
             var data = skinDatas[i];
             if (!data.bUnlock) { //此皮肤未解锁
                 this.unlockSkinIndex = i;
-                SpineManager_1.default.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
+                //SpineManager.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
+                SpineManager_1.default.getInstance().loadSkinSpine(roleModel, this.weapon, true, data.id + 1, weaponIdx, "daiji");
                 break;
             }
         }
@@ -412,7 +415,8 @@ var Success = /** @class */ (function (_super) {
         //更新胜利界面玩家皮肤
         var resName = skinDatas[this.unlockSkinIndex].resName;
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel, "spine/players/" + resName + "" + weaponIdx, true, "default", "shengli");
+        //SpineManager.getInstance().loadSpine(this.roleModel,"spine/players/"+resName + "" + weaponIdx, true, "default", "shengli");
+        SpineManager_1.default.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, skinDatas[this.unlockSkinIndex].id + 1, weaponIdx, "daiji");
     };
     /**获取新皮肤面板的noThanks按钮点击 */
     Success.prototype.onBtnNoThanksOfSkinPanelClick = function () {

@@ -49,7 +49,7 @@ var LevelData = /** @class */ (function (_super) {
         if (level == null) {
             level = "1";
         }
-        LevelData_1.curLevel = Number(level);
+        LevelData_1.curLevel = 2; //Number(level);
         console.log("============get level: " + LevelData_1.curLevel);
     };
     var LevelData_1;

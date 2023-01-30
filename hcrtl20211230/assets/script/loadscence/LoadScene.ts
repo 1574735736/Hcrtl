@@ -29,6 +29,8 @@ export default class LoadScene extends cc.Component {
     @property(sp.Skeleton)
     private startAni: sp.Skeleton = null;
 
+    private weapon: sp.Skeleton;
+
     private isLoadingGame:boolean = true;
 
     private inAddSpeed: number = 0.4;
@@ -61,22 +63,29 @@ export default class LoadScene extends cc.Component {
         cc["sdkManager"] = SdkManager;
     }
 
-    private initRoleModel():void {
-        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
+    private initRoleModel(): void {
+        this.weapon = (cc.find("spine_weapon", this.node)).getComponent(sp.Skeleton);
+        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX) + 1;
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        //SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
+        SpineManager.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     }
 
     LoadOther() {
         SoundManager.getInstance().playBGM(SoundManager.bg, true);
+        
         PrefabsManager.getInstance().initPlayerSpine(() => {
             this.loadHallProgress(5, 100);
+            
             PrefabsManager.getInstance().initMonsterPrefab(()=>{//加载怪物
                 this.loadHallProgress(10, 100);
+                
                 PrefabsManager.getInstance().initPlayerPrefab(()=>{//加载角色
                     this.loadHallProgress(13, 100);
-                    PrefabsManager.getInstance().initOtherPrefab(()=>{//加载其它prfab
+                    
+                    PrefabsManager.getInstance().initOtherPrefab(() => {//加载其它prfab
+                        
                         this.loadHallProgress(15, 100);
                         this.loadScene();//加载场景
                     });

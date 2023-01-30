@@ -57,7 +57,10 @@ export default class RoleBase extends cc.Component {
     bulletPrefab : cc.Prefab = null;//远程攻击子弹
 
     @property(sp.Skeleton)
-    LveUp : sp.Skeleton = null;//升级动画
+    LveUp: sp.Skeleton = null;//升级动画
+
+    weapon: sp.Skeleton = null;//武器
+
     private lv = 1;
     private hp = 0;
     private shieldHp = 0;
@@ -67,6 +70,9 @@ export default class RoleBase extends cc.Component {
     public pets = false;
     private playerAinPath = "spine/player/pi1";
     private playerAinSkin = "default";
+
+    private weaponId: number = 1;
+    private skinId: number = 1;
 
     onLoad() {
         
@@ -86,10 +92,10 @@ export default class RoleBase extends cc.Component {
         return false;
     }
 
-    public init(data) {
+    public init(data ,wp: sp.Skeleton) {
         
         this.levels[this.lv] = true;
-
+        this.weapon = wp;
         
         if (this.type != RoleType.OTHER && !this.shield && this.type != RoleType.Guidance) {
             if(this.isScaleX()){//放大血条
@@ -137,6 +143,10 @@ export default class RoleBase extends cc.Component {
             let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
             let usingSkinIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
             let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
+
+            this.weaponId = weaponIdx;
+            this.skinId = skinDatas[usingSkinIndex].id + 1;
+
             this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;
             this.laodAin();
 
@@ -273,14 +283,21 @@ export default class RoleBase extends cc.Component {
     public loadSpAin(weaponIdx) {
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let usingSkinIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);
-        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;        
+        this.playerAinPath = "spine/players/" + skinDatas[usingSkinIndex].resName + "" + weaponIdx;     
+
+        this.weaponId = weaponIdx;
+        this.skinId = skinDatas[usingSkinIndex].id + 1;
+
         this.laodAin();
     }
     /**
      * 重新加载角色动画
      */
     public laodAin(){
-        SpineManager.getInstance().loadSpine(this.ani, this.playerAinPath, true, this.playerAinSkin, "daiji",);//daiji
+       // SpineManager.getInstance().loadSpine(this.ani, this.playerAinPath, true, this.playerAinSkin, "daiji",);//daiji
+
+        SpineManager.getInstance().loadSkinSpine(this.ani, this.weapon, true, this.skinId, this.weaponId, "daiji");
+
         if(this.isPets()){
             let pets = this.getPets();
             if(pets){
@@ -487,7 +504,11 @@ export default class RoleBase extends cc.Component {
         SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue1", false, () => {//Jump_1
             SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue2", false, null, this);//Jump_2
         }, this);
-        cc.tween(player).bezierTo(0.5, cc.v2(player.x, player.y), cc.v2(100, 400), cc.v2(targerPos.x - offset, targerPos.y)).call(() => {
+
+        var tempX = 100;
+        var tempY = (player.y + targerPos.y) / 2;  //400
+
+        cc.tween(player).bezierTo(0.5, cc.v2(player.x, player.y), cc.v2(tempX, tempY), cc.v2(targerPos.x - offset, targerPos.y)).call(() => {
             SpineManager.getInstance().playSpinAnimation(this.ani, "tiaoyue3", false, null, this);//Jump_3
             if (cb) {
                 cb();
@@ -548,7 +569,9 @@ export default class RoleBase extends cc.Component {
      * @param cb 
      */
     public attack(cb?: Function) {
+
         let ainName = "gongji";
+        
         if (this.type != RoleType.PLAYER) {//根据不同怪物
             let name = this.node.name;
             if (name == "DualSword" || name == "Dragon_2head") {
@@ -569,13 +592,42 @@ export default class RoleBase extends cc.Component {
                 ainName = "Attack_1";
             }
         }
+        else if (this.type == RoleType.PLAYER) {
+            if (this.weaponId > 1) {
+                if (this.weaponId == 4 || this.weaponId == 6) {
+                    ainName = "gongji2-3";
+                }
+                else if (this.weaponId == 2 || this.weaponId == 3 || this.weaponId == 5) {
+                    ainName = "gongji1-2";
+                }
+                else if (this.weaponId == 7 || this.weaponId == 8 || this.weaponId == 9) {
+                    ainName = "gongji3";
+                }
+            }
+            else {
+                if (this.skinId == 1 || this.skinId == 7 || this.skinId == 9) {
+                    ainName = "gongji2-3";
+                }
+                else if (this.skinId == 2 || this.skinId == 4 || this.skinId == 5 || this.skinId == 8) {
+                    ainName = "gongji1-2";
+                }
+                else if (this.skinId == 3 || this.skinId == 6) {
+                    ainName = "gongji3";
+                }
+            }
+
+        }
         if (this.ani) {
 
         }
         else {
            
         }
-
+        console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
+        console.log("this.type   " + this.type);
+        console.log("this.skinId   " + this.skinId);
+        console.log("this.weaponId   " + this.weaponId);
+        cc.log("ainName     " + ainName);
         SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
             if (cb) {
                 cb();

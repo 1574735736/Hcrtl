@@ -94,7 +94,10 @@ export default class ListView extends cc.Component {//本组件中子项在列�
     /**选中项序号 */
     private _selectedIndex:number = -1;//-1表示未选中任何子项
     /**上次选中的子项序号 */
-    private _lastSelectedIndex:number = -1;//
+    private _lastSelectedIndex: number = -1;//
+
+    @property(sp.Skeleton)
+    public weapon: sp.Skeleton = null;
 
     onLoad() {
         this.content = this.scrollView.content;
@@ -154,7 +157,7 @@ export default class ListView extends cc.Component {//本组件中子项在列�
             }
             else {
                 if (this.itemRenderers[i] != null) {
-                    this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
+                    this.itemRenderers[i].updateItem(i, this.dataProvider[i], this.weapon);
                 }
             }
             this.updateItemSelected(i);
@@ -234,7 +237,7 @@ export default class ListView extends cc.Component {//本组件中子项在列�
         let y = initPosY + rowIndex * increaseY;
         item.setPosition(x, y);
         let itemRendererComp = item.getComponent(this.itemClassName) as ItemRenderer;
-        itemRendererComp.updateItem(i,this.dataProvider[i]);
+        itemRendererComp.updateItem(i, this.dataProvider[i], this.weapon);
         this.itemRenderers.push(itemRendererComp);
         this.items.push(item);
     }

@@ -200,17 +200,23 @@ export default class MainScene extends cc.Component {
 
     /**更新上方的展示模型的显示*/
     private updateShowModel(bShowUpgradeAnim: boolean = false): void {
-        let resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
+        //let resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
+
+        let usingIndex = this.shopDatas[this.listViewScript.selectedIndex].id + 1;
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
         if (bShowUpgradeAnim) {
-            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", () => {
-                SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "shengji", false, () => {
-                    SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "daiji",true, null);
-                });
-            });
+
+            SpineManager.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji")
+
+            //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", () => {
+            //    SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "shengji", false, () => {
+            //        SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "daiji",true, null);
+            //    });
+            //});
         }
         else {
-            SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+            //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+            SpineManager.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji")
         }
     }
 
@@ -391,35 +397,35 @@ export default class MainScene extends cc.Component {
 
     }
 
-    changePartialCloth(skeleton: sp.Skeleton, slotName: string, targetSkinName: string, targetAttaName: string) {
-        // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
-        const slot = skeleton.findSlot(slotName);
-        const skeletonData = skeleton.skeletonData.getRuntimeData();
-        const skin = skeletonData.findSkin(targetSkinName);
-        const slotIndex = skeletonData.findSlotIndex(slotName);
-        const attachment = skin.getAttachment(slotIndex, targetAttaName);
-        if (!slot || !attachment) {
-            cc.error(slot && attachment, "slots: " + slotName + ", attach: " + targetAttaName + " not exists!");
-            return;
-        }
-        slot.setAttachment(attachment);
-        // 如果spine使用了private或者shared等缓存模式，则需要更新缓存。
-        skeleton.invalidAnimationCache();
-    }
+    //changePartialCloth(skeleton: sp.Skeleton, slotName: string, targetSkinName: string, targetAttaName: string) {
+    //    // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
+    //    const slot = skeleton.findSlot(slotName);
+    //    const skeletonData = skeleton.skeletonData.getRuntimeData();
+    //    const skin = skeletonData.findSkin(targetSkinName);
+    //    const slotIndex = skeletonData.findSlotIndex(slotName);
+    //    const attachment = skin.getAttachment(slotIndex, targetAttaName);
+    //    if (!slot || !attachment) {
+    //        cc.error(slot && attachment, "slots: " + slotName + ", attach: " + targetAttaName + " not exists!");
+    //        return;
+    //    }
+    //    slot.setAttachment(attachment);
+    //    // 如果spine使用了private或者shared等缓存模式，则需要更新缓存。
+    //    skeleton.invalidAnimationCache();
+    //}
 
 
-    changeParSlot() {
-        let sk1: sp.Skeleton;
-        let sk2: sp.Skeleton;
+    //changeParSlot() {
+    //    let sk1: sp.Skeleton;
+    //    let sk2: sp.Skeleton;
 
-        let parts = ["left-arm", "left-hand", "left-shoulder"];
-        for (let i = 0; i < parts.length; i++) {
-            let slot1 = sk1.findSlot(parts[i]);
-            let slot2 = sk2.findSlot(parts[i]);
-            let attachment = slot2.getAttachment();
-            slot1.setAttachment(attachment);
-        }
-    }
+    //    let parts = ["left-arm", "left-hand", "left-shoulder"];
+    //    for (let i = 0; i < parts.length; i++) {
+    //        let slot1 = sk1.findSlot(parts[i]);
+    //        let slot2 = sk2.findSlot(parts[i]);
+    //        let attachment = slot2.getAttachment();
+    //        slot1.setAttachment(attachment);
+    //    }
+    //}
 
 
     //public changeSlot(sk: sp.Skeleton, slotName: string, texture: cc.Texture2D) {

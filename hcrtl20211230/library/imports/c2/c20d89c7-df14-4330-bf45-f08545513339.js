@@ -74,6 +74,7 @@ var ListView = /** @class */ (function (_super) {
         _this._selectedIndex = -1; //-1表示未选中任何子项
         /**上次选中的子项序号 */
         _this._lastSelectedIndex = -1; //
+        _this.weapon = null;
         _this.contentNum = 0;
         return _this;
     }
@@ -129,7 +130,7 @@ var ListView = /** @class */ (function (_super) {
             }
             else {
                 if (this.itemRenderers[i] != null) {
-                    this.itemRenderers[i].updateItem(i, this.dataProvider[i]);
+                    this.itemRenderers[i].updateItem(i, this.dataProvider[i], this.weapon);
                 }
             }
             this.updateItemSelected(i);
@@ -194,7 +195,7 @@ var ListView = /** @class */ (function (_super) {
         var y = initPosY + rowIndex * increaseY;
         item.setPosition(x, y);
         var itemRendererComp = item.getComponent(this.itemClassName);
-        itemRendererComp.updateItem(i, this.dataProvider[i]);
+        itemRendererComp.updateItem(i, this.dataProvider[i], this.weapon);
         this.itemRenderers.push(itemRendererComp);
         this.items.push(item);
     };
@@ -348,6 +349,9 @@ var ListView = /** @class */ (function (_super) {
             tooltip: "子项行数(在自适应行数选项为false时生效,否则无效)"
         })
     ], ListView.prototype, "row", void 0);
+    __decorate([
+        property(sp.Skeleton)
+    ], ListView.prototype, "weapon", void 0);
     ListView = __decorate([
         ccclass
     ], ListView);

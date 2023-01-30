@@ -70,7 +70,7 @@ var TowerLayer = /** @class */ (function (_super) {
     TowerLayer.prototype.start = function () {
     };
     //初始化塔楼
-    TowerLayer.prototype.init = function (towerData) {
+    TowerLayer.prototype.init = function (towerData, weapon) {
         this.isMove = false;
         this.isFight = false;
         this.isDie = false;
@@ -91,7 +91,7 @@ var TowerLayer = /** @class */ (function (_super) {
                     tile.position = new cc.Vec3(0, this.towerTileOffsetY / 2 + (j - 1) * this.towerTileOffsetY, 0);
                     tile.on(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
                     var towerTile = tile.getComponent(TowerTile_1.default);
-                    towerTile.initData(this.node.childrenCount - 1, element1); //初始化塔身数据
+                    towerTile.initData(this.node.childrenCount - 1, element1, weapon); //初始化塔身数据
                     tempNodeParent.addChild(tile);
                     end = j;
                 }
@@ -814,7 +814,7 @@ var TowerLayer = /** @class */ (function (_super) {
         tile.scale = 0;
         tile.position = new cc.Vec3(0, -75, 0);
         tile.parent = towerTilePlayer;
-        tile.getComponent(TowerTile_1.default).initData(this.playerposition, null);
+        tile.getComponent(TowerTile_1.default).initData(this.playerposition, null, null);
         var tileIndex = towerTilePlayer.children.indexOf(tile);
         //把新加的放到最下
         var tempTile = towerTilePlayer.children[tileIndex];
@@ -838,10 +838,8 @@ var TowerLayer = /** @class */ (function (_super) {
             towerTile.addPlayer(player);
             role.laodAin();
             role.idle(); //role.upLevel(); //升级就是为了更改皮肤，由于当前只有一种皮肤，所以去掉升级功能
-            console.log("把角色添加到新的格子上 :" + role.getHp());
         };
         if (towerTile.getIndex() == playerTowerTile.getIndex()) {
-            console.log("角色和怪物在同一列");
             go();
             // player.y -= 150;  //为啥要减150呢
             return;

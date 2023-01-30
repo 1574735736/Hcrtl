@@ -52,7 +52,7 @@ var TowerTile = /** @class */ (function (_super) {
     TowerTile.prototype.start = function () {
     };
     //初始化塔信息
-    TowerTile.prototype.initData = function (index, datas) {
+    TowerTile.prototype.initData = function (index, datas, weapon) {
         this.index = index;
         if (datas && datas.length > 0) {
             var monsterCount = 0;
@@ -72,7 +72,7 @@ var TowerTile = /** @class */ (function (_super) {
                 tempNode.y += 150;
                 // this.node
                 var role = tempNode.getComponent(RoleBase_1.default);
-                role.init(data);
+                role.init(data, weapon);
                 if (monsterCount > 2) {
                     tempNode.position = cc.v3((i - 1) * 110, tempNode.y, 0);
                     // tempNode.setS = 0.8;

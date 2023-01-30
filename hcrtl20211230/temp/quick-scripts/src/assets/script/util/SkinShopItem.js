@@ -91,7 +91,8 @@ var SkinShopItem = /** @class */ (function (_super) {
         else {
             var bedSprite = this.bed.getComponent(cc.Sprite);
             var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
-            SpineManager_1.default.getInstance().loadSpine(this.model, "spine/players/" + this.data.resName + "" + weaponIdx, true, "default", "daiji2");
+            SpineManager_1.default.getInstance().loadSkinSpine(this.model, this.weapon, true, this.data.id + 1, weaponIdx, "daiji2");
+            //SpineManager.getInstance().loadSpine(this.model, "spine/players/"+this.data.resName + "" + weaponIdx, true, "default", "daiji2");
             bedSprite.spriteFrame = new cc.SpriteFrame("texture/load/img_bed_2.png");
         }
     };

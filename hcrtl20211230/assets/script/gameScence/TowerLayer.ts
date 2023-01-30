@@ -65,7 +65,7 @@ export default class TowerLayer extends cc.Component {
     start() {
     }
     //初始化塔楼
-    init(towerData) {
+    init(towerData, weapon: sp.Skeleton) {
         this.isMove = false;
         this.isFight = false;
         this.isDie = false;
@@ -86,7 +86,7 @@ export default class TowerLayer extends cc.Component {
                     tile.position = new cc.Vec3(0, this.towerTileOffsetY / 2 + (j - 1) * this.towerTileOffsetY, 0);
                     tile.on(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
                     let towerTile = tile.getComponent(TowerTile);
-                    towerTile.initData(this.node.childrenCount - 1, element1);//初始化塔身数据
+                    towerTile.initData(this.node.childrenCount - 1, element1, weapon);//初始化塔身数据
                     tempNodeParent.addChild(tile);
                     end = j;
                 };
@@ -898,7 +898,7 @@ export default class TowerLayer extends cc.Component {
         tile.scale = 0;
         tile.position = new cc.Vec3(0, -75, 0);
         tile.parent = towerTilePlayer;
-        tile.getComponent(TowerTile).initData(this.playerposition, null);
+        tile.getComponent(TowerTile).initData(this.playerposition, null, null);
         let tileIndex = towerTilePlayer.children.indexOf(tile);
         //把新加的放到最下
         let tempTile = towerTilePlayer.children[tileIndex];
@@ -928,13 +928,10 @@ export default class TowerLayer extends cc.Component {
 
             role.laodAin();
             role.idle();//role.upLevel(); //升级就是为了更改皮肤，由于当前只有一种皮肤，所以去掉升级功能
-
-            console.log("把角色添加到新的格子上 :" +role.getHp());
         }
 
 
         if (towerTile.getIndex() == playerTowerTile.getIndex()) {
-            console.log("角色和怪物在同一列");
             go();
            // player.y -= 150;  //为啥要减150呢
             return;

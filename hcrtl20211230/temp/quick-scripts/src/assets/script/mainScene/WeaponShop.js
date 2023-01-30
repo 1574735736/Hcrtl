@@ -58,6 +58,7 @@ var WeaponShop = /** @class */ (function (_super) {
         var btn_return = cc.find("btn_home", this.node);
         btn_return.on(EventDefine_1.default.CLICK, this.OnClosePanel, this);
         this.showModelOfShop = (cc.find("model_using/roleModel", this.node)).getComponent(sp.Skeleton);
+        this.weapon = (cc.find("spine_weapon", this.node.parent)).getComponent(sp.Skeleton);
         this.Item = cc.find("Item", this.node);
         this.content = cc.find("ScrollView/view/content", this.node);
         cc.find("Canvas").on(EventDefine_1.default.GOLD_CHANGE, function () {
@@ -84,10 +85,11 @@ var WeaponShop = /** @class */ (function (_super) {
         this.node.destroy();
     };
     WeaponShop.prototype.updateShowModel = function () {
-        var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX);
-        var resName = this.shopDatas[usingIndex].resName;
+        var usingIndex = UserData_1.userData.getData(UserData_1.localStorageKey.USING_SKIN_INDEX) + 1;
+        //let resName = this.shopDatas[usingIndex].resName;
         var weaponIdx = this.selectPos + 1;
-        SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+        //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+        SpineManager_1.default.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji");
     };
     /**�����б�����*/
     WeaponShop.prototype.updateItems = function () {

@@ -17,6 +17,7 @@ export default class WeaponShop extends cc.Component {
     private shop_num_gold: cc.Label = null
 
     private showModelOfShop: sp.Skeleton;
+    private weapon: sp.Skeleton;
 
     private shopDatas: SkinShopItemData[] = null;
     private weaponDatas: WeaponItemData[] = null;
@@ -43,6 +44,7 @@ export default class WeaponShop extends cc.Component {
         var btn_return = cc.find("btn_home", this.node);
         btn_return.on(EventDefine.CLICK, this.OnClosePanel, this);
         this.showModelOfShop = (cc.find("model_using/roleModel", this.node)).getComponent(sp.Skeleton);
+        this.weapon = (cc.find("spine_weapon", this.node.parent)).getComponent(sp.Skeleton);
         this.Item = cc.find("Item", this.node);
         this.content = cc.find("ScrollView/view/content", this.node);
         cc.find("Canvas").on(EventDefine.GOLD_CHANGE, () => {
@@ -77,11 +79,13 @@ export default class WeaponShop extends cc.Component {
     }
 
     private updateShowModel(): void {
-        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX);            
+        let usingIndex = userData.getData(localStorageKey.USING_SKIN_INDEX) + 1;            
 
-        let resName = this.shopDatas[usingIndex].resName;
+        //let resName = this.shopDatas[usingIndex].resName;
         let weaponIdx = this.selectPos + 1;
-        SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+        //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+
+        SpineManager.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji");
 
     }
 

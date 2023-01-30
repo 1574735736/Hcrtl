@@ -62,6 +62,7 @@ var GameScence = /** @class */ (function (_super) {
         _this.btn_wildRage = null;
         _this.roleModel_victory = null;
         _this.roleModel_fail = null;
+        _this.weapon = null;
         _this.loading = false;
         _this.curDataIndx = 0;
         _this.clickHpIdx = 0;
@@ -165,7 +166,7 @@ var GameScence = /** @class */ (function (_super) {
         this.towerLayer.node.x = -400;
         this.levelScale();
         //初始化塔楼数据
-        this.towerLayer.init(towerData);
+        this.towerLayer.init(towerData, this.weapon);
         var size = this.towerLayer.getSize();
         this.moveCount = size - this.defaultTowerCount;
         if (this.moveCount > 0) { //是否可移动塔楼面板
@@ -183,8 +184,10 @@ var GameScence = /** @class */ (function (_super) {
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var resName = skinDatas[usingIndex].resName;
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel_victory, "spine/players/" + resName + "" + weaponIdx, true, "default", "shengli");
-        SpineManager_1.default.getInstance().loadSpine(this.roleModel_fail, "spine/players/" + resName + "" + weaponIdx, true, "default", "siwang");
+        //SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/players/"+resName + "" +weaponIdx, true, "default", "shengli");
+        //SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/players/"+resName + "" +weaponIdx, true, "default", "siwang");
+        SpineManager_1.default.getInstance().loadSkinSpine(this.roleModel_victory, this.weapon, true, skinDatas[usingIndex].id + 1, weaponIdx, "daiji");
+        SpineManager_1.default.getInstance().loadSkinSpine(this.roleModel_fail, this.weapon, true, skinDatas[usingIndex].id + 1, weaponIdx, "siwang");
     };
     GameScence.prototype.updateWildRage = function (level) {
         var _this = this;
@@ -517,6 +520,9 @@ var GameScence = /** @class */ (function (_super) {
     __decorate([
         property(sp.Skeleton)
     ], GameScence.prototype, "roleModel_fail", void 0);
+    __decorate([
+        property(sp.Skeleton)
+    ], GameScence.prototype, "weapon", void 0);
     GameScence = GameScence_1 = __decorate([
         ccclass
     ], GameScence);

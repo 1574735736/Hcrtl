@@ -49,7 +49,9 @@ export default class Success extends cc.Component {
     skinProgressBar_2:cc.Node = null;
 
     @property(cc.Label)
-    perOfSkin:cc.Label = null;
+    perOfSkin: cc.Label = null;
+
+    weapon: sp.Skeleton = null;
 
     private static _instance:Success = null;
 
@@ -88,6 +90,8 @@ export default class Success extends cc.Component {
         this.pointerArr = [rewardRate_2, rewardRate_3, rewardRate_4, rewardRate_5, rewardRate_4_1, rewardRate_3_1, rewardRate_2_1];
         this.victoryIcon = this.node.getChildByName("btn_video_victory").getComponent(cc.Sprite);
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
+
+        this.weapon = cc.find("spine_weapon", this.node.parent.parent).getComponent(sp.Skeleton);
 
         this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
 
@@ -431,7 +435,10 @@ export default class Success extends cc.Component {
             let data = skinDatas[i];
             if (!data.bUnlock) {//此皮肤未解锁
                 this.unlockSkinIndex = i;
-                SpineManager.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
+                //SpineManager.getInstance().loadSpine(roleModel, "spine/players/" + data.resName + "" + weaponIdx, true, "default", "daiji");
+
+                SpineManager.getInstance().loadSkinSpine(roleModel, this.weapon, true, data.id+1, weaponIdx, "daiji");
+
                 break;
             }
         }
@@ -465,7 +472,9 @@ export default class Success extends cc.Component {
         //更新胜利界面玩家皮肤
         let resName = skinDatas[this.unlockSkinIndex].resName;
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager.getInstance().loadSpine(this.roleModel,"spine/players/"+resName + "" + weaponIdx, true, "default", "shengli");
+        //SpineManager.getInstance().loadSpine(this.roleModel,"spine/players/"+resName + "" + weaponIdx, true, "default", "shengli");
+
+        SpineManager.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, skinDatas[this.unlockSkinIndex].id + 1, weaponIdx, "daiji");
     }
 
     /**获取新皮肤面板的noThanks按钮点击 */

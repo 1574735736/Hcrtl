@@ -49,10 +49,13 @@ export default class GameScence extends cc.Component {
     btn_wildRage:cc.Node = null
 
     @property(sp.Skeleton)
-    roleModel_victory:sp.Skeleton = null;
+    roleModel_victory: sp.Skeleton = null;
 
     @property(sp.Skeleton)
-    roleModel_fail:sp.Skeleton = null;
+    roleModel_fail: sp.Skeleton = null;
+
+    @property(sp.Skeleton)
+    weapon: sp.Skeleton = null;
 
     private loading = false;
     public static Instance : GameScence = null;
@@ -158,7 +161,7 @@ export default class GameScence extends cc.Component {
         this.towerLayer.node.x = -400;
         this.levelScale();
         //初始化塔楼数据
-        this.towerLayer.init(towerData);
+        this.towerLayer.init(towerData, this.weapon);
         let size = this.towerLayer.getSize();
         this.moveCount = size - this.defaultTowerCount;
         if(this.moveCount>0){//是否可移动塔楼面板
@@ -176,8 +179,12 @@ export default class GameScence extends cc.Component {
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let resName = skinDatas[usingIndex].resName;
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
-        SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/players/"+resName + "" +weaponIdx, true, "default", "shengli");
-        SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/players/"+resName + "" +weaponIdx, true, "default", "siwang");
+        //SpineManager.getInstance().loadSpine(this.roleModel_victory,"spine/players/"+resName + "" +weaponIdx, true, "default", "shengli");
+        //SpineManager.getInstance().loadSpine(this.roleModel_fail,"spine/players/"+resName + "" +weaponIdx, true, "default", "siwang");
+
+        SpineManager.getInstance().loadSkinSpine(this.roleModel_victory, this.weapon, true, skinDatas[usingIndex].id + 1, weaponIdx, "daiji");
+        SpineManager.getInstance().loadSkinSpine(this.roleModel_fail, this.weapon, true, skinDatas[usingIndex].id + 1, weaponIdx, "siwang");
+
     }
     private clickHpIdx: number = 0;
     private addHpMul: number[] = [0.1, 0.15, 0.2 , 0.25, 0.3];

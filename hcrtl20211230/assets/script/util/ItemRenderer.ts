@@ -7,12 +7,15 @@ export default class ItemRenderer extends cc.Component{
     /**项呈示器的数据提供程序中的项目索引 */
     public itemIndex: number;
     /**如果项呈示器可以将其自身显示为已选中，则为 true */
-    protected mSelected:boolean;
+    protected mSelected: boolean;
 
-    public updateItem(itemIndex:number, data:any):void {
+    protected weapon: sp.Skeleton = null;
+
+    public updateItem(itemIndex: number, data: any,  wp: sp.Skeleton ):void {
         this.itemIndex = itemIndex;
         this.lastData = this.data;
         this.data = data;
+        this.weapon = wp;
         this.dataChanged();
     }
 

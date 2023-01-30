@@ -21,12 +21,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ItemRenderer = /** @class */ (function (_super) {
     __extends(ItemRenderer, _super);
     function ItemRenderer() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.weapon = null;
+        return _this;
     }
-    ItemRenderer.prototype.updateItem = function (itemIndex, data) {
+    ItemRenderer.prototype.updateItem = function (itemIndex, data, wp) {
         this.itemIndex = itemIndex;
         this.lastData = this.data;
         this.data = data;
+        this.weapon = wp;
         this.dataChanged();
     };
     /**数据更新时调用 */

@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        397.50566033705735,
+        357.6684917629732,
         0,
         0,
         0,
@@ -3711,7 +3711,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 685.95,
+      "width": 1787.69,
       "height": 609.61
     },
     "_anchorPoint": {
@@ -3780,7 +3780,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
+      "__uuid__": "05c14f06-4119-4322-b96c-fc6ce2036414"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -7612,7 +7612,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 685.95,
+      "width": 1787.69,
       "height": 609.61
     },
     "_anchorPoint": {
@@ -7681,7 +7681,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
+      "__uuid__": "05c14f06-4119-4322-b96c-fc6ce2036414"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -9421,10 +9421,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "266c736a-d890-44bd-8bc2-25a497a26785"
+      "__uuid__": "ab597feb-d6f7-4fbc-8803-46478e9e0f39"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -9868,7 +9868,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 685.95,
+      "width": 1787.69,
       "height": 609.61
     },
     "_anchorPoint": {
@@ -9937,7 +9937,7 @@
     "_playTimes": 1,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "bbd2be2d-a38e-498f-aed8-33fd5072a99d"
+      "__uuid__": "05c14f06-4119-4322-b96c-fc6ce2036414"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -10634,6 +10634,9 @@
     },
     "roleModel_fail": {
       "__id__": 205
+    },
+    "weapon": {
+      "__id__": 219
     },
     "_id": "283kiZyvZNBbSPpHDNZyUA"
   }

@@ -31,7 +31,7 @@ export default class TowerTile extends cc.Component {
 
 
     //初始化塔信息
-    public initData(index: number, datas: any) {
+    public initData(index: number, datas: any, weapon: sp.Skeleton) {
         this.index = index;
        
         if (datas && datas.length > 0) {
@@ -53,7 +53,7 @@ export default class TowerTile extends cc.Component {
                 // this.node
                 let role = tempNode.getComponent(RoleBase);
 
-                role.init(data);
+                role.init(data, weapon);
 
                 if( monsterCount>2){
                     tempNode.position = cc.v3((i-1) * 110, tempNode.y, 0);

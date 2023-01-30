@@ -51,6 +51,32 @@ var MainScene = /** @class */ (function (_super) {
         _this.weapon = null;
         _this.m_BackFunc = null;
         return _this;
+        //changePartialCloth(skeleton: sp.Skeleton, slotName: string, targetSkinName: string, targetAttaName: string) {
+        //    // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
+        //    const slot = skeleton.findSlot(slotName);
+        //    const skeletonData = skeleton.skeletonData.getRuntimeData();
+        //    const skin = skeletonData.findSkin(targetSkinName);
+        //    const slotIndex = skeletonData.findSlotIndex(slotName);
+        //    const attachment = skin.getAttachment(slotIndex, targetAttaName);
+        //    if (!slot || !attachment) {
+        //        cc.error(slot && attachment, "slots: " + slotName + ", attach: " + targetAttaName + " not exists!");
+        //        return;
+        //    }
+        //    slot.setAttachment(attachment);
+        //    // 如果spine使用了private或者shared等缓存模式，则需要更新缓存。
+        //    skeleton.invalidAnimationCache();
+        //}
+        //changeParSlot() {
+        //    let sk1: sp.Skeleton;
+        //    let sk2: sp.Skeleton;
+        //    let parts = ["left-arm", "left-hand", "left-shoulder"];
+        //    for (let i = 0; i < parts.length; i++) {
+        //        let slot1 = sk1.findSlot(parts[i]);
+        //        let slot2 = sk2.findSlot(parts[i]);
+        //        let attachment = slot2.getAttachment();
+        //        slot1.setAttachment(attachment);
+        //    }
+        //}
         //public changeSlot(sk: sp.Skeleton, slotName: string, texture: cc.Texture2D) {
         //    //获取插槽
         //    let slot = sk.findSlot(slotName);
@@ -306,19 +332,21 @@ var MainScene = /** @class */ (function (_super) {
     };
     /**更新上方的展示模型的显示*/
     MainScene.prototype.updateShowModel = function (bShowUpgradeAnim) {
-        var _this = this;
+        //let resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
         if (bShowUpgradeAnim === void 0) { bShowUpgradeAnim = false; }
-        var resName = this.shopDatas[this.listViewScript.selectedIndex].resName;
+        var usingIndex = this.shopDatas[this.listViewScript.selectedIndex].id + 1;
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
         if (bShowUpgradeAnim) {
-            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", function () {
-                SpineManager_1.default.getInstance().playSpinAnimation(_this.showModelOfShop, "shengji", false, function () {
-                    SpineManager_1.default.getInstance().playSpinAnimation(_this.showModelOfShop, "daiji", true, null);
-                });
-            });
+            SpineManager_1.default.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji");
+            //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji", () => {
+            //    SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "shengji", false, () => {
+            //        SpineManager.getInstance().playSpinAnimation(this.showModelOfShop, "daiji",true, null);
+            //    });
+            //});
         }
         else {
-            SpineManager_1.default.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+            //SpineManager.getInstance().loadSpine(this.showModelOfShop, "spine/players/" + resName + "" + weaponIdx, true, "default", "daiji");
+            SpineManager_1.default.getInstance().loadSkinSpine(this.showModelOfShop, this.weapon, true, usingIndex, weaponIdx, "daiji");
         }
     };
     MainScene.prototype.initShopList = function () {
@@ -441,32 +469,6 @@ var MainScene = /** @class */ (function (_super) {
         //    }
         //});
         // this.changeSlot(this.zhu, "wq", cc.loader.getRes("texture/game/weapon/wq2"));
-    };
-    MainScene.prototype.changePartialCloth = function (skeleton, slotName, targetSkinName, targetAttaName) {
-        // console.log('change cloth:', slotName, targetSkinName, targetAttaName);
-        var slot = skeleton.findSlot(slotName);
-        var skeletonData = skeleton.skeletonData.getRuntimeData();
-        var skin = skeletonData.findSkin(targetSkinName);
-        var slotIndex = skeletonData.findSlotIndex(slotName);
-        var attachment = skin.getAttachment(slotIndex, targetAttaName);
-        if (!slot || !attachment) {
-            cc.error(slot && attachment, "slots: " + slotName + ", attach: " + targetAttaName + " not exists!");
-            return;
-        }
-        slot.setAttachment(attachment);
-        // 如果spine使用了private或者shared等缓存模式，则需要更新缓存。
-        skeleton.invalidAnimationCache();
-    };
-    MainScene.prototype.changeParSlot = function () {
-        var sk1;
-        var sk2;
-        var parts = ["left-arm", "left-hand", "left-shoulder"];
-        for (var i = 0; i < parts.length; i++) {
-            var slot1 = sk1.findSlot(parts[i]);
-            var slot2 = sk2.findSlot(parts[i]);
-            var attachment = slot2.getAttachment();
-            slot1.setAttachment(attachment);
-        }
     };
     var MainScene_1;
     MainScene._instance = null;
