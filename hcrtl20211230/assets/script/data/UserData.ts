@@ -180,18 +180,19 @@ export default class UserData {
     }
     //判断有没有到达20 秒的时间间隔
     public GetIntAdStatus(): boolean {
-        var myDate = Date.parse(new Date().toString());
-        if (this.LastInAdTime == 0) {
-            this.LastInAdTime = myDate;
-            return true;
-        }
-        if ((myDate - this.LastInAdTime) >= 150000) {
-            this.LastInAdTime = myDate;
-            return true;
-        }
-        else {
-            return false;
-        }
+        //var myDate = Date.parse(new Date().toString());
+        //if (this.LastInAdTime == 0) {
+        //    this.LastInAdTime = myDate;
+        //    return true;
+        //}
+        //if ((myDate - this.LastInAdTime) >= 150000) {
+        //    this.LastInAdTime = myDate;
+        //    return true;
+        //}
+        //else {
+        //    return false;
+        //}
+        return true;
     }
 
 }

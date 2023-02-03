@@ -23,13 +23,27 @@ export default class SdkManager {
     callBackSuccess: Function = null;
     callBackFail: Function = null;
     callClose: Function = null;
+    public getIP: string = "";
+    public G8Name: string = "com.stickman.towerwar";
+    public G7Name: string = "com.passion.herocastlewar";
 
+
+    public Init() {
+        if (cc.sys.platform == cc.sys.ANDROID) {
+            this.getIP = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "getAppId", "()Ljava/lang/String;");
+        }
+    }
 
     public JavaInterstitialAds(order: string, callSuccess: Function = null, callFail: Function = null) {
         this.callBackSuccess = callSuccess;
         this.callBackFail = callFail;
         if (cc.sys.platform == cc.sys.ANDROID) {
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', order);
+            if (this.G8Name == this.getIP) {
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showInterstitialAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);
+            }
+            else {
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', order);
+            }                        
         }
         else {
             if (this.callBackSuccess) {
@@ -44,11 +58,15 @@ export default class SdkManager {
         this.callBackFail = callFail;
         this.callClose = closeFunc;
 
-      
-
         if (cc.sys.platform == cc.sys.ANDROID) {
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order, 'cc["sdkManager"].JavaCall_AdClose()');
+            if (this.G8Name == this.getIP) {
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showRewardVideoAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);            
+            }
+            else {
+                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order, 'cc["sdkManager"].JavaCall_AdClose()');
+            }
             //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/NativeAdManager", "JsCall_showAdIfAvailable", "()V");
+            
         }
         else {
             if (this.callBackSuccess) {

@@ -44,8 +44,11 @@ var LoadScene = /** @class */ (function (_super) {
         _this.startAni = null;
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
-        _this.inCountSpeed = 10;
+        _this.inCountSpeed = 1;
         _this.comeOnStatus = 0;
+        _this.OpenAdShowed = false;
+        _this.getIP = "";
+        _this.canShowOpen = false;
         return _this;
     }
     LoadScene_1 = LoadScene;
@@ -56,12 +59,14 @@ var LoadScene = /** @class */ (function (_super) {
         this.initClassOnAndroid();
         this.initRoleModel();
         this.LoadOther();
-        this.comeOnStatus = UserData_1.userData.getData(UserData_1.localStorageKey.COMEON_FIRST);
+        this.comeOnStatus = 1; //userData.getData(localStorageKey.COMEON_FIRST);
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_open);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("ratmhz");
+        SdkManager_1.default.GetInstance().Init();
         if (cc.sys.platform == cc.sys.ANDROID) {
             var status = UserData_1.userData.getNewPlayerStatus();
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "JallCallPlayerNew", "(Z)V", status);
+            this.getIP = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "getAppId", "()Ljava/lang/String;");
         }
     };
     LoadScene.prototype.initClassOnAndroid = function () {
@@ -113,6 +118,7 @@ var LoadScene = /** @class */ (function (_super) {
                 else {
                     _this.loadHallProgress(20 + count * _this.inAddSpeed, 100);
                     count += _this.inCountSpeed;
+                    _this.showOpenAd();
                 }
             };
             _this.schedule(timeCallback, 0.04);
@@ -156,19 +162,35 @@ var LoadScene = /** @class */ (function (_super) {
             cc.director.loadScene("MainScene");
         }
         if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showBannerAd", "()V");
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/BannerAdManager", "JsCall_showAdIfAvailable", "()V");
         }
     };
     LoadScene.JavaCall_OnOpenAdLoadingSuccess = function () {
-        LoadScene_1._instance.showOpenAd();
+        //LoadScene._instance.showOpenAd();
+        LoadScene_1._instance.canShowOpen = true;
     };
     LoadScene.prototype.showOpenAd = function () {
+        if (this.canShowOpen == false) {
+            return;
+        }
+        if (this.OpenAdShowed) {
+            return;
+        }
+        this.canShowOpen = false;
+        this.OpenAdShowed = true;
         if (cc.sys.platform == cc.sys.ANDROID) {
             if (this.isLoadingGame) {
                 if (this.comeOnStatus == 0) {
                     return;
                 }
-                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V", '');
+                //
+                if (this.getIP == "com.stickman.towerwar") { //G8  Max平台
+                    jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showOpenAd", "()V");
+                }
+                else { //G7  AdMob
+                    jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V", '');
+                }
             }
         }
     };

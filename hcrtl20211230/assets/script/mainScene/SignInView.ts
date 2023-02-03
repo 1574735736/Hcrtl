@@ -51,8 +51,10 @@ export default class SignInView extends cc.Component {
         if (this.canClick == false) {
             return;
         }
+
         FirebaseReport.reportAdjustParam("sl0fno");
         FirebaseReport.reportInformation("gift_ad2_doubie");
+
         SdkManager.GetInstance().JavaRewardedAds("gift_ad2_doubie", () => { this.onClickSign(2); }, () => { this.noAdCallback(); })
         this.m_BackFunc = () => { this.onClickSign(2); };
     }

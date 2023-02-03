@@ -63,7 +63,7 @@ export default class MainScene extends cc.Component {
 
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
-            FirebaseReport.reportAdjustParam("1x5fu1");    
+            FirebaseReport.reportAdjustParam("1x5fu1");                
         }
 
 

@@ -174,18 +174,19 @@ var UserData = /** @class */ (function () {
     };
     //判断有没有到达20 秒的时间间隔
     UserData.prototype.GetIntAdStatus = function () {
-        var myDate = Date.parse(new Date().toString());
-        if (this.LastInAdTime == 0) {
-            this.LastInAdTime = myDate;
-            return true;
-        }
-        if ((myDate - this.LastInAdTime) >= 150000) {
-            this.LastInAdTime = myDate;
-            return true;
-        }
-        else {
-            return false;
-        }
+        //var myDate = Date.parse(new Date().toString());
+        //if (this.LastInAdTime == 0) {
+        //    this.LastInAdTime = myDate;
+        //    return true;
+        //}
+        //if ((myDate - this.LastInAdTime) >= 150000) {
+        //    this.LastInAdTime = myDate;
+        //    return true;
+        //}
+        //else {
+        //    return false;
+        //}
+        return true;
     };
     UserData = __decorate([
         ccclass

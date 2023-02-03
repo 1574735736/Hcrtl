@@ -34,8 +34,13 @@ export default class LoadScene extends cc.Component {
     private isLoadingGame:boolean = true;
 
     private inAddSpeed: number = 0.4;
-    private inCountSpeed: number = 10;
+    private inCountSpeed: number = 1;
     private comeOnStatus: number = 0;
+
+    private OpenAdShowed: boolean = false
+
+    private getIP: string = "";
+
     onLoad() {
         LoadScene._instance = this; 
         this.isLoadingGame = true;
@@ -43,12 +48,17 @@ export default class LoadScene extends cc.Component {
         this.initClassOnAndroid();  
         this.initRoleModel();  
         this.LoadOther();
-        this.comeOnStatus = userData.getData(localStorageKey.COMEON_FIRST);
+        this.comeOnStatus = 1;//userData.getData(localStorageKey.COMEON_FIRST);
         FirebaseReport.reportInformation(FirebaseKey.game_open);    
-        FirebaseReport.reportAdjustParam("ratmhz");    
+        FirebaseReport.reportAdjustParam("ratmhz");
+        SdkManager.GetInstance().Init();
         if (cc.sys.platform == cc.sys.ANDROID) {
             var status = userData.getNewPlayerStatus();
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "JallCallPlayerNew", "(Z)V", status);
+
+
+            this.getIP = jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "getAppId", "()Ljava/lang/String;");
+    
         }       
     }
 
@@ -88,6 +98,7 @@ export default class LoadScene extends cc.Component {
                         
                         this.loadHallProgress(15, 100);
                         this.loadScene();//加载场景
+
                     });
                 });
             });
@@ -108,6 +119,7 @@ export default class LoadScene extends cc.Component {
                 else {
                     this.loadHallProgress(20 + count * this.inAddSpeed, 100);
                     count += this.inCountSpeed;
+                    this.showOpenAd();
                 }
             };
             this.schedule(timeCallback, 0.04);
@@ -144,7 +156,8 @@ export default class LoadScene extends cc.Component {
     }
 
     /**展示主界面 */
-    private showMainView():void {
+    private showMainView(): void {
+        
         this.isLoadingGame = false;
         if (this.comeOnStatus == 0) {
             this.comeOnStatus = 1;
@@ -156,21 +169,39 @@ export default class LoadScene extends cc.Component {
         }
         
         if (cc.sys.platform == cc.sys.ANDROID) {
+            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showBannerAd", "()V");
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/BannerAdManager", "JsCall_showAdIfAvailable", "()V");
         }
     }
-
+    private canShowOpen: boolean = false;
     public static JavaCall_OnOpenAdLoadingSuccess():void {
-        LoadScene._instance.showOpenAd();
+        //LoadScene._instance.showOpenAd();
+        LoadScene._instance.canShowOpen = true;
     }
 
-    private showOpenAd():void {
+    private showOpenAd(): void {
+        if (this.canShowOpen == false) {
+            return;
+        }
+        if (this.OpenAdShowed) {
+            return;
+        }
+        this.canShowOpen = false;
+        this.OpenAdShowed = true;
         if (cc.sys.platform == cc.sys.ANDROID) {
             if (this.isLoadingGame) {
                 if (this.comeOnStatus == 0) {
                     return;
                 }
-                jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V",'');
+                //
+
+                if (this.getIP == "com.stickman.towerwar") { //G8  Max平台
+                    jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showOpenAd", "()V");
+                }
+                else {  //G7  AdMob
+                    jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;)V", '');
+                }
+                
             }
         }
     }

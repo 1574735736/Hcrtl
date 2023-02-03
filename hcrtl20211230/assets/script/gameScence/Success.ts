@@ -344,8 +344,13 @@ export default class Success extends cc.Component {
         }
         FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_next);
         FirebaseReport.reportAdjustParam("6aj129");
-        if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {            
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
+        if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {       
+
+            SdkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => {
+                this.goNextLevel();
+            })
+
+            //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
              this.goNextLevel();

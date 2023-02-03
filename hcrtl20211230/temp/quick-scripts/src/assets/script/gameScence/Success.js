@@ -302,13 +302,17 @@ var Success = /** @class */ (function (_super) {
         //cc.director.loadScene("MainScene");
     };
     Success.prototype.onBtnNoThanksClick = function () {
+        var _this = this;
         if (this.isEndAni) {
             return;
         }
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("6aj129");
         if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
-            jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
+            SdkManager_1.default.GetInstance().JavaInterstitialAds("shengli_ad2_next", function () {
+                _this.goNextLevel();
+            });
+            //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
             this.goNextLevel();

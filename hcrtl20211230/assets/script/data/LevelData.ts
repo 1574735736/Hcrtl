@@ -1930,7 +1930,7 @@ export default class LevelData extends cc.Component {
         if (level == null) {
             level = "1";
         }
-        LevelData.curLevel = 2//Number(level);
+        LevelData.curLevel = Number(level);
         console.log("============get level: " + LevelData.curLevel);
     }
 

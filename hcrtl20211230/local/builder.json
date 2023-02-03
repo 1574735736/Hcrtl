@@ -2,7 +2,7 @@
   "platform": "android",
   "actualPlatform": "android",
   "template": "link",
-  "buildPath": "D:\\hcrtlAndroid2\\New2",
+  "buildPath": "D:\\hcrtlAndroid\\MaxProject",
   "debug": false,
   "sourceMaps": false,
   "embedWebDebugger": false,
