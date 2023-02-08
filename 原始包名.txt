@@ -2,3 +2,7 @@ com.passion.herocastlewar
 
 修改后包名
 com.stickman.towerwar
+
+G7-2
+游戏名：stick hero tower defense
+包名：com.stickhero.herocastlewar

@@ -22,6 +22,7 @@ var WeaponItemData_1 = require("../util/WeaponItemData");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var UserData = /** @class */ (function () {
     function UserData() {
+        this.TempStandX = 150;
         this.LastInAdTime = 0;
     }
     UserData.prototype.init = function () {

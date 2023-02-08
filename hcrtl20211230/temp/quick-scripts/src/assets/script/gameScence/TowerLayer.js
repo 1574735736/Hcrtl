@@ -37,6 +37,7 @@ var RoleBase_1 = require("./RoleBase");
 var TowerTile_1 = require("./TowerTile");
 var LevelData_1 = require("../data/LevelData");
 var FirebaseReport_1 = require("../util/FirebaseReport");
+var UserData_1 = require("../data/UserData");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var TowerLayer = /** @class */ (function (_super) {
     __extends(TowerLayer, _super);
@@ -276,13 +277,13 @@ var TowerLayer = /** @class */ (function (_super) {
                     return;
                 }
                 if (isSameAcross) {
-                    playerRole_1.jumpLandTo(targerPost, 100, function () {
+                    playerRole_1.jumpLandTo(targerPost, UserData_1.userData.TempStandX, function () {
                         _this.attackedLater(playerRole_1, monsterRole_1, posCache_1, towerTile_1);
                     });
                     return;
                 }
                 //跳向怪物格子
-                playerRole_1.jumpTo(targerPost, 100, function () {
+                playerRole_1.jumpTo(targerPost, UserData_1.userData.TempStandX, function () {
                     //if (!monsterRole.hasItem) {//如果不是道具
                     //    //角色攻击
                     //   this.attack(playerRole, monsterRole, posCache, towerTile);

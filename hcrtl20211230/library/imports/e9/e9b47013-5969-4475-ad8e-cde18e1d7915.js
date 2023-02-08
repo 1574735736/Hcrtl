@@ -488,7 +488,7 @@ var RoleBase = /** @class */ (function (_super) {
         SpineManager_1.default.getInstance().playSpinAnimation(this.ani, "tiaoyue1", false, function () {
             SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue2", false, null, _this); //Jump_2
         }, this);
-        var tempX = 100;
+        var tempX = UserData_1.userData.TempStandX;
         var tempY = (player.y + targerPos.y) / 2; //400
         cc.tween(player).bezierTo(0.5, cc.v2(player.x, player.y), cc.v2(tempX, tempY), cc.v2(targerPos.x - offset, targerPos.y)).call(function () {
             SpineManager_1.default.getInstance().playSpinAnimation(_this.ani, "tiaoyue3", false, null, _this); //Jump_3
@@ -577,9 +577,15 @@ var RoleBase = /** @class */ (function (_super) {
                 else if (this.weaponId == 2 || this.weaponId == 3 || this.weaponId == 5) {
                     ainName = "gongji1-2";
                 }
-                else if (this.weaponId == 7 || this.weaponId == 8 || this.weaponId == 9) {
-                    ainName = "gongji3";
+                else if (this.weaponId == 7 || this.weaponId == 8) {
+                    ainName = "gongji3-1";
                 }
+                else if (this.weaponId == 9) {
+                    ainName = "gongji3-2";
+                }
+                //else if (this.weaponId == 7 || this.weaponId == 8 || this.weaponId == 9) {
+                //    ainName = "gongji3";
+                //}
             }
             else {
                 if (this.skinId == 1 || this.skinId == 7 || this.skinId == 9) {
@@ -589,7 +595,8 @@ var RoleBase = /** @class */ (function (_super) {
                     ainName = "gongji1-2";
                 }
                 else if (this.skinId == 3 || this.skinId == 6) {
-                    ainName = "gongji3";
+                    ainName = "gongji3-1";
+                    //ainName = "gongji3";
                 }
             }
         }
@@ -597,11 +604,11 @@ var RoleBase = /** @class */ (function (_super) {
         }
         else {
         }
-        console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
-        console.log("this.type   " + this.type);
-        console.log("this.skinId   " + this.skinId);
-        console.log("this.weaponId   " + this.weaponId);
-        cc.log("ainName     " + ainName);
+        //console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
+        //console.log("this.type   " + this.type);
+        //console.log("this.skinId   " + this.skinId);
+        //console.log("this.weaponId   " + this.weaponId);
+        //cc.log("ainName     " + ainName);
         SpineManager_1.default.getInstance().playSpinAnimation(this.ani, ainName, false, function () {
             if (cb) {
                 cb();

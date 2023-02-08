@@ -25,6 +25,7 @@ var SdkManager = /** @class */ (function () {
         this.getIP = "";
         this.G8Name = "com.stickman.towerwar";
         this.G7Name = "com.passion.herocastlewar";
+        this.G72Name = "com.stickhero.herocastlewar";
     }
     SdkManager_1 = SdkManager;
     SdkManager.GetInstance = function () {
@@ -48,8 +49,13 @@ var SdkManager = /** @class */ (function () {
             if (this.G8Name == this.getIP) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showInterstitialAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);
             }
-            else {
+            else if (this.G7Name == this.getIP) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', order);
+            }
+            else {
+                if (this.callBackSuccess) {
+                    this.callBackSuccess();
+                }
             }
         }
         else {
@@ -69,8 +75,13 @@ var SdkManager = /** @class */ (function () {
             if (this.G8Name == this.getIP) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showRewardVideoAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);
             }
-            else {
+            else if (this.G7Name == this.getIP) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order, 'cc["sdkManager"].JavaCall_AdClose()');
+            }
+            else {
+                if (this.callBackSuccess) {
+                    this.callBackSuccess();
+                }
             }
             //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/NativeAdManager", "JsCall_showAdIfAvailable", "()V");
         }

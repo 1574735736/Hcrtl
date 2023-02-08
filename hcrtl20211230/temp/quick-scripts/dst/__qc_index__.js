@@ -37,6 +37,7 @@ require('./assets/script/util/ScaleAnimScript');
 require('./assets/script/util/SdkManager');
 require('./assets/script/util/SkinShopItem');
 require('./assets/script/util/SkinShopItemData');
+require('./assets/script/util/TableView');
 require('./assets/script/util/Utils');
 require('./assets/script/util/WeaponItemData');
 

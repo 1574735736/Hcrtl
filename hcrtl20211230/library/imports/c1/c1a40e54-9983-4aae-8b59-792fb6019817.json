@@ -181,7 +181,7 @@
       "array": [
         0,
         0,
-        397.50566033705735,
+        425.3673213744348,
         0,
         0,
         0,
@@ -3494,7 +3494,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "animation",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": false,
@@ -3505,10 +3505,10 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "",
+    "_animationName": "animation",
     "_animationQueue": [],
     "_headAniInfo": null,
-    "_playTimes": 0,
+    "_playTimes": 1,
     "_isAniComplete": true,
     "_N$skeletonData": {
       "__uuid__": "77d49aa7-c51f-4450-8073-6a675d82d712"

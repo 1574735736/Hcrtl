@@ -1,18 +1,18 @@
 {
   "__type__": "cc.SpriteFrame",
   "content": {
-    "name": "pifu2",
-    "texture": "8c749b1c-cb6a-4d8c-8c0c-ef5ed52c50ae",
+    "name": "pifu4",
+    "texture": "bdfad6f9-74ef-4f41-8611-f320305f9a12",
     "atlas": "",
     "rect": [
       2,
-      2,
-      1014,
+      3,
+      1013,
       1019
     ],
     "offset": [
-      -3,
-      0.5
+      -3.5,
+      -0.5
     ],
     "originalSize": [
       1024,

@@ -14,6 +14,7 @@ import RoleBase, { RoleType } from "./RoleBase";
 import TowerTile from "./TowerTile";
 import LevelData from "../data/LevelData";
 import { FirebaseKey, FirebaseReport } from "../util/FirebaseReport";
+import { userData } from "../data/UserData";
 
 const { ccclass, property } = cc._decorator;
 
@@ -307,14 +308,14 @@ export default class TowerLayer extends cc.Component {
                 }
 
                 if (isSameAcross) {
-                    playerRole.jumpLandTo(targerPost, 100, () => {
+                    playerRole.jumpLandTo(targerPost, userData.TempStandX, () => {
                         this.attackedLater(playerRole, monsterRole, posCache, towerTile);
                     });
                     return;
                 }
 
                 //跳向怪物格子
-                playerRole.jumpTo(targerPost, 100, () => {
+                playerRole.jumpTo(targerPost, userData.TempStandX, () => {
                     //if (!monsterRole.hasItem) {//如果不是道具
                     //    //角色攻击
                     //   this.attack(playerRole, monsterRole, posCache, towerTile);

@@ -82,9 +82,26 @@ public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinN
         spSkin.setSkin(sName);
 
         let slot1 = spSkin.findSlot("wq");
+        let slot1_2 = spSkin.findSlot("wq2");
+        let slot1_3 = spSkin.findSlot("wq3");
+        let slot1_4 = spSkin.findSlot("wq4");
+        let slot1_5 = spSkin.findSlot("wq5");
 
         if (!slot1) {
             console.log("slot1   is   null !!!");
+        }
+
+        if (!slot1_2) {
+            console.log("slot1_2   is   null !!!");
+        }
+        if (!slot1_3) {
+            console.log("slot1_3   is   null !!!");
+        }
+        if (!slot1_4) {
+            console.log("slot1_4   is   null !!!");
+        }
+        if (!slot1_5) {
+            console.log("slot1_5   is   null !!!");
         }
 
         let wName = "";
@@ -104,6 +121,18 @@ public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinN
        
         let attachment = slot2.getAttachment();
         slot1.setAttachment(attachment);
+        if (slot1_2) {
+            slot1_2.setAttachment(attachment);
+        }
+        if (slot1_3) {
+            slot1_3.setAttachment(attachment);
+        }
+        if (slot1_4) {
+            slot1_4.setAttachment(attachment);
+        }
+        if (slot1_5) {
+            slot1_5.setAttachment(attachment);
+        }
     }
 
 public getAnimationName(spinSkeleton: sp.Skeleton): string {

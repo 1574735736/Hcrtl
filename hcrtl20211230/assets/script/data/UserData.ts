@@ -17,6 +17,8 @@ export default class UserData {
 
     private _localData: any;
 
+    public TempStandX: number = 150;
+
     public init():void {
         let str = localStorage.getItem("hcrtl");
         if (str == null) {
