@@ -23,7 +23,7 @@
   "fb-instant-games": {},
   "android": {
     "REMOTE_SERVER_ROOT": "",
-    "packageName": "com.stickhero.herocastlewar"
+    "packageName": "com.stickman.towerwar"
   },
   "ios": {
     "REMOTE_SERVER_ROOT": "",

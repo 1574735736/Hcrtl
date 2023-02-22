@@ -1,0 +1,5 @@
+set jks="D:\hcrtlAndroid\keystore.jks"
+set openssl="D:\git\Git\usr\bin\openssl.exe"
+keytool -exportcert -alias debug_keystore -keystore %jks% | %openssl% sha1 -binary | %openssl% base64
+
+jmOqv2x4FQwPJdgjpu8zIAiULIs=

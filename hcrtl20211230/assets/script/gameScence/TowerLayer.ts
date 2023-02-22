@@ -368,11 +368,11 @@ export default class TowerLayer extends cc.Component {
                 
         if (!monsterRole.hasItem) {
             this.attack(playerRole, monsterRole, posCache, towerTile);
-            if (!monsterRole.longRange) {//不是远程怪物
-                monsterRole.attack(() => {//播放怪物攻击动画
-                    monsterRole.idle();//播放后进入待机
-                });
-            }
+            //if (!monsterRole.longRange) {//不是远程怪物
+            //    monsterRole.attack(() => {//播放怪物攻击动画
+            //        monsterRole.idle();//播放后进入待机
+            //    });
+            //}
         }
         else {
             cc.tween(playerRole.node).delay(0.5).call(() => {
@@ -686,10 +686,10 @@ export default class TowerLayer extends cc.Component {
                 }
             });
         }
-        if(role1.isPets()){//有宠物，宠物先攻击
+        if (role1.isPets()) {//有宠物，宠物先攻击
             let pets = role1.getPets();
-            if(pets){
-                this.eggLongAttack(pets,role2,()=>{
+            if (pets) {
+                this.eggLongAttack(pets, role2, () => {
                     role2.subHp(pets.getHp(), (die, shield) => {
                         if (die) {//物怪物死了
                             role2.death(() => {
@@ -707,14 +707,16 @@ export default class TowerLayer extends cc.Component {
                                 role1.idle();
                                 goPlayerAttack();
                             });
-                         
+
                         }
-                    },true);
+                    }, true);
                 });
             }
             return;
         }
-        goPlayerAttack();
+        else {
+            goPlayerAttack();
+        }
     }
 
     //怪物攻击
@@ -991,6 +993,7 @@ export default class TowerLayer extends cc.Component {
                 this.successNode.runAction(cc.scaleTo(0.2, 1, 1));    
 
                 SoundManager.getInstance().playEffect(SoundManager.Success_jingle);
+                this.sendFireMsg();
             });
             
         }
@@ -1003,6 +1006,39 @@ export default class TowerLayer extends cc.Component {
         }    
     }
 
+
+    private sendFireMsg() {
+        let levelCount = LevelData.curLevel - 1;
+        switch (levelCount) {
+            case 0:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_0);
+                break;
+            case 1:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_1);
+                break;
+            case 2:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_2);
+                break;
+            case 3:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_3);
+                break;
+            case 4:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_4);
+                break;
+            case 5:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_5);
+                break;
+            case 10:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_10);
+                break;
+            case 15:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_15);
+                break;
+            case 20:
+                FirebaseReport.reportInformation(FirebaseKey.level_wancheng_20);
+                break;
+        }
+    }
 
     //塔角
     private addFloor() {
@@ -1094,6 +1130,8 @@ export default class TowerLayer extends cc.Component {
                 this.scheduleOnce(() => { this.HideTalkInfo(callback); }, 2);
                 tempNode.removeFromParent();
                 tempNode.destroy();
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_2);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_2);
             }).start();
         };
 

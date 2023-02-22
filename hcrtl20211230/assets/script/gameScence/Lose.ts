@@ -57,13 +57,16 @@ export default class Lose extends cc.Component {
         this.clickTime = myDate;
 
         // if (cc.sys.platform == cc.sys.ANDROID) {
-             FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skip);
+
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Lose"].JavaCall_skipNowLevel()', 'cc["Lose"].JavaCall_noAdCallback()', "shengli_ad2_skip", "");
         // }
         // else {
         //      this.skipNowLevel();
         // }
+        FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skip);
         FirebaseReport.reportAdjustParam("f6oy43");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_fail_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_fail_1);
         SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_skip", () => { this.skipNowLevel(); }, () => { this.noAdCallback(); })
         
    
@@ -87,6 +90,8 @@ export default class Lose extends cc.Component {
         //      this.playAgain();
         // }
         FirebaseReport.reportAdjustParam("4ccw0w");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_fail_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_fail_2);
         SdkManager.GetInstance().JavaInterstitialAds(FirebaseKey.shengli_playagain, () => { this.playAgain(); });
     }
     public static JavaCall_playAgain():void {

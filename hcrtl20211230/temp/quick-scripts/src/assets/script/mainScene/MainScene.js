@@ -223,7 +223,6 @@ var MainScene = /** @class */ (function (_super) {
         MainScene_1._instance = this;
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
-            FirebaseReport_1.FirebaseReport.reportAdjustParam("1x5fu1");
         }
         this.initListener();
         this.showMainView();
@@ -263,13 +262,23 @@ var MainScene = /** @class */ (function (_super) {
     };
     MainScene.prototype.onBtnStart = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_start);
-        FirebaseReport_1.FirebaseReport.reportAdjustParam("oq0hy2");
+        if (UserData_1.userData.platformType == 0) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("oq0hy2");
+        }
+        else if (UserData_1.userData.platformType == 1) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_main_2);
+        }
+        else if (UserData_1.userData.platformType == 2) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_main_2);
+        }
         cc.director.loadScene('GameScene'); //进入游戏场景
         //userData.setData(localStorageKey.GOLD, 6000);
     };
     MainScene.prototype.onBtnSkin = function () {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_skin);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("bm6s8g");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_main_1);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_main_1);
         this.showSkinShop();
     };
     MainScene.prototype.onBtnHome = function () {
@@ -278,8 +287,10 @@ var MainScene = /** @class */ (function (_super) {
     };
     MainScene.prototype.onBtnWeapon = function () {
         var _this = this;
-        FirebaseReport_1.FirebaseReport.reportInformation("shouye_arms");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_arms);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("tc5zgk");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_main_3);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_main_3);
         var self = this;
         cc.loader.loadRes("prefabs/game/weapon/WeaponRoot", cc.Prefab, function (e, p) {
             var pnode = cc.instantiate(p);
@@ -291,8 +302,10 @@ var MainScene = /** @class */ (function (_super) {
     };
     MainScene.prototype.onBtnSign = function () {
         var _this = this;
-        FirebaseReport_1.FirebaseReport.reportInformation("shouye_gift");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shouye_gift);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("pj9a8i");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_main_4);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_main_4);
         var self = this;
         cc.loader.loadRes("prefabs/sign/SignInView", cc.Prefab, function (e, p) {
             var pnode = cc.instantiate(p);
@@ -366,14 +379,14 @@ var MainScene = /** @class */ (function (_super) {
         this.updateShopList();
     };
     MainScene.prototype.unlockSkinByAd = function () {
-        var _this = this;
         // if (cc.sys.platform == cc.sys.ANDROID) {
-        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.skin_ad2);
+        var _this = this;
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
         // }
         // else {
         //      this.unlockSkin();
         // }
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.skin_ad2);
         SdkManager_1.default.GetInstance().JavaRewardedAds("skin_ad2", function () { _this.unlockSkin(); }, function () { _this.noAdCallback(); }, function () { _this.closeAdCallback(); });
         this.m_BackFunc = function () { _this.unlockSkin(); };
     };

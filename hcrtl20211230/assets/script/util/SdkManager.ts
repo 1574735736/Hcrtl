@@ -39,7 +39,7 @@ export default class SdkManager {
         this.callBackSuccess = callSuccess;
         this.callBackFail = callFail;
         if (cc.sys.platform == cc.sys.ANDROID) {
-            if (this.G8Name == this.getIP) {
+            if (this.G8Name == this.getIP || this.getIP == this.G72Name) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showInterstitialAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);
             }
             else if (this.G7Name == this.getIP) {
@@ -65,7 +65,7 @@ export default class SdkManager {
         this.callClose = closeFunc;
 
         if (cc.sys.platform == cc.sys.ANDROID) {
-            if (this.G8Name == this.getIP) {
+            if (this.G8Name == this.getIP || this.getIP == this.G72Name) {
                 jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showRewardVideoAd", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["sdkManager"].JavaCall_AdLoadSuccess()', 'cc["sdkManager"].JavaCall_AdLoadFail()', order);
             }
             else if (this.G7Name == this.getIP) {

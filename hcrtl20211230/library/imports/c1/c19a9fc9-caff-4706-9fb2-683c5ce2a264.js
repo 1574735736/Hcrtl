@@ -89,7 +89,7 @@ var Success = /** @class */ (function (_super) {
     };
     Success.prototype.onEnable = function () {
         var _this = this;
-        this.dispatchFirebaseKey(LevelData_1.default.curLevel);
+        //this.dispatchFirebaseKey(LevelData.curLevel);
         this.comeInLevel = LevelData_1.default.curLevel;
         LevelData_1.default.curLevel++;
         LevelData_1.default.saveLevel();
@@ -265,15 +265,18 @@ var Success = /** @class */ (function (_super) {
     Success.JavaCall_goNextLevel = function () {
         Success_1._instance.goNextLevel(true);
     };
+    Success.prototype.goMastGoNextLevel = function () {
+        var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
+        own += this.reward_gold;
+        UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
+        GameScence_1.default.Instance.onReloadLevel();
+        this.node.active = false;
+    };
     Success.prototype.goNextLevel = function (bVideo) {
         var _this = this;
         if (bVideo === void 0) { bVideo = false; }
         this.flay_ani.node.active = true;
         this.isEndAni = true;
-        this.scheduleOnce(function () {
-            GameScence_1.default.Instance.onReloadLevel();
-            this.node.active = false;
-        }, 2.5);
         SpineManager_1.default.getInstance().playSpinAnimation(this.flay_ani, "biaoti2", false, function () {
             _this.flay_ani.node.active = false;
             var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
@@ -285,6 +288,10 @@ var Success = /** @class */ (function (_super) {
             }
             UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
             _this.lb_gold.string = own + "";
+            _this.scheduleOnce(function () {
+                GameScence_1.default.Instance.onReloadLevel();
+                this.node.active = false;
+            }, 0.5);
         });
     };
     Success.prototype.onBtnHomeClick = function () {
@@ -308,14 +315,18 @@ var Success = /** @class */ (function (_super) {
         }
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_next);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("6aj129");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_win_2);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_win_2);
         if (cc.sys.platform == cc.sys.ANDROID && UserData_1.userData.GetIntAdStatus()) {
             SdkManager_1.default.GetInstance().JavaInterstitialAds("shengli_ad2_next", function () {
-                _this.goNextLevel();
+                //this.goNextLevel();
+                _this.goMastGoNextLevel();
             });
             //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
-            this.goNextLevel();
+            //this.goNextLevel();
+            this.goMastGoNextLevel();
         }
         //dkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => { this.goNextLevel(); });
     };
@@ -345,15 +356,17 @@ var Success = /** @class */ (function (_super) {
         this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
         cc.Tween.stopAllByTarget(this.randomBar);
         this.scheduleOnce(function () {
-            var _this = this;
             // if (cc.sys.platform == cc.sys.ANDROID) {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
+            var _this = this;
             //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
             // }
             // else {
             //     this.goNextLevel(true);
             // }
+            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_beishu);
             FirebaseReport_1.FirebaseReport.reportAdjustParam("5g50d1");
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_win_1);
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_win_1);
             if (this.comeInLevel == 1) {
                 this.goNextLevel(true);
             }
@@ -361,7 +374,7 @@ var Success = /** @class */ (function (_super) {
                 SdkManager_1.default.GetInstance().JavaRewardedAds("shengli_ad2_beishu", function () { _this.goNextLevel(true); }, function () { _this.noAdCallback(); });
                 this.m_BackFunc = function () { _this.goNextLevel(true); };
             }
-        }, 1.5);
+        }, 0.5);
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
     };
     /**获取皮肤入口按钮点击回调 */
@@ -373,6 +386,8 @@ var Success = /** @class */ (function (_super) {
             }
             else {
                 FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_skin);
+                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_win_4);
+                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_win_4);
                 this.showNewSkinPanel();
             }
         }
@@ -397,6 +412,8 @@ var Success = /** @class */ (function (_super) {
         var _this = this;
         // if (cc.sys.platform == cc.sys.ANDROID) {
         FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.shengli_ad2_skin);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_win_3);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_win_3);
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
         // }
         // else {

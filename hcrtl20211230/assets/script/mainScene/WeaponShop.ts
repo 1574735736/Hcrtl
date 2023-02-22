@@ -36,10 +36,10 @@ export default class WeaponShop extends cc.Component {
         this.shop_num_gold = cc.find("bg_gold/num_gold", this.node).getComponent(cc.Label);
         this.shopDatas = userData.getData(localStorageKey.SHOP_DATAS);
         this.weaponDatas = userData.getData(localStorageKey.WEAPON_DATAS);
+
         //this.weaponDatas.forEach((item, index) => {
         //    if (item.bUnlock === false && item.costType == 2) this.weaponDatas.splice(index, 1);
         //});
-
 
         var btn_return = cc.find("btn_home", this.node);
         btn_return.on(EventDefine.CLICK, this.OnClosePanel, this);
@@ -50,7 +50,6 @@ export default class WeaponShop extends cc.Component {
         cc.find("Canvas").on(EventDefine.GOLD_CHANGE, () => {
             this.UndateGlodNum();
         });
-
         
         this.UndateGlodNum();
         this.updateItems();
@@ -73,7 +72,9 @@ export default class WeaponShop extends cc.Component {
 
     OnClosePanel() {
         FirebaseReport.reportAdjustParam("7to0i3");
-        FirebaseReport.reportInformation("arms_ranbui");
+        FirebaseReport.reportInformation(FirebaseKey.arms_ranbui);
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_weapon_3);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_weapon_3);
         this.m_Listerer.showMainView();
         this.node.destroy();
     }
@@ -218,7 +219,10 @@ export default class WeaponShop extends cc.Component {
 
     private OnClickAds(index: number) {
         this.UpdateSelect(index);
+        FirebaseReport.reportInformation(FirebaseKey.arms_ad2);
         FirebaseReport.reportAdjustParam("bfgg7y");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_weapon_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_weapon_1);
         SdkManager.GetInstance().JavaRewardedAds("arms_ad2", () => {
            this.OnUseClick();
         }, () => { this.noAdCallback(); })
@@ -233,8 +237,10 @@ export default class WeaponShop extends cc.Component {
     }
 
     private OnClickBuy(index: number) {
-        FirebaseReport.reportInformation("arms_goumai");
+        FirebaseReport.reportInformation(FirebaseKey.arms_goumai);
         FirebaseReport.reportAdjustParam("loixwr");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_weapon_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_weapon_2);
         this.UpdateSelect(index);
         this.curGold = this.curGold - this.weaponDatas[this.selectPos].costNum;
         userData.setData(localStorageKey.GOLD, this.curGold);

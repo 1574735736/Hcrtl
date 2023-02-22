@@ -49,8 +49,22 @@ export default class LoadScene extends cc.Component {
         this.initRoleModel();  
         this.LoadOther();
         this.comeOnStatus = 1;//userData.getData(localStorageKey.COMEON_FIRST);
-        FirebaseReport.reportInformation(FirebaseKey.game_open);    
-        FirebaseReport.reportAdjustParam("ratmhz");
+
+        FirebaseReport.reportInformation(FirebaseKey.game_open);
+
+        if (userData.platformType == 0) {
+            FirebaseReport.reportAdjustParam("ratmhz");
+        }
+        else if (userData.platformType == 1) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_login_1);
+        }
+        else if (userData.platformType == 2) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.adjust_login_1);
+        }
+
+             
+        
+        
         SdkManager.GetInstance().Init();
         if (cc.sys.platform == cc.sys.ANDROID) {
             var status = userData.getNewPlayerStatus();
@@ -133,14 +147,28 @@ export default class LoadScene extends cc.Component {
     private logoLeave(){
         // userData.init();
         cc.tween(this.logoNode)
-        .to(0.3, { position: cc.v3(this.logoNode.x, 1300,0)}).call(() => {
-            this.showMainView();
+            .to(0.3, { position: cc.v3(this.logoNode.x, 1300, 0) }).call(() => {
+
             FirebaseReport.reportInformation(FirebaseKey.game_load_success);
+            this.showMainView();
+            
+            if (userData.platformType == 0)
+            {
+                FirebaseReport.reportAdjustParam("1x5fu1");          
+            }
+            else if (userData.platformType == 1) {
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_login_2);
+            }
+            else if (userData.platformType == 2) {
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_login_2);
+            }
+
             //播放开始动画
             // SpineManager.getInstance().playSpinAnimation(this.startAni,"tiaoyue3",false,()=>{
             //     FirebaseReport.reportInformation(FirebaseKey.game_load_success);
             //     this.showMainView();
             // },this);
+
         }).start();
     }
 
@@ -195,7 +223,7 @@ export default class LoadScene extends cc.Component {
                 }
                 //
 
-                if (this.getIP == "com.stickman.towerwar") { //G8  Max平台
+                if (this.getIP == SdkManager.GetInstance().G8Name || this.getIP == SdkManager.GetInstance().G72Name) { //G8  Max平台
                     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AdManage", "showOpenAd", "()V");
                 }
                 else {  //G7  AdMob

@@ -12,12 +12,22 @@ import WeaponItemData from "../util/WeaponItemData";
 
 const {ccclass, property} = cc._decorator;
 
+enum Platform {
+    platformG7,
+    platformG71,
+    platformG72,
+}
+
 @ccclass
 export default class UserData {
 
     private _localData: any;
 
     public TempStandX: number = 150;
+
+    public platformType: number = 1;  //0  - G7   /   1 - G7-1      / 2   -  G7-2   //平台标识
+
+
 
     public init():void {
         let str = localStorage.getItem("hcrtl");

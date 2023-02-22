@@ -20,9 +20,16 @@ var EventDefine_1 = require("../util/EventDefine");
 var SkinShopItemData_1 = require("../util/SkinShopItemData");
 var WeaponItemData_1 = require("../util/WeaponItemData");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
+var Platform;
+(function (Platform) {
+    Platform[Platform["platformG7"] = 0] = "platformG7";
+    Platform[Platform["platformG71"] = 1] = "platformG71";
+    Platform[Platform["platformG72"] = 2] = "platformG72";
+})(Platform || (Platform = {}));
 var UserData = /** @class */ (function () {
     function UserData() {
         this.TempStandX = 150;
+        this.platformType = 1; //0  - G7   /   1 - G7-1      / 2   -  G7-2   //平台标识
         this.LastInAdTime = 0;
     }
     UserData.prototype.init = function () {

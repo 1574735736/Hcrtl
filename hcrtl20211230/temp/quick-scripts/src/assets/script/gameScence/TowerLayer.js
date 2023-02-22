@@ -328,11 +328,11 @@ var TowerLayer = /** @class */ (function (_super) {
         }
         if (!monsterRole.hasItem) {
             this.attack(playerRole, monsterRole, posCache, towerTile);
-            if (!monsterRole.longRange) { //不是远程怪物
-                monsterRole.attack(function () {
-                    monsterRole.idle(); //播放后进入待机
-                });
-            }
+            //if (!monsterRole.longRange) {//不是远程怪物
+            //    monsterRole.attack(() => {//播放怪物攻击动画
+            //        monsterRole.idle();//播放后进入待机
+            //    });
+            //}
         }
         else {
             cc.tween(playerRole.node).delay(0.5).call(function () {
@@ -651,7 +651,9 @@ var TowerLayer = /** @class */ (function (_super) {
             }
             return;
         }
-        goPlayerAttack();
+        else {
+            goPlayerAttack();
+        }
     };
     //怪物攻击
     TowerLayer.prototype.monsterAttak = function (role1, role2, cb) {
@@ -893,11 +895,44 @@ var TowerLayer = /** @class */ (function (_super) {
                 _this.successNode.setScale(0, 0);
                 _this.successNode.runAction(cc.scaleTo(0.2, 1, 1));
                 SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.Success_jingle);
+                _this.sendFireMsg();
             });
         }
         else {
             this.successNode.active = true;
             SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.Success_jingle);
+        }
+    };
+    TowerLayer.prototype.sendFireMsg = function () {
+        var levelCount = LevelData_1.default.curLevel - 1;
+        switch (levelCount) {
+            case 0:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_0);
+                break;
+            case 1:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_1);
+                break;
+            case 2:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_2);
+                break;
+            case 3:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_3);
+                break;
+            case 4:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_4);
+                break;
+            case 5:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_5);
+                break;
+            case 10:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_10);
+                break;
+            case 15:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_15);
+                break;
+            case 20:
+                FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.level_wancheng_20);
+                break;
         }
     };
     //塔角
@@ -983,6 +1018,8 @@ var TowerLayer = /** @class */ (function (_super) {
                 _this.scheduleOnce(function () { _this.HideTalkInfo(callback); }, 2);
                 tempNode.removeFromParent();
                 tempNode.destroy();
+                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_level_2);
+                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_level_2);
             }).start();
         };
         SpineManager_1.default.getInstance().playSpinAnimation(ani, "mfeixing", true);

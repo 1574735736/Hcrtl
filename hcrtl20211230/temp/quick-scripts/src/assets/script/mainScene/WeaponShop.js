@@ -80,7 +80,9 @@ var WeaponShop = /** @class */ (function (_super) {
     };
     WeaponShop.prototype.OnClosePanel = function () {
         FirebaseReport_1.FirebaseReport.reportAdjustParam("7to0i3");
-        FirebaseReport_1.FirebaseReport.reportInformation("arms_ranbui");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.arms_ranbui);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_weapon_3);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_weapon_3);
         this.m_Listerer.showMainView();
         this.node.destroy();
     };
@@ -196,7 +198,10 @@ var WeaponShop = /** @class */ (function (_super) {
     WeaponShop.prototype.OnClickAds = function (index) {
         var _this = this;
         this.UpdateSelect(index);
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.arms_ad2);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("bfgg7y");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_weapon_1);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_weapon_1);
         SdkManager_1.default.GetInstance().JavaRewardedAds("arms_ad2", function () {
             _this.OnUseClick();
         }, function () { _this.noAdCallback(); });
@@ -208,8 +213,10 @@ var WeaponShop = /** @class */ (function (_super) {
         this.OnClickUse(this.selectPos);
     };
     WeaponShop.prototype.OnClickBuy = function (index) {
-        FirebaseReport_1.FirebaseReport.reportInformation("arms_goumai");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.arms_goumai);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("loixwr");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_weapon_2);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_weapon_2);
         this.UpdateSelect(index);
         this.curGold = this.curGold - this.weaponDatas[this.selectPos].costNum;
         UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, this.curGold);

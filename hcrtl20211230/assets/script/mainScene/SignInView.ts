@@ -40,8 +40,10 @@ export default class SignInView extends cc.Component {
     }
 
     onClickClose(): void {
-        FirebaseReport.reportInformation("gift_x");
+        FirebaseReport.reportInformation(FirebaseKey.gift_x);
         FirebaseReport.reportAdjustParam("i7nm62");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_sign_3);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_sign_3);
         var func = cc.sequence(cc.scaleTo(0.3, 0, 0), cc.callFunc(() => { this.node.destroy(); }));
         this.node.runAction(func);
                
@@ -53,7 +55,9 @@ export default class SignInView extends cc.Component {
         }
 
         FirebaseReport.reportAdjustParam("sl0fno");
-        FirebaseReport.reportInformation("gift_ad2_doubie");
+        FirebaseReport.reportInformation(FirebaseKey.gift_ad2_doubie);
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_sign_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_sign_2);
 
         SdkManager.GetInstance().JavaRewardedAds("gift_ad2_doubie", () => { this.onClickSign(2); }, () => { this.noAdCallback(); })
         this.m_BackFunc = () => { this.onClickSign(2); };
@@ -63,6 +67,9 @@ export default class SignInView extends cc.Component {
         if (this.canClick == false) {
             return;
         }
+        FirebaseReport.reportAdjustParam(FirebaseKey.gift_ad3_recelve);
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_sign_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_sign_1);
         FirebaseReport.reportAdjustParam("tl0xed");
         this.onClickSign(1);
     }

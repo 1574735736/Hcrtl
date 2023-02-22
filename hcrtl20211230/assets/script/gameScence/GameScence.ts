@@ -108,36 +108,55 @@ export default class GameScence extends cc.Component {
         let levelCount = LevelData.curLevel;
         
         this.levelLabel.string = "Level " + levelCount;//显示关卡数
-        FirebaseReport.reportInformation("level_jinru_" + levelCount);
-
-        //switch(levelCount) {
-        //    case 1:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_1);
-        //         break;
-        //    case 2:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_2);
-        //         break;
-        //    case 3:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_3);
-        //         break;
-        //    case 4:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_4);
-        //         break;
-        //    case 5:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_5);
-        //         break;
-        //    case 10:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_10);
-        //         break;
-        //    case 15:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_15);
-        //         break;
-        //    case 20:
-        //         FirebaseReport.reportInformation(FirebaseKey.level_jinru_20);
-        //         break;
-        //    default:
-        //         break;
-        //}
+        //FirebaseReport.reportInformation("level_jinru_" + levelCount);
+        var newlevelCount = levelCount - 1;
+        switch (newlevelCount) {
+            case 0:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_0);
+                break;
+            case 1:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_1);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_3);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_3);
+                 break;
+            case 2:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_2);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_4);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_4);
+                 break;
+            case 3:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_3);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_5);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_5);
+                 break;
+            case 4:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_4);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_6);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_6);
+                 break;
+            case 5:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_5);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_7);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_7);
+                 break;
+            case 10:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_10);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_8);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_8);
+                 break;
+            case 15:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_15);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_9);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_9);
+                 break;
+            case 20:
+                FirebaseReport.reportInformation(FirebaseKey.level_jinru_20);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_10);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_10);
+                 break;
+            default:
+                 break;
+        }
         this.updateWildRage(levelCount);
         GameScence.Instance = this;
         let level = null;
@@ -255,6 +274,8 @@ export default class GameScence extends cc.Component {
             this.scheduleOnce(() => { this.UpHpShow(); }, 1)
         }
         else {
+            FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_1);
+            FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_1);
             this.scheduleOnce(() => { this.towerLayer.PrinceTalk(); }, 1)
         }
     }
@@ -286,6 +307,8 @@ export default class GameScence extends cc.Component {
     private OnShowAddHpAds() {
       
         FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_shuxing);
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_property_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_property_1);
         var self = this;        
         SdkManager.GetInstance().JavaRewardedAds(FirebaseKey.zhandou_ad2_shuxing, () => { self.GetHpAni(); }, () => { self.noAdCallback(); });
         this.m_BackFunc = () => { self.GetHpAni(); } 
@@ -295,6 +318,8 @@ export default class GameScence extends cc.Component {
         FirebaseReport.reportAdjustParam("falxom");
         this.towerLayer.canTouck = true;
         this.wildRage2.active = false;
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_property_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_property_2);
     }
 
     private GetHpAni() {
@@ -350,6 +375,8 @@ export default class GameScence extends cc.Component {
             return
         }
         FirebaseReport.reportAdjustParam("ta0lk2");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_game_3);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_game_3);
         this.UpHpShow();
     }
 
@@ -385,6 +412,8 @@ export default class GameScence extends cc.Component {
         if (this.towerLayer.canTouck == false) {
             return
         }
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_game_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_game_1);
         FirebaseReport.reportAdjustParam("2f62iq");
         FirebaseReport.reportInformation(FirebaseKey.zhandou_shouye);
         if (userData.GetIntAdStatus()) {
@@ -407,8 +436,10 @@ export default class GameScence extends cc.Component {
         }
 
         FirebaseReport.reportAdjustParam("9re0dr");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_game_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_game_2);
         // if (cc.sys.platform == cc.sys.ANDROID) {
-             FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_skip);
+        FirebaseReport.reportInformation(FirebaseKey.zhandou_ad2_skip);
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["GameScence"].JavaCall_skipLevel()', 'cc["GameScence"].JavaCall_noAdCallback()', "zhandou_ad2_skip", "");
         // }
         // else {
@@ -452,6 +483,8 @@ export default class GameScence extends cc.Component {
             return ;
         }
         FirebaseReport.reportAdjustParam("26hfya");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_game_4);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_game_4);
         FirebaseReport.reportInformation(FirebaseKey.zhandou_playagain);
          cc.director.loadScene( 'GameScene');
         //this.restartGame();

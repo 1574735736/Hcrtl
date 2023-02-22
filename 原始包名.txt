@@ -1,6 +1,6 @@
 com.passion.herocastlewar
 
-修改后包名
+修改后包名 G8
 com.stickman.towerwar
 
 G7-2

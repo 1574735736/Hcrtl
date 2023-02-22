@@ -100,7 +100,7 @@ export default class Success extends cc.Component {
     }
     comeInLevel: number = 0;
     protected onEnable(): void {
-        this.dispatchFirebaseKey(LevelData.curLevel);
+        //this.dispatchFirebaseKey(LevelData.curLevel);
         this.comeInLevel = LevelData.curLevel;
         LevelData.curLevel++;
         LevelData.saveLevel();
@@ -298,13 +298,18 @@ export default class Success extends cc.Component {
         Success._instance.goNextLevel(true);
     }
 
+    goMastGoNextLevel() {
+
+        let own = userData.getData(localStorageKey.GOLD);
+        own += this.reward_gold;
+        userData.setData(localStorageKey.GOLD, own);    
+        GameScence.Instance.onReloadLevel();
+        this.node.active = false;
+    }
+
     goNextLevel(bVideo: boolean = false) {
         this.flay_ani.node.active = true;
-        this.isEndAni = true;
-        this.scheduleOnce(function () {
-            GameScence.Instance.onReloadLevel();
-            this.node.active = false;
-        }, 2.5);
+        this.isEndAni = true;   
 
         SpineManager.getInstance().playSpinAnimation(this.flay_ani, "biaoti2", false, () => {
             this.flay_ani.node.active = false;
@@ -317,6 +322,14 @@ export default class Success extends cc.Component {
             }
             userData.setData(localStorageKey.GOLD, own);    
             this.lb_gold.string = own + "";
+
+      
+
+            this.scheduleOnce(function () {
+                GameScence.Instance.onReloadLevel();
+                this.node.active = false;
+            }, 0.5);
+
         });  
         
     }
@@ -344,16 +357,21 @@ export default class Success extends cc.Component {
         }
         FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_next);
         FirebaseReport.reportAdjustParam("6aj129");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_win_2);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_win_2);
+
         if (cc.sys.platform == cc.sys.ANDROID && userData.GetIntAdStatus()) {       
 
             SdkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => {
-                this.goNextLevel();
+                //this.goNextLevel();
+                this.goMastGoNextLevel();
             })
 
             //jsb.reflection.callStaticMethod("org/cocos2dx/javascript/InterstitialAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_noThanksCallback()', "shengli_ad2_next");
         }
         else {
-             this.goNextLevel();
+            //this.goNextLevel();
+            this.goMastGoNextLevel();
         }
         //dkManager.GetInstance().JavaInterstitialAds("shengli_ad2_next", () => { this.goNextLevel(); });
     }
@@ -393,14 +411,16 @@ export default class Success extends cc.Component {
         cc.Tween.stopAllByTarget(this.randomBar);
         this.scheduleOnce(function () {            
             // if (cc.sys.platform == cc.sys.ANDROID) {
-                 FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
+                
             //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", 'cc["Success"].JavaCall_goNextLevel()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_beishu", "");
             // }
             // else {
             //     this.goNextLevel(true);
             // }
-
+            FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_beishu);
             FirebaseReport.reportAdjustParam("5g50d1");
+            FirebaseReport.reportAdjustParam(FirebaseKey.adjust_win_1);
+            FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_win_1);
 
             if (this.comeInLevel == 1) {
                 this.goNextLevel(true);
@@ -409,7 +429,7 @@ export default class Success extends cc.Component {
                 SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(true); }, () => { this.noAdCallback(); });
                 this.m_BackFunc = () => { this.goNextLevel(true); }
             }            
-        }, 1.5);
+        }, 0.5);
         
        
         //SdkManager.GetInstance().JavaRewardedAds("shengli_ad2_beishu", () => { this.goNextLevel(); }, () => { this.noAdCallback(); });
@@ -423,6 +443,8 @@ export default class Success extends cc.Component {
             }
             else {
                 FirebaseReport.reportInformation(FirebaseKey.shengli_skin);
+                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_win_4);
+                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_win_4);
                 this.showNewSkinPanel();
             }
         }
@@ -452,7 +474,9 @@ export default class Success extends cc.Component {
     /**获取新皮肤面板的看广告按钮点击 */
     private onGetSkinByVideoOfSkinPanelClick():void {
         // if (cc.sys.platform == cc.sys.ANDROID) {
-              FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skin);
+        FirebaseReport.reportInformation(FirebaseKey.shengli_ad2_skin);
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_win_3);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_win_3);
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["Success"].JavaCall_getNewSkin()', 'cc["Success"].JavaCall_noAdCallback()', "shengli_ad2_skin", "");
         // }
         // else {

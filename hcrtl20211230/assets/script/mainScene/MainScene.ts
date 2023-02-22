@@ -63,7 +63,7 @@ export default class MainScene extends cc.Component {
 
         if (cc.sys.platform == cc.sys.ANDROID) {
             jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppOpenAdManager", "JsCall_InitAdAvailable", "()V");
-            FirebaseReport.reportAdjustParam("1x5fu1");                
+                  
         }
 
 
@@ -120,7 +120,17 @@ export default class MainScene extends cc.Component {
 
     private onBtnStart():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_start);
-        FirebaseReport.reportAdjustParam("oq0hy2");
+
+        if (userData.platformType == 0) {
+            FirebaseReport.reportAdjustParam("oq0hy2");
+        }
+        else if (userData.platformType == 1) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_main_2);
+        }
+        else if (userData.platformType == 2) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.adjust_main_2);
+        }
+                
         cc.director.loadScene('GameScene');//进入游戏场景
 
         //userData.setData(localStorageKey.GOLD, 6000);
@@ -130,6 +140,8 @@ export default class MainScene extends cc.Component {
     private onBtnSkin():void {
         FirebaseReport.reportInformation(FirebaseKey.shouye_skin);
         FirebaseReport.reportAdjustParam("bm6s8g");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_main_1);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_main_1);
         this.showSkinShop();
     }
 
@@ -139,8 +151,10 @@ export default class MainScene extends cc.Component {
     }
 
     private onBtnWeapon(): void {
-        FirebaseReport.reportInformation("shouye_arms");
+        FirebaseReport.reportInformation(FirebaseKey.shouye_arms);
         FirebaseReport.reportAdjustParam("tc5zgk");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_main_3);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_main_3);
         var self = this;
         cc.loader.loadRes("prefabs/game/weapon/WeaponRoot", cc.Prefab, (e, p) => {
             var pnode = cc.instantiate(p as cc.Prefab);
@@ -153,8 +167,10 @@ export default class MainScene extends cc.Component {
     }
 
     private onBtnSign(): void {
-        FirebaseReport.reportInformation("shouye_gift");
+        FirebaseReport.reportInformation(FirebaseKey.shouye_gift);
         FirebaseReport.reportAdjustParam("pj9a8i");
+        FirebaseReport.reportAdjustParam(FirebaseKey.adjust_main_4);
+        FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_main_4);
         var self = this;
         cc.loader.loadRes("prefabs/sign/SignInView", cc.Prefab, (e, p) => {
             var pnode = cc.instantiate(p as cc.Prefab);
@@ -247,12 +263,13 @@ export default class MainScene extends cc.Component {
 
     private unlockSkinByAd():void {
         // if (cc.sys.platform == cc.sys.ANDROID) {
-              FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
+
         //     jsb.reflection.callStaticMethod("org/cocos2dx/javascript/RewardedAdManager", "JsCall_showAdIfAvailable", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V",'cc["MainScene"].JavaCall_unlockSkin()', 'cc["MainScene"].JavaCall_noAdCallback()', "skin_ad2", 'cc["MainScene"].JavaCall_closeAdCallback()');
         // }
         // else {
         //      this.unlockSkin();
         // }
+        FirebaseReport.reportInformation(FirebaseKey.skin_ad2);
         SdkManager.GetInstance().JavaRewardedAds("skin_ad2", () => { this.unlockSkin(); }, () => { this.noAdCallback(); } ,()=>{ this.closeAdCallback(); });
         this.m_BackFunc = () => { this.unlockSkin(); }
     }

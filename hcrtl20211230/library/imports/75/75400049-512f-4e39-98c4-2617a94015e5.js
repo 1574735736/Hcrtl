@@ -59,8 +59,10 @@ var SignInView = /** @class */ (function (_super) {
     };
     SignInView.prototype.onClickClose = function () {
         var _this = this;
-        FirebaseReport_1.FirebaseReport.reportInformation("gift_x");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.gift_x);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("i7nm62");
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_sign_3);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_sign_3);
         var func = cc.sequence(cc.scaleTo(0.3, 0, 0), cc.callFunc(function () { _this.node.destroy(); }));
         this.node.runAction(func);
     };
@@ -70,7 +72,9 @@ var SignInView = /** @class */ (function (_super) {
             return;
         }
         FirebaseReport_1.FirebaseReport.reportAdjustParam("sl0fno");
-        FirebaseReport_1.FirebaseReport.reportInformation("gift_ad2_doubie");
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.gift_ad2_doubie);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_sign_2);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_sign_2);
         SdkManager_1.default.GetInstance().JavaRewardedAds("gift_ad2_doubie", function () { _this.onClickSign(2); }, function () { _this.noAdCallback(); });
         this.m_BackFunc = function () { _this.onClickSign(2); };
     };
@@ -78,6 +82,9 @@ var SignInView = /** @class */ (function (_super) {
         if (this.canClick == false) {
             return;
         }
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.gift_ad3_recelve);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_sign_1);
+        FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_sign_1);
         FirebaseReport_1.FirebaseReport.reportAdjustParam("tl0xed");
         this.onClickSign(1);
     };
