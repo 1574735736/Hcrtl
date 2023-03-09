@@ -128,7 +128,7 @@ var LevelData = /** @class */ (function (_super) {
                 },
                 {
                     data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
-                        [{ prefab: "TreasureBox2", hp: 60, type: "item" }]]
+                        [{ prefab: "Sword_1", hp: 60, type: "monster" }]]
                 }
             ]
         },

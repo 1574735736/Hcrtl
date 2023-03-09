@@ -1139,7 +1139,7 @@
       }
     }
   },
-  "_atlasText": "\nshengli.png\nsize: 76,85\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\njb\n  rotate: false\n  xy: 2, 2\n  size: 72, 81\n  orig: 72, 81\n  offset: 0, 0\n  index: -1\n",
+  "_atlasText": "\r\nshengli.png\r\nsize: 76,85\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\njb\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 72, 81\r\n  orig: 72, 81\r\n  offset: 0, 0\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "218ac3ff-fbc3-4758-a81d-208112ac015e"
