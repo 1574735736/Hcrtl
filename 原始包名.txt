@@ -6,3 +6,8 @@ com.stickman.towerwar
 G7-2
 游戏名：stick hero tower defense
 包名：com.stickhero.herocastlewar
+
+G7-3
+游戏名：Castle War: Tower Attack
+包名：com.stickhero.herocastlewar
+

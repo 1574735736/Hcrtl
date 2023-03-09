@@ -19,7 +19,9 @@ export default class SpineManager extends BaseInstanceClass {
      */
     public playSpinAnimation(spinSkeleton: sp.Skeleton, animationName: string, isLoop: boolean, completeCallback: any, self: any = null, timeScale: number = 1) {
 
-
+        if (spinSkeleton == null) {
+            return;
+        }
     // console.log('播放动画', animationName, 'spinSkeleton', spinSkeleton, isLoop)
     spinSkeleton.setStartListener(null);
     spinSkeleton.loop = isLoop;
@@ -31,8 +33,14 @@ export default class SpineManager extends BaseInstanceClass {
     // (completeCallback) ? : spinSkeleton.setCompleteListener(null);
 }
 
-public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinName: string, animationName: string, completeCallback:Function = null) {
-    cc.loader.loadRes(path, sp.SkeletonData, (err, spData) => {
+    public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinName: string, animationName: string, completeCallback: Function = null) {
+
+        if (spinSkeleton == null) {
+            return;
+        }
+
+    cc.loader.loadRes(path, sp.SkeletonData, (err, spData) => {      
+
         if (err) {
             console.log("LoadSpin ", err)
             return
@@ -51,6 +59,11 @@ public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinN
 }
 
     public loadSkinSpine(spinSkeleton: sp.Skeleton, weapon: sp.Skeleton, isLoop: boolean, skinIdx: number, weaponIdx: number, animationName: string, completeCallback: Function = null) {
+
+        if (spinSkeleton == null) {
+            return;
+        }
+
         let path = skinIdx > 1 ? "spine/play/pifu" : "spine/play/zhu1";
         cc.loader.loadRes(path, sp.SkeletonData, (err, spData) => {
             if (err) {
@@ -70,12 +83,14 @@ public loadSpine(spinSkeleton: sp.Skeleton, path: string, isLoop: boolean, skinN
     }
 
 
-    public changSpinSkin(spSkin: sp.Skeleton, weapon: sp.Skeleton, skinIdx: number, weaponIdx: number ) {
+    public changSpinSkin(spSkin: sp.Skeleton, weapon: sp.Skeleton, skinIdx: number, weaponIdx: number) {
+
+        if (spSkin == null) {
+            return;
+        }
 
         let sIdx = skinIdx - 1;
         let sName = sIdx < 1 ? "default" : "p" + sIdx;
-
-        cc.log("sName     " + sName);
 
         spSkin.defaultSkin = sName;
 

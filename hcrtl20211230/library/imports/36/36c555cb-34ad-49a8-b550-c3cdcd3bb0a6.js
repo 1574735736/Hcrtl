@@ -282,6 +282,8 @@ var TowerLayer = /** @class */ (function (_super) {
                     });
                     return;
                 }
+                var Post = this.convertNodeSpaceAR(player, towerTile_1.node);
+                targerPost = cc.v2(targerPost.x, Post.y + 28);
                 //跳向怪物格子
                 playerRole_1.jumpTo(targerPost, UserData_1.userData.TempStandX, function () {
                     //if (!monsterRole.hasItem) {//如果不是道具
@@ -304,6 +306,9 @@ var TowerLayer = /** @class */ (function (_super) {
                 });
             }
         }
+    };
+    TowerLayer.prototype.convertNodeSpaceAR = function (node1, node2) {
+        return node1.parent.convertToNodeSpaceAR(node2.parent.convertToWorldSpaceAR(node2.position));
     };
     //攻击之后
     TowerLayer.prototype.attackedLater = function (playerRole, monsterRole, posCache, towerTile) {
@@ -347,7 +352,6 @@ var TowerLayer = /** @class */ (function (_super) {
         this.calculationHp(playerRole, monsterRole, towerTile, function (die) {
             if (!die) {
                 if (!_this.checkUpTowerHasMonster(towerTile)) { //塔楼是否还有怪物
-                    console.log("没怪了，计算角色塔楼");
                     if (LevelData_1.default.curLevel == 1) {
                         _this.DevilsAni(function () { _this.fateEndAction(towerTile); });
                     }

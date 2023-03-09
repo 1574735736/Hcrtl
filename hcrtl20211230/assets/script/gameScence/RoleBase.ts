@@ -83,7 +83,10 @@ export default class RoleBase extends cc.Component {
     }
 
     //血条需要放大的怪
-    private isScaleX(){
+    private isScaleX() {
+        if (this.node.name.indexOf("DualSword") != -1) {
+            return false;
+        }
         if(this.node.name.indexOf("Bow")!=-1 || this.node.name.indexOf("Vampire")!=-1 ||
          this.node.name.indexOf("Shield")!=-1 || this.node.name.indexOf("Wizard")!=-1 ||
          this.node.name.indexOf("Sword")!=-1){
@@ -98,7 +101,8 @@ export default class RoleBase extends cc.Component {
         this.weapon = wp;
         
         if (this.type != RoleType.OTHER && !this.shield && this.type != RoleType.Guidance) {
-            if(this.isScaleX()){//放大血条
+            let isScale = this.isScaleX();
+            if (isScale){//放大血条
                 this.hpLable.node.scaleX = -2;
             }else{
                 this.hpLable.node.scaleX = 2;

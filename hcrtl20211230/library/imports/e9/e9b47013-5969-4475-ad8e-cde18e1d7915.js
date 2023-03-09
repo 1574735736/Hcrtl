@@ -83,6 +83,9 @@ var RoleBase = /** @class */ (function (_super) {
     };
     //血条需要放大的怪
     RoleBase.prototype.isScaleX = function () {
+        if (this.node.name.indexOf("DualSword") != -1) {
+            return false;
+        }
         if (this.node.name.indexOf("Bow") != -1 || this.node.name.indexOf("Vampire") != -1 ||
             this.node.name.indexOf("Shield") != -1 || this.node.name.indexOf("Wizard") != -1 ||
             this.node.name.indexOf("Sword") != -1) {
@@ -94,7 +97,8 @@ var RoleBase = /** @class */ (function (_super) {
         this.levels[this.lv] = true;
         this.weapon = wp;
         if (this.type != RoleType.OTHER && !this.shield && this.type != RoleType.Guidance) {
-            if (this.isScaleX()) { //放大血条
+            var isScale = this.isScaleX();
+            if (isScale) { //放大血条
                 this.hpLable.node.scaleX = -2;
             }
             else {

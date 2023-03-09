@@ -97,8 +97,7 @@ export default class TowerLayer extends cc.Component {
         this.findPlayerColumn();      
     }
 
-    public PrinceTalk() {
-        
+    public PrinceTalk() {        
         var princess = this.findPrincess();
         this.SetTalkInfo(princess);
     }
@@ -314,6 +313,9 @@ export default class TowerLayer extends cc.Component {
                     return;
                 }
 
+                let Post = this.convertNodeSpaceAR(player, towerTile.node)
+
+                targerPost = cc.v2(targerPost.x, Post.y + 28);
                 //跳向怪物格子
                 playerRole.jumpTo(targerPost, userData.TempStandX, () => {
                     //if (!monsterRole.hasItem) {//如果不是道具
@@ -340,6 +342,11 @@ export default class TowerLayer extends cc.Component {
             }
         }
     }
+
+    public  convertNodeSpaceAR(node1: cc.Node, node2: cc.Node) {
+        return node1.parent.convertToNodeSpaceAR(node2.parent.convertToWorldSpaceAR(node2.position))
+    }
+
     moveSelfTile: boolean = false;
     //攻击之后
     private attackedLater(playerRole, monsterRole, posCache, towerTile) {
@@ -387,9 +394,6 @@ export default class TowerLayer extends cc.Component {
         this.calculationHp(playerRole, monsterRole, towerTile, (die) => {
             if (!die) {
                 if (!this.checkUpTowerHasMonster(towerTile)) {//塔楼是否还有怪物
-
-
-                    console.log("没怪了，计算角色塔楼");
 
                     if (LevelData.curLevel == 1) {
                         this.DevilsAni(() => { this.fateEndAction(towerTile); });

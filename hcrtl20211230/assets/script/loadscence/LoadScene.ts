@@ -34,7 +34,7 @@ export default class LoadScene extends cc.Component {
     private isLoadingGame:boolean = true;
 
     private inAddSpeed: number = 0.4;
-    private inCountSpeed: number = 1;
+    private inCountSpeed: number = 10;
     private comeOnStatus: number = 0;
 
     private OpenAdShowed: boolean = false

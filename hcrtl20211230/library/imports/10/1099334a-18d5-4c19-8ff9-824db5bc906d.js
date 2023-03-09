@@ -45,6 +45,9 @@ var SpineManager = /** @class */ (function (_super) {
     SpineManager.prototype.playSpinAnimation = function (spinSkeleton, animationName, isLoop, completeCallback, self, timeScale) {
         if (self === void 0) { self = null; }
         if (timeScale === void 0) { timeScale = 1; }
+        if (spinSkeleton == null) {
+            return;
+        }
         // console.log('播放动画', animationName, 'spinSkeleton', spinSkeleton, isLoop)
         spinSkeleton.setStartListener(null);
         spinSkeleton.loop = isLoop;
@@ -56,6 +59,9 @@ var SpineManager = /** @class */ (function (_super) {
     };
     SpineManager.prototype.loadSpine = function (spinSkeleton, path, isLoop, skinName, animationName, completeCallback) {
         if (completeCallback === void 0) { completeCallback = null; }
+        if (spinSkeleton == null) {
+            return;
+        }
         cc.loader.loadRes(path, sp.SkeletonData, function (err, spData) {
             if (err) {
                 console.log("LoadSpin ", err);
@@ -76,6 +82,9 @@ var SpineManager = /** @class */ (function (_super) {
     SpineManager.prototype.loadSkinSpine = function (spinSkeleton, weapon, isLoop, skinIdx, weaponIdx, animationName, completeCallback) {
         var _this = this;
         if (completeCallback === void 0) { completeCallback = null; }
+        if (spinSkeleton == null) {
+            return;
+        }
         var path = skinIdx > 1 ? "spine/play/pifu" : "spine/play/zhu1";
         cc.loader.loadRes(path, sp.SkeletonData, function (err, spData) {
             if (err) {
@@ -92,9 +101,11 @@ var SpineManager = /** @class */ (function (_super) {
         });
     };
     SpineManager.prototype.changSpinSkin = function (spSkin, weapon, skinIdx, weaponIdx) {
+        if (spSkin == null) {
+            return;
+        }
         var sIdx = skinIdx - 1;
         var sName = sIdx < 1 ? "default" : "p" + sIdx;
-        cc.log("sName     " + sName);
         spSkin.defaultSkin = sName;
         spSkin.setSkin(sName);
         var slot1 = spSkin.findSlot("wq");

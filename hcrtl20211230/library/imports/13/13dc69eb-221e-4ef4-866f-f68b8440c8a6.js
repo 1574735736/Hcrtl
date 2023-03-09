@@ -198,6 +198,9 @@ var TowerTile = /** @class */ (function (_super) {
     TowerTile.prototype.isPrincess = function () {
         return this.princess != null;
     };
+    TowerTile.prototype.GetTilePos = function () {
+        return this.node.getPosition();
+    };
     TowerTile = __decorate([
         ccclass
     ], TowerTile);

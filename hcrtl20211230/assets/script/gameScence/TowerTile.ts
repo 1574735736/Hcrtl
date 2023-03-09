@@ -196,5 +196,9 @@ export default class TowerTile extends cc.Component {
         return this.princess != null;
     }
 
+    public GetTilePos() {
+        return this.node.getPosition();
+    }
+
     // update (dt) {}
 }
