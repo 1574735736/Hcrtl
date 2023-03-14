@@ -109,7 +109,9 @@ export default class LoadScene extends cc.Component {
                     this.loadHallProgress(13, 100);
                     
                     PrefabsManager.getInstance().initOtherPrefab(() => {//加载其它prfab
-                        
+
+                        PrefabsManager.getInstance().initBossPrefab();
+
                         this.loadHallProgress(15, 100);
                         this.loadScene();//加载场景
 

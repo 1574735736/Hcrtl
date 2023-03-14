@@ -16,7 +16,10 @@ export default class PrefabsManager extends  BaseInstanceClass {
     public monsterPrefabList : cc.Prefab [] = [];
     //所有角色
     public playerPrefabList : cc.Prefab [] = [];
-    public otherPrefabList : cc.Prefab [] =[];
+    public otherPrefabList: cc.Prefab[] = [];
+    //所有Boss
+    public bossPrefanList: cc.Prefab[] = [];
+
     start () {
 
     }
@@ -58,4 +61,16 @@ export default class PrefabsManager extends  BaseInstanceClass {
             cb && cb();
         });
     }
+
+    public initBossPrefab(cb: Function) {
+        cc.loader.loadResDir('prefabs/game/boss', cc.Prefab, (err, assets) => {
+            for (var i = 0; i < assets.length; i++) {
+                var sf = assets[i];
+                this.bossPrefanList[sf.name] = sf;
+            }
+            cb && cb();
+        });
+    }
+
+   
 }

@@ -100,6 +100,9 @@ export default class TowerTile extends cc.Component {
                     tempNode.position = cc.v3(-20, 150, 0);
                     this.node.addChild(tempNode, 1, "guidance");
                 }
+                if (data.scale) {
+                    role.SetScale(data.scale);
+                }
             }
         }
     }

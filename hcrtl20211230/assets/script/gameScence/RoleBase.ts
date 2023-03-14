@@ -574,20 +574,41 @@ export default class RoleBase extends cc.Component {
      */
     public attack(cb?: Function) {
 
+        let ainName = this.GetAttackName();
+        if (this.ani) {
+
+        }
+        else {
+           
+        }
+        //console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
+        //console.log("this.type   " + this.type);
+        //console.log("this.skinId   " + this.skinId);
+        //console.log("this.weaponId   " + this.weaponId);
+        //cc.log("ainName     " + ainName);
+        SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
+            if (cb) {
+                cb();
+                cb = null;
+            }
+        }, this);
+    }
+
+    private GetAttackName() {
         let ainName = "gongji";
-        
+
         if (this.type != RoleType.PLAYER) {//根据不同怪物
             let name = this.node.name;
             if (name == "DualSword" || name == "Dragon_2head") {
                 let index = Utils.randomInt(0, 1);
                 let nameAin = ["Attack_1", "Attack_2"];
                 ainName = nameAin[index];
-            } else if (name.indexOf("Bow")!=-1|| name == "Priest" || name == "Goblin" ||
-             name == "T-rex" || name == "Wizard" || name.indexOf("Sword")!=-1 || this.type == RoleType.EGG) {
+            } else if (name.indexOf("Bow") != -1 || name == "Priest" || name == "Goblin" ||
+                name == "T-rex" || name == "Wizard" || name.indexOf("Sword") != -1 || this.type == RoleType.EGG) {
                 ainName = "Attack";
-            } else if (name.indexOf("Shield")!=-1) {
+            } else if (name.indexOf("Shield") != -1) {
                 ainName = "Shield_Pawn_Attack";
-            } else if (name.indexOf("Vampire")!=-1) {
+            } else if (name.indexOf("Vampire") != -1) {
                 let index = Utils.randomInt(0, 1);
                 let nameAin = ["Attack", "Attack_1"];
                 ainName = nameAin[index];
@@ -604,7 +625,7 @@ export default class RoleBase extends cc.Component {
                 else if (this.weaponId == 2 || this.weaponId == 3 || this.weaponId == 5) {
                     ainName = "gongji1-2";
                 }
-                else if (this.weaponId == 7 || this.weaponId == 8 ) {
+                else if (this.weaponId == 7 || this.weaponId == 8) {
                     ainName = "gongji3-1";
                 }
                 else if (this.weaponId == 9) {
@@ -628,23 +649,7 @@ export default class RoleBase extends cc.Component {
             }
 
         }
-        if (this.ani) {
-
-        }
-        else {
-           
-        }
-        //console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
-        //console.log("this.type   " + this.type);
-        //console.log("this.skinId   " + this.skinId);
-        //console.log("this.weaponId   " + this.weaponId);
-        //cc.log("ainName     " + ainName);
-        SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
-            if (cb) {
-                cb();
-                cb = null;
-            }
-        }, this);
+        return ainName
     }
 
     /**
@@ -685,5 +690,38 @@ export default class RoleBase extends cc.Component {
        role.init(this.data);
        tempNode.position =this.node.position;
        this.node.parent.addChild(tempNode, 1, "item");
-    }    // update (dt) {}
+    }  
+    // update (dt) {}
+
+    public SetScale(scale: number, cb?: Function,isAni: boolean = false) {
+        if (isAni) {
+            var sp = cc.sequence(cc.scaleTo(1, scale, scale), cc.callFunc(() => {
+                if (cb) {
+                    cb();
+                    cb = null;
+                }
+            }))
+            this.node.runAction(sp);    
+        }
+        else {
+            this.node.setScale(scale, scale);
+        }
+    }
+
+    public AttackBoss(cb?: Function) {
+        let ainName = this.GetAttackName();
+
+
+        //this.ani.setStartListener(null);
+        //this.ani.loop = true;
+        //this.ani.timeScale = 1;
+        //this.ani.animation = ainName;
+        //this.ani.setCompleteListener(cb);
+
+        SpineManager.getInstance().playSpinAnimation(this.ani, ainName, true, () => {
+            if (cb) {
+                cb();
+            }
+        }, this);
+    }
 }

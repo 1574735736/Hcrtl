@@ -2,6 +2,7 @@
 require('./assets/script/data/LevelData');
 require('./assets/script/data/UserData');
 require('./assets/script/gameScence/AndroidAdView');
+require('./assets/script/gameScence/BossBase');
 require('./assets/script/gameScence/Bullet');
 require('./assets/script/gameScence/GameScence');
 require('./assets/script/gameScence/Lose');

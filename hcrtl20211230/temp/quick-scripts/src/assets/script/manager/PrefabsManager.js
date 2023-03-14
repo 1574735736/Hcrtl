@@ -40,6 +40,8 @@ var PrefabsManager = /** @class */ (function (_super) {
         //所有角色
         _this.playerPrefabList = [];
         _this.otherPrefabList = [];
+        //所有Boss
+        _this.bossPrefanList = [];
         return _this;
     }
     PrefabsManager.prototype.start = function () {
@@ -77,6 +79,16 @@ var PrefabsManager = /** @class */ (function (_super) {
     };
     PrefabsManager.prototype.initPlayerSpine = function (cb) {
         cc.loader.loadResDir("spine/players", sp.SkeletonData, function (err, res) {
+            cb && cb();
+        });
+    };
+    PrefabsManager.prototype.initBossPrefab = function (cb) {
+        var _this = this;
+        cc.loader.loadResDir('prefabs/game/boss', cc.Prefab, function (err, assets) {
+            for (var i = 0; i < assets.length; i++) {
+                var sf = assets[i];
+                _this.bossPrefanList[sf.name] = sf;
+            }
             cb && cb();
         });
     };

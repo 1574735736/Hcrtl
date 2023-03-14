@@ -549,6 +549,24 @@ var RoleBase = /** @class */ (function (_super) {
      * @param cb
      */
     RoleBase.prototype.attack = function (cb) {
+        var ainName = this.GetAttackName();
+        if (this.ani) {
+        }
+        else {
+        }
+        //console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
+        //console.log("this.type   " + this.type);
+        //console.log("this.skinId   " + this.skinId);
+        //console.log("this.weaponId   " + this.weaponId);
+        //cc.log("ainName     " + ainName);
+        SpineManager_1.default.getInstance().playSpinAnimation(this.ani, ainName, false, function () {
+            if (cb) {
+                cb();
+                cb = null;
+            }
+        }, this);
+    };
+    RoleBase.prototype.GetAttackName = function () {
         var ainName = "gongji";
         if (this.type != RoleType.PLAYER) { //根据不同怪物
             var name = this.node.name;
@@ -604,21 +622,7 @@ var RoleBase = /** @class */ (function (_super) {
                 }
             }
         }
-        if (this.ani) {
-        }
-        else {
-        }
-        //console.log(" RoleType.PLAYER   " + RoleType.PLAYER);
-        //console.log("this.type   " + this.type);
-        //console.log("this.skinId   " + this.skinId);
-        //console.log("this.weaponId   " + this.weaponId);
-        //cc.log("ainName     " + ainName);
-        SpineManager_1.default.getInstance().playSpinAnimation(this.ani, ainName, false, function () {
-            if (cb) {
-                cb();
-                cb = null;
-            }
-        }, this);
+        return ainName;
     };
     /**
      * 死亡
@@ -657,7 +661,36 @@ var RoleBase = /** @class */ (function (_super) {
         role.init(this.data);
         tempNode.position = this.node.position;
         this.node.parent.addChild(tempNode, 1, "item");
-    }; // update (dt) {}
+    };
+    // update (dt) {}
+    RoleBase.prototype.SetScale = function (scale, cb, isAni) {
+        if (isAni === void 0) { isAni = false; }
+        if (isAni) {
+            var sp = cc.sequence(cc.scaleTo(1, scale, scale), cc.callFunc(function () {
+                if (cb) {
+                    cb();
+                    cb = null;
+                }
+            }));
+            this.node.runAction(sp);
+        }
+        else {
+            this.node.setScale(scale, scale);
+        }
+    };
+    RoleBase.prototype.AttackBoss = function (cb) {
+        var ainName = this.GetAttackName();
+        //this.ani.setStartListener(null);
+        //this.ani.loop = true;
+        //this.ani.timeScale = 1;
+        //this.ani.animation = ainName;
+        //this.ani.setCompleteListener(cb);
+        SpineManager_1.default.getInstance().playSpinAnimation(this.ani, ainName, true, function () {
+            if (cb) {
+                cb();
+            }
+        }, this);
+    };
     var RoleBase_1;
     __decorate([
         property(cc.Label)

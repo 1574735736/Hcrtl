@@ -22,9 +22,13 @@
       }
     ],
     "_active": true,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 5
+      }
+    ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "_opacity": 255,
     "_color": {
@@ -152,7 +156,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -163,7 +167,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
@@ -185,10 +189,20 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "11d55ccb-03b9-4128-924f-752f9e9e459d"
     },
     "fileId": "27GqK3cO9AH5rv1oAKAd5E",
     "sync": false
+  },
+  {
+    "__type__": "0b019uLNJRN74PrCkC6bjFD",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -196,7 +210,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "11d55ccb-03b9-4128-924f-752f9e9e459d"
     },
     "fileId": "57iea+kltLwIHH47VrJyVr",
     "sync": false

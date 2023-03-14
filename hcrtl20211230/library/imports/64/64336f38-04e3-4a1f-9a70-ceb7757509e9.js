@@ -49,7 +49,7 @@ var LevelData = /** @class */ (function (_super) {
         if (level == null) {
             level = "1";
         }
-        LevelData_1.curLevel = Number(level);
+        LevelData_1.curLevel = 1; //Number(level);
         console.log("============get level: " + LevelData_1.curLevel);
     };
     var LevelData_1;
@@ -129,6 +129,12 @@ var LevelData = /** @class */ (function (_super) {
                 {
                     data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
                         [{ prefab: "TreasureBox2", hp: 60, type: "item" }]]
+                },
+                {
+                    prefab: "Boss_1", type: "boss"
+                },
+                {
+                    prefab: "TreasureBox1", hp: 50, type: "item"
                 }
             ]
         },
