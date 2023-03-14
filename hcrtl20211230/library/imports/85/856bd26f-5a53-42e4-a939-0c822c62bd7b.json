@@ -172,7 +172,7 @@
       }
     }
   },
-  "_atlasText": "\nskeleton.png\nsize: 512,512\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nk\n  rotate: false\n  xy: 2, 2\n  size: 188, 138\n  orig: 188, 138\n  offset: 0, 0\n  index: -1\nsb\n  rotate: false\n  xy: 2, 142\n  size: 285, 306\n  orig: 302, 336\n  offset: 9, 15\n  index: -1\n",
+  "_atlasText": "\r\nskeleton.png\r\nsize: 512,512\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nk\r\n  rotate: false\r\n  xy: 2, 2\r\n  size: 188, 138\r\n  orig: 188, 138\r\n  offset: 0, 0\r\n  index: -1\r\nsb\r\n  rotate: false\r\n  xy: 2, 142\r\n  size: 285, 306\r\n  orig: 302, 336\r\n  offset: 9, 15\r\n  index: -1\r\n",
   "textures": [
     {
       "__uuid__": "f9ddcf7f-fbf4-4ad3-8722-784d3a97f0f2"
