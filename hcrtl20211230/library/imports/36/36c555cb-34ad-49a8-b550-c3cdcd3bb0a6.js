@@ -119,7 +119,7 @@ var TowerLayer = /** @class */ (function (_super) {
                 var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[element.prefab]);
                 if (tempNode) {
                     this.node.addChild(tempNode);
-                    tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -410));
+                    tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -490));
                     var box = tempNode.getComponent(RoleBase_1.default);
                     //let roleBase = tempNode.getComponent(RoleBase);
                     //roleBase.Init();
@@ -307,6 +307,7 @@ var TowerLayer = /** @class */ (function (_super) {
                     return;
                 }
                 if (isSameAcross) {
+                    targerPost.y = player.position.y;
                     playerRole_1.jumpLandTo(targerPost, UserData_1.userData.TempStandX, function () {
                         _this.attackedLater(playerRole_1, monsterRole_1, posCache_1, towerTile_1);
                     });

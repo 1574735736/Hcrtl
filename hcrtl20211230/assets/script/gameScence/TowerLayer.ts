@@ -115,7 +115,7 @@ export default class TowerLayer extends cc.Component {
                 let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[element.prefab])
                 if (tempNode) {
                     this.node.addChild(tempNode);
-                    tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -410));
+                    tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -490));
                     let box = tempNode.getComponent(RoleBase);
                     //let roleBase = tempNode.getComponent(RoleBase);
                     //roleBase.Init();
@@ -268,7 +268,7 @@ export default class TowerLayer extends cc.Component {
         }
 
         let currentTarget = touch.currentTarget as any;//当前点击的格子  
-        
+         
        
         let player = this.findPlayer();//找到角色
 
@@ -342,6 +342,7 @@ export default class TowerLayer extends cc.Component {
                 }
 
                 if (isSameAcross) {
+                    targerPost.y = player.position.y;
                     playerRole.jumpLandTo(targerPost, userData.TempStandX, () => {
                         this.attackedLater(playerRole, monsterRole, posCache, towerTile);
                     });
