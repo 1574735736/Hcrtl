@@ -82,12 +82,27 @@ var TowerLayer = /** @class */ (function (_super) {
         var i = 0;
         for (var i_1 = towerData.length - 1; i_1 >= 0; i_1--) {
             var element = towerData[i_1];
-            if (element && element.data) {
+            if (element.type == "item") {
+                console.log("生成障碍物  ！！ ！  :" + element.prefab);
+                var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[element.prefab]);
+                if (tempNode) {
+                    this.node.addChild(tempNode);
+                    tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -490));
+                    var box = tempNode.getComponent(RoleBase_1.default);
+                    //let roleBase = tempNode.getComponent(RoleBase);
+                    //roleBase.Init();
+                    if (element.scale) {
+                        box.SetScale(element.scale);
+                    }
+                }
+            }
+            else if (element && element.data) {
                 var tempNodeParent = cc.instantiate(this.towerPrefab);
                 tempNodeParent.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -410));
                 var data = element.data;
                 this.node.addChild(tempNodeParent);
                 var end = 0;
+                tempNodeParent.name = "tower" + i_1;
                 tempNodeParent.addChild(this.addFloor()); //塔底
                 for (var j = 0; j < data.length; j++) { //塔身
                     var element1 = data[j];
@@ -110,21 +125,7 @@ var TowerLayer = /** @class */ (function (_super) {
                     this.m_BossInfo = tempNode.getComponent(BossBase_1.default);
                     this.m_BossInfo.Init();
                     if (element.scale) {
-                        console.log("m_BossInfo scale :" + element.scale);
                         this.m_BossInfo.SetScale(element.scale);
-                    }
-                }
-            }
-            else if (element.type == "item") {
-                var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[element.prefab]);
-                if (tempNode) {
-                    this.node.addChild(tempNode);
-                    tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -490));
-                    var box = tempNode.getComponent(RoleBase_1.default);
-                    //let roleBase = tempNode.getComponent(RoleBase);
-                    //roleBase.Init();
-                    if (element.scale) {
-                        box.SetScale(element.scale);
                     }
                 }
             }
@@ -451,9 +452,22 @@ var TowerLayer = /** @class */ (function (_super) {
         var player = this.findPlayer();
         var playerRole = player.getComponent(RoleBase_1.default);
         var boss = this.node.children[this.curSizeIndex].getComponent(BossBase_1.default);
+        if (player.parent.name == "Tower_tile") {
+            var TempY = player.parent.position.y;
+            var tile = this.node.children[this.playerposition];
+            //var pseq = cc.sequence(cc.fadeTo(1, 0), cc.callFunc(() => {
+            //}));
+            for (var i = 0; i < tile.childrenCount; i++) {
+                //tile.children[i].opacity = 0;             
+                tile.children[i].runAction(cc.fadeTo(1, 0));
+            }
+            player.setParent(tile);
+            player.opacity = 255;
+            player.setPosition(player.position.x, player.position.y + TempY);
+        }
         var attackCount = 0;
         var attackMax = 3;
-        playerRole.SetScale(3, function () {
+        playerRole.SetScale(player.scaleX * 2.5, function () {
             playerRole.AttackBoss(function () {
                 attackCount++;
                 if (attackCount >= attackMax) {
@@ -483,12 +497,20 @@ var TowerLayer = /** @class */ (function (_super) {
         var box = this.node.children[this.curSizeIndex].getComponent(RoleBase_1.default);
         var targerPost = player.parent.convertToNodeSpaceAR(box.node.parent.convertToWorldSpaceAR(box.node.position));
         targerPost.y = player.position.y;
-        playerRole.jumpLandTo(targerPost, UserData_1.userData.TempStandX * 2, function () {
+        var remove = function () {
+            SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.ClaimSword);
+            box.node.removeFromParent();
+        };
+        playerRole.jumpLandTo(targerPost, UserData_1.userData.TempStandX, function () {
             //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
             playerRole.idle();
-            if (!_this.curSizeView()) {
-                _this.FateBossAct();
-            }
+            box.boxAction();
+            remove();
+            _this.scheduleOnce(function () {
+                if (!this.curSizeView()) {
+                    this.FateBossAct();
+                }
+            }, 1);
             //GameScence.Instance.flushMoveCount();            
         });
     };
@@ -648,6 +670,18 @@ var TowerLayer = /** @class */ (function (_super) {
             }
         };
         if (role2.hasItem) { //如果有道具
+            if (role2.isBox) {
+                role2.boxAction();
+                remove();
+                return;
+            }
+            if (role2.isWeapon) {
+                role1.addHp(role2.getHp());
+                role1.loadSpAin(role2.GetWeaponID());
+                role1.idle();
+                remove();
+                return;
+            }
             if (role2.shield) { //道具为盾，增加一个盾血条
                 role1.setShieldHp(role2.getHp());
                 remove(); //移除盾
@@ -656,6 +690,14 @@ var TowerLayer = /** @class */ (function (_super) {
             //否则为大宝刀或大宝剑，角色加血
             role1.addHp(role2.getHp());
             remove();
+            if (role1.getHp() <= 0) {
+                //角色播放死亡动画
+                role1.death(function () {
+                    if (cb) {
+                        cb(true);
+                    }
+                });
+            }
             return;
         }
         var targerHp = role2.getHp();
@@ -999,6 +1041,7 @@ var TowerLayer = /** @class */ (function (_super) {
      */
     TowerLayer.prototype.gameLose = function () {
         this.loseNode.active = true;
+        this.isDie = true;
         SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.Lose_Jingle);
     };
     /**

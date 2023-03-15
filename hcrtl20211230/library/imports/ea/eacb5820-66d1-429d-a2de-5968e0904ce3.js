@@ -106,6 +106,7 @@ var LoadScene = /** @class */ (function (_super) {
                     _this.loadHallProgress(13, 100);
                     PrefabsManager_1.default.getInstance().initOtherPrefab(function () {
                         PrefabsManager_1.default.getInstance().initBossPrefab();
+                        PrefabsManager_1.default.getInstance().initWeaponPrefab();
                         _this.loadHallProgress(15, 100);
                         _this.loadScene(); //加载场景
                     });

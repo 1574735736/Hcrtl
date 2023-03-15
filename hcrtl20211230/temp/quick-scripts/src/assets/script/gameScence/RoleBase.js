@@ -61,8 +61,11 @@ var RoleBase = /** @class */ (function (_super) {
         _this.shield = false; //是否是盾
         _this.egg = false; //是否是蛋
         _this.bulletPrefab = null; //远程攻击子弹
+        _this.isWeapon = false; //是否是武器
+        _this.isBox = false; //是否是宝箱
         _this.LveUp = null; //升级动画
         _this.weapon = null; //武器
+        _this.weaponID = 0;
         _this.lv = 1;
         _this.hp = 0;
         _this.shieldHp = 0;
@@ -89,6 +92,13 @@ var RoleBase = /** @class */ (function (_super) {
         if (this.node.name.indexOf("Bow") != -1 || this.node.name.indexOf("Vampire") != -1 ||
             this.node.name.indexOf("Shield") != -1 || this.node.name.indexOf("Wizard") != -1 ||
             this.node.name.indexOf("Sword") != -1) {
+            return true;
+        }
+        return false;
+    };
+    //需要扣血的物品
+    RoleBase.prototype.isReduce = function () {
+        if (this.node.name.indexOf("Item_Barrier") != -1) {
             return true;
         }
         return false;
@@ -129,7 +139,7 @@ var RoleBase = /** @class */ (function (_super) {
             if (this.type == RoleType.PRINCESS) {
                 this.hpLable.string = "Hana";
             }
-            else if (this.type == RoleType.Devils) {
+            else if (this.type == RoleType.Devils || this.isBox) {
                 this.hpLable.string = "";
             }
             else {
@@ -137,6 +147,9 @@ var RoleBase = /** @class */ (function (_super) {
             }
             this.hp = Number(data.hp);
             this.maxHp = this.hp;
+            if (this.isReduce()) {
+                this.hp = this.hp * -1;
+            }
         }
         //角色处理
         if (this.type == RoleType.PLAYER) {
@@ -652,10 +665,27 @@ var RoleBase = /** @class */ (function (_super) {
             }
         }, this);
     };
+    RoleBase.prototype.boxAction = function () {
+        if (!this.data) {
+            return;
+        }
+        console.log("this.data.type    :" + this.data.type);
+        if (this.data.type == "weapon") {
+            this.creatorWeapon();
+        }
+        else if (this.data.type == "glod") {
+            if (this.data.count) {
+                var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
+                own += Number(this.data.count);
+                UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
+            }
+        }
+    };
     /**
      * 创建一个新物品
      */
     RoleBase.prototype.creatorItem = function () {
+        console.log("this.data.prefab   :   " + this.data.prefab);
         var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[this.data.prefab]);
         var role = tempNode.getComponent(RoleBase_1);
         role.init(this.data);
@@ -663,6 +693,14 @@ var RoleBase = /** @class */ (function (_super) {
         this.node.parent.addChild(tempNode, 1, "item");
     };
     // update (dt) {}
+    //创建武器
+    RoleBase.prototype.creatorWeapon = function () {
+        var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().weaponPreList[this.data.prefab]);
+        var role = tempNode.getComponent(RoleBase_1);
+        role.init(this.data);
+        tempNode.position = this.node.position;
+        this.node.parent.addChild(tempNode, 1, "item");
+    };
     RoleBase.prototype.SetScale = function (scale, cb, isAni) {
         if (isAni === void 0) { isAni = false; }
         if (isAni) {
@@ -690,6 +728,9 @@ var RoleBase = /** @class */ (function (_super) {
                 cb();
             }
         }, this);
+    };
+    RoleBase.prototype.GetWeaponID = function () {
+        return this.weaponID;
     };
     var RoleBase_1;
     __decorate([
@@ -725,8 +766,17 @@ var RoleBase = /** @class */ (function (_super) {
         property(cc.Prefab)
     ], RoleBase.prototype, "bulletPrefab", void 0);
     __decorate([
+        property(cc.Boolean)
+    ], RoleBase.prototype, "isWeapon", void 0);
+    __decorate([
+        property(cc.Boolean)
+    ], RoleBase.prototype, "isBox", void 0);
+    __decorate([
         property(sp.Skeleton)
     ], RoleBase.prototype, "LveUp", void 0);
+    __decorate([
+        property(Number)
+    ], RoleBase.prototype, "weaponID", void 0);
     RoleBase = RoleBase_1 = __decorate([
         ccclass
     ], RoleBase);

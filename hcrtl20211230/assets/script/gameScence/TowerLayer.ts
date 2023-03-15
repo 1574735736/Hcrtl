@@ -79,12 +79,27 @@ export default class TowerLayer extends cc.Component {
         let i = 0;
         for (let i = towerData.length - 1; i >= 0; i--) {
             let element = towerData[i];
-            if (element && element.data) {
+            if (element.type == "item") {
+                console.log("生成障碍物  ！！ ！  :" + element.prefab);
+                let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[element.prefab])
+                if (tempNode) {
+                    this.node.addChild(tempNode);
+                    tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -490));
+                    let box = tempNode.getComponent(RoleBase);
+                    //let roleBase = tempNode.getComponent(RoleBase);
+                    //roleBase.Init();
+                    if (element.scale) {
+                        box.SetScale(element.scale);
+                    }
+                }
+            }
+            else if (element && element.data) {
                 let tempNodeParent = cc.instantiate(this.towerPrefab);
                 tempNodeParent.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -410));
                 let data = element.data;
                 this.node.addChild(tempNodeParent);
                 let end = 0;
+                tempNodeParent.name = "tower" + i;
                 tempNodeParent.addChild(this.addFloor());//塔底
                 for (let j = 0; j < data.length; j++) {//塔身
                     let element1 = data[j];
@@ -106,24 +121,10 @@ export default class TowerLayer extends cc.Component {
                     this.m_BossInfo = tempNode.getComponent(BossBase);
                     this.m_BossInfo.Init();
                     if (element.scale) {
-                        console.log("m_BossInfo scale :" + element.scale)
                         this.m_BossInfo.SetScale(element.scale);
                     }
                 }            
-            }
-            else if (element.type == "item") {
-                let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[element.prefab])
-                if (tempNode) {
-                    this.node.addChild(tempNode);
-                    tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -490));
-                    let box = tempNode.getComponent(RoleBase);
-                    //let roleBase = tempNode.getComponent(RoleBase);
-                    //roleBase.Init();
-                    if (element.scale) {
-                        box.SetScale(element.scale);
-                    }
-                }  
-            }
+            }          
 
         };
         
@@ -497,6 +498,7 @@ export default class TowerLayer extends cc.Component {
     //判定是否有Boss战 / 最终宝箱
     private FateBossAct() {
         let curNode = this.node.children[this.curSizeIndex];
+    
         if (curNode.name.indexOf("Boss") != -1) {
             this.FateBossAni();
         }
@@ -510,9 +512,26 @@ export default class TowerLayer extends cc.Component {
         let player = this.findPlayer();
         let playerRole = player.getComponent(RoleBase);
         let boss = this.node.children[this.curSizeIndex].getComponent(BossBase);
+
+        if (player.parent.name == "Tower_tile") {
+            let TempY = player.parent.position.y;
+            let tile = this.node.children[this.playerposition];
+           
+            //var pseq = cc.sequence(cc.fadeTo(1, 0), cc.callFunc(() => {
+            //}));
+           
+            for (var i = 0; i < tile.childrenCount; i++) {
+                //tile.children[i].opacity = 0;             
+                tile.children[i].runAction(cc.fadeTo(1, 0));
+            }
+            player.setParent(tile);
+            player.opacity = 255;
+            player.setPosition(player.position.x, player.position.y + TempY);
+        }            
+
         var attackCount = 0;
         var attackMax = 3;
-        playerRole.SetScale(3, () => {
+        playerRole.SetScale(player.scaleX * 2.5, () => {
             playerRole.AttackBoss(() => {
                 attackCount++;
                 if (attackCount >= attackMax) {
@@ -544,13 +563,24 @@ export default class TowerLayer extends cc.Component {
         let box = this.node.children[this.curSizeIndex].getComponent(RoleBase);
         let targerPost = player.parent.convertToNodeSpaceAR(box.node.parent.convertToWorldSpaceAR(box.node.position));
         targerPost.y = player.position.y
-        playerRole.jumpLandTo(targerPost,userData.TempStandX * 2, () => {
-            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
 
+        let remove = () => {
+            SoundManager.getInstance().playEffect(SoundManager.ClaimSword);
+            box.node.removeFromParent();
+          
+        }
+
+        playerRole.jumpLandTo(targerPost,userData.TempStandX , () => {
+            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
             playerRole.idle();
-            if (!this.curSizeView()) {
-                this.FateBossAct();
-            }            
+            box.boxAction();
+            remove();            
+
+            this.scheduleOnce(function () {
+                if (!this.curSizeView()) {
+                    this.FateBossAct();
+                }   
+            }, 1);       
             //GameScence.Instance.flushMoveCount();            
         });
 
@@ -725,6 +755,21 @@ export default class TowerLayer extends cc.Component {
             }
         }
         if (role2.hasItem) {//如果有道具
+
+            if (role2.isBox) {
+                role2.boxAction();
+                remove();
+                return;
+            }
+
+            if (role2.isWeapon) {
+                role1.addHp(role2.getHp());
+                role1.loadSpAin(role2.GetWeaponID());
+                role1.idle();
+                remove();
+                return;
+            }
+
             if (role2.shield) {//道具为盾，增加一个盾血条
                 role1.setShieldHp(role2.getHp());
                 remove();//移除盾
@@ -733,6 +778,14 @@ export default class TowerLayer extends cc.Component {
             //否则为大宝刀或大宝剑，角色加血
             role1.addHp(role2.getHp());
             remove();
+            if (role1.getHp() <= 0) {
+                //角色播放死亡动画
+                role1.death(() => {
+                    if (cb) {
+                        cb(true);
+                    }
+                });
+            }
             return;
         }
 
@@ -1111,6 +1164,7 @@ export default class TowerLayer extends cc.Component {
      */
     private gameLose(){
         this.loseNode.active = true;
+        this.isDie = true;
         SoundManager.getInstance().playEffect(SoundManager.Lose_Jingle);
     }
 

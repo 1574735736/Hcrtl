@@ -19,6 +19,8 @@ export default class PrefabsManager extends  BaseInstanceClass {
     public otherPrefabList: cc.Prefab[] = [];
     //所有Boss
     public bossPrefanList: cc.Prefab[] = [];
+    //所有武器
+    public weaponPreList: cc.Prefab[] = [];
 
     start () {
 
@@ -67,6 +69,16 @@ export default class PrefabsManager extends  BaseInstanceClass {
             for (var i = 0; i < assets.length; i++) {
                 var sf = assets[i];
                 this.bossPrefanList[sf.name] = sf;
+            }
+            cb && cb();
+        });
+    }
+
+    public initWeaponPrefab(cb: Function) {
+        cc.loader.loadResDir('prefabs/game/weaponItem', cc.Prefab, (err, assets) => {
+            for (var i = 0; i < assets.length; i++) {
+                var sf = assets[i];
+                this.weaponPreList[sf.name] = sf;
             }
             cb && cb();
         });

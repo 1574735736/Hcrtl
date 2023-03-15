@@ -445,6 +445,8 @@
     "shield": false,
     "egg": false,
     "bulletPrefab": null,
+    "isWeapon": false,
+    "isBox": true,
     "LveUp": null,
     "_id": ""
   },

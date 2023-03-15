@@ -54,12 +54,21 @@ export default class RoleBase extends cc.Component {
     @property(cc.Boolean)
     egg : boolean = false;//是否是蛋
     @property(cc.Prefab)
-    bulletPrefab : cc.Prefab = null;//远程攻击子弹
+    bulletPrefab: cc.Prefab = null;//远程攻击子弹
+
+    @property(cc.Boolean)
+    isWeapon: boolean = false;//是否是武器
+
+    @property(cc.Boolean)
+    isBox: boolean = false;//是否是宝箱
 
     @property(sp.Skeleton)
     LveUp: sp.Skeleton = null;//升级动画
 
     weapon: sp.Skeleton = null;//武器
+
+    @property(Number)
+    weaponID: number = 0;
 
     private lv = 1;
     private hp = 0;
@@ -90,6 +99,14 @@ export default class RoleBase extends cc.Component {
         if(this.node.name.indexOf("Bow")!=-1 || this.node.name.indexOf("Vampire")!=-1 ||
          this.node.name.indexOf("Shield")!=-1 || this.node.name.indexOf("Wizard")!=-1 ||
          this.node.name.indexOf("Sword")!=-1){
+            return true;
+        }
+        return false;
+    }
+
+    //需要扣血的物品
+    private isReduce() {
+        if (this.node.name.indexOf("Item_Barrier") != -1) {
             return true;
         }
         return false;
@@ -134,12 +151,15 @@ export default class RoleBase extends cc.Component {
                 // this.attack();
             }
             if (this.type == RoleType.PRINCESS) { this.hpLable.string = "Hana"; }
-            else if (this.type == RoleType.Devils) { this.hpLable.string = ""; }
+            else if (this.type == RoleType.Devils || this.isBox) { this.hpLable.string = ""; }
             else {
                 this.hpLable.string = data.hp + "";
             }              
             this.hp = Number(data.hp);
             this.maxHp = this.hp;
+            if (this.isReduce()) {
+                this.hp = this.hp * -1;
+            }            
         }
         //角色处理
         if(this.type == RoleType.PLAYER){
@@ -363,7 +383,7 @@ export default class RoleBase extends cc.Component {
      * 获取当前血量
      * @returns 
      */
-    public getHp(){
+    public getHp() {       
         return this.hp;
     }
 
@@ -681,10 +701,29 @@ export default class RoleBase extends cc.Component {
         }, this);
     }
 
+    public boxAction() {        
+        if (!this.data) {
+            return;
+        }
+        console.log("this.data.type    :" + this.data.type);
+        if (this.data.type == "weapon") {            
+            this.creatorWeapon();
+        }
+        else if (this.data.type == "glod") {
+            if (this.data.count) {
+                let own = userData.getData(localStorageKey.GOLD);
+                own += Number(this.data.count);
+                userData.setData(localStorageKey.GOLD, own);    
+            }
+           
+        }
+    }
+
     /**
      * 创建一个新物品
      */
-    private creatorItem(){
+    private creatorItem() {
+        console.log("this.data.prefab   :   " + this.data.prefab);
        let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[this.data.prefab]);
        let role = tempNode.getComponent(RoleBase);
        role.init(this.data);
@@ -692,6 +731,18 @@ export default class RoleBase extends cc.Component {
        this.node.parent.addChild(tempNode, 1, "item");
     }  
     // update (dt) {}
+
+    //创建武器
+    private creatorWeapon() {
+
+
+        let tempNode = cc.instantiate(PrefabsManager.getInstance().weaponPreList[this.data.prefab]);
+        let role = tempNode.getComponent(RoleBase);
+        role.init(this.data);
+        tempNode.position = this.node.position;
+        this.node.parent.addChild(tempNode, 1, "item");        
+    }
+
 
     public SetScale(scale: number, cb?: Function,isAni: boolean = false) {
         if (isAni) {
@@ -723,5 +774,9 @@ export default class RoleBase extends cc.Component {
                 cb();
             }
         }, this);
+    }
+
+    public GetWeaponID() {
+        return this.weaponID;
     }
 }

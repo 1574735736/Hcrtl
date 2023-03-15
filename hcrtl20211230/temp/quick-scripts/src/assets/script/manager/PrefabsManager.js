@@ -42,6 +42,8 @@ var PrefabsManager = /** @class */ (function (_super) {
         _this.otherPrefabList = [];
         //所有Boss
         _this.bossPrefanList = [];
+        //所有武器
+        _this.weaponPreList = [];
         return _this;
     }
     PrefabsManager.prototype.start = function () {
@@ -88,6 +90,16 @@ var PrefabsManager = /** @class */ (function (_super) {
             for (var i = 0; i < assets.length; i++) {
                 var sf = assets[i];
                 _this.bossPrefanList[sf.name] = sf;
+            }
+            cb && cb();
+        });
+    };
+    PrefabsManager.prototype.initWeaponPrefab = function (cb) {
+        var _this = this;
+        cc.loader.loadResDir('prefabs/game/weaponItem', cc.Prefab, function (err, assets) {
+            for (var i = 0; i < assets.length; i++) {
+                var sf = assets[i];
+                _this.weaponPreList[sf.name] = sf;
             }
             cb && cb();
         });

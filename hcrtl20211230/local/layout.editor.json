@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 550.296875,
+                "height": 549.703125,
                 "type": "panel",
                 "width": 362
               },
@@ -27,7 +27,7 @@
                 "children": [
                   "assets"
                 ],
-                "height": 358.203125,
+                "height": 358.796875,
                 "type": "panel",
                 "width": 362
               }
@@ -88,8 +88,7 @@
         "inspector",
         "cocos-services"
       ]
-    },
-    "worker": {}
+    }
   },
   "panels": {
     "preferences": {

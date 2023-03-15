@@ -128,13 +128,15 @@ var LevelData = /** @class */ (function (_super) {
                 },
                 {
                     data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
-                        [{ prefab: "TreasureBox2", hp: 60, type: "item" }, { prefab: "Item_Barrier1", hp: -60, type: "item" }]]
+                        [{ prefab: "Item_Barrier1", hp: 60, type: "item" }, { prefab: "TreasureBox1", hp: 60, type: "item", scale: 0.6, data: { prefab: "", count: 200, type: "glod" } }],
+                        [{ prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Goblin", hp: 10, type: "monster", data: { prefab: "Weapon_3", hp: 200, type: "item" } }]
+                    ]
                 },
                 {
                     prefab: "Boss_1", type: "boss"
                 },
                 {
-                    prefab: "TreasureBox1", hp: 50, type: "item"
+                    prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }
                 }
             ]
         },
