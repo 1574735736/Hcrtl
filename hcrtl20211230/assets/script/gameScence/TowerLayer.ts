@@ -64,6 +64,8 @@ export default class TowerLayer extends cc.Component {
 
     private curSizeIndex = 0;  //当前所处的物体的层级排序
 
+    private isGetPrincess = true; //获取到了公主
+
     onLoad() {
 
     }
@@ -79,8 +81,7 @@ export default class TowerLayer extends cc.Component {
         let i = 0;
         for (let i = towerData.length - 1; i >= 0; i--) {
             let element = towerData[i];
-            if (element.type == "item") {
-                console.log("生成障碍物  ！！ ！  :" + element.prefab);
+            if (element.type == "item" || element.type == "princess") {
                 let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[element.prefab])
                 if (tempNode) {
                     this.node.addChild(tempNode);
@@ -92,7 +93,7 @@ export default class TowerLayer extends cc.Component {
                         box.SetScale(element.scale);
                     }
                 }
-            }
+            }            
             else if (element && element.data) {
                 let tempNodeParent = cc.instantiate(this.towerPrefab);
                 tempNodeParent.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -410));
@@ -108,6 +109,7 @@ export default class TowerLayer extends cc.Component {
                     tile.on(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
                     let towerTile = tile.getComponent(TowerTile);
                     towerTile.initData(this.node.childrenCount - 1, element1, weapon);//初始化塔身数据
+                    
                     tempNodeParent.addChild(tile);
                     end = j;
                 };
@@ -296,6 +298,9 @@ export default class TowerLayer extends cc.Component {
                 if (monster == null) {//怪物不存在
                     monster = towerTile.getItem();//是否存在道具
                 }
+                if (monster == null) {
+                    monster = towerTile.getPrincess();
+                }
                 //不存在怪物与道具不做处理
                 if(monster==null){
                     return ;
@@ -409,8 +414,14 @@ export default class TowerLayer extends cc.Component {
                 }                
             }
         }
-                
-        if (!monsterRole.hasItem) {
+        playerRole.idle();
+        if (monsterRole.isPrincess()) {
+            cc.tween(playerRole.node).delay(0.5).call(() => {
+                towerTile.SetIsPriences(false);
+                this.attacked(playerRole, monsterRole, posCache, towerTile);
+            }).start();
+        }
+        else if (!monsterRole.hasItem) {
             this.attack(playerRole, monsterRole, posCache, towerTile);
             //if (!monsterRole.longRange) {//不是远程怪物
             //    monsterRole.attack(() => {//播放怪物攻击动画
@@ -424,6 +435,8 @@ export default class TowerLayer extends cc.Component {
             }).start();
         }
     }
+
+   
 
     //攻击后继动作
     private attacked(playerRole, monsterRole, posCache, towerTile) {
@@ -469,8 +482,10 @@ export default class TowerLayer extends cc.Component {
                 return;
             }
             else {
+                
                 //角色死亡，游戏结束\
                 this.gameLose();
+               
             }           
             // this.loseNode.active = true;
             // SoundManager.getInstance().playEffect(SoundManager.Lose_Jingle);
@@ -504,6 +519,9 @@ export default class TowerLayer extends cc.Component {
         }
         else if (curNode.name.indexOf("Treasure") != -1) {
             this.TreasureBoxAni();
+        }
+        else if (curNode.name.indexOf("princess") != -1) {
+            this.PrincessAni();
         }
     }
 
@@ -556,6 +574,36 @@ export default class TowerLayer extends cc.Component {
         }, true);                
     }
 
+    //进行公主处理
+    private PrincessAni() {
+        let player = this.findPlayer();
+        let playerRole = player.getComponent(RoleBase);
+        let princess = this.node.children[this.curSizeIndex].getComponent(RoleBase);
+        let targerPost = player.parent.convertToNodeSpaceAR(princess.node.parent.convertToWorldSpaceAR(princess.node.position));
+        targerPost.y = player.position.y
+
+        playerRole.jumpLandTo(targerPost, userData.TempStandX, () => {
+            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
+            playerRole.idle();
+
+
+            this.moveTowerLayer(
+                () => {
+                    this.scheduleOnce(function () {
+                        if (!this.curSizeView()) {
+                            this.FateBossAct();
+                        }
+                    }, 1);
+                }
+            )  
+
+           
+            //GameScence.Instance.flushMoveCount();            
+        });
+
+    }
+    
+
     //进行宝箱处理
     private TreasureBoxAni() {
         let player = this.findPlayer();
@@ -576,11 +624,18 @@ export default class TowerLayer extends cc.Component {
             box.boxAction();
             remove();            
 
-            this.scheduleOnce(function () {
-                if (!this.curSizeView()) {
-                    this.FateBossAct();
-                }   
-            }, 1);       
+            this.moveTowerLayer(
+                () => {
+                    this.scheduleOnce(function () {
+                        if (!this.curSizeView()) {
+                            this.FateBossAct();
+                        }
+                    }, 1);  
+                }
+            )  
+
+               
+
             //GameScence.Instance.flushMoveCount();            
         });
 
@@ -732,11 +787,20 @@ export default class TowerLayer extends cc.Component {
             } 
             return;
         }
-      
+
         //没有宠物，角色攻击
         role1.attack(() => {
+
             role1.idle();
             this.attacked(role1, role2, posCache, towerTile);
+            if (!role2.longRange) {//不是远程怪物
+                if (role1.getHp() <= role2.getHp()) {
+                    role2.attack(() => {//播放怪物攻击动画
+                        role2.idle();//播放后进入待机   
+                    });
+                }             
+            }
+           
         });
 
         this.scheduleOnce(function () { SoundManager.getInstance().playEffect(SoundManager.attack); }, 0.5);        
@@ -791,7 +855,12 @@ export default class TowerLayer extends cc.Component {
 
         let targerHp = role2.getHp();
         //角色血量大于怪物或者存在盾或者宠物时
-        if (role1.compareHp(targerHp) || role1.getShieldHp() > 0 || role1.isPets()) {
+        if (role2.isPrincess()) {
+            if (cb) {
+                cb(false);
+            }
+        }
+        else if (role1.compareHp(targerHp) || role1.getShieldHp() > 0 || role1.isPets()) {
             this.playerAttack(role1, role2, towerTile, cb);
         } else {//否则角色掉血
             role1.subHp(role2.getHp(), (die, shield) => {
@@ -949,7 +1018,7 @@ export default class TowerLayer extends cc.Component {
         let hasMonster = null;
         for (let i = 1; i < towerTiles.length - 1; i++) {
             let tile = towerTiles[i].getComponent(TowerTile);
-            if (tile.hasMonster() || tile.hasItem()) {
+            if (tile.hasMonster() || tile.hasItem() || tile.isPrincess()) {
              
             }
             else {
@@ -970,7 +1039,7 @@ export default class TowerLayer extends cc.Component {
         let hasMonster = false;
         for (let i = 1; i < towerTiles.length - 1; i++) {
             let tile = towerTiles[i].getComponent(TowerTile);
-            if (tile.hasMonster() || tile.hasItem() ) {
+            if (tile.hasMonster() || tile.hasItem() || tile.GetIsPriences()) {
                 hasMonster = true;
                 break;
             }
@@ -1145,6 +1214,10 @@ export default class TowerLayer extends cc.Component {
             if (this.size < 2) {
                // console.log("没塔楼了，游戏胜利");
                //this.gameSuccess();
+                this.isMove = false;
+                if (cb) {
+                    cb();
+                }
                 return;
             }
             SoundManager.getInstance().playEffect(SoundManager.Level_UP);
@@ -1155,7 +1228,10 @@ export default class TowerLayer extends cc.Component {
                 }
             }).start();
         } else {//没怪了，游戏胜利
-
+            this.isMove = false;
+            if (cb) {
+                cb();
+            }
         }
     }
 
@@ -1261,6 +1337,9 @@ export default class TowerLayer extends cc.Component {
     talkIndex: number = 0;
     //剧情对话
     private SetTalkInfo(targetNode: cc.Node): void {
+        if (!targetNode) {
+            return;
+        }
         var lable = this.talkNode.getChildByName("txt_talklable").getComponent(cc.Label);
         lable.string = this.talkStrs[this.talkIndex];
         if (this.talkIndex == 0) {

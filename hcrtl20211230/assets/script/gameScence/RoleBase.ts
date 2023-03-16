@@ -214,6 +214,13 @@ export default class RoleBase extends cc.Component {
         return this.pets;
     }
 
+
+    //是否是公主
+    public isPrincess() {
+        return this.type == RoleType.PRINCESS;
+    }
+
+
     /**
      * 获取宠物
      * @returns 
@@ -723,11 +730,17 @@ export default class RoleBase extends cc.Component {
      * 创建一个新物品
      */
     private creatorItem() {
-        console.log("this.data.prefab   :   " + this.data.prefab);
+        if (this.data.type == "weapon") {
+            this.creatorWeapon();
+            return;
+        }
        let tempNode = cc.instantiate(PrefabsManager.getInstance().monsterPrefabList[this.data.prefab]);
        let role = tempNode.getComponent(RoleBase);
        role.init(this.data);
-       tempNode.position =this.node.position;
+        tempNode.position = this.node.position;
+        if (this.data.scale) {
+            role.SetScale(this.data.scale)
+        }
        this.node.parent.addChild(tempNode, 1, "item");
     }  
     // update (dt) {}
@@ -740,6 +753,9 @@ export default class RoleBase extends cc.Component {
         let role = tempNode.getComponent(RoleBase);
         role.init(this.data);
         tempNode.position = this.node.position;
+        if (this.data.scale) {
+            role.SetScale(this.data.scale)
+        }
         this.node.parent.addChild(tempNode, 1, "item");        
     }
 
@@ -779,4 +795,5 @@ export default class RoleBase extends cc.Component {
     public GetWeaponID() {
         return this.weaponID;
     }
+
 }

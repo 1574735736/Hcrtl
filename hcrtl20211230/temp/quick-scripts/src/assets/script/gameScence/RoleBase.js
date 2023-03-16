@@ -196,6 +196,10 @@ var RoleBase = /** @class */ (function (_super) {
     RoleBase.prototype.isPets = function () {
         return this.pets;
     };
+    //是否是公主
+    RoleBase.prototype.isPrincess = function () {
+        return this.type == RoleType.PRINCESS;
+    };
     /**
      * 获取宠物
      * @returns
@@ -685,11 +689,17 @@ var RoleBase = /** @class */ (function (_super) {
      * 创建一个新物品
      */
     RoleBase.prototype.creatorItem = function () {
-        console.log("this.data.prefab   :   " + this.data.prefab);
+        if (this.data.type == "weapon") {
+            this.creatorWeapon();
+            return;
+        }
         var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[this.data.prefab]);
         var role = tempNode.getComponent(RoleBase_1);
         role.init(this.data);
         tempNode.position = this.node.position;
+        if (this.data.scale) {
+            role.SetScale(this.data.scale);
+        }
         this.node.parent.addChild(tempNode, 1, "item");
     };
     // update (dt) {}
@@ -699,6 +709,9 @@ var RoleBase = /** @class */ (function (_super) {
         var role = tempNode.getComponent(RoleBase_1);
         role.init(this.data);
         tempNode.position = this.node.position;
+        if (this.data.scale) {
+            role.SetScale(this.data.scale);
+        }
         this.node.parent.addChild(tempNode, 1, "item");
     };
     RoleBase.prototype.SetScale = function (scale, cb, isAni) {

@@ -21,6 +21,7 @@ export default class TowerTile extends cc.Component {
     private playerData = null;
     private guidance = false;
 
+    private isPriences = false;
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
@@ -39,7 +40,7 @@ export default class TowerTile extends cc.Component {
             //怪物个数,用于调整怪物位置
             for (let i = 0; i < datas.length; i++) {
                 let data = datas[i];
-                if(data.type == "monster" || data.type == "item"){
+                if (data.type == "monster" || data.type == "item" || data.type == "princess"){
                     monsterCount++;
                 }
             }
@@ -89,9 +90,10 @@ export default class TowerTile extends cc.Component {
                 }
                 else if (data.type == 'princess') {
 
-                    tempNode.position = cc.v3(0, 0, 0);
+                    //tempNode.position = cc.v3((i - 1) * 110, 0, 0);
                     this.node.addChild(tempNode);
                     this.princess = tempNode;
+                    this.isPriences = true;
                 }
                 else if (data.type == 'guidance') {
                     this.guidance = true;
@@ -191,6 +193,8 @@ export default class TowerTile extends cc.Component {
     public getItem() {
         return this.node.getChildByName("item");
     }
+
+
     public isPlayer() {
         return this.player != null;
     }
@@ -204,4 +208,11 @@ export default class TowerTile extends cc.Component {
     }
 
     // update (dt) {}
+
+    public GetIsPriences() {
+        return this.isPriences;
+    }
+    public SetIsPriences(is: boolean) {
+        this.isPriences = is;
+    }
 }

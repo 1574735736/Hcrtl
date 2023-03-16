@@ -264,7 +264,7 @@
     "shieldhpLable": null,
     "type": 1,
     "hasItem": false,
-    "longRange": true,
+    "longRange": false,
     "drop": false,
     "gain": false,
     "shield": false,
@@ -272,7 +272,10 @@
     "bulletPrefab": {
       "__uuid__": "f74099dd-73d6-4291-ac28-cb70ffde9c23"
     },
+    "isWeapon": false,
+    "isBox": false,
     "LveUp": null,
+    "weaponID": 0,
     "_id": ""
   },
   {

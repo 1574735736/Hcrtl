@@ -63,6 +63,7 @@ var TowerLayer = /** @class */ (function (_super) {
         _this.m_BossInfo = null;
         _this.canTouck = true;
         _this.curSizeIndex = 0; //当前所处的物体的层级排序
+        _this.isGetPrincess = true; //获取到了公主
         _this.curTargetIndex = -1;
         _this.moveSelfTile = false;
         _this.talkStrs = ["Tap that room to attack the weak enemy first", "She is mine,HEHE!!", "NO!!!"];
@@ -82,8 +83,7 @@ var TowerLayer = /** @class */ (function (_super) {
         var i = 0;
         for (var i_1 = towerData.length - 1; i_1 >= 0; i_1--) {
             var element = towerData[i_1];
-            if (element.type == "item") {
-                console.log("生成障碍物  ！！ ！  :" + element.prefab);
+            if (element.type == "item" || element.type == "princess") {
                 var tempNode = cc.instantiate(PrefabsManager_1.default.getInstance().monsterPrefabList[element.prefab]);
                 if (tempNode) {
                     this.node.addChild(tempNode);
@@ -269,6 +269,9 @@ var TowerLayer = /** @class */ (function (_super) {
                 if (monster == null) { //怪物不存在
                     monster = towerTile_1.getItem(); //是否存在道具
                 }
+                if (monster == null) {
+                    monster = towerTile_1.getPrincess();
+                }
                 //不存在怪物与道具不做处理
                 if (monster == null) {
                     return;
@@ -363,7 +366,14 @@ var TowerLayer = /** @class */ (function (_super) {
                 }
             }
         }
-        if (!monsterRole.hasItem) {
+        playerRole.idle();
+        if (monsterRole.isPrincess()) {
+            cc.tween(playerRole.node).delay(0.5).call(function () {
+                towerTile.SetIsPriences(false);
+                _this.attacked(playerRole, monsterRole, posCache, towerTile);
+            }).start();
+        }
+        else if (!monsterRole.hasItem) {
             this.attack(playerRole, monsterRole, posCache, towerTile);
             //if (!monsterRole.longRange) {//不是远程怪物
             //    monsterRole.attack(() => {//播放怪物攻击动画
@@ -445,6 +455,9 @@ var TowerLayer = /** @class */ (function (_super) {
         else if (curNode.name.indexOf("Treasure") != -1) {
             this.TreasureBoxAni();
         }
+        else if (curNode.name.indexOf("princess") != -1) {
+            this.PrincessAni();
+        }
     };
     //进行Boss战
     TowerLayer.prototype.FateBossAni = function () {
@@ -489,6 +502,27 @@ var TowerLayer = /** @class */ (function (_super) {
             boss.Attack();
         }, true);
     };
+    //进行公主处理
+    TowerLayer.prototype.PrincessAni = function () {
+        var _this = this;
+        var player = this.findPlayer();
+        var playerRole = player.getComponent(RoleBase_1.default);
+        var princess = this.node.children[this.curSizeIndex].getComponent(RoleBase_1.default);
+        var targerPost = player.parent.convertToNodeSpaceAR(princess.node.parent.convertToWorldSpaceAR(princess.node.position));
+        targerPost.y = player.position.y;
+        playerRole.jumpLandTo(targerPost, UserData_1.userData.TempStandX, function () {
+            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
+            playerRole.idle();
+            _this.moveTowerLayer(function () {
+                _this.scheduleOnce(function () {
+                    if (!this.curSizeView()) {
+                        this.FateBossAct();
+                    }
+                }, 1);
+            });
+            //GameScence.Instance.flushMoveCount();            
+        });
+    };
     //进行宝箱处理
     TowerLayer.prototype.TreasureBoxAni = function () {
         var _this = this;
@@ -506,11 +540,13 @@ var TowerLayer = /** @class */ (function (_super) {
             playerRole.idle();
             box.boxAction();
             remove();
-            _this.scheduleOnce(function () {
-                if (!this.curSizeView()) {
-                    this.FateBossAct();
-                }
-            }, 1);
+            _this.moveTowerLayer(function () {
+                _this.scheduleOnce(function () {
+                    if (!this.curSizeView()) {
+                        this.FateBossAct();
+                    }
+                }, 1);
+            });
             //GameScence.Instance.flushMoveCount();            
         });
     };
@@ -654,6 +690,13 @@ var TowerLayer = /** @class */ (function (_super) {
         role1.attack(function () {
             role1.idle();
             _this.attacked(role1, role2, posCache, towerTile);
+            if (!role2.longRange) { //不是远程怪物
+                if (role1.getHp() <= role2.getHp()) {
+                    role2.attack(function () {
+                        role2.idle(); //播放后进入待机   
+                    });
+                }
+            }
         });
         this.scheduleOnce(function () { SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.attack); }, 0.5);
     };
@@ -702,7 +745,12 @@ var TowerLayer = /** @class */ (function (_super) {
         }
         var targerHp = role2.getHp();
         //角色血量大于怪物或者存在盾或者宠物时
-        if (role1.compareHp(targerHp) || role1.getShieldHp() > 0 || role1.isPets()) {
+        if (role2.isPrincess()) {
+            if (cb) {
+                cb(false);
+            }
+        }
+        else if (role1.compareHp(targerHp) || role1.getShieldHp() > 0 || role1.isPets()) {
             this.playerAttack(role1, role2, towerTile, cb);
         }
         else { //否则角色掉血
@@ -856,7 +904,7 @@ var TowerLayer = /** @class */ (function (_super) {
         var hasMonster = null;
         for (var i = 1; i < towerTiles.length - 1; i++) {
             var tile = towerTiles[i].getComponent(TowerTile_1.default);
-            if (tile.hasMonster() || tile.hasItem()) {
+            if (tile.hasMonster() || tile.hasItem() || tile.isPrincess()) {
             }
             else {
                 hasMonster = tile;
@@ -875,7 +923,7 @@ var TowerLayer = /** @class */ (function (_super) {
         var hasMonster = false;
         for (var i = 1; i < towerTiles.length - 1; i++) {
             var tile = towerTiles[i].getComponent(TowerTile_1.default);
-            if (tile.hasMonster() || tile.hasItem()) {
+            if (tile.hasMonster() || tile.hasItem() || tile.GetIsPriences()) {
                 hasMonster = true;
                 break;
             }
@@ -1023,6 +1071,10 @@ var TowerLayer = /** @class */ (function (_super) {
             if (this.size < 2) {
                 // console.log("没塔楼了，游戏胜利");
                 //this.gameSuccess();
+                this.isMove = false;
+                if (cb) {
+                    cb();
+                }
                 return;
             }
             SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.Level_UP);
@@ -1034,6 +1086,10 @@ var TowerLayer = /** @class */ (function (_super) {
             }).start();
         }
         else { //没怪了，游戏胜利
+            this.isMove = false;
+            if (cb) {
+                cb();
+            }
         }
     };
     /**
@@ -1124,6 +1180,9 @@ var TowerLayer = /** @class */ (function (_super) {
     };
     //剧情对话
     TowerLayer.prototype.SetTalkInfo = function (targetNode) {
+        if (!targetNode) {
+            return;
+        }
         var lable = this.talkNode.getChildByName("txt_talklable").getComponent(cc.Label);
         lable.string = this.talkStrs[this.talkIndex];
         if (this.talkIndex == 0) {

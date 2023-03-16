@@ -44,8 +44,8 @@ var TowerTile = /** @class */ (function (_super) {
         _this.lock = false;
         _this.playerData = null;
         _this.guidance = false;
+        _this.isPriences = false;
         return _this;
-        // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     // onLoad () {}
@@ -59,7 +59,7 @@ var TowerTile = /** @class */ (function (_super) {
             //怪物个数,用于调整怪物位置
             for (var i = 0; i < datas.length; i++) {
                 var data = datas[i];
-                if (data.type == "monster" || data.type == "item") {
+                if (data.type == "monster" || data.type == "item" || data.type == "princess") {
                     monsterCount++;
                 }
             }
@@ -108,9 +108,10 @@ var TowerTile = /** @class */ (function (_super) {
                     this.node.addChild(tempNode, 1, "lock");
                 }
                 else if (data.type == 'princess') {
-                    tempNode.position = cc.v3(0, 0, 0);
+                    //tempNode.position = cc.v3((i - 1) * 110, 0, 0);
                     this.node.addChild(tempNode);
                     this.princess = tempNode;
+                    this.isPriences = true;
                 }
                 else if (data.type == 'guidance') {
                     this.guidance = true;
@@ -203,6 +204,13 @@ var TowerTile = /** @class */ (function (_super) {
     };
     TowerTile.prototype.GetTilePos = function () {
         return this.node.getPosition();
+    };
+    // update (dt) {}
+    TowerTile.prototype.GetIsPriences = function () {
+        return this.isPriences;
+    };
+    TowerTile.prototype.SetIsPriences = function (is) {
+        this.isPriences = is;
     };
     TowerTile = __decorate([
         ccclass
