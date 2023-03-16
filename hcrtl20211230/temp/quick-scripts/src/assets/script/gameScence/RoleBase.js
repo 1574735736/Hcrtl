@@ -669,13 +669,21 @@ var RoleBase = /** @class */ (function (_super) {
             }
         }, this);
     };
-    RoleBase.prototype.boxAction = function () {
+    RoleBase.prototype.boxAction = function (cb) {
         if (!this.data) {
             return;
         }
-        console.log("this.data.type    :" + this.data.type);
+        this.ani = this.node.getChildByName("xiangzi").getComponent(sp.Skeleton);
+        SpineManager_1.default.getInstance().playSpinAnimation(this.ani, "kaixiang", false, function () {
+        }, this);
         if (this.data.type == "weapon") {
-            this.creatorWeapon();
+            this.scheduleOnce(function () {
+                this.creatorWeapon();
+                if (cb) {
+                    cb();
+                    cb = null;
+                }
+            }, 1.5);
         }
         else if (this.data.type == "glod") {
             if (this.data.count) {

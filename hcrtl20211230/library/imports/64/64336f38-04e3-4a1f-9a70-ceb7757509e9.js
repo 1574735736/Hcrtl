@@ -128,9 +128,7 @@ var LevelData = /** @class */ (function (_super) {
                 },
                 {
                     data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
-                        [{ prefab: "Item_Barrier1", hp: 60, type: "item" }, { prefab: "TreasureBox1", hp: 60, type: "item", scale: 0.6, data: { prefab: "WeaponItem_9", hp: 200, type: "weapon" } }],
-                        [{ prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Goblin", hp: 10, type: "monster", data: { prefab: "WeaponItem_9", hp: 200, type: "weapon" } }],
-                        [{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "princess", hp: 50, type: "princess" }]
+                        [{ prefab: "Item_Barrier1", hp: 60, type: "item" }, { prefab: "TreasureBox1", hp: 60, type: "item", scale: 0.6, data: { prefab: "WeaponItem_9", hp: 200, type: "weapon" } }] //prefab: "WeaponItem_9", hp: 200, type: "weapon" }                                       
                     ]
                 },
                 {

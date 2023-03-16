@@ -708,22 +708,33 @@ export default class RoleBase extends cc.Component {
         }, this);
     }
 
-    public boxAction() {        
+    public boxAction(cb?: Function) {        
         if (!this.data) {
             return;
         }
-        console.log("this.data.type    :" + this.data.type);
-        if (this.data.type == "weapon") {            
-            this.creatorWeapon();
+        this.ani = this.node.getChildByName("xiangzi").getComponent(sp.Skeleton);
+    
+        SpineManager.getInstance().playSpinAnimation(this.ani, "kaixiang", false, () => {
+            
+        }, this);
+
+        if (this.data.type == "weapon") {
+            this.scheduleOnce(function () {
+                this.creatorWeapon();
+                if (cb) {
+                    cb();
+                    cb = null;
+                }
+            }, 1.5);            
         }
         else if (this.data.type == "glod") {
             if (this.data.count) {
                 let own = userData.getData(localStorageKey.GOLD);
                 own += Number(this.data.count);
-                userData.setData(localStorageKey.GOLD, own);    
+                userData.setData(localStorageKey.GOLD, own);
             }
-           
         }
+                
     }
 
     /**

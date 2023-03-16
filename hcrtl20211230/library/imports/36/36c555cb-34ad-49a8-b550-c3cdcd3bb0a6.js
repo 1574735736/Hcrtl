@@ -66,6 +66,7 @@ var TowerLayer = /** @class */ (function (_super) {
         _this.isGetPrincess = true; //获取到了公主
         _this.curTargetIndex = -1;
         _this.moveSelfTile = false;
+        _this.curPlayer = null;
         _this.talkStrs = ["Tap that room to attack the weak enemy first", "She is mine,HEHE!!", "NO!!!"];
         _this.talkIndex = 0;
         return _this;
@@ -89,6 +90,7 @@ var TowerLayer = /** @class */ (function (_super) {
                     this.node.addChild(tempNode);
                     tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -490));
                     var box = tempNode.getComponent(RoleBase_1.default);
+                    box.init(element, null);
                     //let roleBase = tempNode.getComponent(RoleBase);
                     //roleBase.Init();
                     if (element.scale) {
@@ -462,7 +464,14 @@ var TowerLayer = /** @class */ (function (_super) {
     //进行Boss战
     TowerLayer.prototype.FateBossAni = function () {
         var _this = this;
-        var player = this.findPlayer();
+        var player = null;
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player = this.curPlayer;
+        }
         var playerRole = player.getComponent(RoleBase_1.default);
         var boss = this.node.children[this.curSizeIndex].getComponent(BossBase_1.default);
         if (player.parent.name == "Tower_tile") {
@@ -505,7 +514,14 @@ var TowerLayer = /** @class */ (function (_super) {
     //进行公主处理
     TowerLayer.prototype.PrincessAni = function () {
         var _this = this;
-        var player = this.findPlayer();
+        var player = null;
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player = this.curPlayer;
+        }
         var playerRole = player.getComponent(RoleBase_1.default);
         var princess = this.node.children[this.curSizeIndex].getComponent(RoleBase_1.default);
         var targerPost = player.parent.convertToNodeSpaceAR(princess.node.parent.convertToWorldSpaceAR(princess.node.position));
@@ -526,11 +542,19 @@ var TowerLayer = /** @class */ (function (_super) {
     //进行宝箱处理
     TowerLayer.prototype.TreasureBoxAni = function () {
         var _this = this;
-        var player = this.findPlayer();
+        var player = null;
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player = this.curPlayer;
+        }
         var playerRole = player.getComponent(RoleBase_1.default);
         var box = this.node.children[this.curSizeIndex].getComponent(RoleBase_1.default);
         var targerPost = player.parent.convertToNodeSpaceAR(box.node.parent.convertToWorldSpaceAR(box.node.position));
         targerPost.y = player.position.y;
+        var self = this;
         var remove = function () {
             SoundManager_1.SoundManager.getInstance().playEffect(SoundManager_1.SoundManager.ClaimSword);
             box.node.removeFromParent();
@@ -539,15 +563,14 @@ var TowerLayer = /** @class */ (function (_super) {
             //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
             playerRole.idle();
             box.boxAction();
-            remove();
-            _this.moveTowerLayer(function () {
-                _this.scheduleOnce(function () {
-                    if (!this.curSizeView()) {
-                        this.FateBossAct();
+            _this.scheduleOnce(function () {
+                remove();
+                self.moveTowerLayer(function () {
+                    if (!self.curSizeView()) {
+                        self.FateBossAct();
                     }
-                }, 1);
-            });
-            //GameScence.Instance.flushMoveCount();            
+                });
+            }, 2);
         });
     };
     //检测是否是增益怪
@@ -714,8 +737,7 @@ var TowerLayer = /** @class */ (function (_super) {
         };
         if (role2.hasItem) { //如果有道具
             if (role2.isBox) {
-                role2.boxAction();
-                remove();
+                role2.boxAction(function () { remove(); });
                 return;
             }
             if (role2.isWeapon) {

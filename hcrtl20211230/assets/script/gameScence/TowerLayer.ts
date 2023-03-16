@@ -87,6 +87,7 @@ export default class TowerLayer extends cc.Component {
                     this.node.addChild(tempNode);
                     tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -490));
                     let box = tempNode.getComponent(RoleBase);
+                    box.init(element, null);
                     //let roleBase = tempNode.getComponent(RoleBase);
                     //roleBase.Init();
                     if (element.scale) {
@@ -527,7 +528,14 @@ export default class TowerLayer extends cc.Component {
 
     //进行Boss战
     private FateBossAni() {
-        let player = this.findPlayer();
+        let player = null
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player = this.curPlayer;
+        }
         let playerRole = player.getComponent(RoleBase);
         let boss = this.node.children[this.curSizeIndex].getComponent(BossBase);
 
@@ -574,9 +582,19 @@ export default class TowerLayer extends cc.Component {
         }, true);                
     }
 
+    curPlayer = null;
+
     //进行公主处理
     private PrincessAni() {
-        let player = this.findPlayer();
+        let player = null
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player  = this.curPlayer;
+        }
+        
         let playerRole = player.getComponent(RoleBase);
         let princess = this.node.children[this.curSizeIndex].getComponent(RoleBase);
         let targerPost = player.parent.convertToNodeSpaceAR(princess.node.parent.convertToWorldSpaceAR(princess.node.position));
@@ -606,37 +624,40 @@ export default class TowerLayer extends cc.Component {
 
     //进行宝箱处理
     private TreasureBoxAni() {
-        let player = this.findPlayer();
+        let player = null
+        if (this.curPlayer == null) {
+            player = this.findPlayer();
+            this.curPlayer = player;
+        }
+        else {
+            player = this.curPlayer;
+        }
         let playerRole = player.getComponent(RoleBase);
         let box = this.node.children[this.curSizeIndex].getComponent(RoleBase);
         let targerPost = player.parent.convertToNodeSpaceAR(box.node.parent.convertToWorldSpaceAR(box.node.position));
         targerPost.y = player.position.y
-
+        var self = this;
         let remove = () => {
             SoundManager.getInstance().playEffect(SoundManager.ClaimSword);
             box.node.removeFromParent();
           
         }
-
+        
         playerRole.jumpLandTo(targerPost,userData.TempStandX , () => {
             //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
             playerRole.idle();
             box.boxAction();
-            remove();            
-
-            this.moveTowerLayer(
-                () => {
-                    this.scheduleOnce(function () {
-                        if (!this.curSizeView()) {
-                            this.FateBossAct();
+            
+            this.scheduleOnce(function () {
+                remove();
+                self.moveTowerLayer(
+                    () => {
+                        if (!self.curSizeView()) {
+                            self.FateBossAct();
                         }
-                    }, 1);  
-                }
-            )  
-
-               
-
-            //GameScence.Instance.flushMoveCount();            
+                    }
+                )                
+            }, 2);                      
         });
 
     }
@@ -821,8 +842,8 @@ export default class TowerLayer extends cc.Component {
         if (role2.hasItem) {//如果有道具
 
             if (role2.isBox) {
-                role2.boxAction();
-                remove();
+                role2.boxAction(() => { remove(); });
+                
                 return;
             }
 

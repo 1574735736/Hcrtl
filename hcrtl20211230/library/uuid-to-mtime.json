@@ -1060,8 +1060,8 @@
     "relativePath": "resources\\spine\\player\\LVL_4.json"
   },
   "7619b660-d2d6-4522-8200-43148339c992": {
-    "asset": 1678947444273,
-    "meta": 1678947444286,
+    "asset": 1678960351545,
+    "meta": 1678960351559,
     "relativePath": "scene\\GameScene.fire"
   },
   "2d7b47b7-29f8-4152-808a-e4e96f9a7289": {
@@ -1300,8 +1300,8 @@
     "relativePath": "resources\\texture\\game\\ui\\btn_restart.png"
   },
   "c1a40e54-9983-4aae-8b59-792fb6019817": {
-    "asset": 1678761559237,
-    "meta": 1678761559248,
+    "asset": 1678953443378,
+    "meta": 1678953443387,
     "relativePath": "scene\\MainScene.fire"
   },
   "ab50d7f0-bc46-42a8-a728-4e138f7e5ee4": {
@@ -2205,8 +2205,8 @@
     "relativePath": "resources\\prefabs\\game\\item\\Egg.prefab"
   },
   "8dd686ac-f4ec-45f3-a3ab-687306861c5a": {
-    "asset": 1678788603214,
-    "meta": 1678788603218,
+    "asset": 1678953928671,
+    "meta": 1678953928676,
     "relativePath": "resources\\prefabs\\game\\item\\TreasureBox1.prefab"
   },
   "1099334a-18d5-4c19-8ff9-824db5bc906d": {
@@ -2744,24 +2744,44 @@
     "meta": 1678863112642,
     "relativePath": "script\\gameScence\\GameScence.ts"
   },
-  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
-    "asset": 1678946993793,
-    "meta": 1678947203146,
-    "relativePath": "script\\gameScence\\RoleBase.ts"
+  "ea431cfb-25f7-497e-9d3d-31ad83408b4d": {
+    "asset": 1678949149417,
+    "meta": 1678949149419,
+    "relativePath": "spine\\box"
   },
-  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
-    "asset": 1678946809133,
-    "meta": 1678947203297,
-    "relativePath": "script\\gameScence\\TowerTile.ts"
+  "e2b5d21f-c784-42fe-8440-bab291e48e64": {
+    "asset": 1678949182718,
+    "meta": 1678949182750,
+    "relativePath": "spine\\box\\xiangzi.json"
+  },
+  "734418d9-3fcc-4c42-83f2-564f505e3a1f": {
+    "asset": 1678949182718,
+    "meta": 1678949182728,
+    "relativePath": "spine\\box\\xiangzi.atlas"
+  },
+  "3b6aad41-43d1-47b6-b06f-11aedaa84701": {
+    "asset": 1678949182718,
+    "meta": 1678949182745,
+    "relativePath": "spine\\box\\xiangzi.png"
   },
   "64336f38-04e3-4a1f-9a70-ceb7757509e9": {
-    "asset": 1678947398517,
-    "meta": 1678947399595,
+    "asset": 1678960040704,
+    "meta": 1678960069003,
     "relativePath": "script\\data\\LevelData.ts"
   },
+  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
+    "asset": 1678960580593,
+    "meta": 1678960690126,
+    "relativePath": "script\\gameScence\\TowerTile.ts"
+  },
+  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
+    "asset": 1678961129216,
+    "meta": 1678961197925,
+    "relativePath": "script\\gameScence\\RoleBase.ts"
+  },
   "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
-    "asset": 1678947473855,
-    "meta": 1678947475473,
+    "asset": 1678960865349,
+    "meta": 1678961198070,
     "relativePath": "script\\gameScence\\TowerLayer.ts"
   }
 }
