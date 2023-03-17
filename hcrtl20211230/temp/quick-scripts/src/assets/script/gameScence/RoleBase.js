@@ -690,6 +690,12 @@ var RoleBase = /** @class */ (function (_super) {
                 var own = UserData_1.userData.getData(UserData_1.localStorageKey.GOLD);
                 own += Number(this.data.count);
                 UserData_1.userData.setData(UserData_1.localStorageKey.GOLD, own);
+                this.scheduleOnce(function () {
+                    if (cb) {
+                        cb();
+                        cb = null;
+                    }
+                }, 1.5);
             }
         }
     };
