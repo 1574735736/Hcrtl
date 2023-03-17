@@ -45,7 +45,7 @@ var SignInView = /** @class */ (function (_super) {
     }
     SignInView.prototype.onLoad = function () {
         this.node.setScale(0, 0);
-        this.node.runAction(cc.scaleTo(0.3, 1, 1));
+        this.node.runAction(cc.scaleTo(0.5, 1, 1).easing(cc.easeBackOut()));
     };
     SignInView.prototype.start = function () {
         var close = cc.find("btn_close", this.node);
@@ -63,7 +63,7 @@ var SignInView = /** @class */ (function (_super) {
         FirebaseReport_1.FirebaseReport.reportAdjustParam("i7nm62");
         FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_sign_3);
         FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_sign_3);
-        var func = cc.sequence(cc.scaleTo(0.3, 0, 0), cc.callFunc(function () { _this.node.destroy(); }));
+        var func = cc.sequence(cc.scaleTo(0.5, 0, 0).easing(cc.easeBackIn()), cc.callFunc(function () { _this.node.destroy(); }));
         this.node.runAction(func);
     };
     SignInView.prototype.onClickDouble = function () {
@@ -134,7 +134,7 @@ var SignInView = /** @class */ (function (_super) {
         if (timedata == cos || dataNum == 7) {
             cc.find("btn_receive", this.node).color = new cc.Color(105, 105, 105, 255);
             this.double.color = new cc.Color(105, 105, 105, 255);
-            cc.find("btn_double/img_red", this.node).active = false;
+            /*    cc.find("btn_double/img_red", this.node).active = false;*/
             this.canClick = false;
             this.double.stopAction(this.func1);
             this.double.setScale(1, 1);

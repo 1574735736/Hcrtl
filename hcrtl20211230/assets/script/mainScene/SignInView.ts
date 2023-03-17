@@ -20,7 +20,7 @@ export default class SignInView extends cc.Component {
 
     onLoad() {
         this.node.setScale(0, 0);
-        this.node.runAction(cc.scaleTo(0.3, 1, 1));    
+        this.node.runAction(cc.scaleTo(0.5, 1, 1).easing(cc.easeBackOut()));    
     }
 
     start() {
@@ -44,7 +44,7 @@ export default class SignInView extends cc.Component {
         FirebaseReport.reportAdjustParam("i7nm62");
         FirebaseReport.reportAdjustParam(FirebaseKey.adjust_sign_3);
         FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_sign_3);
-        var func = cc.sequence(cc.scaleTo(0.3, 0, 0), cc.callFunc(() => { this.node.destroy(); }));
+        var func = cc.sequence(cc.scaleTo(0.5, 0, 0).easing(cc.easeBackIn()), cc.callFunc(() => { this.node.destroy(); }));
         this.node.runAction(func);
                
     }
@@ -132,7 +132,7 @@ export default class SignInView extends cc.Component {
         if (timedata == cos || dataNum == 7) {
             cc.find("btn_receive", this.node).color = new cc.Color(105, 105, 105, 255);
             this.double.color = new cc.Color(105, 105, 105, 255);
-            cc.find("btn_double/img_red", this.node).active = false;
+        /*    cc.find("btn_double/img_red", this.node).active = false;*/
             this.canClick = false;
             this.double.stopAction(this.func1);
             this.double.setScale(1, 1);

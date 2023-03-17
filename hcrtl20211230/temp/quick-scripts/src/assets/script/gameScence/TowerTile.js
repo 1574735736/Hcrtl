@@ -59,7 +59,7 @@ var TowerTile = /** @class */ (function (_super) {
             //怪物个数,用于调整怪物位置
             for (var i = 0; i < datas.length; i++) {
                 var data = datas[i];
-                if (data.type == "monster" || data.type == "item" || data.type == "princess") {
+                if (data.type == "monster" || data.type == "item" || data.type == "princess" || data.type == "weapon") {
                     monsterCount++;
                 }
             }
@@ -68,7 +68,16 @@ var TowerTile = /** @class */ (function (_super) {
                 if (data.prefab == null) {
                     continue;
                 }
-                var tempNode = (data.type == 'player') ? cc.instantiate(this.prefabsManager.playerPrefabList[data.prefab]) : cc.instantiate(this.prefabsManager.monsterPrefabList[data.prefab]);
+                var tempNode = null;
+                if (data.type == 'player') {
+                    tempNode = cc.instantiate(this.prefabsManager.playerPrefabList[data.prefab]);
+                }
+                else if (data.type == "weapon") {
+                    tempNode = cc.instantiate(this.prefabsManager.weaponPreList[data.prefab]);
+                }
+                else {
+                    tempNode = cc.instantiate(this.prefabsManager.monsterPrefabList[data.prefab]);
+                }
                 tempNode.y += 150;
                 // this.node
                 var role = tempNode.getComponent(RoleBase_1.default);
@@ -98,7 +107,7 @@ var TowerTile = /** @class */ (function (_super) {
                     this.node.addChild(tempNode);
                     this.monsterList.push(tempNode);
                 }
-                else if (data.type == 'item') {
+                else if (data.type == 'item' || data.type == "weapon") {
                     // tempNode.position = cc.v3(i * 80, tempNode.y, 0);
                     this.node.addChild(tempNode, 1, "item");
                 }
