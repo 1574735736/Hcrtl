@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tou3",
+    "texture": "1003d83b-3d0b-4084-8fbf-6d790300ff7a",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      82,
+      158
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      84,
+      160
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

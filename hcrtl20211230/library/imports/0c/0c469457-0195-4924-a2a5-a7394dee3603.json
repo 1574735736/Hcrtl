@@ -187,7 +187,7 @@
       "array": [
         0,
         0,
-        425.3673213744348,
+        1108.5125168440816,
         0,
         0,
         0,
@@ -324,7 +324,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "2deb14bd-6153-4e98-857e-bc5113698c6a"
+      "__uuid__": "becea509-3caf-425c-a8cd-203b0f08ea95"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -348,7 +348,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 8
@@ -442,7 +442,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 10
@@ -570,8 +570,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 506,
-      "height": 28
+      "width": 338,
+      "height": 22
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -632,7 +632,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 340,
       "height": 20
     },
     "_anchorPoint": {
@@ -644,7 +644,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -251,
+        -171.273,
         0,
         0,
         0,
@@ -685,7 +685,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9b6ab746-3a27-4f9b-a914-80c6ba22e5c9"
+      "__uuid__": "9f839852-2573-4bd4-8b85-579a802a61be"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -717,7 +717,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "7ceb44a0-5bd7-486a-83e1-cabe424c9fc9"
+      "__uuid__": "846d2dfe-c7e6-4c14-a5d8-f049ba394402"
     },
     "_type": 1,
     "_sizeMode": 2,
@@ -741,12 +741,12 @@
       "__id__": 11
     },
     "_enabled": true,
-    "_N$totalLength": 506,
+    "_N$totalLength": 340,
     "_N$barSprite": {
       "__id__": 13
     },
     "_N$mode": 0,
-    "_N$progress": 0,
+    "_N$progress": 1,
     "_N$reverse": false,
     "_id": "8fMi7WcTlEOpOtmXPmIUfC"
   },

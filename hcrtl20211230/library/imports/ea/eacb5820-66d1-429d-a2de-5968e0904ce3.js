@@ -25,7 +25,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var PrefabsManager_1 = require("../manager/PrefabsManager");
 var SoundManager_1 = require("../manager/SoundManager");
-var SpineManager_1 = require("../manager/SpineManager");
 var FirebaseReport_1 = require("../util/FirebaseReport");
 var Lose_1 = require("../gameScence/Lose");
 var Success_1 = require("../gameScence/Success");
@@ -93,7 +92,7 @@ var LoadScene = /** @class */ (function (_super) {
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
         //SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
-        SpineManager_1.default.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3");
+        //SpineManager.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     };
     LoadScene.prototype.LoadOther = function () {
         var _this = this;

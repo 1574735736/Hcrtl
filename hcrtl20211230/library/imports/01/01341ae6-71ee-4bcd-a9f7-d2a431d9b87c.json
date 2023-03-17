@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "CHOOSE YOUR WEAPON",
+    "texture": "51bd4864-2a80-4730-9024-eb1abed7ebd6",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      403,
+      116
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      403,
+      116
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
