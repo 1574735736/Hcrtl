@@ -732,6 +732,12 @@ export default class RoleBase extends cc.Component {
                 let own = userData.getData(localStorageKey.GOLD);
                 own += Number(this.data.count);
                 userData.setData(localStorageKey.GOLD, own);
+                this.scheduleOnce(function () {
+                    if (cb) {
+                        cb();
+                        cb = null;
+                    }
+                }, 1.5); 
             }
         }
                 
