@@ -45,7 +45,7 @@ var LevelData = /** @class */ (function (_super) {
         localStorage.setItem("level", LevelData_1.curLevel + "");
     };
     LevelData.getLevel = function () {
-        var level = 2; //localStorage.getItem("level");
+        var level = 5; //localStorage.getItem("level");
         if (level == null) {
             level = "2";
         }
@@ -151,13 +151,29 @@ var LevelData = /** @class */ (function (_super) {
             bg: 0,
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],
+                    data: [[{ prefab: "LVL_1", hp: 4, type: "player" }],
                         [{}]]
                 },
                 {
-                    data: [[{ prefab: "Sword_1", hp: 80, type: "monster" }],
-                        [{ prefab: "Sword_1", hp: 90, type: "monster" }, { prefab: "Bow_1", hp: 20, type: "monster" }],
-                        [{ prefab: "Sword_2", hp: 260, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 3, type: "monster" }],
+                        [{ prefab: "Sword_1", hp: 6, type: "monster" }],
+                        [{ prefab: "Sword_2", hp: 10, type: "monster" }]]
+                },
+                {
+                    prefab: "Boss_1", type: "boss", hp: 20
+                },
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 4, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Sword_1", hp: 1, type: "monster" }, { prefab: "Dragon_2head", hp: 8, type: "monster" }],
+                        [{ prefab: "Sword_2", hp: 4, type: "monster" }],
+                        [{ prefab: "Vampire_1", hp: 15, type: "monster" }]]
                 }
             ]
         },
@@ -165,27 +181,7 @@ var LevelData = /** @class */ (function (_super) {
             bg: 0,
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],
-                        [{}]]
-                },
-                {
-                    data: [[{ prefab: "Sword_1", hp: 90, type: "monster" }],
-                        [{ prefab: "Sword_1", hp: 90, type: "monster" }, { prefab: "Bow_1", hp: 20, type: "monster" }]]
-                },
-                {
-                    data: [[{ prefab: "Sword_1", hp: 200, type: "monster" }],
-                        [{ prefab: "Sword_2", hp: 700, type: "monster" }],
-                        [{ prefab: "Sword_1", hp: 300, type: "monster" }, { prefab: "Sword_2", hp: 1400, type: "monster" }],
-                        [{ prefab: "Sword_2", hp: 2000, type: "monster" }]]
-                }
-            ]
-        },
-        {
-            bg: 0,
-            towerData: [
-                {
-                    data: [[{ prefab: "LVL_1", hp: 250, type: "player" }],
-                        [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 7, type: "player" }]]
                 },
                 {
                     data: [[{ prefab: "Sword_2", hp: 900, type: "monster" }],

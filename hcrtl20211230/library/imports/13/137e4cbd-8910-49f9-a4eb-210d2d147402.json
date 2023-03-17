@@ -160,8 +160,7 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
+    "_useOriginalSize": true,
     "_string": "100",
     "_N$string": "100",
     "_fontSize": 40,
@@ -262,12 +261,21 @@
     "hpLable": {
       "__id__": 3
     },
+    "shieldhpLable": null,
     "type": 1,
     "hasItem": false,
-    "longRange": true,
+    "longRange": false,
+    "drop": false,
+    "gain": false,
+    "shield": false,
+    "egg": false,
     "bulletPrefab": {
       "__uuid__": "f74099dd-73d6-4291-ac28-cb70ffde9c23"
     },
+    "isWeapon": false,
+    "isBox": false,
+    "LveUp": null,
+    "weaponID": 0,
     "_id": ""
   },
   {
