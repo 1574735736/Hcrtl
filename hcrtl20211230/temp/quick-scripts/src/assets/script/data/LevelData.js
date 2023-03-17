@@ -45,11 +45,11 @@ var LevelData = /** @class */ (function (_super) {
         localStorage.setItem("level", LevelData_1.curLevel + "");
     };
     LevelData.getLevel = function () {
-        var level = localStorage.getItem("level");
+        var level = 2; //localStorage.getItem("level");
         if (level == null) {
-            level = "1";
+            level = "2";
         }
-        LevelData_1.curLevel = 1; //Number(level);
+        LevelData_1.curLevel = Number(level);
         console.log("============get level: " + LevelData_1.curLevel);
     };
     var LevelData_1;
@@ -123,22 +123,12 @@ var LevelData = /** @class */ (function (_super) {
             bg: 0,
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
-                        []]
+                    data: [[{ prefab: "LVL_1", hp: 10, type: "player" }],
+                        [{ prefab: "princess", hp: 50, type: "princess" }]]
                 },
                 {
-                    data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
-                        [{ prefab: "Item_Barrier1", hp: 60, type: "item" }, { prefab: "TreasureBox1", hp: 60, type: "item", scale: 0.6, data: { prefab: "WeaponItem_9", hp: 200, type: "weapon" } }] //prefab: "WeaponItem_9", hp: 200, type: "weapon" }                                       
-                    ]
-                },
-                {
-                    prefab: "Boss_1", type: "boss"
-                },
-                {
-                    prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }
-                },
-                {
-                    prefab: "princess", hp: 50, type: "princess"
+                    data: [[{ prefab: "Sword_1", hp: 3, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
+                        [{ prefab: "Sword_1", hp: 12, type: "monster" }]]
                 }
             ]
         },
@@ -146,13 +136,14 @@ var LevelData = /** @class */ (function (_super) {
             bg: 0,
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
-                        [{ prefab: "Weapon_3", hp: 50, type: "item" }]]
+                    data: [[{ prefab: "LVL_1", hp: 6, type: "player" }]]
                 },
                 {
-                    data: [[{ prefab: "Sword_1", hp: 90, type: "monster" }],
-                        [{ prefab: "Sword_1", hp: 150, type: "monster" }],
-                        [{ prefab: "Sword_2", hp: 300, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 5, type: "monster" }, { prefab: "Sword_2", hp: 9, type: "monster" }]],
+                },
+                {
+                    data: [[{ prefab: "Sword_2", hp: 12, type: "monster" }],
+                        [{ prefab: "Sword_2", hp: 22, type: "monster" }, { prefab: "TreasureBox1", hp: 30, type: "item", data: { prefab: "", count: 10, type: "glod" }, scale: 0.6 }]],
                 }
             ]
         },

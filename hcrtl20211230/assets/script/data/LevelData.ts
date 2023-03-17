@@ -92,29 +92,31 @@ export default class LevelData extends cc.Component {
             bg: 0,//level 0
             towerData: [//第一栋
                 {
-                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
+                    data: [[{ prefab: "LVL_1", hp: 10, type: "player" }],
                         [{ prefab: "princess", hp: 50, type: "princess" }]]
                 },//第二栋
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
-                    [{ prefab: "Sword_1", hp: 60, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 3, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
+                    [{ prefab: "Sword_1", hp: 12, type: "monster" }]]
                 }
             ]
         },
 
         {
             bg: 0,//level 1
-            towerData: [//第一栋
-                {
-                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }],
-                    [{ prefab: "Weapon_3", hp: 50, type: "item" }]]
-                },//第二栋
+            towerData: [
+                {//第一栋
+                    data: [[{ prefab: "LVL_1", hp: 6, type: "player" }]]
+                },
 
-                {
-                    data: [[{ prefab: "Sword_1", hp: 90, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 150, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 300, type: "monster" }]]
+                {//第二栋
+                    data: [[{ prefab: "Sword_1", hp: 5, type: "monster" }, { prefab: "Sword_2", hp: 9, type: "monster" }]],
+                },
+
+                {//第三栋
+                    data: [[{ prefab: "Sword_2", hp: 12, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 22, type: "monster" }, {  prefab: "TreasureBox1", hp: 30, type: "item", data: { prefab: "", count: 10, type: "glod" },scale:0.6}]],
                 }
             ]
         },
@@ -1926,9 +1928,9 @@ export default class LevelData extends cc.Component {
     }
 
     public static getLevel() {
-        let level = localStorage.getItem("level");
+        let level = 2//localStorage.getItem("level");
         if (level == null) {
-            level = "1";
+            level = "2";
         }
         LevelData.curLevel = Number(level);
         console.log("============get level: " + LevelData.curLevel);
