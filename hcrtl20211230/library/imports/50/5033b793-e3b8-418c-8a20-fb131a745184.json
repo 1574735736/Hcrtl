@@ -56,7 +56,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -122,
+        -134.617,
         0,
         0,
         0,
@@ -270,7 +270,10 @@
     "shield": false,
     "egg": false,
     "bulletPrefab": null,
+    "isWeapon": false,
+    "isBox": false,
     "LveUp": null,
+    "weaponID": 0,
     "_id": ""
   },
   {

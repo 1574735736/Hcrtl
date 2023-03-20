@@ -85,7 +85,7 @@
     "relativePath": "resources\\prefabs"
   },
   "97918a69-8987-4a5c-9a0e-1a7c2d70b68a": {
-    "asset": 1679019107412,
+    "asset": 1679281601977,
     "meta": 1677054086340,
     "relativePath": "resources\\prefabs\\game"
   },
@@ -360,7 +360,7 @@
     "relativePath": "resources\\sound\\Slash~1.mp3"
   },
   "2d3472af-19e0-4617-8918-95e50600db06": {
-    "asset": 1679019107414,
+    "asset": 1679281601979,
     "meta": 1677054086386,
     "relativePath": "resources\\spine"
   },
@@ -885,13 +885,13 @@
     "relativePath": "resources\\texture\\load\\logo.png"
   },
   "f793e809-43a3-43f9-a3f5-701f5d68aaa1": {
-    "asset": 1679018287280,
+    "asset": 1679046405221,
     "meta": 1677054086711,
     "relativePath": "scene"
   },
   "0c469457-0195-4924-a2a5-a7394dee3603": {
-    "asset": 1677054086716,
-    "meta": 1679019148827,
+    "asset": 1679046395452,
+    "meta": 1679281605718,
     "relativePath": "scene\\loadScene.fire"
   },
   "6a3e0288-3558-435a-a160-b0dac3cf8e09": {
@@ -905,12 +905,12 @@
     "relativePath": "script\\data"
   },
   "60cad29d-165a-440c-871b-2f02ed639f9d": {
-    "asset": 1679018287282,
+    "asset": 1679281552081,
     "meta": 1677054086722,
     "relativePath": "script\\gameScence"
   },
   "60709917-3c77-4dc1-a5f3-445326446c34": {
-    "asset": 1678875678139,
+    "asset": 1679046401004,
     "meta": 1677054086731,
     "relativePath": "script\\loadscence"
   },
@@ -1300,12 +1300,12 @@
     "relativePath": "resources\\texture\\game\\ui\\btn_restart.png"
   },
   "c1a40e54-9983-4aae-8b59-792fb6019817": {
-    "asset": 1679018287280,
-    "meta": 1679019148829,
+    "asset": 1679046405221,
+    "meta": 1679281605951,
     "relativePath": "scene\\MainScene.fire"
   },
   "ab50d7f0-bc46-42a8-a728-4e138f7e5ee4": {
-    "asset": 1678344825478,
+    "asset": 1679281552081,
     "meta": 1677054086733,
     "relativePath": "script\\mainScene"
   },
@@ -1790,13 +1790,13 @@
     "relativePath": "resources\\texture\\sign\\X.png"
   },
   "c05e23aa-b68d-4f44-b160-d3721db527b1": {
-    "asset": 1678344825373,
+    "asset": 1679281552080,
     "meta": 1677054086373,
     "relativePath": "resources\\prefabs\\sign"
   },
   "9d545efc-3128-4c72-bc4a-acf2642b370f": {
-    "asset": 1677054086373,
-    "meta": 1679019147631,
+    "asset": 1679281552080,
+    "meta": 1679281605727,
     "relativePath": "resources\\prefabs\\sign\\SignInView.prefab"
   },
   "a686fa81-f2f7-491b-9585-047dd6e045e9": {
@@ -1865,8 +1865,8 @@
     "relativePath": "resources\\texture\\game\\guidance\\img_greenkuang.png"
   },
   "5033b793-e3b8-418c-8a20-fb131a745184": {
-    "asset": 1678344828195,
-    "meta": 1679019147592,
+    "asset": 1679284225901,
+    "meta": 1679284225911,
     "relativePath": "resources\\prefabs\\game\\monster\\princess.prefab"
   },
   "7d193396-332d-41a7-95c1-8a50b571ddd7": {
@@ -2020,13 +2020,13 @@
     "relativePath": "script\\gameScence\\Lose.ts"
   },
   "91c88088-32eb-4055-bb9b-4a704b975340": {
-    "asset": 1677054086733,
-    "meta": 1679019149604,
+    "asset": 1679046409425,
+    "meta": 1679281605919,
     "relativePath": "script\\mainScene\\MainScene.ts"
   },
   "75400049-512f-4e39-98c4-2617a94015e5": {
-    "asset": 1677054086734,
-    "meta": 1679019149620,
+    "asset": 1679281552081,
+    "meta": 1679281605947,
     "relativePath": "script\\mainScene\\SignInView.ts"
   },
   "3455dd0a-134e-49fb-903b-7c9275e7edba": {
@@ -2055,7 +2055,7 @@
     "relativePath": "script\\data\\UserData.ts"
   },
   "fff2f712-f592-4782-a778-432814a3ae13": {
-    "asset": 1679018287283,
+    "asset": 1679045773069,
     "meta": 1678344828201,
     "relativePath": "spine"
   },
@@ -2725,8 +2725,8 @@
     "relativePath": "script\\manager\\PrefabsManager.ts"
   },
   "eacb5820-66d1-429d-a2de-5968e0904ce3": {
-    "asset": 1678875678139,
-    "meta": 1679019149578,
+    "asset": 1679046401004,
+    "meta": 1679281605866,
     "relativePath": "script\\loadscence\\LoadScene.ts"
   },
   "d5be9263-1713-4747-b85a-0de54cfa1ffb": {
@@ -2755,8 +2755,8 @@
     "relativePath": "spine\\box\\xiangzi.png"
   },
   "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
-    "asset": 1679018287282,
-    "meta": 1679019149557,
+    "asset": 1679281552081,
+    "meta": 1679281605818,
     "relativePath": "script\\gameScence\\TowerTile.ts"
   },
   "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
@@ -2769,9 +2769,1039 @@
     "meta": 1679036243783,
     "relativePath": "script\\gameScence\\RoleBase.ts"
   },
+  "af8b63ea-2453-4cd0-a951-acfae8edcebf": {
+    "asset": 1679281550156,
+    "meta": 1679045773069,
+    "relativePath": "spine\\mainani"
+  },
+  "4e5bb614-e5b8-4c3a-8e72-454186d255ed": {
+    "asset": 1679045773069,
+    "meta": 1679281605961,
+    "relativePath": "spine\\mainani\\1.atlas"
+  },
+  "84b476a5-6b5f-420c-9e9d-f131fe4c1765": {
+    "asset": 1679045773072,
+    "meta": 1679281605971,
+    "relativePath": "spine\\mainani\\zhuanpan.atlas"
+  },
+  "0a09f2f6-f84e-4018-9615-b99b3de45a81": {
+    "asset": 1679045773072,
+    "meta": 1679281606800,
+    "relativePath": "spine\\mainani\\zhuanpan.json"
+  },
+  "8dba2885-8299-4869-972c-4de9410ae37d": {
+    "asset": 1679045773073,
+    "meta": 1679281605984,
+    "relativePath": "spine\\mainani\\zhuanpan.png"
+  },
+  "1e25f627-58cc-4bb7-9a57-73ac1bf79340": {
+    "asset": 1679281550209,
+    "meta": 1679045773074,
+    "relativePath": "textures"
+  },
+  "e9cf60b7-78e5-492c-8682-08c9a5f03186": {
+    "asset": 1679281550157,
+    "meta": 1679281550156,
+    "relativePath": "textures\\1.加载界面"
+  },
+  "1d894dd8-3900-4418-8a6c-e73df0bd37e1": {
+    "asset": 1679045773071,
+    "meta": 1679281605986,
+    "relativePath": "spine\\mainani\\1.png"
+  },
+  "b2b842ab-1296-4b96-86a4-63bcba8b2521": {
+    "asset": 1679045773075,
+    "meta": 1679281605993,
+    "relativePath": "textures\\1.加载界面\\t2.png"
+  },
+  "0916773a-c767-4627-8b04-eef51c2b7e73": {
+    "asset": 1679045773075,
+    "meta": 1679281606000,
+    "relativePath": "textures\\1.加载界面\\t3.png"
+  },
+  "52092269-e658-4d0f-95e9-b66bdc0923bc": {
+    "asset": 1679281550165,
+    "meta": 1679281550158,
+    "relativePath": "textures\\2.主界面"
+  },
+  "72265970-0cc5-419e-bc79-c07484941197": {
+    "asset": 1679045773074,
+    "meta": 1679281606002,
+    "relativePath": "textures\\1.加载界面\\t1.png"
+  },
+  "8b7eebf3-2e36-4a3f-a493-b891958509d1": {
+    "asset": 1679045773076,
+    "meta": 1679281606008,
+    "relativePath": "textures\\2.主界面\\1 拷贝.png"
+  },
+  "06f351d6-4dda-4c2d-a789-524610837ed2": {
+    "asset": 1679045773070,
+    "meta": 1679281606817,
+    "relativePath": "spine\\mainani\\1.json"
+  },
+  "40543e7a-c50a-46cc-91a1-69688417b74f": {
+    "asset": 1679045773079,
+    "meta": 1679281606014,
+    "relativePath": "textures\\2.主界面\\2000.png"
+  },
+  "214faa8e-d642-4a30-a1d6-ab750dcdf6a7": {
+    "asset": 1679045773078,
+    "meta": 1679281606020,
+    "relativePath": "textures\\2.主界面\\2.png"
+  },
+  "00faf0ab-dabe-4f39-b22c-6e7b8c2ae04d": {
+    "asset": 1679045773079,
+    "meta": 1679281606021,
+    "relativePath": "textures\\2.主界面\\cd.png"
+  },
+  "4549fc4d-770f-48c9-9b58-5df85bf9ce4a": {
+    "asset": 1679045773079,
+    "meta": 1679281606026,
+    "relativePath": "textures\\2.主界面\\Level 1.png"
+  },
+  "3069d788-a8f4-44b6-a6ff-a8a5afcbbe61": {
+    "asset": 1679045773080,
+    "meta": 1679281606033,
+    "relativePath": "textures\\2.主界面\\t10-1.png"
+  },
+  "c6ecd033-d262-497a-804c-ceb9b97fd11f": {
+    "asset": 1679045773080,
+    "meta": 1679281606036,
+    "relativePath": "textures\\2.主界面\\t1.png"
+  },
+  "31c28003-e3f5-4601-a0c9-3b29c720f920": {
+    "asset": 1679045773081,
+    "meta": 1679281606040,
+    "relativePath": "textures\\2.主界面\\t10-2.png"
+  },
+  "72b8adf6-5a35-4e5b-9468-dbba168e754e": {
+    "asset": 1679045773081,
+    "meta": 1679281606042,
+    "relativePath": "textures\\2.主界面\\t10-3.png"
+  },
+  "65ae5f72-5587-493b-8a57-3b7e894f9842": {
+    "asset": 1679045773082,
+    "meta": 1679281606047,
+    "relativePath": "textures\\2.主界面\\t11-1.png"
+  },
+  "4971e652-656b-48f8-9613-4bd2dfb3898b": {
+    "asset": 1679045773082,
+    "meta": 1679281606048,
+    "relativePath": "textures\\2.主界面\\t11-2.png"
+  },
+  "9312d798-3ed4-4956-97b1-d7e125c0936a": {
+    "asset": 1679045773083,
+    "meta": 1679281606054,
+    "relativePath": "textures\\2.主界面\\t12.png"
+  },
+  "bdf1fe3d-74fb-4465-a9a0-4a119f12767a": {
+    "asset": 1679045773083,
+    "meta": 1679281606055,
+    "relativePath": "textures\\2.主界面\\t11-3.png"
+  },
+  "7550e4d5-073d-43d4-b731-2f5cf76cb18e": {
+    "asset": 1679045773084,
+    "meta": 1679281606061,
+    "relativePath": "textures\\2.主界面\\t3.png"
+  },
+  "826a9cec-ab1d-44ae-9721-18bdb68e5cf9": {
+    "asset": 1679045773084,
+    "meta": 1679281606062,
+    "relativePath": "textures\\2.主界面\\t2.png"
+  },
+  "a6b4134d-604e-47a6-bb36-af10ec3b1b23": {
+    "asset": 1679045773085,
+    "meta": 1679281606068,
+    "relativePath": "textures\\2.主界面\\t4-2.png"
+  },
+  "26754a82-d329-43df-bac7-6b4d8ea8fdff": {
+    "asset": 1679045773086,
+    "meta": 1679281606070,
+    "relativePath": "textures\\2.主界面\\t4.png"
+  },
+  "c69b6f92-afff-4210-9671-ed96aff927be": {
+    "asset": 1679045773087,
+    "meta": 1679281606076,
+    "relativePath": "textures\\2.主界面\\t6-1.png"
+  },
+  "712e5c8b-10ba-47ce-b615-f6ec1a8fea2a": {
+    "asset": 1679045773086,
+    "meta": 1679281606077,
+    "relativePath": "textures\\2.主界面\\t5.png"
+  },
+  "8cf71c15-acee-4c81-b1a3-07b16afb1212": {
+    "asset": 1679045773087,
+    "meta": 1679281606082,
+    "relativePath": "textures\\2.主界面\\t6-2.png"
+  },
+  "f85cc6d4-8634-4a85-8286-de977c41f59f": {
+    "asset": 1679045773088,
+    "meta": 1679281606083,
+    "relativePath": "textures\\2.主界面\\t7-1.png"
+  },
+  "880f9203-a657-41f1-8524-2058b8a1eaf7": {
+    "asset": 1679045773089,
+    "meta": 1679281606089,
+    "relativePath": "textures\\2.主界面\\t7-3.png"
+  },
+  "6d884296-81d8-4252-95d8-44ade3d8d51e": {
+    "asset": 1679045773088,
+    "meta": 1679281606090,
+    "relativePath": "textures\\2.主界面\\t7-2.png"
+  },
+  "5d835186-8b7d-4f91-80d8-028d42cc25ff": {
+    "asset": 1679045773089,
+    "meta": 1679281606096,
+    "relativePath": "textures\\2.主界面\\t8.png"
+  },
+  "904f12ab-9216-4130-97d3-ca9bcae57cd8": {
+    "asset": 1679045773089,
+    "meta": 1679281606097,
+    "relativePath": "textures\\2.主界面\\t9.png"
+  },
+  "611cd0ad-caa3-45c5-a7e4-a5e281cda05d": {
+    "asset": 1679281550177,
+    "meta": 1679281550165,
+    "relativePath": "textures\\3.皮肤节目+武器节目"
+  },
+  "7417cba6-fde1-4363-a186-0ee3870c4bd1": {
+    "asset": 1679045773091,
+    "meta": 1679281606103,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\2000.png"
+  },
+  "0602d633-2df9-41ed-b024-eb9b8e0df2bb": {
+    "asset": 1679045773090,
+    "meta": 1679281606107,
+    "relativePath": "textures\\2.主界面\\x.png"
+  },
+  "9c8657e8-2a8d-4936-bfa6-43b28bf777ac": {
+    "asset": 1679045773091,
+    "meta": 1679281606109,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\GG.png"
+  },
+  "17dc1a15-3fd5-489a-a926-c8d0ea5833b2": {
+    "asset": 1679045773092,
+    "meta": 1679281606113,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\HEAD.png"
+  },
+  "4ae46d46-7bb9-4150-8d78-8407f9b86087": {
+    "asset": 1679045773094,
+    "meta": 1679281606119,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t10.png"
+  },
+  "5c06be60-ee56-4545-a6d5-1f6a1f01860a": {
+    "asset": 1679045773094,
+    "meta": 1679281606126,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t1.png"
+  },
+  "8685b424-824c-47b3-a665-28694695c650": {
+    "asset": 1679045773095,
+    "meta": 1679281606127,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t11-2.png"
+  },
+  "d45fcc76-ff39-4676-b033-807d2de5ebc9": {
+    "asset": 1679045773095,
+    "meta": 1679281606132,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t12.png"
+  },
+  "beebbef8-1af3-4edf-aff2-9494011341ee": {
+    "asset": 1679045773095,
+    "meta": 1679281606133,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t11.png"
+  },
+  "97f3d7f7-9197-4272-928c-aa7ed3a4d99c": {
+    "asset": 1679045773096,
+    "meta": 1679281606139,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t14-2.png"
+  },
+  "74d0dbf4-036f-4539-a583-56597c1f8b47": {
+    "asset": 1679045773096,
+    "meta": 1679281606140,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t13.png"
+  },
+  "475a2169-1543-494a-8b0c-6824e8e8c027": {
+    "asset": 1679045773097,
+    "meta": 1679281606145,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t14.png"
+  },
+  "ed85a969-2a3a-41a9-a77e-5643a77c957e": {
+    "asset": 1679045773098,
+    "meta": 1679281606146,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t15.png"
+  },
+  "32312392-c5fd-408a-abfd-4eb41aaa2aaa": {
+    "asset": 1679045773098,
+    "meta": 1679281606152,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t16.png"
+  },
+  "cc238537-a9e4-4803-ab14-12e642a936b0": {
+    "asset": 1679045773099,
+    "meta": 1679281606153,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t17.png"
+  },
+  "8bcbba89-049d-49c4-bdcc-0943eab6bcd0": {
+    "asset": 1679045773100,
+    "meta": 1679281606158,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t19.png"
+  },
+  "72457a2e-474f-4ae6-82da-9cc47f4c2226": {
+    "asset": 1679045773100,
+    "meta": 1679281606159,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t18.png"
+  },
+  "a09b890b-d223-4995-ae35-7b951e429e1f": {
+    "asset": 1679045773101,
+    "meta": 1679281606165,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t20.png"
+  },
+  "39ff734d-0495-40b4-a7c3-92dda5a85029": {
+    "asset": 1679045773101,
+    "meta": 1679281606166,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t2.png"
+  },
+  "3e50bcd7-18fe-4b70-a282-a1ac41ab067a": {
+    "asset": 1679045773102,
+    "meta": 1679281606172,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t21.png"
+  },
+  "c9a0d9b9-e99b-4051-968d-87f423d49cd3": {
+    "asset": 1679045773103,
+    "meta": 1679281606173,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t22.png"
+  },
+  "4df3e37c-704b-44b2-bfa1-6e0889a354e7": {
+    "asset": 1679045773103,
+    "meta": 1679281606179,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t3-1.png"
+  },
+  "b7ed44bd-7e6c-4ccf-874e-132530b631a5": {
+    "asset": 1679045773104,
+    "meta": 1679281606180,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t3-2.png"
+  },
+  "8ee27a27-9cdc-4807-88e4-bf77f0d46116": {
+    "asset": 1679045773104,
+    "meta": 1679281606186,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t3-3.png"
+  },
+  "c11b8a7f-b3bb-457d-bca1-22e39002bc2e": {
+    "asset": 1679045773105,
+    "meta": 1679281606187,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t4.png"
+  },
+  "5ab2511e-dbaf-4027-948d-ae557a33ce60": {
+    "asset": 1679045773105,
+    "meta": 1679281606193,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t5.png"
+  },
+  "31c22ed8-c657-46ca-ba0e-bf0fea399133": {
+    "asset": 1679045773106,
+    "meta": 1679281606199,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t6.png"
+  },
+  "cb70a276-4c83-4916-bf7d-0ce4d282d39e": {
+    "asset": 1679045773106,
+    "meta": 1679281606200,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t7.png"
+  },
+  "08ed3489-eda1-4bc6-bf24-3aeb792e36b9": {
+    "asset": 1679045773107,
+    "meta": 1679281606205,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t8.png"
+  },
+  "e6153353-80c4-450d-8594-54c460ef2b9f": {
+    "asset": 1679045773107,
+    "meta": 1679281606206,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-1.png"
+  },
+  "0cff6628-ea7f-4180-a4b0-7708f9b5559f": {
+    "asset": 1679045773108,
+    "meta": 1679281606212,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-3.png"
+  },
+  "b92aa861-390c-4803-99ba-f0aee31eebc5": {
+    "asset": 1679045773108,
+    "meta": 1679281606213,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-2.png"
+  },
+  "1b62833d-add2-4c30-b6a5-0d091d8ed98f": {
+    "asset": 1679045773110,
+    "meta": 1679281606219,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-5.png"
+  },
+  "e88e0331-9b9d-4128-9095-8119eaeec7a3": {
+    "asset": 1679045773109,
+    "meta": 1679281606220,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-4.png"
+  },
+  "a67ab1ca-fc10-49e4-8934-7bcb219bc544": {
+    "asset": 1679045773111,
+    "meta": 1679281606225,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou1.png"
+  },
+  "4a69bbf3-55c1-4598-aac4-f55fbe7d2fb9": {
+    "asset": 1679045773110,
+    "meta": 1679281606226,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\t9-6.png"
+  },
+  "1410d1d2-0795-40ee-b093-0f16b0fb89d5": {
+    "asset": 1679045773112,
+    "meta": 1679281606232,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou2.png"
+  },
+  "1003d83b-3d0b-4084-8fbf-6d790300ff7a": {
+    "asset": 1679045773112,
+    "meta": 1679281606233,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou3.png"
+  },
+  "8a6d7ca1-7ed5-4b7d-bc86-646e532a98a3": {
+    "asset": 1679045773112,
+    "meta": 1679281606238,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou5.png"
+  },
+  "ffddee94-345c-486a-abaa-d31b447190b9": {
+    "asset": 1679045773112,
+    "meta": 1679281606239,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou4.png"
+  },
+  "8f4d4e00-f703-4db4-bde5-ed4231fba604": {
+    "asset": 1679045773113,
+    "meta": 1679281606245,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\tou6.png"
+  },
+  "4bd5e1c9-ce51-462a-b9d4-da7092de754a": {
+    "asset": 1679281550180,
+    "meta": 1679281550177,
+    "relativePath": "textures\\4.胜利界面"
+  },
+  "430b6d08-2984-4ca1-ac11-b91dc4cbbd04": {
+    "asset": 1679045773093,
+    "meta": 1679281606246,
+    "relativePath": "textures\\3.皮肤节目+武器节目\\WEAPON.png"
+  },
+  "4ac8180f-1c9f-4a2a-9172-a062c6f86774": {
+    "asset": 1679045773114,
+    "meta": 1679281606252,
+    "relativePath": "textures\\4.胜利界面\\2000.png"
+  },
+  "7f62e55d-d0f7-407c-8041-de88d3744dc1": {
+    "asset": 1679045773115,
+    "meta": 1679281606265,
+    "relativePath": "textures\\4.胜利界面\\t2.png"
+  },
+  "7d5b02d3-71cc-4d25-9c87-385b32a6b5f1": {
+    "asset": 1679045773114,
+    "meta": 1679281606266,
+    "relativePath": "textures\\4.胜利界面\\t1.png"
+  },
+  "b591e433-0b0b-4f61-af82-cd2354bfbc85": {
+    "asset": 1679045773116,
+    "meta": 1679281606278,
+    "relativePath": "textures\\4.胜利界面\\t4.png"
+  },
+  "a23a5cbe-df60-4170-8be4-36e92e936a03": {
+    "asset": 1679045773115,
+    "meta": 1679281606279,
+    "relativePath": "textures\\4.胜利界面\\t3.png"
+  },
+  "82630e52-c4fc-45f5-bfe9-200a9dee1aa5": {
+    "asset": 1679045773116,
+    "meta": 1679281606286,
+    "relativePath": "textures\\4.胜利界面\\t5.png"
+  },
+  "7207c34c-fef2-4d2d-b2c0-6a6266ef77da": {
+    "asset": 1679045773117,
+    "meta": 1679281606287,
+    "relativePath": "textures\\4.胜利界面\\t6-1.png"
+  },
+  "9316c7f0-73dd-41e0-9504-1819a3f3b35f": {
+    "asset": 1679045773117,
+    "meta": 1679281606294,
+    "relativePath": "textures\\4.胜利界面\\t6-2.png"
+  },
+  "4f5280d8-79bc-414b-9a3f-664bd6210d59": {
+    "asset": 1679045773118,
+    "meta": 1679281606295,
+    "relativePath": "textures\\4.胜利界面\\t6-3.png"
+  },
+  "2fff4ddf-409a-4682-a60c-c1c9ceaf5882": {
+    "asset": 1679045773118,
+    "meta": 1679281606301,
+    "relativePath": "textures\\4.胜利界面\\t6-4.png"
+  },
+  "a6c4f170-be83-4344-b1e3-2af6e2f14aff": {
+    "asset": 1679045773118,
+    "meta": 1679281606302,
+    "relativePath": "textures\\4.胜利界面\\t7-1.png"
+  },
+  "48763751-5567-4cf4-b381-4e924bef40c9": {
+    "asset": 1679045773119,
+    "meta": 1679281606308,
+    "relativePath": "textures\\4.胜利界面\\t7-2.png"
+  },
+  "9a42f16e-3bdc-49a1-8da4-a3e477ae292c": {
+    "asset": 1679281550184,
+    "meta": 1679281550181,
+    "relativePath": "textures\\5.失败界面"
+  },
+  "52a8f982-7aa7-447a-b307-31dde07e8238": {
+    "asset": 1679045773119,
+    "meta": 1679281606311,
+    "relativePath": "textures\\4.胜利界面\\t7-3.png"
+  },
+  "a3beff9c-d4f4-43d7-be46-febab3651315": {
+    "asset": 1679045773120,
+    "meta": 1679281606320,
+    "relativePath": "textures\\5.失败界面\\t1.png"
+  },
+  "a59980a2-dbb0-4e9e-a075-933e79a515aa": {
+    "asset": 1679045773124,
+    "meta": 1679281606329,
+    "relativePath": "textures\\5.失败界面\\图层 145.png"
+  },
+  "6be03d96-855d-49a2-943d-5b6862006db1": {
+    "asset": 1679045773120,
+    "meta": 1679281606331,
+    "relativePath": "textures\\5.失败界面\\t2.png"
+  },
+  "a964321b-8686-4479-b0e3-5e886b7a099b": {
+    "asset": 1679045773121,
+    "meta": 1679281606336,
+    "relativePath": "textures\\5.失败界面\\t3.png"
+  },
+  "b71a1c99-4b1e-4ebd-b78b-a1d7d737dd5b": {
+    "asset": 1679045773121,
+    "meta": 1679281606337,
+    "relativePath": "textures\\5.失败界面\\t4.png"
+  },
+  "174d4443-62d7-4310-8389-c0c015c6fd91": {
+    "asset": 1679045773122,
+    "meta": 1679281606344,
+    "relativePath": "textures\\5.失败界面\\t5-2.png"
+  },
+  "97a7e5e1-76c5-450f-9255-d5ca2efd443d": {
+    "asset": 1679045773122,
+    "meta": 1679281606344,
+    "relativePath": "textures\\5.失败界面\\t5-1.png"
+  },
+  "ebab8645-c41f-4f31-9f18-89e4d184c6a7": {
+    "asset": 1679045773122,
+    "meta": 1679281606351,
+    "relativePath": "textures\\5.失败界面\\t5-3.png"
+  },
+  "ebfd9bac-2830-4565-84c0-a0d75bd2f7ce": {
+    "asset": 1679045773123,
+    "meta": 1679281606352,
+    "relativePath": "textures\\5.失败界面\\t6.png"
+  },
+  "50f479ab-28ad-49ce-9ea6-279fccb88139": {
+    "asset": 1679281552082,
+    "meta": 1679281550184,
+    "relativePath": "textures\\6.签到界面"
+  },
+  "12d25fb0-0163-4d04-a3e9-c0ad70f11bec": {
+    "asset": 1679045773123,
+    "meta": 1679281606359,
+    "relativePath": "textures\\5.失败界面\\t7.png"
+  },
+  "1b9ab213-e50f-40f5-ae01-a99cc60ae1fd": {
+    "asset": 1679045773125,
+    "meta": 1679281606361,
+    "relativePath": "textures\\6.签到界面\\10.png"
+  },
+  "8db925a2-50db-4ea4-af0f-f12edd44965a": {
+    "asset": 1679045773125,
+    "meta": 1679281606367,
+    "relativePath": "textures\\6.签到界面\\15.png"
+  },
+  "a92adaf4-da88-4510-9ca2-554da78b21ce": {
+    "asset": 1679045773125,
+    "meta": 1679281606368,
+    "relativePath": "textures\\6.签到界面\\20.png"
+  },
+  "80141d74-dbb2-4aa2-8044-c46a2471dbe9": {
+    "asset": 1679045773126,
+    "meta": 1679281606374,
+    "relativePath": "textures\\6.签到界面\\2000.png"
+  },
+  "ff746074-010b-4bca-bd59-304df46c14d4": {
+    "asset": 1679045773127,
+    "meta": 1679281606375,
+    "relativePath": "textures\\6.签到界面\\25.png"
+  },
+  "10009157-6f1e-4ddf-a4f2-43b7fa741844": {
+    "asset": 1679045773127,
+    "meta": 1679281606381,
+    "relativePath": "textures\\6.签到界面\\30.png"
+  },
+  "e01e3407-30fb-4c9f-a42a-00b0c55b021d": {
+    "asset": 1679045773127,
+    "meta": 1679281606382,
+    "relativePath": "textures\\6.签到界面\\50.png"
+  },
+  "91d41aef-05cf-45e9-a3cc-d094858f3524": {
+    "asset": 1679045773128,
+    "meta": 1679281606389,
+    "relativePath": "textures\\6.签到界面\\Day 1.png"
+  },
+  "438a5b9e-c798-48da-a1be-998559e55354": {
+    "asset": 1679045773128,
+    "meta": 1679281606395,
+    "relativePath": "textures\\6.签到界面\\Day 2.png"
+  },
+  "8d756659-7c7a-4b99-a1a5-a34fd79640c7": {
+    "asset": 1679281552082,
+    "meta": 1679281606399,
+    "relativePath": "textures\\6.签到界面\\7.png"
+  },
+  "5dd4b69a-6af0-431b-be65-98c3872c6410": {
+    "asset": 1679045773129,
+    "meta": 1679281606403,
+    "relativePath": "textures\\6.签到界面\\Day 3.png"
+  },
+  "f6b333e1-0393-4909-9812-0949709e007f": {
+    "asset": 1679045773130,
+    "meta": 1679281606406,
+    "relativePath": "textures\\6.签到界面\\Day 4.png"
+  },
+  "22ffaeae-7412-4088-be7e-4d23d6665985": {
+    "asset": 1679045773130,
+    "meta": 1679281606410,
+    "relativePath": "textures\\6.签到界面\\Day 5.png"
+  },
+  "a6fd1d71-1a97-4605-9e46-dc7d05702962": {
+    "asset": 1679045773131,
+    "meta": 1679281606414,
+    "relativePath": "textures\\6.签到界面\\Day 6.png"
+  },
+  "94b938d9-4f43-4e8b-b038-ff8bd186bac9": {
+    "asset": 1679045773132,
+    "meta": 1679281606416,
+    "relativePath": "textures\\6.签到界面\\Day 7.png"
+  },
+  "492ea5f0-674a-4ba2-84d3-eaa5fd166bbf": {
+    "asset": 1679045773134,
+    "meta": 1679281606423,
+    "relativePath": "textures\\6.签到界面\\t10.png"
+  },
+  "591d45ac-00f7-47a4-b545-2d903b66d88e": {
+    "asset": 1679045773135,
+    "meta": 1679281606424,
+    "relativePath": "textures\\6.签到界面\\t11.png"
+  },
+  "99029dda-009b-4ff1-bc99-ae28b1f34be2": {
+    "asset": 1679045773135,
+    "meta": 1679281606430,
+    "relativePath": "textures\\6.签到界面\\t12.png"
+  },
+  "749d3937-9ac2-48a2-b1db-7574b6fc17b2": {
+    "asset": 1679045773136,
+    "meta": 1679281606439,
+    "relativePath": "textures\\6.签到界面\\t2.png"
+  },
+  "8048ede3-b9f1-4094-8f1b-f288824597fb": {
+    "asset": 1679045773136,
+    "meta": 1679281606442,
+    "relativePath": "textures\\6.签到界面\\t3.png"
+  },
+  "bd2e6b89-54b2-4d78-a84e-888ef6db3c8b": {
+    "asset": 1679045773137,
+    "meta": 1679281606446,
+    "relativePath": "textures\\6.签到界面\\t4.png"
+  },
+  "50618d13-81f7-4cba-8ce2-50d906347d2d": {
+    "asset": 1679045773137,
+    "meta": 1679281606448,
+    "relativePath": "textures\\6.签到界面\\t5-1.png"
+  },
+  "18f00bd3-18f4-4c01-ab24-c2c8e56307df": {
+    "asset": 1679045773138,
+    "meta": 1679281606453,
+    "relativePath": "textures\\6.签到界面\\t5-2.png"
+  },
+  "32a678fc-cd61-46c4-95d7-e2b7502a0d0c": {
+    "asset": 1679045773138,
+    "meta": 1679281606454,
+    "relativePath": "textures\\6.签到界面\\t5-3.png"
+  },
+  "8380e791-f319-4c61-a9e4-f391d27d6f27": {
+    "asset": 1679045773139,
+    "meta": 1679281606461,
+    "relativePath": "textures\\6.签到界面\\t5-4.png"
+  },
+  "6fdd4a2a-603a-4fa2-9cfb-8bfac24d94de": {
+    "asset": 1679045773140,
+    "meta": 1679281606462,
+    "relativePath": "textures\\6.签到界面\\t5-5.png"
+  },
+  "0cd76227-ea05-452e-86c7-05613121ff49": {
+    "asset": 1679045773140,
+    "meta": 1679281606468,
+    "relativePath": "textures\\6.签到界面\\t5-6.png"
+  },
+  "2b013d1d-eb22-44ba-9502-87d98dcd7566": {
+    "asset": 1679045773141,
+    "meta": 1679281606469,
+    "relativePath": "textures\\6.签到界面\\t6-1.png"
+  },
+  "33328909-23d0-4011-a98c-78a1c436f4cd": {
+    "asset": 1679045773142,
+    "meta": 1679281606474,
+    "relativePath": "textures\\6.签到界面\\t6-3.png"
+  },
+  "c6cdedd0-777b-4d21-b3f8-f3d95bb5ed97": {
+    "asset": 1679045773142,
+    "meta": 1679281606475,
+    "relativePath": "textures\\6.签到界面\\t6-2.png"
+  },
+  "6d57452b-f2d1-4d04-9c96-af68372f110b": {
+    "asset": 1679045773143,
+    "meta": 1679281606481,
+    "relativePath": "textures\\6.签到界面\\t6-4.png"
+  },
+  "0f08d1c2-6fe9-4b92-96be-e93c89afee0a": {
+    "asset": 1679045773144,
+    "meta": 1679281606482,
+    "relativePath": "textures\\6.签到界面\\t6-5.png"
+  },
+  "9e00bba8-82bf-409b-b922-3911b74e9715": {
+    "asset": 1679045773145,
+    "meta": 1679281606488,
+    "relativePath": "textures\\6.签到界面\\t6-6.png"
+  },
+  "67c9e1b1-6be8-4dcc-8f9e-1675e054c00c": {
+    "asset": 1679045773145,
+    "meta": 1679281606489,
+    "relativePath": "textures\\6.签到界面\\t6-7.png"
+  },
+  "0d2cee1b-1ac2-4373-a675-6119800c2e64": {
+    "asset": 1679045773146,
+    "meta": 1679281606495,
+    "relativePath": "textures\\6.签到界面\\t7-2.png"
+  },
+  "1afd0c3b-08e1-4ca8-9397-582204ebfde1": {
+    "asset": 1679045773146,
+    "meta": 1679281606496,
+    "relativePath": "textures\\6.签到界面\\t7-1.png"
+  },
+  "562bef6c-e1ab-4fa3-a69d-29fd120b0e43": {
+    "asset": 1679045773148,
+    "meta": 1679281606502,
+    "relativePath": "textures\\6.签到界面\\t7-4.png"
+  },
+  "2c99eb24-6ede-4530-86b6-9b41bf967d5c": {
+    "asset": 1679045773147,
+    "meta": 1679281606503,
+    "relativePath": "textures\\6.签到界面\\t7-3.png"
+  },
+  "6521a4ef-b4fb-4d30-ad99-7895741f0ba1": {
+    "asset": 1679045773149,
+    "meta": 1679281606510,
+    "relativePath": "textures\\6.签到界面\\t7-6.png"
+  },
+  "2b98d7fc-a372-4946-a8b4-5a9f28da5bed": {
+    "asset": 1679045773148,
+    "meta": 1679281606511,
+    "relativePath": "textures\\6.签到界面\\t7-5.png"
+  },
+  "5f7afab3-b14b-49d9-b31b-465f77e2c9fa": {
+    "asset": 1679045773150,
+    "meta": 1679281606517,
+    "relativePath": "textures\\6.签到界面\\t9.png"
+  },
+  "cc92629e-6755-409f-8a53-eac3189a1089": {
+    "asset": 1679281550199,
+    "meta": 1679281550196,
+    "relativePath": "textures\\7.战斗界面+激励广告"
+  },
+  "a9ee6628-1626-4aeb-a45c-3bb241bb3d11": {
+    "asset": 1679281550199,
+    "meta": 1679281550197,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗"
+  },
+  "c5785159-80c9-42f5-bdc2-e469a0fa1382": {
+    "asset": 1679045773149,
+    "meta": 1679281606519,
+    "relativePath": "textures\\6.签到界面\\t8.png"
+  },
+  "e3399fd9-0799-40b1-882c-ed2ac19057e3": {
+    "asset": 1679045773152,
+    "meta": 1679281606525,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\No thanks!.png"
+  },
+  "51bd4864-2a80-4730-9024-eb1abed7ebd6": {
+    "asset": 1679045773151,
+    "meta": 1679281606526,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\CHOOSE YOUR WEAPON.png"
+  },
+  "3699a5e5-d67e-4c89-bd47-2371db41d284": {
+    "asset": 1679045773153,
+    "meta": 1679281606533,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t15-1.png"
+  },
+  "5520c062-21a4-4a44-945e-5e79497be29a": {
+    "asset": 1679045773153,
+    "meta": 1679281606540,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t15-2.png"
+  },
+  "dfaaea94-2100-4226-b2ad-bcd474e12985": {
+    "asset": 1679045773152,
+    "meta": 1679281606543,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t14.png"
+  },
+  "c41d21b1-fd2c-4622-8e7f-429d9daae95c": {
+    "asset": 1679045773154,
+    "meta": 1679281606548,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t15-3.png"
+  },
+  "db170573-b7f8-485d-85be-cbc559d6f811": {
+    "asset": 1679045773154,
+    "meta": 1679281606550,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t16-1.png"
+  },
+  "8ff89133-f317-4c02-bc38-7620badf19ff": {
+    "asset": 1679045773155,
+    "meta": 1679281606556,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t16-2.png"
+  },
+  "e49a1613-6df8-4da8-a3cd-263650edd377": {
+    "asset": 1679281550205,
+    "meta": 1679281550199,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面"
+  },
+  "24debfb1-a43f-4f81-a153-f7f97457e904": {
+    "asset": 1679045773155,
+    "meta": 1679281606557,
+    "relativePath": "textures\\7.战斗界面+激励广告\\弹窗\\t16-3.png"
+  },
+  "2eacfbe3-be95-45e3-bbce-de32cc69fcb6": {
+    "asset": 1679045773157,
+    "meta": 1679281606563,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\12.png"
+  },
+  "9fa329b1-8fb7-4c26-bd53-9c0a51c1e3d3": {
+    "asset": 1679045773156,
+    "meta": 1679281606564,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\10.png"
+  },
+  "139febaf-dbe3-499b-a904-9185fb04687e": {
+    "asset": 1679045773158,
+    "meta": 1679281606570,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\3.png"
+  },
+  "663e9e5e-5143-4bd8-9858-372c9070ae45": {
+    "asset": 1679045773157,
+    "meta": 1679281606571,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\2000.png"
+  },
+  "91e09f32-8ca9-4017-a8e4-338c22de4cc3": {
+    "asset": 1679045773159,
+    "meta": 1679281606578,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t10.png"
+  },
+  "0ae894ea-6bf9-4a41-bf56-ce68c27f24d3": {
+    "asset": 1679045773159,
+    "meta": 1679281606586,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t11.png"
+  },
+  "5cdf0eda-c1cc-417c-a1f2-5551f65770d5": {
+    "asset": 1679045773158,
+    "meta": 1679281606587,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t1.png"
+  },
+  "b997508b-61b6-452a-b960-e57ba963bd69": {
+    "asset": 1679045773160,
+    "meta": 1679281606593,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t12.png"
+  },
+  "ca393ec9-aac2-4115-a65a-f780b7feb990": {
+    "asset": 1679045773160,
+    "meta": 1679281606595,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t13.png"
+  },
+  "bf21e16e-9639-4010-84fd-801ea6ae7c69": {
+    "asset": 1679045773160,
+    "meta": 1679281606601,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t2.png"
+  },
+  "bbd82cc5-1704-4b78-9291-3338b9623285": {
+    "asset": 1679045773161,
+    "meta": 1679281606603,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t3.png"
+  },
+  "7718d5c1-f5d8-4bb5-81b5-12aa4ce008fc": {
+    "asset": 1679045773162,
+    "meta": 1679281606609,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t4.png"
+  },
+  "55248bd8-8a25-43d6-b6f9-9829f9cd5835": {
+    "asset": 1679045773162,
+    "meta": 1679281606610,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t5-2.png"
+  },
+  "3f561f4b-480c-4d96-9736-a4a491dd2468": {
+    "asset": 1679045773163,
+    "meta": 1679281606615,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t6.png"
+  },
+  "4b7023bc-3628-465d-acc7-f84cd2a4246f": {
+    "asset": 1679045773163,
+    "meta": 1679281606616,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t5.png"
+  },
+  "d678f8e3-f759-4d23-8878-79611fc3bd1c": {
+    "asset": 1679045773163,
+    "meta": 1679281606623,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t7.png"
+  },
+  "b15072e1-78ee-4d25-8734-61186e4338d6": {
+    "asset": 1679045773164,
+    "meta": 1679281606624,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t8.png"
+  },
+  "e9c36e7f-77aa-4ce1-82e4-ec3ce97002a1": {
+    "asset": 1679045773164,
+    "meta": 1679281606630,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\t9.png"
+  },
+  "5c3cf1a0-8c90-4ddd-8b0d-2da0e7c299fd": {
+    "asset": 1679045773165,
+    "meta": 1679281606631,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\ta1.png"
+  },
+  "b46ee2ff-a17d-4f6a-9b9d-f5456c1fb546": {
+    "asset": 1679045773165,
+    "meta": 1679281606638,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\ta2.png"
+  },
+  "cfc175eb-950e-4f93-82d5-63c3843e122b": {
+    "asset": 1679281550207,
+    "meta": 1679281550206,
+    "relativePath": "textures\\8.获得皮肤"
+  },
+  "1d12c439-53ce-43a1-8248-2c3b9665598e": {
+    "asset": 1679045773166,
+    "meta": 1679281606640,
+    "relativePath": "textures\\7.战斗界面+激励广告\\界面\\ta3.png"
+  },
+  "13072983-07a9-4b6f-9ace-6544f39dc908": {
+    "asset": 1679045773167,
+    "meta": 1679281606645,
+    "relativePath": "textures\\8.获得皮肤\\No thanks.png"
+  },
+  "3218724b-61e0-420e-9240-3fadd87760b3": {
+    "asset": 1679045773167,
+    "meta": 1679281606655,
+    "relativePath": "textures\\8.获得皮肤\\t1.png"
+  },
+  "c58efac0-41fd-4618-8dfc-197c6d6ef1ab": {
+    "asset": 1679045773168,
+    "meta": 1679281606658,
+    "relativePath": "textures\\8.获得皮肤\\t2-1.png"
+  },
+  "dc6a5c06-1e12-45f2-b2af-bda2ce3a0428": {
+    "asset": 1679045773168,
+    "meta": 1679281606662,
+    "relativePath": "textures\\8.获得皮肤\\t2-2.png"
+  },
+  "d61c18b9-23df-451d-a78d-74110a5a0aa2": {
+    "asset": 1679045773169,
+    "meta": 1679281606669,
+    "relativePath": "textures\\8.获得皮肤\\t3.png"
+  },
+  "53282a61-cd10-4f40-a8ad-d9d0d5ac94ec": {
+    "asset": 1679045773170,
+    "meta": 1679281606670,
+    "relativePath": "textures\\8.获得皮肤\\t4.png"
+  },
+  "1f3ac74f-390e-48da-9b53-07c8384e8b76": {
+    "asset": 1679281550212,
+    "meta": 1679281550209,
+    "relativePath": "textures\\参考图"
+  },
+  "d37ffeb7-e13a-46c9-9a71-fcb9814590b9": {
+    "asset": 1679045773170,
+    "meta": 1679281606677,
+    "relativePath": "textures\\8.获得皮肤\\t5.png"
+  },
+  "d7f04760-91e2-49e3-8ec9-c69f0ef0d133": {
+    "asset": 1679045773308,
+    "meta": 1679281606687,
+    "relativePath": "textures\\参考图\\1.png"
+  },
+  "c4e8f138-689f-41f6-87e0-f44a4bf7c255": {
+    "asset": 1679045773309,
+    "meta": 1679281606695,
+    "relativePath": "textures\\参考图\\2.png"
+  },
+  "16c5f457-7c17-4cf6-89b1-de23bbaf347e": {
+    "asset": 1679045773310,
+    "meta": 1679281606704,
+    "relativePath": "textures\\参考图\\3.png"
+  },
+  "60cb598d-a913-4eb8-9e6d-9675137cf6ac": {
+    "asset": 1679045773311,
+    "meta": 1679281606712,
+    "relativePath": "textures\\参考图\\4.png"
+  },
+  "a942b054-16b7-4cf0-9e3f-9f48c965d307": {
+    "asset": 1679045773312,
+    "meta": 1679281606720,
+    "relativePath": "textures\\参考图\\5.png"
+  },
+  "c15d254b-35dc-4205-a987-6ddfa8102192": {
+    "asset": 1679045773313,
+    "meta": 1679281606729,
+    "relativePath": "textures\\参考图\\6.png"
+  },
+  "2c756979-a6c4-4579-bb51-2ffaa421035e": {
+    "asset": 1679045773314,
+    "meta": 1679281606739,
+    "relativePath": "textures\\参考图\\7.png"
+  },
+  "c206ea7d-4e06-4c4b-9fc2-5a8895d45782": {
+    "asset": 1679045773315,
+    "meta": 1679281606747,
+    "relativePath": "textures\\参考图\\8.png"
+  },
+  "b3bc21e4-c8dd-49a7-ad91-a62061a1534e": {
+    "asset": 1679281550209,
+    "meta": 1679281550208,
+    "relativePath": "textures\\动效参考mp4"
+  },
+  "b8e1f754-0ed0-4b90-b124-289ee5cd36bb": {
+    "asset": 1679045773257,
+    "meta": 1679281606754,
+    "relativePath": "textures\\动效参考mp4\\皮肤武器.mp4"
+  },
+  "1d2e071c-5ea0-4dfe-a035-095c6f2a13bb": {
+    "asset": 1679045773316,
+    "meta": 1679281606756,
+    "relativePath": "textures\\参考图\\9.png"
+  },
+  "82251836-6018-4a58-b5a1-fe6bd547d8c2": {
+    "asset": 1679045773307,
+    "meta": 1679281606775,
+    "relativePath": "textures\\动效参考mp4\\胜利结算.mp4"
+  },
+  "cf93125a-de68-4a3a-81f6-5fde93f9baab": {
+    "asset": 1679045773242,
+    "meta": 1679281606776,
+    "relativePath": "textures\\动效参考mp4\\失败界面.mp4"
+  },
+  "b60e901b-ef6c-41b6-a2f8-7891b2a9a2cc": {
+    "asset": 1679045773193,
+    "meta": 1679281606785,
+    "relativePath": "textures\\动效参考mp4\\主页.mp4"
+  },
+  "195b0295-84cb-4464-8437-fe6fa334a629": {
+    "asset": 1679045773171,
+    "meta": 1679281606792,
+    "relativePath": "textures\\x.png"
+  },
   "64336f38-04e3-4a1f-9a70-ceb7757509e9": {
-    "asset": 1679045552756,
-    "meta": 1679045554718,
+    "asset": 1679295474105,
+    "meta": 1679295921840,
     "relativePath": "script\\data\\LevelData.ts"
   }
 }

@@ -160,39 +160,34 @@ export default class LevelData extends cc.Component {
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 900, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Goblin", hp: 200, type: "monster", data: { prefab: "Weapon_3", hp: 200, type: "item" } }]]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 2000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "Bow_1", hp: 100, type: "monster" }, { prefab: "Bow_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 4000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 8000, type: "monster" }]]
-                },
+                    data: [[{ prefab: "Sword_2", hp: 1, type: "monster" },{prefab:"Weapon_4",hp:7,type:"item"}],
+                    [{ prefab: "Sword_1", hp: 12, type: "monster" }],
+                    [{ prefab: "Item_Barrier1", hp: 45, type: "item"  }, { prefab: "princess", hp: 50, type: "princess"} ],
+                    [{ prefab: "T-rex", hp: 22, type: "monster" }]]
+                }
             ]
         },
         {
             bg: 0,//level 5
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{}]]
-                },//第二层
-
-                {
-                    data: [[{ prefab: "Sword_1", hp: 400, type: "monster" }],
-                    [{ prefab: "Bow_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Goblin", hp: 100, type: "monster", data: { prefab: "Weapon_4", hp: 200, type: "item" } }]]
+                    data: [[{ prefab: "LVL_1", hp: 11, type: "player" }]]
                 },
 
-                {
-                    data: [[{ prefab: "Sword_1", hp: 400, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1400, type: "monster" }, { prefab: "Bow_1", hp: 50, type: "monster" }, { prefab: "Bow_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1800, type: "monster" }, { prefab: "Goblin", hp: 50, type: "monster", data: { prefab: "Weapon_4", hp: 1000, type: "item" } }],
-                    [{ prefab: "Sword_2", hp: 5000, type: "monster" }, { prefab: "LockTower", hp: 100, type: "lock" }]]
+                {// 第一栋
+                    data: [[{ prefab: "Item_Barrier1", hp: 20, type: "item"  },{ prefab: "Weapon_4", hp: 50, type: "item" }],
+                    [{ prefab: "Sword_1", hp: 4, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 14, type: "monster" }]]
+                },
+
+                {// 第二栋
+                    data: [[{ prefab: "Sword_1", hp: 40, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 120, type: "monster" }],
+                    [{ prefab: "Item_Barrier1", hp: 40, type: "item"  }, { prefab: "Weapon_4", hp: 100, type: "item"}]]
+                },
+
+                {// 第三栋
+                    data: [[{ prefab: "T-rex", hp: 269, type: "monster" }, { prefab: "princess", hp: 50, type: "princess" }]]
                 }
             ]
         },
@@ -200,31 +195,32 @@ export default class LevelData extends cc.Component {
             bg: 1,//level 6
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 19, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Shield_1", hp: 100, type: "monster", data: { shield_hp: 100 } }],
-                    [{ prefab: "Sword_1", hp: 90, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 150, type: "monster" }]]
-                }
+                    data: [[{ prefab: "Sword_1", hp: 15, type: "monster"  }],
+                    [ {prefab: "Item_Barrier1", hp: 24, type: "item" },{ prefab: "Sword_1", hp: 39, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 30, type: "monster" },{ prefab: "WeaponItem_2", hp: 5, type: "weapon"  }],
+                    [{ prefab: "T-rex", hp: 75, type: "monster"  }]]
+                },
+                {
+                    prefab: "Boss_2", hp: 150,type: "boss"
+                },   // boss_1-6
             ]
         },
         {
             bg: 1,//level 7
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 250, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 5, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 170, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 200, type: "monster" }, { prefab: "Bow_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 400, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 900, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]]
+                    data: [[{ prefab: "Sword_1", hp: 6, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 24, type: "monster" }],
+                    [{  prefab: "WeaponItem_2", hp: 5, type: "weapon"  }, { prefab: "Sword_2", hp: 15, type: "monster" }],
+                    [{ prefab: "T-rex", hp: 45, type: "monster" }]]
                 },
             ]
         },
@@ -1923,7 +1919,7 @@ export default class LevelData extends cc.Component {
     }
 
     public static getLevel() {
-        let level = 5//localStorage.getItem("level");
+        let level = 9//localStorage.getItem("level");
         if (level == null) {
             level = "2";
         }
