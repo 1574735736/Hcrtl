@@ -26,8 +26,8 @@ export default class LoadScene extends cc.Component {
     @property(cc.Node)
     public logoNode: cc.Node = null;
 
-    @property(sp.Skeleton)
-    private startAni: sp.Skeleton = null;
+    //@property(sp.Skeleton)
+    //private startAni: sp.Skeleton = null;
 
     private weapon: sp.Skeleton;
 
@@ -93,7 +93,7 @@ export default class LoadScene extends cc.Component {
         let skinDatas = userData.getData(localStorageKey.SHOP_DATAS) as SkinShopItemData[];
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
         //SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
-        SpineManager.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3")
+        //SpineManager.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     }
 
     LoadOther() {
@@ -149,30 +149,31 @@ export default class LoadScene extends cc.Component {
      */
     private logoLeave(){
         // userData.init();
-        cc.tween(this.logoNode)
-            .to(0.3, { position: cc.v3(this.logoNode.x, 1300, 0) }).call(() => {
+        //cc.tween(this.logoNode)
+        //    .to(0.3, { position: cc.v3(this.logoNode.x, 1300, 0) }).call(() => {
 
-            FirebaseReport.reportInformation(FirebaseKey.game_load_success);
-            this.showMainView();
-            
-            if (userData.platformType == 0)
-            {
-                FirebaseReport.reportAdjustParam("1x5fu1");          
-            }
-            else if (userData.platformType == 1) {
-                FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_login_2);
-            }
-            else if (userData.platformType == 2) {
-                FirebaseReport.reportAdjustParam(FirebaseKey.adjust_login_2);
-            }
+         
 
-            //播放开始动画
-            // SpineManager.getInstance().playSpinAnimation(this.startAni,"tiaoyue3",false,()=>{
-            //     FirebaseReport.reportInformation(FirebaseKey.game_load_success);
-            //     this.showMainView();
-            // },this);
+        //    //播放开始动画
+        //    // SpineManager.getInstance().playSpinAnimation(this.startAni,"tiaoyue3",false,()=>{
+        //    //     FirebaseReport.reportInformation(FirebaseKey.game_load_success);
+        //    //     this.showMainView();
+        //    // },this);
 
-        }).start();
+        //    }).start();
+
+        FirebaseReport.reportInformation(FirebaseKey.game_load_success);
+        this.showMainView();
+
+        if (userData.platformType == 0) {
+            FirebaseReport.reportAdjustParam("1x5fu1");
+        }
+        else if (userData.platformType == 1) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_login_2);
+        }
+        else if (userData.platformType == 2) {
+            FirebaseReport.reportAdjustParam(FirebaseKey.adjust_login_2);
+        }
     }
 
     /**加载大厅界面进度*/

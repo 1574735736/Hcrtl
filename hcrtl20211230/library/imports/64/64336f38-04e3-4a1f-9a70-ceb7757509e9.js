@@ -47,9 +47,9 @@ var LevelData = /** @class */ (function (_super) {
     LevelData.getLevel = function () {
         var level = 5; //localStorage.getItem("level");
         if (level == null) {
-            level = "2";
+            level = 1;
         }
-        LevelData_1.curLevel = Number(level);
+        LevelData_1.curLevel = 1; //Number(level);
         console.log("============get level: " + LevelData_1.curLevel);
     };
     var LevelData_1;
@@ -129,6 +129,9 @@ var LevelData = /** @class */ (function (_super) {
                 {
                     data: [[{ prefab: "Sword_1", hp: 3, type: "monster" }, { prefab: "GuidanceRow", hp: 100, type: "guidance" }],
                         [{ prefab: "Sword_1", hp: 12, type: "monster" }]]
+                },
+                {
+                    prefab: "Boss_1", hp: 10, type: "boss"
                 }
             ]
         },

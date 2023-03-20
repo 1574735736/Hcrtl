@@ -40,7 +40,6 @@ var MainScene = /** @class */ (function (_super) {
         _this.mainRoot = null;
         _this.SkinShopRoot = null;
         _this.num_gold_main = null;
-        _this.roleModel = null;
         _this.shopDatas = null;
         //@property(dragonBones.ArmatureDisplay)
         //public huolong: dragonBones.ArmatureDisplay = null;
@@ -484,6 +483,8 @@ var MainScene = /** @class */ (function (_super) {
         // this.changeSlot(this.zhu, "wq", cc.loader.getRes("texture/game/weapon/wq2"));
     };
     var MainScene_1;
+    //@property(sp.Skeleton)
+    //public roleModel:sp.Skeleton = null;
     MainScene._instance = null;
     __decorate([
         property(cc.Node)
@@ -494,9 +495,6 @@ var MainScene = /** @class */ (function (_super) {
     __decorate([
         property(cc.Label)
     ], MainScene.prototype, "num_gold_main", void 0);
-    __decorate([
-        property(sp.Skeleton)
-    ], MainScene.prototype, "roleModel", void 0);
     __decorate([
         property(sp.Skeleton)
     ], MainScene.prototype, "weapon", void 0);

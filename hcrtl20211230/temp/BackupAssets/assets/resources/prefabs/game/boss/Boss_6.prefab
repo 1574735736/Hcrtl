@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Boss_3",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Boss_3",
+    "_name": "Boss_6",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -107,8 +107,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 224,
-      "height": 361.98
+      "width": 269,
+      "height": 375
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -120,7 +120,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        20.404,
+        0,
         0,
         0,
         0,
@@ -176,7 +176,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "2b203e5b-f4fa-4554-8fbc-8e5609d1d6c3"
+      "__uuid__": "10ef4632-2eb9-4cba-abc7-1a0813ef5cb1"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -192,9 +192,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "d6ceca5b-41d9-46e8-8970-c8757c6a7c15"
+      "__uuid__": "cfc5e10d-66f4-4915-b734-ee5774ef1db6"
     },
-    "fileId": "89hDeogxNDb7R10B8C5+YZ",
+    "fileId": "31DP8X0NVOKY/0Cmh1GQYv",
     "sync": false
   },
   {
@@ -320,9 +320,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "d6ceca5b-41d9-46e8-8970-c8757c6a7c15"
+      "__uuid__": "cfc5e10d-66f4-4915-b734-ee5774ef1db6"
     },
-    "fileId": "8f7YHeyGZHYKpjJbMp265d",
+    "fileId": "5fIie7rbhGH45YYJj8+TM/",
     "sync": false
   },
   {
@@ -344,9 +344,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "d6ceca5b-41d9-46e8-8970-c8757c6a7c15"
+      "__uuid__": "cfc5e10d-66f4-4915-b734-ee5774ef1db6"
     },
-    "fileId": "65unnlfQlFyIW5Y2JkgF/M",
+    "fileId": "40yMdcyYlGaJpDfEPBKpFU",
     "sync": false
   }
 ]
