@@ -295,13 +295,15 @@ export default class TowerLayer extends cc.Component {
                     this.HideTalkInfo();
                 }
 
-                let monster = towerTile.getMonster();
-                if (monster == null) {//怪物不存在
-                    monster = towerTile.getItem();//是否存在道具
-                }
-                if (monster == null) {
-                    monster = towerTile.getPrincess();
-                }
+                //let monster = towerTile.getMonster();
+                //if (monster == null) {//怪物不存在
+                //    monster = towerTile.getItem();//是否存在道具
+                //}
+                //if (monster == null) {
+                //    monster = towerTile.getPrincess();
+                //}
+                let monster = towerTile.getMonsterItem();
+
                 //不存在怪物与道具不做处理
                 if(monster==null){
                     return ;

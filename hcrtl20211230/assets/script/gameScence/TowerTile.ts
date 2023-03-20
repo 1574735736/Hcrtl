@@ -181,6 +181,19 @@ export default class TowerTile extends cc.Component {
         return monster;
     }
 
+    public getMonsterItem() {
+        for (var i = this.node.children.length -1; i >= 0 ; i--) {
+            var base = this.node.children[i].getComponent(RoleBase);
+            if (!base) {
+                return null;
+            }
+            if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG) {
+                return this.node.children[i];
+            }
+        }
+        return null;
+    }
+
     public removeMonster(){
         if(this.monsterList && this.monsterList.length>0){
            this.monsterList.shift();

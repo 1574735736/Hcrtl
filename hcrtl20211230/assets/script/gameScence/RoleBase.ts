@@ -23,6 +23,7 @@ export enum RoleType {
     PRINCESS,
     Devils,
     Guidance,
+    Weapon
 
 }
 
