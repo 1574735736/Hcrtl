@@ -45,6 +45,7 @@ var RoleType;
     RoleType[RoleType["PRINCESS"] = 5] = "PRINCESS";
     RoleType[RoleType["Devils"] = 6] = "Devils";
     RoleType[RoleType["Guidance"] = 7] = "Guidance";
+    RoleType[RoleType["Weapon"] = 8] = "Weapon";
 })(RoleType = exports.RoleType || (exports.RoleType = {}));
 var RoleBase = /** @class */ (function (_super) {
     __extends(RoleBase, _super);

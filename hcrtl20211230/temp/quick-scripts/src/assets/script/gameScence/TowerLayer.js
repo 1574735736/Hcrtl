@@ -267,13 +267,14 @@ var TowerLayer = /** @class */ (function (_super) {
                     towerTile_1.unGuidance();
                     this.HideTalkInfo();
                 }
-                var monster = towerTile_1.getMonster();
-                if (monster == null) { //怪物不存在
-                    monster = towerTile_1.getItem(); //是否存在道具
-                }
-                if (monster == null) {
-                    monster = towerTile_1.getPrincess();
-                }
+                //let monster = towerTile.getMonster();
+                //if (monster == null) {//怪物不存在
+                //    monster = towerTile.getItem();//是否存在道具
+                //}
+                //if (monster == null) {
+                //    monster = towerTile.getPrincess();
+                //}
+                var monster = towerTile_1.getMonsterItem();
                 //不存在怪物与道具不做处理
                 if (monster == null) {
                     return;

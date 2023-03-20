@@ -188,6 +188,18 @@ var TowerTile = /** @class */ (function (_super) {
         }
         return monster;
     };
+    TowerTile.prototype.getMonsterItem = function () {
+        for (var i = this.node.children.length - 1; i >= 0; i--) {
+            var base = this.node.children[i].getComponent(RoleBase_1.default);
+            if (!base) {
+                return null;
+            }
+            if (base.type == RoleBase_1.RoleType.MONSTER || base.type == RoleBase_1.RoleType.ITEM || base.type == RoleBase_1.RoleType.PRINCESS || base.type == RoleBase_1.RoleType.EGG) {
+                return this.node.children[i];
+            }
+        }
+        return null;
+    };
     TowerTile.prototype.removeMonster = function () {
         if (this.monsterList && this.monsterList.length > 0) {
             this.monsterList.shift();

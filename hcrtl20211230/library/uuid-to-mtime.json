@@ -889,11 +889,6 @@
     "meta": 1677054086711,
     "relativePath": "scene"
   },
-  "0c469457-0195-4924-a2a5-a7394dee3603": {
-    "asset": 1679046395452,
-    "meta": 1679281605718,
-    "relativePath": "scene\\loadScene.fire"
-  },
   "6a3e0288-3558-435a-a160-b0dac3cf8e09": {
     "asset": 1677054086740,
     "meta": 1677054086718,
@@ -1058,11 +1053,6 @@
     "asset": 1677054086519,
     "meta": 1679019150043,
     "relativePath": "resources\\spine\\player\\LVL_4.json"
-  },
-  "7619b660-d2d6-4522-8200-43148339c992": {
-    "asset": 1679018287279,
-    "meta": 1679019148833,
-    "relativePath": "scene\\GameScene.fire"
   },
   "2d7b47b7-29f8-4152-808a-e4e96f9a7289": {
     "asset": 1677054086618,
@@ -1298,11 +1288,6 @@
     "asset": 1677054086615,
     "meta": 1679019148383,
     "relativePath": "resources\\texture\\game\\ui\\btn_restart.png"
-  },
-  "c1a40e54-9983-4aae-8b59-792fb6019817": {
-    "asset": 1679046405221,
-    "meta": 1679281605951,
-    "relativePath": "scene\\MainScene.fire"
   },
   "ab50d7f0-bc46-42a8-a728-4e138f7e5ee4": {
     "asset": 1679281552081,
@@ -2019,11 +2004,6 @@
     "meta": 1679019149295,
     "relativePath": "script\\gameScence\\Lose.ts"
   },
-  "91c88088-32eb-4055-bb9b-4a704b975340": {
-    "asset": 1679046409425,
-    "meta": 1679281605919,
-    "relativePath": "script\\mainScene\\MainScene.ts"
-  },
   "75400049-512f-4e39-98c4-2617a94015e5": {
     "asset": 1679281552081,
     "meta": 1679281605947,
@@ -2154,36 +2134,6 @@
     "meta": 1678344828188,
     "relativePath": "resources\\prefabs\\game\\boss"
   },
-  "11d55ccb-03b9-4128-924f-752f9e9e459d": {
-    "asset": 1678872625682,
-    "meta": 1679019147557,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_1.prefab"
-  },
-  "40c78924-d860-43e1-b370-2f125238d11f": {
-    "asset": 1678872625683,
-    "meta": 1679019147558,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_2.prefab"
-  },
-  "d6ceca5b-41d9-46e8-8970-c8757c6a7c15": {
-    "asset": 1678872625684,
-    "meta": 1679019147560,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_3.prefab"
-  },
-  "86a4d6d7-78a4-4057-9cca-6c687156126f": {
-    "asset": 1678872625684,
-    "meta": 1679019147561,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_4.prefab"
-  },
-  "01d533ec-67ce-459c-b8a4-469dd900d607": {
-    "asset": 1678872625684,
-    "meta": 1679019147562,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_5.prefab"
-  },
-  "cfc5e10d-66f4-4915-b734-ee5774ef1db6": {
-    "asset": 1678872625685,
-    "meta": 1679019147561,
-    "relativePath": "resources\\prefabs\\game\\boss\\Boss_6.prefab"
-  },
   "9505a26e-214d-410b-a57e-db1f96750f73": {
     "asset": 1678344828196,
     "meta": 1679019148277,
@@ -2218,11 +2168,6 @@
     "asset": 1678872625686,
     "meta": 1679019147578,
     "relativePath": "resources\\prefabs\\game\\item\\TreasureBox2.prefab"
-  },
-  "0b019b8b-3494-4def-83eb-0a40ba6e3143": {
-    "asset": 1678872625689,
-    "meta": 1679019149187,
-    "relativePath": "script\\gameScence\\BossBase.ts"
   },
   "cf38b0ae-04dd-46f8-a159-6987cccd4d03": {
     "asset": 1679018283765,
@@ -2724,11 +2669,6 @@
     "meta": 1679019149662,
     "relativePath": "script\\manager\\PrefabsManager.ts"
   },
-  "eacb5820-66d1-429d-a2de-5968e0904ce3": {
-    "asset": 1679046401004,
-    "meta": 1679281605866,
-    "relativePath": "script\\loadscence\\LoadScene.ts"
-  },
   "d5be9263-1713-4747-b85a-0de54cfa1ffb": {
     "asset": 1677054086725,
     "meta": 1679019149273,
@@ -2753,21 +2693,6 @@
     "asset": 1679018287285,
     "meta": 1679019149910,
     "relativePath": "spine\\box\\xiangzi.png"
-  },
-  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
-    "asset": 1679281552081,
-    "meta": 1679281605818,
-    "relativePath": "script\\gameScence\\TowerTile.ts"
-  },
-  "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
-    "asset": 1679018287281,
-    "meta": 1679019149542,
-    "relativePath": "script\\gameScence\\TowerLayer.ts"
-  },
-  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
-    "asset": 1679036211526,
-    "meta": 1679036243783,
-    "relativePath": "script\\gameScence\\RoleBase.ts"
   },
   "af8b63ea-2453-4cd0-a951-acfae8edcebf": {
     "asset": 1679281550156,
@@ -3799,9 +3724,84 @@
     "meta": 1679281606792,
     "relativePath": "textures\\x.png"
   },
+  "11d55ccb-03b9-4128-924f-752f9e9e459d": {
+    "asset": 1679297565050,
+    "meta": 1679297652251,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_1.prefab"
+  },
+  "40c78924-d860-43e1-b370-2f125238d11f": {
+    "asset": 1679297565050,
+    "meta": 1679297652252,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_2.prefab"
+  },
+  "d6ceca5b-41d9-46e8-8970-c8757c6a7c15": {
+    "asset": 1679297565051,
+    "meta": 1679297652254,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_3.prefab"
+  },
+  "86a4d6d7-78a4-4057-9cca-6c687156126f": {
+    "asset": 1679297565051,
+    "meta": 1679297652255,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_4.prefab"
+  },
+  "01d533ec-67ce-459c-b8a4-469dd900d607": {
+    "asset": 1679297565051,
+    "meta": 1679297652256,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_5.prefab"
+  },
+  "cfc5e10d-66f4-4915-b734-ee5774ef1db6": {
+    "asset": 1679297565051,
+    "meta": 1679297652258,
+    "relativePath": "resources\\prefabs\\game\\boss\\Boss_6.prefab"
+  },
+  "0c469457-0195-4924-a2a5-a7394dee3603": {
+    "asset": 1679297565054,
+    "meta": 1679297652259,
+    "relativePath": "scene\\loadScene.fire"
+  },
+  "c1a40e54-9983-4aae-8b59-792fb6019817": {
+    "asset": 1679297565055,
+    "meta": 1679297652262,
+    "relativePath": "scene\\MainScene.fire"
+  },
+  "0b019b8b-3494-4def-83eb-0a40ba6e3143": {
+    "asset": 1679297565055,
+    "meta": 1679297652274,
+    "relativePath": "script\\gameScence\\BossBase.ts"
+  },
+  "e9b47013-5969-4475-ad8e-cde18e1d7915": {
+    "asset": 1679297608344,
+    "meta": 1679297652405,
+    "relativePath": "script\\gameScence\\RoleBase.ts"
+  },
+  "36c555cb-34ad-49a8-b550-c3cdcd3bb0a6": {
+    "asset": 1679297608346,
+    "meta": 1679297652554,
+    "relativePath": "script\\gameScence\\TowerLayer.ts"
+  },
+  "13dc69eb-221e-4ef4-866f-f68b8440c8a6": {
+    "asset": 1679297608347,
+    "meta": 1679297652600,
+    "relativePath": "script\\gameScence\\TowerTile.ts"
+  },
+  "eacb5820-66d1-429d-a2de-5968e0904ce3": {
+    "asset": 1679297565056,
+    "meta": 1679297652630,
+    "relativePath": "script\\loadscence\\LoadScene.ts"
+  },
+  "91c88088-32eb-4055-bb9b-4a704b975340": {
+    "asset": 1679297565057,
+    "meta": 1679297652671,
+    "relativePath": "script\\mainScene\\MainScene.ts"
+  },
+  "7619b660-d2d6-4522-8200-43148339c992": {
+    "asset": 1679297565053,
+    "meta": 1679297652678,
+    "relativePath": "scene\\GameScene.fire"
+  },
   "64336f38-04e3-4a1f-9a70-ceb7757509e9": {
-    "asset": 1679295474105,
-    "meta": 1679295921840,
+    "asset": 1679303311082,
+    "meta": 1679303312653,
     "relativePath": "script\\data\\LevelData.ts"
   }
 }
