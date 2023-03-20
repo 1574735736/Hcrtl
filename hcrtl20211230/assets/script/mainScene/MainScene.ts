@@ -23,8 +23,8 @@ export default class MainScene extends cc.Component {
     @property(cc.Label)
     public num_gold_main: cc.Label = null;
 
-    @property(sp.Skeleton)
-    public roleModel:sp.Skeleton = null;
+    //@property(sp.Skeleton)
+    //public roleModel:sp.Skeleton = null;
 
 
     private static _instance:MainScene = null;
@@ -115,7 +115,7 @@ export default class MainScene extends cc.Component {
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
 
         //SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
-        SpineManager.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, usingIndex, weaponIdx, "daiji3")
+        //SpineManager.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     }
 
     private onBtnStart():void {

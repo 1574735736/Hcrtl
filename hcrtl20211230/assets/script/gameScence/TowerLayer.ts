@@ -122,7 +122,7 @@ export default class TowerLayer extends cc.Component {
                     this.node.addChild(tempNode);
                     tempNode.setPosition(cc.v2(-148.936 + i * this.towerOffsetX, -490));
                     this.m_BossInfo = tempNode.getComponent(BossBase);
-                    this.m_BossInfo.Init();
+                    this.m_BossInfo.Init(element);
                     if (element.scale) {
                         this.m_BossInfo.SetScale(element.scale);
                     }
@@ -563,21 +563,36 @@ export default class TowerLayer extends cc.Component {
             playerRole.AttackBoss(() => {
                 attackCount++;
                 if (attackCount >= attackMax) {
+
+
+
                     playerRole.idle();
-                    boss.Death(() => {
-                        let targerPost = player.parent.convertToNodeSpaceAR(boss.node.parent.convertToWorldSpaceAR(boss.node.position));
-                        playerRole.jumpLandTo(targerPost, 0, () => {
-                            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
-                            playerRole.idle();
-                            this.moveTowerLayer(
-                                () => {
-                                    if (!this.curSizeView()) {
-                                        this.FateBossAct();
-                                    }   
-                                }
-                            )                           
+
+                    if (playerRole.compareHp(boss.getHp())) {
+                        boss.Death(() => {
+                            let targerPost = player.parent.convertToNodeSpaceAR(boss.node.parent.convertToWorldSpaceAR(boss.node.position));
+                            playerRole.jumpLandTo(targerPost, 0, () => {
+                                //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
+                                playerRole.idle();
+                                this.moveTowerLayer(
+                                    () => {
+                                        if (!this.curSizeView()) {
+                                            this.FateBossAct();
+                                        }
+                                    }
+                                )
+                            });
                         });
-                    });
+                    }
+                    else {
+                        boss.win();
+                        playerRole.death(() => {
+                            this.gameLose();
+                        });
+                    }
+
+
+                 
                 }
             });
             boss.Attack();

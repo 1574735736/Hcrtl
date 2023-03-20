@@ -35,13 +35,21 @@ var BossBase = /** @class */ (function (_super) {
     __extends(BossBase, _super);
     function BossBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.hpLable = null; //Ѫ��
         _this.m_ani = null;
         _this.isDeath = false;
+        _this.hp = 0;
+        _this.maxHp = 0;
         return _this;
     }
-    BossBase.prototype.Init = function () {
+    BossBase.prototype.Init = function (data) {
         this.m_ani = this.node.getChildByName("p").getComponent(sp.Skeleton);
         SpineManager_1.default.getInstance().playSpinAnimation(this.m_ani, "daiji", true);
+        if (data.hp) {
+            this.hpLable.string = data.hp + "";
+            this.hp = Number(data.hp);
+            this.maxHp = this.hp;
+        }
     };
     BossBase.prototype.Attack = function () {
         SpineManager_1.default.getInstance().playSpinAnimation(this.m_ani, "gongji", true);
@@ -72,6 +80,61 @@ var BossBase = /** @class */ (function (_super) {
             this.node.setScale(scale, scale);
         }
     };
+    /**
+     * ��ȡ��ǰѪ��
+     * @returns
+     */
+    BossBase.prototype.getHp = function () {
+        return this.hp;
+    };
+    /**
+     * Ѫ���Ա�
+     * @param targerHp
+     * @returns
+     */
+    BossBase.prototype.compareHp = function (targerHp) {
+        return this.hp - targerHp > 0;
+    };
+    /**
+     * ���Ѫ��
+     * @returns
+     */
+    BossBase.prototype.getMaxHp = function () {
+        return this.maxHp;
+    };
+    /**
+     * ����Ѫ��
+     * @param targerHp
+     * @param cb
+     * @param isPets
+     * @returns
+     */
+    BossBase.prototype.subHp = function (targerHp, cb, isPets) {
+        if (isPets === void 0) { isPets = false; }
+        //����Ѫ��
+        this.hp -= targerHp;
+        this.hpLable.string = this.hp.toString();
+        if (this.hp <= 0) {
+            this.hp = 0;
+            this.hpLable.node.active = false;
+            return;
+        }
+    };
+    BossBase.prototype.idle = function () {
+        var ainName = "daiji";
+        SpineManager_1.default.getInstance().playSpinAnimation(this.m_ani, ainName, true, null, this);
+    };
+    BossBase.prototype.win = function (cb) {
+        SpineManager_1.default.getInstance().playSpinAnimation(this.m_ani, "shengli", true, function () {
+            if (cb) {
+                cb();
+                cb = null;
+            }
+        });
+    };
+    __decorate([
+        property(cc.Label)
+    ], BossBase.prototype, "hpLable", void 0);
     BossBase = __decorate([
         ccclass
     ], BossBase);

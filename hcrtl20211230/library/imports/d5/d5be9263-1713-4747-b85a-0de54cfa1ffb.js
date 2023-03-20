@@ -87,7 +87,7 @@ var GameScence = /** @class */ (function (_super) {
     GameScence_1 = GameScence;
     GameScence.prototype.onLoad = function () {
         GameScence_1._instance = this;
-        this.decoration = this.wildRage.getChildByName("img_decoration_1");
+        /* this.decoration = this.wildRage.getChildByName("img_decoration_1");*/
         this.restartGame();
         this.initRoleModeOfResult();
     };
@@ -322,25 +322,25 @@ var GameScence = /** @class */ (function (_super) {
             spr.spriteFrame = sp;
         });
     };
-    GameScence.prototype.showWildRage = function () {
-        this.btn_wildRage.active = true;
-        this.wildRage.active = true;
-        var num_power = this.decoration.getChildByName("num_increasePower").getComponent(cc.Label);
-        num_power.string = "+" + Math.floor(this.rateOfIncreasePower * this.initHp);
-        this.decoration.y = 70;
-        this.changeDecorationPos();
-    };
-    GameScence.prototype.changeDecorationPos = function () {
-        var _this = this;
-        cc.Tween.stopAllByTarget(this.decoration);
-        cc.tween(this.decoration)
-            .to(0.5, { y: 90 })
-            .to(0.5, { y: 70 })
-            .call(function () {
-            _this.changeDecorationPos();
-        })
-            .start();
-    };
+    /**展示战力提升弹窗 */
+    //private showWildRage():void {
+    //    this.btn_wildRage.active = true;
+    //    this.wildRage.active = true;
+    //    let num_power = this.decoration.getChildByName("num_increasePower").getComponent(cc.Label);
+    //    num_power.string = "+" + Math.floor(this.rateOfIncreasePower * this.initHp);
+    //    this.decoration.y = 70;
+    //    this.changeDecorationPos();
+    //}
+    //private changeDecorationPos():void {
+    //    cc.Tween.stopAllByTarget(this.decoration);
+    //    cc.tween(this.decoration)
+    //    .to(0.5, {y:90})
+    //    .to(0.5, {y:70})
+    //    .call(()=> {
+    //        this.changeDecorationPos();
+    //    })
+    //    .start();
+    //}
     GameScence.prototype.onBtnWildRageClick = function () {
         //this.showWildRage();
         if (this.towerLayer.canTouck == false) {
@@ -526,6 +526,7 @@ var GameScence = /** @class */ (function (_super) {
     };
     var GameScence_1;
     GameScence.Instance = null;
+    /*  private decoration:cc.Node;*/
     GameScence._instance = null;
     __decorate([
         property(TowerLayer_1.default)

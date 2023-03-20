@@ -64,7 +64,7 @@ export default class GameScence extends cc.Component {
 
     private initHp:number;
 
-    private decoration:cc.Node;
+  /*  private decoration:cc.Node;*/
 
     private static _instance: GameScence = null;
 
@@ -72,7 +72,7 @@ export default class GameScence extends cc.Component {
 
     onLoad(){
         GameScence._instance = this;
-        this.decoration = this.wildRage.getChildByName("img_decoration_1");
+       /* this.decoration = this.wildRage.getChildByName("img_decoration_1");*/
         this.restartGame();
         this.initRoleModeOfResult();
     }
@@ -348,26 +348,26 @@ export default class GameScence extends cc.Component {
         });
     }
 
-    /**展示战力提升弹窗 */ss
-    private showWildRage():void {
-        this.btn_wildRage.active = true;
-        this.wildRage.active = true;
-        let num_power = this.decoration.getChildByName("num_increasePower").getComponent(cc.Label);
-        num_power.string = "+" + Math.floor(this.rateOfIncreasePower * this.initHp);
-        this.decoration.y = 70;
-        this.changeDecorationPos();
-    }
+    /**展示战力提升弹窗 */
+    //private showWildRage():void {
+    //    this.btn_wildRage.active = true;
+    //    this.wildRage.active = true;
+    //    let num_power = this.decoration.getChildByName("num_increasePower").getComponent(cc.Label);
+    //    num_power.string = "+" + Math.floor(this.rateOfIncreasePower * this.initHp);
+    //    this.decoration.y = 70;
+    //    this.changeDecorationPos();
+    //}
 
-    private changeDecorationPos():void {
-        cc.Tween.stopAllByTarget(this.decoration);
-        cc.tween(this.decoration)
-        .to(0.5, {y:90})
-        .to(0.5, {y:70})
-        .call(()=> {
-            this.changeDecorationPos();
-        })
-        .start();
-    }
+    //private changeDecorationPos():void {
+    //    cc.Tween.stopAllByTarget(this.decoration);
+    //    cc.tween(this.decoration)
+    //    .to(0.5, {y:90})
+    //    .to(0.5, {y:70})
+    //    .call(()=> {
+    //        this.changeDecorationPos();
+    //    })
+    //    .start();
+    //}
 
     private onBtnWildRageClick():void {
         //this.showWildRage();

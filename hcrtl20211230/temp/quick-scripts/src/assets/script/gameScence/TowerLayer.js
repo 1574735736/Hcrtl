@@ -125,7 +125,7 @@ var TowerLayer = /** @class */ (function (_super) {
                     this.node.addChild(tempNode);
                     tempNode.setPosition(cc.v2(-148.936 + i_1 * this.towerOffsetX, -490));
                     this.m_BossInfo = tempNode.getComponent(BossBase_1.default);
-                    this.m_BossInfo.Init();
+                    this.m_BossInfo.Init(element);
                     if (element.scale) {
                         this.m_BossInfo.SetScale(element.scale);
                     }
@@ -495,18 +495,26 @@ var TowerLayer = /** @class */ (function (_super) {
                 attackCount++;
                 if (attackCount >= attackMax) {
                     playerRole.idle();
-                    boss.Death(function () {
-                        var targerPost = player.parent.convertToNodeSpaceAR(boss.node.parent.convertToWorldSpaceAR(boss.node.position));
-                        playerRole.jumpLandTo(targerPost, 0, function () {
-                            //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
-                            playerRole.idle();
-                            _this.moveTowerLayer(function () {
-                                if (!_this.curSizeView()) {
-                                    _this.FateBossAct();
-                                }
+                    if (playerRole.compareHp(boss.getHp())) {
+                        boss.Death(function () {
+                            var targerPost = player.parent.convertToNodeSpaceAR(boss.node.parent.convertToWorldSpaceAR(boss.node.position));
+                            playerRole.jumpLandTo(targerPost, 0, function () {
+                                //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
+                                playerRole.idle();
+                                _this.moveTowerLayer(function () {
+                                    if (!_this.curSizeView()) {
+                                        _this.FateBossAct();
+                                    }
+                                });
                             });
                         });
-                    });
+                    }
+                    else {
+                        boss.win();
+                        playerRole.death(function () {
+                            _this.gameLose();
+                        });
+                    }
                 }
             });
             boss.Attack();

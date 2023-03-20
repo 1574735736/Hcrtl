@@ -25,7 +25,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var PrefabsManager_1 = require("../manager/PrefabsManager");
 var SoundManager_1 = require("../manager/SoundManager");
-var SpineManager_1 = require("../manager/SpineManager");
 var FirebaseReport_1 = require("../util/FirebaseReport");
 var Lose_1 = require("../gameScence/Lose");
 var Success_1 = require("../gameScence/Success");
@@ -41,7 +40,6 @@ var LoadScene = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.loadingBar = null;
         _this.logoNode = null;
-        _this.startAni = null;
         _this.isLoadingGame = true;
         _this.inAddSpeed = 0.4;
         _this.inCountSpeed = 10;
@@ -93,7 +91,7 @@ var LoadScene = /** @class */ (function (_super) {
         var skinDatas = UserData_1.userData.getData(UserData_1.localStorageKey.SHOP_DATAS);
         var weaponIdx = UserData_1.userData.getData(UserData_1.localStorageKey.USING_WEAPON_IDX) + 1;
         //SpineManager.getInstance().loadSpine(this.startAni, "spine/players/"+skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
-        SpineManager_1.default.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3");
+        //SpineManager.getInstance().loadSkinSpine(this.startAni, this.weapon, true, usingIndex, weaponIdx, "daiji3")
     };
     LoadScene.prototype.LoadOther = function () {
         var _this = this;
@@ -138,27 +136,26 @@ var LoadScene = /** @class */ (function (_super) {
      * logo离开场景
      */
     LoadScene.prototype.logoLeave = function () {
-        var _this = this;
         // userData.init();
-        cc.tween(this.logoNode)
-            .to(0.3, { position: cc.v3(this.logoNode.x, 1300, 0) }).call(function () {
-            FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_load_success);
-            _this.showMainView();
-            if (UserData_1.userData.platformType == 0) {
-                FirebaseReport_1.FirebaseReport.reportAdjustParam("1x5fu1");
-            }
-            else if (UserData_1.userData.platformType == 1) {
-                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_login_2);
-            }
-            else if (UserData_1.userData.platformType == 2) {
-                FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_login_2);
-            }
-            //播放开始动画
-            // SpineManager.getInstance().playSpinAnimation(this.startAni,"tiaoyue3",false,()=>{
-            //     FirebaseReport.reportInformation(FirebaseKey.game_load_success);
-            //     this.showMainView();
-            // },this);
-        }).start();
+        //cc.tween(this.logoNode)
+        //    .to(0.3, { position: cc.v3(this.logoNode.x, 1300, 0) }).call(() => {
+        //    //播放开始动画
+        //    // SpineManager.getInstance().playSpinAnimation(this.startAni,"tiaoyue3",false,()=>{
+        //    //     FirebaseReport.reportInformation(FirebaseKey.game_load_success);
+        //    //     this.showMainView();
+        //    // },this);
+        //    }).start();
+        FirebaseReport_1.FirebaseReport.reportInformation(FirebaseReport_1.FirebaseKey.game_load_success);
+        this.showMainView();
+        if (UserData_1.userData.platformType == 0) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam("1x5fu1");
+        }
+        else if (UserData_1.userData.platformType == 1) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.G8adjust_login_2);
+        }
+        else if (UserData_1.userData.platformType == 2) {
+            FirebaseReport_1.FirebaseReport.reportAdjustParam(FirebaseReport_1.FirebaseKey.adjust_login_2);
+        }
     };
     /**加载大厅界面进度*/
     LoadScene.prototype.loadHallProgress = function (completedCount, totalCount) {
@@ -221,9 +218,6 @@ var LoadScene = /** @class */ (function (_super) {
     __decorate([
         property(cc.Node)
     ], LoadScene.prototype, "logoNode", void 0);
-    __decorate([
-        property(sp.Skeleton)
-    ], LoadScene.prototype, "startAni", void 0);
     LoadScene = LoadScene_1 = __decorate([
         ccclass
     ], LoadScene);
