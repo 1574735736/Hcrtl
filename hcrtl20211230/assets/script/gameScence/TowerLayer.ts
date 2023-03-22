@@ -35,7 +35,12 @@ export default class TowerLayer extends cc.Component {
     towerRoofPrefab: cc.Prefab = null;//塔顶
 
     @property(cc.Prefab)
+    towerEPrefab: cc.Prefab = null;//塔顶
+
+    @property(cc.Prefab)
     towerTilePrefab: cc.Prefab = null;//塔格子prefab
+    @property(cc.Prefab)
+    towerTileTopPrefab: cc.Prefab = null;//塔顶格子prefab
 
     @property(cc.Prefab)
     towerPrefab: cc.Prefab = null;//塔每一栋
@@ -102,15 +107,16 @@ export default class TowerLayer extends cc.Component {
                 this.node.addChild(tempNodeParent);
                 let end = 0;
                 tempNodeParent.name = "tower" + i;
+              
                 tempNodeParent.addChild(this.addFloor());//塔底
+                var count = data.length;
                 for (let j = 0; j < data.length; j++) {//塔身
                     let element1 = data[j];
-                    let tile = cc.instantiate(this.towerTilePrefab);
+                    let tile = j == (count - 1) ? cc.instantiate(this.towerTileTopPrefab) : cc.instantiate(this.towerTilePrefab);
                     tile.position = new cc.Vec3(0, this.towerTileOffsetY / 2 + (j - 1) * this.towerTileOffsetY, 0);
                     tile.on(cc.Node.EventType.TOUCH_END, this.towerTouch, this);
                     let towerTile = tile.getComponent(TowerTile);
                     towerTile.initData(this.node.childrenCount - 1, element1, weapon);//初始化塔身数据
-                    
                     tempNodeParent.addChild(tile);
                     end = j;
                 };
@@ -456,7 +462,6 @@ export default class TowerLayer extends cc.Component {
                     //}
 
                     this.fateEndAction(towerTile);
-
                     return;
                 }
 
@@ -485,7 +490,7 @@ export default class TowerLayer extends cc.Component {
                 return;
             }
             else {
-                
+
                 //角色死亡，游戏结束\
                 this.gameLose();
                
@@ -541,17 +546,17 @@ export default class TowerLayer extends cc.Component {
         let playerRole = player.getComponent(RoleBase);
         let boss = this.node.children[this.curSizeIndex].getComponent(BossBase);
 
-        if (player.parent.name == "Tower_tile") {
+        if (player.parent.name == "TowerTop_tile") {
             let TempY = player.parent.position.y;
             let tile = this.node.children[this.playerposition];
            
             //var pseq = cc.sequence(cc.fadeTo(1, 0), cc.callFunc(() => {
             //}));
-           
             for (var i = 0; i < tile.childrenCount; i++) {
                 //tile.children[i].opacity = 0;             
                 tile.children[i].runAction(cc.fadeTo(1, 0));
             }
+
             player.setParent(tile);
             player.opacity = 255;
             player.setPosition(player.position.x, player.position.y + TempY);
@@ -589,10 +594,7 @@ export default class TowerLayer extends cc.Component {
                         playerRole.death(() => {
                             this.gameLose();
                         });
-                    }
-
-
-                 
+                    }                 
                 }
             });
             boss.Attack();
@@ -621,7 +623,6 @@ export default class TowerLayer extends cc.Component {
             //this.attackedLater(playerRole, monsterRole, posCache, towerTile);
             playerRole.idle();
 
-
             this.moveTowerLayer(
                 () => {
                     this.scheduleOnce(function () {
@@ -630,9 +631,7 @@ export default class TowerLayer extends cc.Component {
                         }
                     }, 1);
                 }
-            )  
-
-           
+            )             
             //GameScence.Instance.flushMoveCount();            
         });
 
@@ -856,6 +855,8 @@ export default class TowerLayer extends cc.Component {
                 cb(false);
             }
         }
+
+
         if (role2.hasItem) {//如果有道具
 
             if (role2.isBox) {
@@ -878,15 +879,22 @@ export default class TowerLayer extends cc.Component {
                 return;
             }
             //否则为大宝刀或大宝剑，角色加血
+                                 
             role1.addHp(role2.getHp());
-            remove();
             if (role1.getHp() <= 0) {
+
+                SoundManager.getInstance().playEffect(SoundManager.ClaimSword);
+                role2.node.removeFromParent();
+               
                 //角色播放死亡动画
                 role1.death(() => {
                     if (cb) {
                         cb(true);
                     }
                 });
+            }
+            else {
+                remove();
             }
             return;
         }
@@ -1069,6 +1077,7 @@ export default class TowerLayer extends cc.Component {
 
     //是否只剩一个格子，并且没怪了
     private checkUpTowerHasMonster(towerTile: TowerTile) {
+       
         if (towerTile.hasItem()) {
             return true;
         }
@@ -1077,8 +1086,10 @@ export default class TowerLayer extends cc.Component {
         let hasMonster = false;
         for (let i = 1; i < towerTiles.length - 1; i++) {
             let tile = towerTiles[i].getComponent(TowerTile);
+           
             if (tile.hasMonster() || tile.hasItem() || tile.GetIsPriences()) {
                 hasMonster = true;
+                
                 break;
             }
         }
@@ -1349,14 +1360,14 @@ export default class TowerLayer extends cc.Component {
 
     //塔角
     private addFloor() {
-        let floor = cc.instantiate(this.towerFloorPrefab);
+        let floor = cc.instantiate(this.towerEPrefab);//(this.towerFloorPrefab);
         floor.position = new cc.Vec3(0, -110, 0);
         return floor;
     }
 
     //塔顶
     private addRoof(index) {
-        let foofr = cc.instantiate(this.towerRoofPrefab);
+        let foofr = cc.instantiate(this.towerEPrefab);//(this.towerRoofPrefab);
         foofr.position = new cc.Vec3(0, 30 + this.towerTileOffsetY + (index - 1) * this.towerTileOffsetY, 0);;
         return foofr;
     }

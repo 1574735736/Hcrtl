@@ -172,10 +172,11 @@ export default class GameScence extends cc.Component {
         
         let towerData = level.towerData;//关卡塔楼数据
         this.level = this.node.getChildByName("level");
-        let bg  = cc.instantiate(this.bg_prefabs[level.bg]);
-        bg.position =  new cc.Vec3(-597.097, 0, 0);
-        //增加背景
-        this.level.getChildByName("bg").addChild(bg,1);
+        //替换背景
+        //let bg  = cc.instantiate(this.bg_prefabs[level.bg]);
+        //bg.position =  new cc.Vec3(-597.097, 0, 0);
+        ////增加背景
+        //this.level.getChildByName("bg").addChild(bg,1);
         this.level.setScale(0.5);
         this.towerLayer.node.x = -400;
         this.levelScale();

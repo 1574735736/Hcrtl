@@ -182,15 +182,27 @@ export default class TowerTile extends cc.Component {
     }
 
     public getMonsterItem() {
-        for (var i = this.node.children.length -1; i >= 0 ; i--) {
-            var base = this.node.children[i].getComponent(RoleBase);
-            if (!base) {
-                return null;
-            }
-            if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG) {
-                return this.node.children[i];
-            }
+        //for (var i = this.node.children.length -1; i >= 0 ; i--) {
+        //    var base = this.node.children[i].getComponent(RoleBase);
+        //    if (!base) {
+        //        return null;
+        //    }
+        //    if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG) {
+        //        return this.node.children[i];
+        //    }
+        //}
+
+        let ascPersons = this.node.children.sort((a, b) => a.position.x - b.position.x);
+
+        for (var i = 0; i < ascPersons.length; i++) {
+            var base = ascPersons[i].getComponent(RoleBase);
+            if (base) {
+                if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG) {
+                    return ascPersons[i];
+                }
+            }           
         }
+
         return null;
     }
 

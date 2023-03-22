@@ -694,9 +694,9 @@ export default class RoleBase extends cc.Component {
             ainName = "siwang";
             SoundManager.getInstance().playEffect(SoundManager.HeroDie);
         }
+
         SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
-            if(this.type == RoleType.MONSTER){
-               
+            if(this.type == RoleType.MONSTER){               
                 if(this.drop){
                     this.creatorItem();
                 }
@@ -705,6 +705,7 @@ export default class RoleBase extends cc.Component {
             }
             if (cb) {
                 cb();
+               
             }
         }, this);
     }

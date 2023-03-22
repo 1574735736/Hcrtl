@@ -77,6 +77,12 @@ export default class Success extends cc.Component {
 
     private victoryIcon: cc.Sprite = null;
 
+    m_Muls: number[] = [2, 3, 2, 4, 2, 3, 5, 4];//[3, 2, 4, 2, 3, 2, 4, 5];//[5, 4, 2, 3, 2, 4, 2, 3];
+
+    startRowTimer: number = 0; //开始旋转时的时间戳；
+    rowMilTimer: number = 667; //旋转一圈所有的时间；
+    ani_zhuanPan: sp.Skeleton = null;
+
     onLoad () {
         Success._instance = this;
         let numContainer = this.node.getChildByName("bar_randomRate");
@@ -91,6 +97,8 @@ export default class Success extends cc.Component {
         this.victoryIcon = this.node.getChildByName("btn_video_victory").getComponent(cc.Sprite);
         this.rateArr = [2, 3, 4, 5, 4, 3, 2];
 
+        this.ani_zhuanPan = this.node.getChildByName("zhuanpan").getComponent(sp.Skeleton);
+
         this.weapon = cc.find("spine_weapon", this.node.parent.parent).getComponent(sp.Skeleton);
 
         this.flay_ani = cc.find("flay_ani", this.node).getComponent(sp.Skeleton);
@@ -98,6 +106,15 @@ export default class Success extends cc.Component {
         this.newSkinPanel = this.node.getChildByName("panel_newSkin");
         this.btn_getSkin = this.node.getChildByName("btn_getSkin");
     }
+
+    onUpdateSpin() {
+        SpineManager.getInstance().playSpinAnimation(this.ani_zhuanPan, "xuanzhuan", true, () => {
+            this.startRowTimer = new Date().getTime();
+        }, () => {
+            this.startRowTimer = new Date().getTime();
+        });
+    }
+
     comeInLevel: number = 0;
     protected onEnable(): void {
         //this.dispatchFirebaseKey(LevelData.curLevel);
@@ -117,19 +134,21 @@ export default class Success extends cc.Component {
             }, 3);
         }        
 
-        SpineManager.getInstance().playSpinAnimation(this.roleModel, "shengli", true, null);
+        this.onUpdateSpin();
 
-        SpineManager.getInstance().playSpinAnimation(this.animVictory, "biaoti", false, () => {
-            SpineManager.getInstance().playSpinAnimation(this.animVictory, "biaoti2", true, null);
-        });
+        //SpineManager.getInstance().playSpinAnimation(this.roleModel, "shengli", true, null);
+
+        //SpineManager.getInstance().playSpinAnimation(this.animVictory, "biaoti", false, () => {
+        //    SpineManager.getInstance().playSpinAnimation(this.animVictory, "biaoti2", true, null);
+        //});
         
         this.lastPointIndex = 0;
         this.nowPointIndex = 0;
 
-        this.randomBar.x = -this.moveAbs;
-        this.changeBarPos();
+        //this.randomBar.x = -this.moveAbs;
+        //this.changeBarPos();
 
-        this.onSetIcon(this.victoryIcon);
+     /*   this.onSetIcon(this.victoryIcon);*/
         this.updatePercentOfSkin();
     }
 
@@ -395,20 +414,35 @@ export default class Success extends cc.Component {
             return;
         }
         this.clickTime = myDate;
-        var selectNode = cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node)
-        selectNode.active = true;
 
-        selectNode.opacity = 0;
-        var pseq1 = cc.sequence(cc.fadeTo(0.25, 0), cc.callFunc(() => {
-            selectNode.runAction(pseq2);
-        }));
-        var pseq2 = cc.sequence(cc.fadeTo(0.25, 255), cc.callFunc(() => {
-            selectNode.runAction(pseq1);
-        }));
-        selectNode.runAction(pseq2);       
 
-        this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
-        cc.Tween.stopAllByTarget(this.randomBar);
+        this.ani_zhuanPan.timeScale = 0;
+        var endTimer = new Date().getTime();
+        var tmp = endTimer - this.startRowTimer;
+        var index = Math.floor(tmp / this.rowMilTimer * 8);
+
+        if (this.m_Muls[index]) {
+            this.rateOfRewardByVideo = this.m_Muls[index];
+            //this.TempGetCount = this.m_Muls[index] * EscapeMng.GetInstance().m_Default_Coin;
+        }
+
+        //var selectNode = cc.find("bar_randomRate/k" + (this.nowPointIndex + 1), this.node)
+        //selectNode.active = true;
+
+        //selectNode.opacity = 0;
+        //var pseq1 = cc.sequence(cc.fadeTo(0.25, 0), cc.callFunc(() => {
+        //    selectNode.runAction(pseq2);
+        //}));
+        //var pseq2 = cc.sequence(cc.fadeTo(0.25, 255), cc.callFunc(() => {
+        //    selectNode.runAction(pseq1);
+        //}));
+        //selectNode.runAction(pseq2);
+
+
+        //this.rateOfRewardByVideo = this.rateArr[this.nowPointIndex];
+        //cc.Tween.stopAllByTarget(this.randomBar);
+
+
         this.scheduleOnce(function () {            
             // if (cc.sys.platform == cc.sys.ANDROID) {
                 
@@ -513,49 +547,49 @@ export default class Success extends cc.Component {
 
 
     update (dt) {
-        let posx = this.randomBar.x;
-        if (posx < -198) {
-            this.nowPointIndex = 0;
-        }
-        else if (posx < -125) {
-            this.nowPointIndex = 1;
-        }
-        else if (posx < -47) {
-            this.nowPointIndex = 2;
-        }
-        else if (posx < 44) {
-            this.nowPointIndex = 3;
-        }
-        else if (posx < 123) {
-            this.nowPointIndex = 4;
-        }
-        else if (posx < 195) {
-            this.nowPointIndex = 5;
-        }
-        else {
-            this.nowPointIndex = 6;
-        }
+        //let posx = this.randomBar.x;
+        //if (posx < -198) {
+        //    this.nowPointIndex = 0;
+        //}
+        //else if (posx < -125) {
+        //    this.nowPointIndex = 1;
+        //}
+        //else if (posx < -47) {
+        //    this.nowPointIndex = 2;
+        //}
+        //else if (posx < 44) {
+        //    this.nowPointIndex = 3;
+        //}
+        //else if (posx < 123) {
+        //    this.nowPointIndex = 4;
+        //}
+        //else if (posx < 195) {
+        //    this.nowPointIndex = 5;
+        //}
+        //else {
+        //    this.nowPointIndex = 6;
+        //}
 
-        if (this.nowPointIndex != this.lastPointIndex) {
-            let nowIndex = this.nowPointIndex;
-            let lastIndex = this.lastPointIndex;
-            this.lastPointIndex = this.nowPointIndex;
+        //if (this.nowPointIndex != this.lastPointIndex) {
+        //    let nowIndex = this.nowPointIndex;
+        //    let lastIndex = this.lastPointIndex;
+        //    this.lastPointIndex = this.nowPointIndex;
 
-            this.lb_adReward.string = 100*this.rateArr[nowIndex] + "";
+        //    this.lb_adReward.string = 100*this.rateArr[nowIndex] + "";
 
-            cc.loader.loadRes("texture/game/ui/dx" + this.rateArr[nowIndex], cc.SpriteFrame, (err, res) => {
-                if(err) {
-                    return;
-                }
-                this.pointerArr[nowIndex].spriteFrame = res;
-            });
-            cc.loader.loadRes("texture/game/ui/x" + this.rateArr[lastIndex], cc.SpriteFrame, (err, res) => {
-                if(err) {
-                    return;
-                }
-                this.pointerArr[lastIndex].spriteFrame = res;
-            });
-        }
+        //    cc.loader.loadRes("texture/game/ui/dx" + this.rateArr[nowIndex], cc.SpriteFrame, (err, res) => {
+        //        if(err) {
+        //            return;
+        //        }
+        //        this.pointerArr[nowIndex].spriteFrame = res;
+        //    });
+        //    cc.loader.loadRes("texture/game/ui/x" + this.rateArr[lastIndex], cc.SpriteFrame, (err, res) => {
+        //        if(err) {
+        //            return;
+        //        }
+        //        this.pointerArr[lastIndex].spriteFrame = res;
+        //    });
+        //}
     }
 
 
