@@ -1903,9 +1903,9 @@ export default class LevelData extends cc.Component {
     }
 
     public static getLevel() {
-        let level = 10//localStorage.getItem("level");
+        let level = localStorage.getItem("level");
         if (level == null) {
-            level = "2";
+            level = "1";
         }
         LevelData.curLevel = Number(level);
         console.log("============get level: " + LevelData.curLevel);
