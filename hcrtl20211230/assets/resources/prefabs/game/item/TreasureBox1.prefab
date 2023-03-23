@@ -235,8 +235,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 180,
-      "height": 119.05
+      "width": 881.18,
+      "height": 703.81
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -287,7 +287,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "daiji",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -298,7 +298,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "",
+    "_animationName": "daiji",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
@@ -349,6 +349,7 @@
     "isBox": true,
     "LveUp": null,
     "weaponID": 0,
+    "isNewW": false,
     "_id": ""
   },
   {

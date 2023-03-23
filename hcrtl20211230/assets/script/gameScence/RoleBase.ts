@@ -155,9 +155,14 @@ export default class RoleBase extends cc.Component {
        
         if (this.type != RoleType.OTHER && this.type != RoleType.Guidance) {
             if (this.type != RoleType.ITEM) {//不是道具，播放待机
-                
-                this.ani = this.node.getComponent(sp.Skeleton);
+                if (this.type == RoleType.Boss) {
+                    this.ani = this.node.getChildByName("p").getComponent(sp.Skeleton);
+                }
+                else {
+                    this.ani = this.node.getComponent(sp.Skeleton);
+                }
                 this.idle();
+
                 // this.attack();
             }
             if (this.type == RoleType.PRINCESS) { this.hpLable.string = "Hana"; }
@@ -595,6 +600,9 @@ export default class RoleBase extends cc.Component {
         else if (this.isNewW && this.type == RoleType.MONSTER) {
             ainName = "daiji"
         }
+        else if (this.type == RoleType.Boss) {
+            ainName = "daiji"
+        }
         
         SpineManager.getInstance().playSpinAnimation(this.ani,ainName, true, null, this);
     }
@@ -638,6 +646,9 @@ export default class RoleBase extends cc.Component {
 
         if (this.type != RoleType.PLAYER) {//根据不同怪物
             if (this.isNewW && this.type == RoleType.MONSTER) {
+                ainName = "gongji";
+            }
+            else if (this.type == RoleType.Boss) {
                 ainName = "gongji";
             }
             else {
@@ -713,9 +724,12 @@ export default class RoleBase extends cc.Component {
         else if (this.type == RoleType.MONSTER && this.isNewW) {
             ainName = "siwang";
         }
+        else if (this.type == RoleType.Boss) {
+            ainName = "siwang";
+        }
 
         SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
-            if(this.type == RoleType.MONSTER){               
+            if (this.type == RoleType.MONSTER || this.type == RoleType.Boss){               
                 if (this.drop && this.data){
                     this.creatorItem();
                 }
@@ -723,8 +737,7 @@ export default class RoleBase extends cc.Component {
                 this.node.destroy();
             }
             if (cb) {
-                cb();
-               
+                cb();               
             }
         }, this);
     }
@@ -735,21 +748,25 @@ export default class RoleBase extends cc.Component {
         }
         this.ani = this.node.getChildByName("xiangzi").getComponent(sp.Skeleton);
     
-        SpineManager.getInstance().playSpinAnimation(this.ani, "kaixiang", false, () => {
-            
-        }, this);
+      
 
         if (this.data.type == "weapon") {
+            SpineManager.getInstance().playSpinAnimation(this.ani, "wuqi", false, () => {
+
+            }, this);
             this.scheduleOnce(function () {
                 this.creatorWeapon();
                 if (cb) {
                     cb();
                     cb = null;
                 }
-            }, 1.5);            
+            }, 1.5);             
         }
         else if (this.data.type == "glod") {
             if (this.data.count) {
+                SpineManager.getInstance().playSpinAnimation(this.ani, "kaixiang", false, () => {
+
+                }, this);
                 let own = userData.getData(localStorageKey.GOLD);
                 own += Number(this.data.count);
                 userData.setData(localStorageKey.GOLD, own);
@@ -758,7 +775,7 @@ export default class RoleBase extends cc.Component {
                         cb();
                         cb = null;
                     }
-                }, 1.5); 
+                }, 1.5);              
             }
         }
                 

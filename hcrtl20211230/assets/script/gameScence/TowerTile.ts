@@ -56,10 +56,13 @@ export default class TowerTile extends cc.Component {
                 else if (data.type == "weapon") {
                     tempNode = cc.instantiate(this.prefabsManager.weaponPreList[data.prefab]);
                 }
+                else if (data.prefab.indexOf("Boss") != -1) {
+                    tempNode = cc.instantiate(this.prefabsManager.bossPrefanList[data.prefab]);
+                }
                 else {
                     tempNode = cc.instantiate(this.prefabsManager.monsterPrefabList[data.prefab]);
                 }
-                tempNode.y += 150;
+                tempNode.y = 20;//+= 150;
                 // this.node
                 let role = tempNode.getComponent(RoleBase);
 
@@ -204,7 +207,7 @@ export default class TowerTile extends cc.Component {
         for (var i = 0; i < ascPersons.length; i++) {
             var base = ascPersons[i].getComponent(RoleBase);
             if (base) {
-                if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG) {
+                if (base.type == RoleType.MONSTER || base.type == RoleType.ITEM || base.type == RoleType.PRINCESS || base.type == RoleType.EGG || base.type == RoleType.Boss) {
                     return ascPersons[i];
                 }
             }           
