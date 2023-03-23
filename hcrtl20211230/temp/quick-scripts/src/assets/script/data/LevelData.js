@@ -45,7 +45,7 @@ var LevelData = /** @class */ (function (_super) {
         localStorage.setItem("level", LevelData_1.curLevel + "");
     };
     LevelData.getLevel = function () {
-        var level = 38; //localStorage.getItem("level");
+        var level = 46; //localStorage.getItem("level");
         if (level == null) {
             level = "2";
         }
@@ -757,7 +757,156 @@ var LevelData = /** @class */ (function (_super) {
                     data: [[{ prefab: "Shield_1", hp: 8, type: "monster" }],
                         [{ prefab: "T-rex", hp: 40, type: "monster" }],
                         [{ prefab: "Shield_3", hp: 40, type: "monster" }, { prefab: "Vampire_2", hp: 30, type: "monster" }]]
+                },
+                {
+                    prefab: "Boss_1", hp: 191, type: "boss"
+                },
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 1, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }],
+                        [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }]]
+                },
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }],
+                        [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }],
+                        [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }]
+                    ]
+                },
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }],
+                        [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }]
+                    ]
                 }
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 10, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_1", hp: 5, type: "monster" }, { prefab: "Shield_2", hp: 10, type: "monster" }],
+                        [{ prefab: "Item_Barrier1", hp: 30, type: "item" }, { prefab: "Shield_2", hp: 15, type: "monster" }],
+                        [{ prefab: "Shield_3", hp: 21, type: "monster" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_1", hp: 15, type: "monster" }, { prefab: "WeaponItem_3", hp: 15, type: "weapon" }],
+                        [{ prefab: "Shield_1", hp: 20, type: "monster" }],
+                        [{ prefab: "Shield_3", hp: 21, type: "monster" }]]
+                },
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 31, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_1", hp: 35, type: "monster" }, { prefab: "WeaponItem_5", hp: 15, type: "weapon" }],
+                        [{ prefab: "Shield_1", hp: 20, type: "monster" }],
+                        [{ prefab: "Item_Barrier1", hp: 125, type: "item" }, { prefab: "Shield_3", hp: 5, type: "monster" }],
+                        [{ prefab: "T-rex", hp: 65, type: "monster" }]
+                    ]
+                },
+                {
+                    data: [[{ prefab: "Vampire_1", hp: 45, type: "monster" }, { prefab: "WeaponItem_4", hp: 20, type: "weapon" }],
+                        [{ prefab: "Vampire_2", hp: 100, type: "monster" }],
+                        [{ prefab: "Shield_6", hp: 200, type: "monster" }]]
+                },
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 51, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Sword_1", hp: 76, type: "monster" }, { prefab: "Shield_6", hp: 444, type: "monster" }],
+                        [{ prefab: "Shield_5", hp: 131, type: "monster" }],
+                        [{ prefab: "Shield_4", hp: 211, type: "monster" }],
+                        [{ prefab: "WeaponItem_7", hp: 152, type: "weapon" }]
+                    ]
+                }
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 15, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_4", hp: 35, type: "monster" }],
+                        [{ prefab: "Shield_4", hp: 12, type: "monster" }, { prefab: "Shield_5", hp: 18, type: "monster" }],
+                        [{ prefab: "Shield_4", hp: 10, type: "monster" }, { prefab: "Shield_5", hp: 79, type: "monster" }],
+                        [{ prefab: "Shield_6", hp: 120, type: "monster" }, { prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }]
+                    ]
+                }
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 5, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_1", hp: 1, type: "monster" }, { prefab: "Shield_4", hp: 28, type: "monster" }],
+                        [{ prefab: "Shield_4", hp: 25, type: "monster" }],
+                        [{ prefab: "WeaponItem_4", hp: 51, type: "weapon" }, { prefab: "Shield_1", hp: 17, type: "monster" }],
+                        [{ prefab: "T-rex", hp: 55, type: "monster" }, { prefab: "Shield_6", hp: 161, type: "monster" }]
+                    ]
+                }
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 181, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Item_Barrier1", hp: 50, type: "item" }, { prefab: "WeaponItem_3", hp: 100, type: "weapon" }],
+                        [{ prefab: "Shield_6", hp: 60, type: "monster" }],
+                        [{ prefab: "T-rex", hp: 250, type: "monster" }, { prefab: "WeaponItem_9", hp: 1080, type: "weapon" }],
+                        [{ prefab: "LockTower", hp: 100, type: "lock" }, { prefab: "Shield_6", hp: 999, type: "monster" }]
+                    ]
+                },
+                {
+                    prefab: "Boss_5", hp: 2510, type: "boss"
+                },
+            ]
+        },
+        {
+            bg: 0,
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 12, type: "player" }]]
+                },
+                {
+                    data: [[{ prefab: "Shield_4", hp: 14, type: "monster" }, { prefab: "Shield_4", hp: 10, type: "monster" }, { prefab: "Shield_5", hp: 22, type: "monster" }],
+                        [{ prefab: "Shield_5", hp: 15, type: "monster" }, { prefab: "Shield_5", hp: 60, type: "monster" }, { prefab: "Shield_6", hp: 99, type: "monster" }],
+                        [{ prefab: "Shield_5", hp: 5, type: "monster" }, { prefab: "Item_Barrier1", hp: 140, type: "item" }, { prefab: "Shield_5", hp: 5, type: "monster" }],
+                    ]
+                },
+                {
+                    data: [[{ prefab: "T-rex", hp: 140, type: "monster" }],
+                        [{ prefab: "Shield_1", hp: 59, type: "monster" }],
+                        [{ prefab: "Item_Barrier1", hp: 100, type: "item" }, { prefab: "Vampire_3", hp: 85, type: "monster" }],
+                        [{ prefab: "Goblin", hp: 10, type: "monster", data: { prefab: "WeaponItem_9", hp: 50, type: "weapon" } }],
+                        [{ prefab: "Shield_6", hp: 300, type: "monster" }, { prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" } }]
+                    ]
+                },
             ]
         },
         {
