@@ -277,7 +277,7 @@ export default class GameScence extends cc.Component {
         else {
             FirebaseReport.reportAdjustParam(FirebaseKey.adjust_level_1);
             FirebaseReport.reportAdjustParam(FirebaseKey.G8adjust_level_1);
-            this.scheduleOnce(() => { this.towerLayer.PrinceTalk(); }, 1)
+          /*  this.scheduleOnce(() => { this.towerLayer.PrinceTalk(); }, 1)*/
         }
     }
 

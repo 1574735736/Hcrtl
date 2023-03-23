@@ -1,27 +1,48 @@
 
 xiangzi.png
-size: 237,184
+size: 1018,617
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+$
+  rotate: false
+  xy: 921, 2
+  size: 70, 70
+  orig: 70, 70
+  offset: 0, 0
+  index: -1
 d
   rotate: true
-  xy: 99, 2
+  xy: 921, 255
   size: 180, 67
   orig: 180, 67
   offset: 0, 0
   index: -1
 g
   rotate: true
-  xy: 168, 3
+  xy: 921, 74
   size: 179, 67
   orig: 179, 67
   offset: 0, 0
   index: -1
 g2
   rotate: true
-  xy: 2, 4
+  xy: 921, 437
   size: 178, 95
   orig: 208, 207
   offset: 18, 61
+  index: -1
+jg
+  rotate: false
+  xy: 2, 25
+  size: 586, 590
+  orig: 685, 685
+  offset: 40, 47
+  index: -1
+jg2
+  rotate: false
+  xy: 590, 4
+  size: 329, 611
+  orig: 658, 658
+  offset: 176, 47
   index: -1

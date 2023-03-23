@@ -72,9 +72,16 @@ export default class TowerTile extends cc.Component {
                     || tempNode.name.indexOf("Bow")!=-1
                     || tempNode.name.indexOf("Shield")!=-1
                     || tempNode.name.indexOf("Sword")!=-1
-                    || tempNode.name.indexOf("Vampire")!=-1){
-                        tempNode.scaleX = -0.6;
-                        tempNode.scaleY = 0.6;
+                        || tempNode.name.indexOf("Vampire") != -1) {
+                        if (role.isNewW) {
+                            tempNode.scaleX = 1;
+                            tempNode.scaleY = 1;
+                        }
+                        else {
+                            tempNode.scaleX = -0.6;
+                            tempNode.scaleY = 0.6;
+                        }
+                      
                     }
                 }else{
                     tempNode.position = cc.v3(i * 130, tempNode.y, 0);

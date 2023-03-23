@@ -23,7 +23,8 @@ export enum RoleType {
     PRINCESS,
     Devils,
     Guidance,
-    Weapon
+    Weapon,
+    Boss
 
 }
 
@@ -71,6 +72,9 @@ export default class RoleBase extends cc.Component {
     @property(Number)
     weaponID: number = 0;
 
+    @property(Boolean)
+    isNewW: boolean = false;  //是否是新添加的怪物，
+
     private lv = 1;
     private hp = 0;
     private shieldHp = 0;
@@ -97,6 +101,11 @@ export default class RoleBase extends cc.Component {
         if (this.node.name.indexOf("DualSword") != -1) {
             return false;
         }
+
+        if (this.isNewW) {
+            return false;
+        }
+
         if(this.node.name.indexOf("Bow")!=-1 || this.node.name.indexOf("Vampire")!=-1 ||
          this.node.name.indexOf("Shield")!=-1 || this.node.name.indexOf("Wizard")!=-1 ||
          this.node.name.indexOf("Sword")!=-1){
@@ -583,7 +592,9 @@ export default class RoleBase extends cc.Component {
         else if (this.type == RoleType.Devils) {
             ainName = "mdaiji"
         }
-
+        else if (this.isNewW && this.type == RoleType.MONSTER) {
+            ainName = "daiji"
+        }
         
         SpineManager.getInstance().playSpinAnimation(this.ani,ainName, true, null, this);
     }
@@ -626,24 +637,29 @@ export default class RoleBase extends cc.Component {
         let ainName = "gongji";
 
         if (this.type != RoleType.PLAYER) {//根据不同怪物
-            let name = this.node.name;
-            if (name == "DualSword" || name == "Dragon_2head") {
-                let index = Utils.randomInt(0, 1);
-                let nameAin = ["Attack_1", "Attack_2"];
-                ainName = nameAin[index];
-            } else if (name.indexOf("Bow") != -1 || name == "Priest" || name == "Goblin" ||
-                name == "T-rex" || name == "Wizard" || name.indexOf("Sword") != -1 || this.type == RoleType.EGG) {
-                ainName = "Attack";
-            } else if (name.indexOf("Shield") != -1) {
-                ainName = "Shield_Pawn_Attack";
-            } else if (name.indexOf("Vampire") != -1) {
-                let index = Utils.randomInt(0, 1);
-                let nameAin = ["Attack", "Attack_1"];
-                ainName = nameAin[index];
+            if (this.isNewW && this.type == RoleType.MONSTER) {
+                ainName = "gongji";
             }
             else {
-                ainName = "Attack_1";
-            }
+                let name = this.node.name;
+                if (name == "DualSword" || name == "Dragon_2head") {
+                    let index = Utils.randomInt(0, 1);
+                    let nameAin = ["Attack_1", "Attack_2"];
+                    ainName = nameAin[index];
+                } else if (name.indexOf("Bow") != -1 || name == "Priest" || name == "Goblin" ||
+                    name == "T-rex" || name == "Wizard" || name.indexOf("Sword") != -1 || this.type == RoleType.EGG) {
+                    ainName = "Attack";
+                } else if (name.indexOf("Shield") != -1) {
+                    ainName = "Shield_Pawn_Attack";
+                } else if (name.indexOf("Vampire") != -1) {
+                    let index = Utils.randomInt(0, 1);
+                    let nameAin = ["Attack", "Attack_1"];
+                    ainName = nameAin[index];
+                }
+                else {
+                    ainName = "Attack_1";
+                }
+            }           
         }
         else if (this.type == RoleType.PLAYER) {
             if (this.weaponId > 1) {
@@ -694,10 +710,13 @@ export default class RoleBase extends cc.Component {
             ainName = "siwang";
             SoundManager.getInstance().playEffect(SoundManager.HeroDie);
         }
+        else if (this.type == RoleType.MONSTER && this.isNewW) {
+            ainName = "siwang";
+        }
 
         SpineManager.getInstance().playSpinAnimation(this.ani, ainName, false, () => {
             if(this.type == RoleType.MONSTER){               
-                if(this.drop){
+                if (this.drop && this.data){
                     this.creatorItem();
                 }
                 this.node.removeFromParent();
