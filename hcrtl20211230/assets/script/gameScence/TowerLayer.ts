@@ -541,7 +541,7 @@ export default class TowerLayer extends cc.Component {
         let playerRole = player.getComponent(RoleBase);
         let boss = this.node.children[this.curSizeIndex].getComponent(BossBase);
 
-        if (player.parent.name == "TowerTop_tile") {
+        if (player.parent.name == "TowerTop_tile" || player.parent.name == "Tower_tile") {
             let TempY = player.parent.position.y;
             let tile = this.node.children[this.playerposition];
            
