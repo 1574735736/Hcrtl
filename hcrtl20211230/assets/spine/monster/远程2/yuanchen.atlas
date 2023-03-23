@@ -1,0 +1,125 @@
+
+yuanchen.png
+size: 1648,170
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arown
+  rotate: false
+  xy: 1136, 12
+  size: 126, 18
+  orig: 126, 18
+  offset: 0, 0
+  index: -1
+Arrow (1)
+  rotate: false
+  xy: 2, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (2)
+  rotate: false
+  xy: 164, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (3)
+  rotate: false
+  xy: 326, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (4)
+  rotate: false
+  xy: 488, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (5)
+  rotate: false
+  xy: 650, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (6)
+  rotate: false
+  xy: 812, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Arrow (7)
+  rotate: false
+  xy: 974, 8
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+Bow
+  rotate: false
+  xy: 1590, 39
+  size: 38, 129
+  orig: 39, 133
+  offset: 0, 2
+  index: -1
+BowRope
+  rotate: true
+  xy: 2, 4
+  size: 2, 115
+  orig: 2, 115
+  offset: 0, 0
+  index: -1
+Bow_2
+  rotate: true
+  xy: 1361, 2
+  size: 44, 196
+  orig: 46, 199
+  offset: 1, 2
+  index: -1
+Bow_3
+  rotate: true
+  xy: 1136, 32
+  size: 67, 223
+  orig: 68, 224
+  offset: 0, 0
+  index: -1
+MC
+  rotate: true
+  xy: 1373, 109
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+MC_2
+  rotate: true
+  xy: 1373, 48
+  size: 59, 215
+  orig: 59, 215
+  offset: 0, 0
+  index: -1
+MC_3
+  rotate: true
+  xy: 1136, 101
+  size: 67, 235
+  orig: 67, 235
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 1264, 9
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1
+hand_2
+  rotate: false
+  xy: 1559, 16
+  size: 87, 21
+  orig: 87, 21
+  offset: 0, 0
+  index: -1

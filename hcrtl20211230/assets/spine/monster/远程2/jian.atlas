@@ -1,0 +1,55 @@
+
+jian.png
+size: 150,508
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arown
+  rotate: false
+  xy: 2, 2
+  size: 126, 18
+  orig: 126, 18
+  offset: 0, 0
+  index: -1
+Electric_0000_Electricity-007-Ray-Right11
+  rotate: true
+  xy: 76, 22
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1
+Electric_0001_Electricity-007-Ray-Right09
+  rotate: true
+  xy: 2, 346
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1
+Electric_0002_Electricity-007-Ray-Right06
+  rotate: true
+  xy: 2, 184
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1
+Electric_0003_Electricity-007-Ray-Right04
+  rotate: true
+  xy: 76, 346
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1
+Electric_0004_Electricity-007-Ray-Right02
+  rotate: true
+  xy: 2, 22
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1
+Electric_0005_Electricity-007-Ray-Right00
+  rotate: true
+  xy: 76, 184
+  size: 160, 72
+  orig: 160, 72
+  offset: 0, 0
+  index: -1

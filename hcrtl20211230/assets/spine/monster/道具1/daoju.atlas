@@ -1,0 +1,90 @@
+
+daoju.png
+size: 1784,229
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Bag
+  rotate: false
+  xy: 1629, 121
+  size: 153, 106
+  orig: 153, 107
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 1629, 13
+  size: 119, 106
+  orig: 120, 106
+  offset: 1, 0
+  index: -1
+Hand
+  rotate: false
+  xy: 1750, 14
+  size: 29, 105
+  orig: 29, 105
+  offset: 0, 0
+  index: -1
+Leg
+  rotate: true
+  xy: 1313, 19
+  size: 51, 95
+  orig: 51, 102
+  offset: 0, 7
+  index: -1
+Smoke_1
+  rotate: false
+  xy: 1471, 73
+  size: 156, 154
+  orig: 228, 225
+  offset: 38, 35
+  index: -1
+Smoke_2
+  rotate: false
+  xy: 1313, 72
+  size: 156, 155
+  orig: 228, 225
+  offset: 28, 39
+  index: -1
+Smoke_3
+  rotate: false
+  xy: 1115, 30
+  size: 196, 197
+  orig: 228, 225
+  offset: 12, 17
+  index: -1
+Smoke_4
+  rotate: false
+  xy: 906, 24
+  size: 207, 203
+  orig: 228, 225
+  offset: 9, 12
+  index: -1
+Smoke_5
+  rotate: false
+  xy: 685, 10
+  size: 219, 217
+  orig: 228, 225
+  offset: 4, 3
+  index: -1
+Smoke_6
+  rotate: false
+  xy: 461, 4
+  size: 222, 223
+  orig: 228, 225
+  offset: 3, 0
+  index: -1
+Smoke_7
+  rotate: false
+  xy: 2, 2
+  size: 227, 225
+  orig: 228, 225
+  offset: 0, 0
+  index: -1
+Smoke_8
+  rotate: false
+  xy: 231, 3
+  size: 228, 224
+  orig: 228, 225
+  offset: 0, 1
+  index: -1

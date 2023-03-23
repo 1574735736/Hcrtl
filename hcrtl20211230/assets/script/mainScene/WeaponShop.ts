@@ -30,6 +30,9 @@ export default class WeaponShop extends cc.Component {
 
     private curGold: number = 0;
 
+    private m_Hmaxk: cc.Node = null;
+    private m_Wmaxk: cc.Node = null;
+
     
     start () {
 
@@ -50,6 +53,14 @@ export default class WeaponShop extends cc.Component {
         cc.find("Canvas").on(EventDefine.GOLD_CHANGE, () => {
             this.UndateGlodNum();
         });
+
+        cc.find("btn_hrro", this.node).on(EventDefine.CLICK, this.ClickHero, this);
+        cc.find("btn_weapon", this.node).on(EventDefine.CLICK, this.ClickWeapon, this);
+
+        this.m_Hmaxk = cc.find("btn_hrro/mask", this.node);
+        this.m_Wmaxk = cc.find("btn_weapon/mask", this.node);
+
+
         
         this.UndateGlodNum();
         this.updateItems();
@@ -280,5 +291,14 @@ export default class WeaponShop extends cc.Component {
             Utils.showMessage(this.node, "Ad not ready");
         this.m_BackFunc = null;
     }
-    
+
+    private ClickHero(): void {
+        this.m_Hmaxk.active = true;
+        this.m_Wmaxk.active = false;
+    }
+
+    private ClickWeapon(): void {
+        this.m_Hmaxk.active = false;
+        this.m_Wmaxk.active = true;
+    }
 }

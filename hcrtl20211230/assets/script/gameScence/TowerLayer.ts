@@ -194,15 +194,12 @@ export default class TowerLayer extends cc.Component {
 
         var spr = this.weaponIcon.getComponent(cc.Sprite);
 
-
         this.onSetIcon(spr, sprID + "");
         this.weaponIcon.setPosition(0, 0);
-
 
         //var pos = this.getNodePos(player, this.weaponIcon)
         let targerPosX = player.position.x / 2 + player.parent.position.x + player.parent.parent.position.x + this.node.position.x;
         let targerPosY = player.position.y / 2 + player.parent.position.y + player.parent.parent.position.y + this.node.position.y;
-
 
         var func = cc.sequence(cc.delayTime(0.5), cc.callFunc(() => {
             this.weaponIcon.runAction(cc.scaleTo(1, 0.3));
@@ -216,10 +213,8 @@ export default class TowerLayer extends cc.Component {
 
         }))
         this.weaponIcon.runAction(func);
-
       
         //console.log("addHp------  :" + addHp);
-
         //playerRole.addHp(addHp);        
     }
    

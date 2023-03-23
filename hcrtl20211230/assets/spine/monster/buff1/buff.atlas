@@ -1,0 +1,104 @@
+
+buff.png
+size: 600,275
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
++buff1
+  rotate: true
+  xy: 483, 11
+  size: 48, 94
+  orig: 52, 96
+  offset: 2, 1
+  index: -1
++buff2
+  rotate: true
+  xy: 546, 190
+  size: 83, 33
+  orig: 85, 35
+  offset: 1, 1
+  index: -1
++buff3
+  rotate: false
+  xy: 133, 96
+  size: 21, 24
+  orig: 24, 28
+  offset: 1, 2
+  index: -1
+Attack_0000_Electricity-001-Impact-Explosion-Up10
+  rotate: true
+  xy: 133, 122
+  size: 151, 108
+  orig: 160, 160
+  offset: 5, 26
+  index: -1
+Attack_0001_Electricity-001-Impact-Explosion-Up09
+  rotate: false
+  xy: 188, 2
+  size: 149, 118
+  orig: 160, 160
+  offset: 6, 13
+  index: -1
+Attack_0002_Electricity-001-Impact-Explosion-Up07
+  rotate: false
+  xy: 339, 3
+  size: 142, 121
+  orig: 160, 160
+  offset: 7, 9
+  index: -1
+Attack_0003_Electricity-001-Impact-Explosion-Up06
+  rotate: true
+  xy: 345, 141
+  size: 132, 109
+  orig: 160, 160
+  offset: 14, 9
+  index: -1
+Attack_0004_Electricity-001-Impact-Explosion-Up04
+  rotate: true
+  xy: 456, 157
+  size: 116, 88
+  orig: 160, 160
+  offset: 16, 7
+  index: -1
+Attack_0005_Electricity-001-Impact-Explosion-Up03
+  rotate: false
+  xy: 101, 4
+  size: 85, 75
+  orig: 160, 160
+  offset: 28, 6
+  index: -1
+Attack_0006_Electricity-001-Impact-Explosion-Up00
+  rotate: true
+  xy: 554, 143
+  size: 45, 44
+  orig: 160, 160
+  offset: 42, 6
+  index: -1
+Attack_0007_Electricity-001-Impact-Explosion-Up12
+  rotate: true
+  xy: 243, 126
+  size: 147, 100
+  orig: 160, 160
+  offset: 7, 30
+  index: -1
+Body
+  rotate: false
+  xy: 2, 6
+  size: 97, 267
+  orig: 149, 300
+  offset: 26, 32
+  index: -1
+Hand
+  rotate: true
+  xy: 483, 61
+  size: 94, 69
+  orig: 94, 69
+  offset: 0, 0
+  index: -1
+MagicWand
+  rotate: false
+  xy: 101, 81
+  size: 30, 192
+  orig: 30, 192
+  offset: 0, 0
+  index: -1
