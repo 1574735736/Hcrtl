@@ -104,7 +104,7 @@ export default class TowerTile extends cc.Component {
                     this.node.addChild(tempNode, 1, "item");
                 } else if (data.type == 'lock') {
                     this.lock = true;
-                    tempNode.position = cc.v3(0, tempNode.y, 0);
+                    tempNode.position = cc.v3(0,166 , 0);//tempNode.y
                     this.node.addChild(tempNode, 1, "lock");
                 }
                 else if (data.type == 'princess') {

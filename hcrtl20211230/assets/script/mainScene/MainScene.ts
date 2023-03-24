@@ -8,6 +8,7 @@ import Utils from "../util/Utils";
 import SdkManager from "../util/SdkManager";
 import WeaponShop from "./WeaponShop";
 import SignInView from "./SignInView";
+import LevelData from "../data/LevelData";
 
 const {ccclass, property} = cc._decorator;
 
@@ -55,6 +56,16 @@ export default class MainScene extends cc.Component {
 
     //@property(sp.Skeleton)
     //public zhu1: sp.Skeleton = null;
+
+
+    private levelTxt: cc.Label = null;
+
+    private m_whitM: cc.Node = null;
+    private m_whitH: cc.Node = null;
+    private m_blueM: cc.Node = null;
+    private m_blueH: cc.Node = null;
+    private m_blackM: cc.Node = null;
+    private m_blackH: cc.Node = null;
 
 
 
@@ -114,8 +125,103 @@ export default class MainScene extends cc.Component {
 
         let weaponIdx = userData.getData(localStorageKey.USING_WEAPON_IDX) + 1;
 
+        this.levelTxt = cc.find("MainRoot/img_levelbg/txt_level", this.node).getComponent(cc.Label);
+
+     
+
+        this.m_whitM = cc.find("MainRoot/img_whit_m", this.node);
+        this.m_whitH = cc.find("MainRoot/img_white_t", this.node);
+        this.m_blueM = cc.find("MainRoot/img_blue_m", this.node);
+        this.m_blueH = cc.find("MainRoot/img_blue_t", this.node);
+        this.m_blackM = cc.find("MainRoot/img_black_m", this.node);
+        this.m_blackH = cc.find("MainRoot/img_black_t", this.node);
+
+        this.InitLevelTower();
         //SpineManager.getInstance().loadSpine(this.roleModel, "spine/players/" + skinDatas[usingIndex].resName + "" + weaponIdx, true, "default", "daiji3");
         //SpineManager.getInstance().loadSkinSpine(this.roleModel, this.weapon, true, usingIndex, weaponIdx, "daiji3")
+    }
+
+    private InitLevelTower() {
+        LevelData.getLevel();
+        let levelCount = LevelData.curLevel;
+        this.levelTxt.string = "Level " + levelCount;
+
+        var curIdx = levelCount - 1;
+        var level = LevelData.levelData[curIdx];
+        var startP: number = 0;
+        var endP: number = 0;
+        if (!level) {
+            return;
+        }
+        if (curIdx <= 0) {
+            startP = curIdx;          
+        }
+        else if (curIdx == 1) {
+            startP = curIdx - 1;
+        }
+        else if (curIdx == LevelData.levelData.length - 1) {
+            startP = curIdx - 3;
+        }
+        else if (curIdx == LevelData.levelData.length - 2) {
+            startP = curIdx - 4;
+        }
+        else {
+            startP = curIdx - 2;
+        }
+      
+        endP = startP + 5;
+        for (var i = startP; i < endP; i++) {
+            if (LevelData.levelData[i]) {
+                var towerData = LevelData.levelData[i].towerData;
+                if (towerData) {
+                    this.VerifyEnm(towerData, i, curIdx, startP)
+                }
+            }          
+        }
+
+    }
+
+    private VerifyEnm(towerData, idx, curIdx,startP) {
+        var tempX = 60;
+        var startX = -130;
+        var pox = startX + tempX * (idx - startP);
+        var isBoss: boolean = false;
+        for (var j = 0; j < towerData.length; j++) {
+            let element = towerData[j];
+            if (element.type == "boss") {
+                if (idx == curIdx) {
+                    this.CreateTower(pox, this.m_blueH);
+                }
+                else if (idx < curIdx) {
+                    this.CreateTower(pox, this.m_whitH);
+                }
+                else if (idx > curIdx) {
+                    this.CreateTower(pox, this.m_blackH);
+                }
+                isBoss = true;
+                break;
+            }            
+        }
+
+        if (!isBoss) {
+            if (idx == curIdx) {
+                this.CreateTower(pox, this.m_blueM);
+            }
+            else if (idx < curIdx) {
+                this.CreateTower(pox, this.m_whitM);
+            }
+            else if (idx > curIdx) {
+                this.CreateTower(pox, this.m_blackM);
+            }
+        }
+    }    
+
+    private CreateTower(posX: number,Item) {
+        let floor = cc.instantiate(Item);
+        floor.active = true;
+        floor.position = new cc.Vec3(posX, 450, 0);
+        this.mainRoot.addChild(floor);
+        return floor;
     }
 
     private onBtnStart():void {
