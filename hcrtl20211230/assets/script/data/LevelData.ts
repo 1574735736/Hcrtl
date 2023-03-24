@@ -258,111 +258,84 @@ export default class LevelData extends cc.Component {
             bg: 1,//level 10
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 250, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 16, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 200, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 350, type: "monster", data: { shield_hp: 350 } }],
-                    [{ prefab: "Sword_2", hp: 400, type: "monster" }, { prefab: "Bow_1", hp: 15, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 15, type: "monster" }],
+                    [{prefab: "WeaponItem_2", hp: 120, type: "weapon" }],
+                    [{ prefab: "Sword_2", hp: 10, type: "monster" }]]
                 },
-
                 {
-                    data: [[{ prefab: "Sword_2", hp: 800, type: "monster" }, { prefab: "Sword_2", hp: 5000, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 300, type: "monster", data: { shield_hp: 300 } }, { prefab: "Bow_1", hp: 30, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }, { prefab: "Shield_3", hp: 4000, type: "monster", data: { shield_hp: 4000 } }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "T-rex", hp: 400, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
-                    ]
+                    prefab: "Boss_3", hp: 72,type: "boss"
                 }
+ 
             ]
         }, {
             bg: 2,//level 11
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 400, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 8, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 400, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 100, type: "monster", data: { shield_hp: 100 } }, { prefab: "Weapon_4", hp: 300, type: "item" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }],
-                    [{ prefab: "Wizard", hp: 200, type: "monster" }, { prefab: "Wizard", hp: 200, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 7, type: "monster" }],
+                    [{  prefab: "Item_Barrier1", hp: 10, type: "item"  }, { prefab: "WeaponItem_2", hp: 25, type: "weapon" }]]
                 },
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 2500, type: "monster", data: { shield_hp: 2500 } }, { prefab: "Bow_1", hp: 30, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1800, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 200, type: "monster" }, { prefab: "Sword_1", hp: 200, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
-                    ]
+                    data: [[{ prefab: "Sword_1", hp: 99, type: "monster" }, { prefab: "T-rex", hp: 30, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 40, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 25, type: "monster" }, {prefab: "Vampire_1", hp: 20, type: "monster"}]]
                 }
             ]
         }, {
             bg: 2,//level 12
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 500, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 19, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 50, type: "monster" },{ prefab: "Sword_2", hp: 30, type: "monster" }],
+                    [{ prefab: "WeaponItem_1", hp: 28, type: "weapon"  },{ prefab: "Sword_1", hp: 5, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 70, type: "monster" }]]
                 },
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "Bow_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Shield_2", hp: 1500, type: "monster", data: { shield_hp: 1500 } }, { prefab: "Bow_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 2000, type: "monster" }]
-                    ]
-                },
-
-                {
-                    data: [[{ prefab: "Shield_3", hp: 5000, type: "monster", data: { shield_hp: 5000 } }],
-                    [{ prefab: "Shield_1", hp: 500, type: "monster", data: { shield_hp: 500 } }, { prefab: "Bow_1", hp: 30, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 400, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "T-rex", hp: 500, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 1500, type: "monster" }, { prefab: "T-rex", hp: 500, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
-                    ]
+                    data: [[{ prefab: "T-rex", hp: 94, type: "monster" }]]
                 }
             ]
         }, {
             bg: 2,//level 13
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
-                    [{ prefab: "Weapon_3", hp: 150, type: "item" }]]
+                    data: [[{ prefab: "LVL_1", hp: 10, type: "player" }],// 第一层
+                    [{ prefab: "Weapon_3", hp: 15, type: "item" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 10, type: "monster" }]]
                 },
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 200, type: "monster", data: { shield_hp: 200 } }]
+                    data: [[{ prefab: "Sword_1", hp: 30, type: "monster" }],
+                    [ {prefab: "Item_Barrier1", hp: 20, type: "item"} ,{ prefab: "Sword_2", hp: 20, type: "monster" }]
                     ]
                 },
 
                 {
-                    data: [[{ prefab: "Shield_1", hp: 300, type: "monster", data: { shield_hp: 300 } }, { prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Bow_1", hp: 15, type: "monster" }, { prefab: "Bow_1", hp: 15, type: "monster" }, { prefab: "Bow_1", hp: 15, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 700, type: "monster" }]
+                    data: [[{prefab: "Item_Barrier1", hp: 30, type: "item"}, { prefab: "Sword_1", hp: 30, type: "monster" }, { prefab: "Sword_2", hp: 30, type: "monster" }],
+                    [{ prefab: "Bow_1", hp: 15, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 70, type: "monster" }]
                     ]
                 },
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }, { prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "Goblin", hp: 100, type: "monster", data: { prefab: "Weapon_4", hp: 400, type: "item" } }],
-                    [{ prefab: "Shield_2", hp: 1600, type: "monster", data: { shield_hp: 1600 } }],
-                    [{ prefab: "Shield_1", hp: 50, type: "monster", data: { shield_hp: 50 } }, { prefab: "Wizard", hp: 100, type: "monster" }]
+                    data: [[{ prefab: "Sword_1", hp: 10, type: "monster" }, { prefab: "Sword_2", hp: 150, type: "monster" }],
+                    [{ prefab: "Goblin", hp: 10, type: "monster", data: { prefab: "Weapon_4", hp: 40, type: "item" } }],
+                    [{ prefab: "Shield_2", hp: 160, type: "monster"}],
+                    [{ prefab: "Shield_1", hp: 50, type: "monster"}, { prefab: "Wizard", hp: 100, type: "monster" }]
                     ]
                 }
             ]
@@ -422,61 +395,45 @@ export default class LevelData extends cc.Component {
             bg: 3,//level 16
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 35, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 150, type: "monster", data: { shield_hp: 150 } }],
-                    [{ prefab: "Sword_1", hp: 50, type: "monster" }, { prefab: "Sword_1", hp: 200, type: "monster" }]]
-                },
+                    data: [[{prefab:"Goblin",hp:35,type:"monster",data:{prefab: "WeaponItem_9", hp: 10, type: "weapon"}}],
+                    [{ prefab: "Shield_1", hp: 25, type: "monster" } ],
+                    [{ prefab: "Shield_1", hp: 20, type: "monster" }],
+                    [ {prefab: "T-rex", hp: 120, type: "monster"}]]
 
-                {
-                    data: [[{ prefab: "Shield_1", hp: 2000, type: "monster", data: { shield_hp: 2000 } }, { prefab: "Bow_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 400, type: "monster" }, { prefab: "Sword_2", hp: 2000, type: "monster" }, { prefab: "Bow_1", hp: 15, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1100, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 500, type: "monster" }, { prefab: "Sword_2", hp: 1000, type: "monster" }]
-                    ]
                 },
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }, { prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1200, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }, { prefab: "Bow_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "Sword_2", hp: 6400, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 10000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Shield_1", hp: 150, type: "monster", data: { shield_hp: 150 } }, { prefab: "Wizard", hp: 500, type: "monster" }, { prefab: "Wizard", hp: 500, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
-                    ]
-                }
+                    prefab: "Boss_4", hp: 270, type: "boss"
+                },   // boss_1-6
             ]
         },
         {
             bg: 3,//level 17
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 3, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 700, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 200, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 120, type: "monster" }, { prefab: "Sword_1", hp: 350, type: "monster" }]]
+                    data: [[{ prefab: "WeaponItem_1", hp: 7, type: "weapon" }],
+                    [{ prefab: "Sword_1", hp: 12, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 6, type: "monster" }, { prefab: "Sword_2", hp: 25, type: "monster" }]]
                 },
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }, { prefab: "Sword_2", hp: 500, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1100, type: "monster" }],
-                    [{ prefab: "Shield_2", hp: 1000, type: "monster", data: { shield_hp: 1000 } }, { prefab: "Bow_1", hp: 100, type: "monster" }]
+                    data: [[{ prefab: "Sword_1", hp: 20, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 100, type: "monster" },{ prefab: "Sword_1", hp: 42, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 20, type: "monster" },{ prefab: "Sword_1", hp: 70, type: "monster" }]
                     ]
                 },
                 {
-                    data: [[{ prefab: "Sword_1", hp: 1500, type: "monster" }],
-                    [{ prefab: "Shield_3", hp: 2500, type: "monster", data: { shield_hp: 2500 } }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Shield_2", hp: 1000, type: "monster", data: { shield_hp: 1000 } }, { prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
+                    data: [[ { prefab: "Item_Barrier1", hp: 125, type: "item" },{ prefab: "Sword_1", hp: 155, type: "monster" }],
+                    [{ prefab: "Item_Barrier1", hp: 135, type: "item" },{ prefab: "Sword_1", hp: 150, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 195, type: "monster" }],
+                    [{ prefab: "T-rex", hp: 500, type: "monster", scale:0.7 },{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }, scale:0.6}]
                     ]
                 }
             ]
@@ -485,58 +442,33 @@ export default class LevelData extends cc.Component {
             bg: 3,//level 18
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
+                    data: [[{ prefab: "LVL_1", hp: 23, type: "player" }],// 第一层
                     [{}]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 200, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Shield_1", hp: 150, type: "monster", data: { shield_hp: 150 } }]]
+                    data: [[{ prefab: "Sword_2", hp: 11, type: "monster" },{  prefab: "WeaponItem_6", hp: 66, type: "weapon"  }],
+                    [{ prefab: "Sword_1", hp: 32, type: "monster" }],
+                    [{  prefab: "Vampire_1", hp: 66, type: "monster" }]]
                 },
-
                 {
-                    data: [[{ prefab: "Sword_1", hp: 800, type: "monster" }, { prefab: "Sword_2", hp: 600, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 4000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1100, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 400, type: "monster" }, { prefab: "Bow_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 900, type: "monster" }, { prefab: "Sword_2", hp: 900, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }, { prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 2000, type: "monster" }, { prefab: "Weapon_4", hp: 4000, type: "item" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Shield_3", hp: 2500, type: "monster", data: { shield_hp: 2500 } }, { prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    ]
-                }
+                    prefab: "Boss_5", hp: 150,type: "boss"
+                },   // boss_1-6
             ]
         },
         {
             bg: 3,//level 19
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
+                    data: [[{ prefab: "LVL_1", hp: 20, type: "player" }],// 第一层
                     [{}]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_2", hp: 150, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 50, type: "monster" }],
-                    [{ prefab: "Bow_1", hp: 25, type: "monster" }]]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }, { prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 150, type: "monster" }],
-                    [{ prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 500, type: "monster" }, { prefab: "Sword_1", hp: 500, type: "monster" }]
-                    ]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 900, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 250, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 4000, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }]
-                    ]
+                    data: [[{ prefab: "Sword_2", hp: 16, type: "monster" }],
+                    [{prefab: "Item_Barrier1", hp: 42, type: "item" }, { prefab: "WeaponItem_7", hp: 60, type: "weapon"  }], 
+                    [{ prefab: "WeaponItem_2", hp: 36, type: "weapon" }],
+                    [{ prefab: "Sword_2", hp: 85, type: "monster" },{ prefab: "princess", hp: 50, type: "princess"}]]
                 }
             ]
         },
@@ -544,84 +476,33 @@ export default class LevelData extends cc.Component {
             bg: 3,//level 20
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 26, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 400, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 150, type: "monster" }, { prefab: "Sword_1", hp: 150, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 600, type: "monster" }]]
+                    data: [[{ prefab: "Sword_1", hp: 31, type: "monster" }],
+                    [{prefab: "Sword_2", hp: 15, type: "monster" }],
+                    [{prefab: "WeaponItem_8", hp: 26, type: "weapon"},{ prefab: "Shield_1", hp: 85, type: "monster"}],
+                    [{prefab: "T-rex", hp: 99, type: "monster" }]]
                 },
-
                 {
-                    data: [[{ prefab: "Sword_2", hp: 800, type: "monster" }, { prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Shield_3", hp: 2000, type: "monster", data: { shield_hp: 2000 } }],
-                    [{ prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 50, type: "monster" }, { prefab: "Goblin", hp: 100, type: "monster", data: { prefab: "Weapon_4", hp: 1000, type: "item" } }]
-                    ]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 12000, type: "monster" }],
-                    [{ prefab: "T-rex", hp: 1000, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 200, type: "monster" }, { prefab: "Sword_2", hp: 1500, type: "monster" }, { prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "T-rex", hp: 2000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1500, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 5000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 150, type: "monster" }, { prefab: "T-rex", hp: 1000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 150, type: "monster" }, { prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    ]
-                }
+                    prefab: "Boss_3",  hp: 280,type: "boss"
+                }  // boss_1-6
+                
             ]
         },
         {
             bg: 0,//level 22
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 28, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }]]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_1", hp: 200, type: "monster" }, { prefab: "Sword_2", hp: 600, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 300, type: "monster" }]]
-                },
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 400, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 2000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }],
-                    [{ prefab: "Wizard", hp: 300, type: "monster" }, { prefab: "Wizard", hp: 200, type: "monster" }]
-                    ]
-                }
-            ]
-        },
-        {
-            bg: 0,//level 22
-            towerData: [
-                {
-                    data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
-                    [{ prefab: "Weapon_4", hp: 1000, type: "item" }]]
-                },//第二层
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 2000, type: "monster" }],
-                    [{ prefab: "Shield_3", hp: 2000, type: "monster", data: { shield_hp: 2000 } }],
-                    [{ prefab: "T-rex", hp: 1000, type: "monster" }]
-                    ]
-                },
-                {
-                    data: [[{ prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 4000, type: "monster" }],
-                    [{ prefab: "Shield_3", hp: 1500, type: "monster", data: { shield_hp: 1500 } }],
-                    [{ prefab: "Shield_3", hp: 2500, type: "monster", data: { shield_hp: 2500 } }, { prefab: "T-rex", hp: 1500, type: "monster" }]
-                    ]
+                    data: [[{ prefab: "Sword_1", hp: 50, type: "monster" }, { prefab: "Sword_2", hp: 30, type: "monster" }],
+                    [{ prefab: "WeaponItem_9", hp: 20, type: "weapon"  },{ prefab: "Shield_1", hp: 5, type: "monster" }],
+                    [{ prefab: "T-rex", hp: 70, type: "monster" }],
+                    [{ prefab: "Vampire_1", hp: 94, type: "monster" }]]
                 }
             ]
         },
@@ -629,31 +510,14 @@ export default class LevelData extends cc.Component {
             bg: 0,//level 23
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[ { prefab: "LVL_1", hp: 24, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 100, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 280, type: "monster" }]
-                    ]
-                },
-                {
-                    data: [[{ prefab: "Sword_1", hp: 150, type: "monster" }, { prefab: "Sword_2", hp: 800, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 700, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }]
-                    ]
-                },
-                {
-                    data: [[{ prefab: "Sword_1", hp: 150, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 1200, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 2800, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 4000, type: "monster" }, { prefab: "Wizard", hp: 700, type: "monster" }, { prefab: "Wizard", hp: 700, type: "monster" }]
-                    ]
-                },//第二层
-
-                {
-                    data: [[{ prefab: "Sword_2", hp: 9000, type: "monster" }]
+                    data: [[{ prefab: "Item_Barrier1", hp: 97, type: "item" },{ prefab: "princess", hp: 50, type: "princess"  }],
+                    [{ prefab: "Sword_1", hp: 4, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 5, type: "monster" },{ prefab: "Vampire_2", hp: 45, type: "monster" }],
+                    [{ prefab: "WeaponItem_5", hp: 20, type: "weapon" }]
                     ]
                 }
             ]
@@ -662,32 +526,435 @@ export default class LevelData extends cc.Component {
             bg: 0,//level 24
             towerData: [
                 {
-                    data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
-                    [{}]]
+                    data: [[{ prefab: "LVL_1", hp: 9, type: "player" }]]
                 },//第二层
 
                 {
-                    data: [[{ prefab: "Sword_1", hp: 300, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 550, type: "monster" }],
-                    [{ prefab: "Sword_1", hp: 150, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1000, type: "monster" }, { prefab: "Bow_1", hp: 25, type: "monster" }]
+                    data: [[{ prefab: "Sword_1", hp: 61, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 31, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 8, type: "monster" },{ prefab: "Sword_2", hp: 11, type: "monster" }],
+                    [{ prefab: "Item_Barrier1", hp: 21, type: "item" }, {  prefab: "WeaponItem_2", hp: 31, type: "weapon" }]
                     ]
                 },
                 {
-                    data: [[{ prefab: "Sword_2", hp: 3000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 7000, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 1500, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 2200, type: "monster" }, { prefab: "T-rex", hp: 900, type: "monster" }],
-                    [{ prefab: "Sword_2", hp: 6000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 700, type: "monster" }, { prefab: "Sword_2", hp: 20000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "Sword_2", hp: 6000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    [{ prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "T-rex", hp: 2000, type: "monster" }, { prefab: "LockTower", hp: 50, type: "lock" }],
-                    ]
-                }
+                    prefab: "Boss_1", hp: 101,type: "boss"
+                },   // boss_1-6
             ]
         },
         {
             bg: 0,//level 25
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 1, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]]
+                },
+                {
+                    data: [[{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]],
+                }
+            ]
+        },
+        {
+            bg: 0,//level 26
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 25, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{ prefab: "WeaponItem_9", hp: 21, type: "weapon" }],
+                    [{ prefab: "Sword_1", hp: 5, type: "monster" }],
+                    [{ prefab: "Sword_2", hp: 47, type: "monster" }],
+                    [{ prefab: "Sword_1", hp: 10, type: "monster" }, { prefab: "Vampire_1", hp: 84, type: "monster"},{ prefab: "T-rex", hp: 150, type: "monster" }]
+                    ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 27
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 29, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{ prefab: "Sword_2", hp: 70, type: "monster" },{ prefab: "WeaponItem_7", hp: 149, type: "weapon" } ],
+                    [{ prefab: "Sword_1", hp: 6, type: "monster" },{ prefab: "Sword_2", hp: 32, type: "monster" }],
+                    [ { prefab: "Item_Barrier1", hp: 8, type: "item" },{ prefab: "Sword_2", hp: 20, type: "monster" }],
+                    [{ prefab: "T-rex", hp: 295, type: "monster" }, { prefab: "princess", hp: 50, type: "princess"}]
+                    ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 28
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[ { prefab: "Item_Barrier1", hp: 30, type: "item" },{  prefab: "Vampire_1", hp: 160, type: "monster"} ],
+                    [{prefab:"Dragon_2head",hp:301,type:"monster"},{ prefab: "princess", hp: 50, type: "princess" }],
+                    [ {prefab: "WeaponItem_9", hp: 120, type: "weapon" }],
+                    [{ prefab: "Sword_1", hp: 18, type: "monster" }, { prefab: "Shield_2", hp: 40, type: "monster"}]
+                    ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 29
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 29, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{ prefab: "Sword_1", hp: 10, type: "monster" },{  prefab: "Vampire_1", hp: 48, type: "monster"} ],
+                    [{prefab: "WeaponItem_4", hp: 40, type: "weapon"}],
+                    [ {prefab: "Shield_2", hp: 24, type: "monster" }]
+                    ]
+                } , 
+                {
+                    prefab: "Boss_1",hp: 150, type: "boss"
+                },   // boss_1-6
+            ]
+        },
+        {
+            bg: 0,//level 30
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 24, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_2", hp: 20, type: "monster"},{prefab: "WeaponItem_6", hp: 120, type: "weapon"} ],
+                    [{prefab: "Shield_1", hp: 16, type: "monster"},{prefab: "Shield_2", hp: 20, type: "monster"}],
+                    [{prefab: "Vampire_1", hp: 40, type: "monster"}],
+                    [{prefab: "T-rex", hp: 211, type: "monster"}]
+                    ]
+                }  
+            ]
+        },
+        {
+            bg: 0,//level 31
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 38, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 5, type: "monster"},{prefab: "WeaponItem_7", hp: 55, type: "weapon"}],
+                    [{prefab: "Shield_1", hp: 12, type: "monster"},{prefab: "Shield_2", hp: 80, type: "monster"}]
+                    ]
+                }  ,//第三层
+
+                {
+                    data: [[{prefab: "Item_Barrier1", hp: 30, type: "item"},{prefab: "WeaponItem_8", hp: 70, type: "weapon"}],
+                    [{ prefab: "Vampire_1", hp: 187, type: "monster"}],
+                    [{ prefab: "T-rex", hp: 280, type: "monster"}]
+                    ]
+                },
+                {
+                    prefab: "Boss_3",hp: 687, type: "boss"
+                },   // boss_1-6
+                
+            ]
+        },
+        {
+            bg: 0,//level 32
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 39, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 10, type: "monster"},{prefab: "Shield_1", hp: 65, type: "monster"}],
+                    [{prefab: "Shield_2", hp: 30, type: "monster"},{prefab: "WeaponItem_6", hp: 25, type: "weapon"}],
+                    [{prefab: "T-rex", hp: 150, type: "monster"},{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]
+                    ]
+                } , 
+                
+            ]
+        },
+        {
+            bg: 0,//level 33
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 40, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Sword_1", hp: 36, type: "monster"},{prefab: "Sword_2", hp: 113, type: "monster"}],
+                    [{prefab: "Sword_2", hp: 41, type: "monster"},{prefab: "WeaponItem_4", hp: 60, type: "weapon"}],
+                    [{prefab: "Shield_1", hp: 73, type: "monster"},{prefab: "Shield_1", hp: 58, type: "monster"}],
+                    [{prefab: "Item_Barrier1", hp: 93, type: "item"},{prefab: "T-rex", hp: 220, type: "monster"}]    
+                ]
+                } , 
+
+                {
+                    data: [[{prefab: "Sword_1", hp: 200, type: "monster"}],
+                    [{prefab:"Sword_2",hp:315,type:"monster"}],
+                    [{ prefab: "Item_Barrier1", hp: 285, type: "item" },{prefab: "WeaponItem_5", hp: 778, type: "weapon"}],
+                    [{prefab: "T-rex", hp: 1555, type: "monster"},{prefab: "princess", hp: 50, type: "princess"}]    
+                ]
+                } ,
+                
+            ]
+        },
+        {
+            bg: 0,//level 34
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 155, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "WeaponItem_7", hp: 20, type: "weapon"},{prefab: "Shield_1", hp: 80, type: "monster"}],
+                    [{prefab: "Sword_2", hp: 150, type: "monster"}],
+                    [{prefab: "WeaponItem_4", hp: 605, type: "weapon"}, {prefab: "T-rex", hp: 900, type: "monster"}],
+                    [ { prefab: "LockTower", hp: 100, type: "lock" },{prefab: "Shield_1", hp: 200, type: "monster"}]    
+                ]
+                } , 
+                {
+                    prefab: "Boss_5",hp: 2109, type: "boss"
+                },   // boss_1-6
+                
+            ]
+        },
+        {
+            bg: 0,//level 35
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 50, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 54, type: "monster"}],
+                    [{prefab: "WeaponItem_3", hp: 150, type: "weapon"}],
+                    [{prefab: "T-rex", hp: 199, type: "monster"}],
+                ]
+                } 
+                
+            ]
+        },
+        {
+            bg: 0,//level 36
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 100, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "WeaponItem_3", hp: 300, type: "weapon"}],
+                    [{prefab: "Shield_1", hp: 299, type: "monster"}],
+                    [{prefab: "Item_Barrier1", hp: 399, type: "item"},{prefab: "Shield_2", hp: 249, type: "monster"}],
+                    [{prefab: "Shield_1", hp: 199, type: "monster"}],
+                ]
+                } 
+                
+            ]
+        },
+        {
+            bg: 0,//level 37
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 17, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 55, type: "monster"},{prefab: "Shield_1", hp: 60, type: "monster"}],
+                    [{prefab: "WeaponItem_3", hp: 55, type: "weapon"}],
+                    [{prefab: "Shield_2", hp: 60, type: "monster"}],
+                    [{prefab: "T-rex", hp: 225, type: "monster"},{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                ]
+                } 
+                
+            ]
+        },
+        {
+            bg: 0,//level 38
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 75, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 8, type: "monster"}],
+                    [{prefab: "T-rex", hp: 40, type: "monster"}],
+                    [{prefab: "Shield_3", hp: 40, type: "monster"}, {prefab: "Vampire_2", hp: 30, type: "monster"}]]
+                } ,// boss_1-6
+                {
+                    prefab: "Boss_1",hp: 191, type: "boss"
+                },   
+                
+            ]
+        },
+        {
+            bg: 0,//level 39
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 1, type: "player" }]]
+                },//第层
+
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]]
+                } ,
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]
+                ]
+                } 
+                ,
+                {
+                    data: [[{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}],
+                    [{ prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]
+                ]
+                } 
+                
+            ]
+        },
+        {
+            bg: 0,//level 40
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 10, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 5, type: "monster"},{prefab: "Shield_2", hp: 10, type: "monster"}],
+                    [{ prefab: "Item_Barrier1", hp: 30, type: "item" },{prefab: "Shield_2", hp: 15, type: "monster"}],
+                    [{prefab: "Shield_3", hp: 21, type: "monster"}]]
+                } ,  
+                {
+                    data: [[{prefab: "Shield_1", hp: 15, type: "monster"},{prefab: "WeaponItem_3", hp: 15, type: "weapon"}],
+                    [{prefab: "Shield_1", hp: 20, type: "monster"}],
+                    [{prefab: "Shield_3", hp: 21, type: "monster"}]]
+                } , 
+            ]
+        },
+        {
+            bg: 0,//level 41
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 31, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 35, type: "monster"},{prefab: "WeaponItem_5", hp: 15, type: "weapon"}],
+                    [{prefab: "Shield_1", hp: 20, type: "monster"}],
+                    [{ prefab: "Item_Barrier1", hp: 125, type: "item" },{prefab: "Shield_3", hp: 5, type: "monster"}],
+                    [{prefab: "T-rex", hp: 65, type: "monster"}]
+                ]
+                } ,  
+                {
+                    data: [[{prefab: "Vampire_1", hp: 45, type: "monster"},{prefab: "WeaponItem_4", hp: 20, type: "weapon"}],
+                    [{prefab: "Vampire_2", hp: 100, type: "monster"}],
+                    [{prefab: "Shield_6", hp: 200, type: "monster"}]]
+                } , 
+            ]
+        },
+        {
+            bg: 0,//level 42
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 51, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Sword_1", hp: 76, type: "monster"},{prefab: "Shield_6", hp: 444, type: "monster"}],
+                    [{prefab: "Shield_5", hp: 131, type: "monster"}],
+                    [{prefab: "Shield_4", hp: 211, type: "monster"}],
+                    [{prefab: "WeaponItem_7", hp: 152, type: "weapon"}]
+                ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 43
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 15, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_4", hp: 35, type: "monster"}],
+                    [{prefab: "Shield_4", hp: 12, type: "monster"},{prefab: "Shield_5", hp: 18, type: "monster"}],
+                    [{prefab: "Shield_4", hp: 10, type: "monster"},{prefab: "Shield_5", hp: 79, type: "monster"}],
+                    [{prefab: "Shield_6", hp: 120, type: "monster"},{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]
+                ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 44
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 5, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_1", hp: 1, type: "monster"},{prefab: "Shield_4", hp: 28, type: "monster"}],
+                    [{prefab: "Shield_4", hp: 25, type: "monster"}],
+                    [{prefab: "WeaponItem_4", hp: 51, type: "weapon"},{prefab: "Shield_1", hp: 17, type: "monster"}],
+                    [{prefab: "T-rex", hp: 55, type: "monster"},{prefab: "Shield_6", hp: 161, type: "monster"}]
+                ]
+                } 
+            ]
+        },
+        {
+            bg: 0,//level 45
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 181, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Item_Barrier1", hp: 50, type: "item"},{prefab: "WeaponItem_3", hp: 100, type: "weapon"}],
+                    [{prefab: "Shield_6", hp: 60, type: "monster"}],
+                    [{prefab: "T-rex", hp: 250, type: "monster"},{prefab: "WeaponItem_9", hp: 1080, type: "weapon"}],
+                    [{prefab: "LockTower", hp: 100, type: "lock"},{prefab: "Shield_6", hp: 999, type: "monster"}]
+                ]
+                } ,
+                {
+                    prefab: "Boss_5",hp: 2510, type: "boss"
+                },   // boss_1-6
+            ]
+        },
+        {
+            bg: 0,//level 46
+            towerData: [
+                {
+                    data: [[{ prefab: "LVL_1", hp: 12, type: "player" }]]
+                },//第二层
+
+                {
+                    data: [[{prefab: "Shield_4", hp: 14, type: "monster"},{prefab: "Shield_4", hp: 10, type: "monster"},{prefab: "Shield_5", hp: 22, type: "monster"}],
+                    [{prefab: "Shield_5", hp: 15, type: "monster"},{prefab: "Shield_5", hp: 60, type: "monster"},{prefab: "Shield_6", hp: 99, type: "monster"}],
+                    [{prefab: "Shield_5", hp: 5, type: "monster"},{prefab: "Item_Barrier1", hp: 140, type: "item"},{prefab: "Shield_5", hp: 5, type: "monster"}],
+                ]
+                } ,
+                {
+                    data: [[{prefab: "Shield_1", hp: 140, type: "monster"}],
+                    [{prefab: "Shield_1", hp: 59, type: "monster"}],
+                    [{prefab: "Item_Barrier1", hp: 100, type: "item"},{prefab: "Vampire_3", hp: 85, type: "monster"}],
+                    [{prefab:"Goblin",hp:10,type:"monster",data:{prefab: "WeaponItem_9", hp: 50, type: "weapon"}} ],
+                    [{prefab: "Shield_6", hp: 300, type: "monster"},{prefab: "TreasureBox1", hp: 50, type: "item", data: { prefab: "", count: 200, type: "glod" }}]
+                ]
+                } ,
+               
+            ]
+        },
+        {
+            bg: 0,//level 47
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -733,7 +1000,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 1,//level 26
+            bg: 1,//level 48
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -755,7 +1022,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 1,//level 27
+            bg: 1,//level 49
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -784,7 +1051,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 1,//level 28
+            bg: 1,//level 50
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -812,7 +1079,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 1,//level 29
+            bg: 1,//level 51
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 110, type: "player" }],// 第一层
@@ -848,7 +1115,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 1,//level 30
+            bg: 1,//level 52
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 500, type: "player" }],// 第一层
@@ -871,7 +1138,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 31
+            bg: 2,//level 53
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -899,7 +1166,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 32
+            bg: 2,//level 54
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 1200, type: "player" }],// 第一层
@@ -918,7 +1185,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 33
+            bg: 2,//level 55
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -943,7 +1210,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 34
+            bg: 2,//level 56
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -985,7 +1252,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 35
+            bg: 2,//level 57
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -1014,7 +1281,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 2,//level 36
+            bg: 2,//level 58
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1051,7 +1318,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 3,//level 37
+            bg: 3,//level 59
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1084,7 +1351,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 3,//level 38
+            bg: 3,//level 60
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1122,7 +1389,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 3,//level 39
+            bg: 3,//level 61
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1157,7 +1424,7 @@ export default class LevelData extends cc.Component {
             ]
         },
         {
-            bg: 3,//level 40
+            bg: 3,//level 62
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1188,7 +1455,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 0,//level 41
+            bg: 0,//level 63
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1224,7 +1491,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 0,//level 42
+            bg: 0,//level 64
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -1255,7 +1522,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 0,//level 43
+            bg: 0,//level 65
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1286,7 +1553,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 0,//level 44
+            bg: 0,//level 66
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1316,7 +1583,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 0,//level 45
+            bg: 0,//level 67
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1345,7 +1612,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 1,//level 46
+            bg: 1,//level 68
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1382,7 +1649,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 1,//level 47
+            bg: 1,//level 69
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
@@ -1423,7 +1690,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 1,//level 48
+            bg: 1,//level 70
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 250, type: "player" }],// 第一层
@@ -1460,7 +1727,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 1,//level 49
+            bg: 1,//level 71
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1491,7 +1758,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 1,//level 50
+            bg: 1,//level 72
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1534,7 +1801,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 51
+            bg: 2,//level 73
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1568,7 +1835,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 52
+            bg: 2,//level 74
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
@@ -1595,7 +1862,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 53
+            bg: 2,//level 75
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1630,7 +1897,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 54
+            bg: 2,//level 76
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -1668,7 +1935,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 55
+            bg: 2,//level 77
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1698,7 +1965,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 56
+            bg: 2,//level 78
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 100, type: "player" }],// 第一层
@@ -1737,7 +2004,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 57
+            bg: 2,//level 79
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 110, type: "player" }],// 第一层
@@ -1775,7 +2042,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 2,//level 58
+            bg: 2,//level 80
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
@@ -1806,7 +2073,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 3,//level 59
+            bg: 3,//level 81
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 150, type: "player" }],// 第一层
@@ -1850,7 +2117,7 @@ export default class LevelData extends cc.Component {
                 }
             ]
         },{
-            bg: 3,//level 60
+            bg: 3,//level 82
             towerData: [
                 {
                     data: [[{ prefab: "LVL_1", hp: 200, type: "player" }],// 第一层
